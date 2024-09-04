@@ -11,6 +11,12 @@
 		D22E9B5B2C88031A00086549 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B5A2C88031A00086549 /* ContentView.swift */; };
 		D22E9B5D2C88031C00086549 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22E9B5C2C88031C00086549 /* Assets.xcassets */; };
 		D22E9B602C88031C00086549 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22E9B5F2C88031C00086549 /* Preview Assets.xcassets */; };
+		D22E9B6B2C8803C100086549 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B6A2C8803C100086549 /* Util.swift */; };
+		D22E9B6D2C8803C800086549 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B6C2C8803C800086549 /* Extension.swift */; };
+		D22E9B732C8803E500086549 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B722C8803E500086549 /* Service.swift */; };
+		D22E9B752C8803EC00086549 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B742C8803EC00086549 /* Provider.swift */; };
+		D22E9B772C8803F100086549 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B762C8803F100086549 /* Entity.swift */; };
+		D22E9B7C2C88042F00086549 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B7B2C88042F00086549 /* Feature.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +25,12 @@
 		D22E9B5A2C88031A00086549 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D22E9B5C2C88031C00086549 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D22E9B5F2C88031C00086549 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D22E9B6A2C8803C100086549 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		D22E9B6C2C8803C800086549 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		D22E9B722C8803E500086549 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		D22E9B742C8803EC00086549 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		D22E9B762C8803F100086549 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
+		D22E9B7B2C88042F00086549 /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,9 +63,12 @@
 		D22E9B572C88031A00086549 /* SantaManito-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				D22E9B582C88031A00086549 /* SantaManito_iOSApp.swift */,
+				D22E9B7A2C88042500086549 /* Feature */,
+				D22E9B782C8803F600086549 /* DSKit */,
+				D22E9B6E2C8803CC00086549 /* Data */,
+				D22E9B672C8803AE00086549 /* Core */,
+				D22E9B662C8803A200086549 /* App */,
 				D22E9B5A2C88031A00086549 /* ContentView.swift */,
-				D22E9B5C2C88031C00086549 /* Assets.xcassets */,
 				D22E9B5E2C88031C00086549 /* Preview Content */,
 			);
 			path = "SantaManito-iOS";
@@ -65,6 +80,97 @@
 				D22E9B5F2C88031C00086549 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D22E9B662C8803A200086549 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B582C88031A00086549 /* SantaManito_iOSApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		D22E9B672C8803AE00086549 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B692C8803BA00086549 /* Util */,
+				D22E9B682C8803B100086549 /* Extension */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		D22E9B682C8803B100086549 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B6C2C8803C800086549 /* Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		D22E9B692C8803BA00086549 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B6A2C8803C100086549 /* Util.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		D22E9B6E2C8803CC00086549 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B712C8803DD00086549 /* Service */,
+				D22E9B702C8803D800086549 /* Provider */,
+				D22E9B6F2C8803D200086549 /* Entity */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		D22E9B6F2C8803D200086549 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B762C8803F100086549 /* Entity.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		D22E9B702C8803D800086549 /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B742C8803EC00086549 /* Provider.swift */,
+			);
+			path = Provider;
+			sourceTree = "<group>";
+		};
+		D22E9B712C8803DD00086549 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B722C8803E500086549 /* Service.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		D22E9B782C8803F600086549 /* DSKit */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B792C8803FA00086549 /* Resource */,
+			);
+			path = DSKit;
+			sourceTree = "<group>";
+		};
+		D22E9B792C8803FA00086549 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B5C2C88031C00086549 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		D22E9B7A2C88042500086549 /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B7B2C88042F00086549 /* Feature.swift */,
+			);
+			path = Feature;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +244,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D22E9B5B2C88031A00086549 /* ContentView.swift in Sources */,
+				D22E9B6B2C8803C100086549 /* Util.swift in Sources */,
+				D22E9B772C8803F100086549 /* Entity.swift in Sources */,
+				D22E9B732C8803E500086549 /* Service.swift in Sources */,
+				D22E9B7C2C88042F00086549 /* Feature.swift in Sources */,
 				D22E9B592C88031A00086549 /* SantaManito_iOSApp.swift in Sources */,
+				D22E9B752C8803EC00086549 /* Provider.swift in Sources */,
+				D22E9B6D2C8803C800086549 /* Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
