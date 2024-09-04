@@ -1,0 +1,463 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D22E9B592C88031A00086549 /* SantaManito_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B582C88031A00086549 /* SantaManito_iOSApp.swift */; };
+		D22E9B5B2C88031A00086549 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B5A2C88031A00086549 /* ContentView.swift */; };
+		D22E9B5D2C88031C00086549 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22E9B5C2C88031C00086549 /* Assets.xcassets */; };
+		D22E9B602C88031C00086549 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22E9B5F2C88031C00086549 /* Preview Assets.xcassets */; };
+		D22E9B6B2C8803C100086549 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B6A2C8803C100086549 /* Util.swift */; };
+		D22E9B6D2C8803C800086549 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B6C2C8803C800086549 /* Extension.swift */; };
+		D22E9B732C8803E500086549 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B722C8803E500086549 /* Service.swift */; };
+		D22E9B752C8803EC00086549 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B742C8803EC00086549 /* Provider.swift */; };
+		D22E9B772C8803F100086549 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B762C8803F100086549 /* Entity.swift */; };
+		D22E9B7C2C88042F00086549 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B7B2C88042F00086549 /* Feature.swift */; };
+		D22E9B7E2C8804B600086549 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22E9B7D2C8804B600086549 /* Colors.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D22E9B552C88031A00086549 /* SantaManito-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SantaManito-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D22E9B582C88031A00086549 /* SantaManito_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantaManito_iOSApp.swift; sourceTree = "<group>"; };
+		D22E9B5A2C88031A00086549 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D22E9B5C2C88031C00086549 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D22E9B5F2C88031C00086549 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D22E9B6A2C8803C100086549 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		D22E9B6C2C8803C800086549 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		D22E9B722C8803E500086549 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		D22E9B742C8803EC00086549 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		D22E9B762C8803F100086549 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
+		D22E9B7B2C88042F00086549 /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
+		D22E9B7D2C8804B600086549 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D22E9B522C88031A00086549 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D22E9B4C2C88031A00086549 = {
+			isa = PBXGroup;
+			children = (
+				D22E9B572C88031A00086549 /* SantaManito-iOS */,
+				D22E9B562C88031A00086549 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D22E9B562C88031A00086549 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B552C88031A00086549 /* SantaManito-iOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D22E9B572C88031A00086549 /* SantaManito-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B7A2C88042500086549 /* Feature */,
+				D22E9B782C8803F600086549 /* DSKit */,
+				D22E9B6E2C8803CC00086549 /* Data */,
+				D22E9B672C8803AE00086549 /* Core */,
+				D22E9B662C8803A200086549 /* App */,
+				D22E9B5A2C88031A00086549 /* ContentView.swift */,
+				D22E9B5E2C88031C00086549 /* Preview Content */,
+			);
+			path = "SantaManito-iOS";
+			sourceTree = "<group>";
+		};
+		D22E9B5E2C88031C00086549 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B5F2C88031C00086549 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D22E9B662C8803A200086549 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B582C88031A00086549 /* SantaManito_iOSApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		D22E9B672C8803AE00086549 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B692C8803BA00086549 /* Util */,
+				D22E9B682C8803B100086549 /* Extension */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		D22E9B682C8803B100086549 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B6C2C8803C800086549 /* Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		D22E9B692C8803BA00086549 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B6A2C8803C100086549 /* Util.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		D22E9B6E2C8803CC00086549 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B712C8803DD00086549 /* Service */,
+				D22E9B702C8803D800086549 /* Provider */,
+				D22E9B6F2C8803D200086549 /* Entity */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		D22E9B6F2C8803D200086549 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B762C8803F100086549 /* Entity.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		D22E9B702C8803D800086549 /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B742C8803EC00086549 /* Provider.swift */,
+			);
+			path = Provider;
+			sourceTree = "<group>";
+		};
+		D22E9B712C8803DD00086549 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B722C8803E500086549 /* Service.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		D22E9B782C8803F600086549 /* DSKit */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B792C8803FA00086549 /* Resource */,
+			);
+			path = DSKit;
+			sourceTree = "<group>";
+		};
+		D22E9B792C8803FA00086549 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B5C2C88031C00086549 /* Assets.xcassets */,
+				D22E9B7D2C8804B600086549 /* Colors.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		D22E9B7A2C88042500086549 /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				D22E9B7B2C88042F00086549 /* Feature.swift */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D22E9B542C88031A00086549 /* SantaManito-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D22E9B632C88031C00086549 /* Build configuration list for PBXNativeTarget "SantaManito-iOS" */;
+			buildPhases = (
+				D22E9B512C88031A00086549 /* Sources */,
+				D22E9B522C88031A00086549 /* Frameworks */,
+				D22E9B532C88031A00086549 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SantaManito-iOS";
+			productName = "SantaManito-iOS";
+			productReference = D22E9B552C88031A00086549 /* SantaManito-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D22E9B4D2C88031A00086549 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					D22E9B542C88031A00086549 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = D22E9B502C88031A00086549 /* Build configuration list for PBXProject "SantaManito-iOS" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D22E9B4C2C88031A00086549;
+			productRefGroup = D22E9B562C88031A00086549 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D22E9B542C88031A00086549 /* SantaManito-iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D22E9B532C88031A00086549 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D22E9B7E2C8804B600086549 /* Colors.xcassets in Resources */,
+				D22E9B602C88031C00086549 /* Preview Assets.xcassets in Resources */,
+				D22E9B5D2C88031C00086549 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D22E9B512C88031A00086549 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D22E9B5B2C88031A00086549 /* ContentView.swift in Sources */,
+				D22E9B6B2C8803C100086549 /* Util.swift in Sources */,
+				D22E9B772C8803F100086549 /* Entity.swift in Sources */,
+				D22E9B732C8803E500086549 /* Service.swift in Sources */,
+				D22E9B7C2C88042F00086549 /* Feature.swift in Sources */,
+				D22E9B592C88031A00086549 /* SantaManito_iOSApp.swift in Sources */,
+				D22E9B752C8803EC00086549 /* Provider.swift in Sources */,
+				D22E9B6D2C8803C800086549 /* Extension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D22E9B612C88031C00086549 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D22E9B622C88031C00086549 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D22E9B642C88031C00086549 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SantaManito-iOS/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hellohidi..SantaManito-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D22E9B652C88031C00086549 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"SantaManito-iOS/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hellohidi..SantaManito-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D22E9B502C88031A00086549 /* Build configuration list for PBXProject "SantaManito-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D22E9B612C88031C00086549 /* Debug */,
+				D22E9B622C88031C00086549 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D22E9B632C88031C00086549 /* Build configuration list for PBXNativeTarget "SantaManito-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D22E9B642C88031C00086549 /* Debug */,
+				D22E9B652C88031C00086549 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D22E9B4D2C88031A00086549 /* Project object */;
+}
