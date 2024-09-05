@@ -6,3 +6,31 @@
 //
 
 import Foundation
+
+protocol ServiceType {
+  var authService: AuthenticationServiceType { get set }
+  var userService: UserServiceType { get set }
+  var pushNotificationService: PushNotificationServiceType { get set }
+}
+
+//class Service: ServiceType {
+//  
+//  var authService: AuthenticationServiceType
+//  var userService: UserServiceType
+//  var pushNotificationService: PushNotificationServiceType
+//  
+//  init() {
+//    self.authService = AuthenticationService()
+//    self.userService = UserService()
+//    self.pushNotificationService = PushNotificationService()
+//  }
+//}
+
+
+class StubService: ServiceType {
+  
+  var authService: AuthenticationServiceType = StubAuthenticationService()
+  var userService: UserServiceType = StubUserService()
+  var pushNotificationService: PushNotificationServiceType = StubPushNotificationService()
+
+}
