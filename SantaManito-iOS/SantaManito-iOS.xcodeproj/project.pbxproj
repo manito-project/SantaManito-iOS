@@ -29,6 +29,7 @@
 		D276B6042C8AB4FF00230FA2 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D276B6002C8AB4FF00230FA2 /* Pretendard-Medium.otf */; };
 		D276B6052C8AB4FF00230FA2 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D276B6012C8AB4FF00230FA2 /* Pretendard-Bold.otf */; };
 		D276B6062C8AB4FF00230FA2 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D276B6022C8AB4FF00230FA2 /* Pretendard-SemiBold.otf */; };
+		D276B6082C8AB64B00230FA2 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = D276B6072C8AB64B00230FA2 /* Font.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		D276B6002C8AB4FF00230FA2 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Medium.otf"; path = "../../../../../../../Downloads/Pretendard-1/public/static/Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		D276B6012C8AB4FF00230FA2 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Bold.otf"; path = "../../../../../../../Downloads/Pretendard-1/public/static/Pretendard-Bold.otf"; sourceTree = "<group>"; };
 		D276B6022C8AB4FF00230FA2 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-SemiBold.otf"; path = "../../../../../../../Downloads/Pretendard-1/public/static/Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		D276B6072C8AB64B00230FA2 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +257,7 @@
 				D276B6002C8AB4FF00230FA2 /* Pretendard-Medium.otf */,
 				D276B5FF2C8AB4FF00230FA2 /* Pretendard-Regular.otf */,
 				D276B6022C8AB4FF00230FA2 /* Pretendard-SemiBold.otf */,
+				D276B6072C8AB64B00230FA2 /* Font.swift */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				877EA2442C88AE750073FFBD /* DTO.swift in Sources */,
 				877EA23D2C88AB8D0073FFBD /* UserService.swift in Sources */,
 				877EA2412C88ABA00073FFBD /* PushNotificationService.swift in Sources */,
+				D276B6082C8AB64B00230FA2 /* Font.swift in Sources */,
 				D22E9B752C8803EC00086549 /* Provider.swift in Sources */,
 				D22E9B6D2C8803C800086549 /* Extension.swift in Sources */,
 				877EA2362C88AA740073FFBD /* AuthView.swift in Sources */,
