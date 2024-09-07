@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @State var alertPresented: Bool = false
+    
     var body: some View {
         
         SMScrollView(padding: -200) {
@@ -42,6 +44,7 @@ struct HomeView: View {
                     Spacer()
                     Button {
                         //TODO: 새로고침
+                        alertPresented = true
                     } label: {
                         Image(systemName: "arrow.clockwise")
                             .foregroundStyle(.gray)
@@ -52,6 +55,15 @@ struct HomeView: View {
             }
             
         }
+        .smAlert(isPresented: alertPresented,
+                 title: "알럿 테스트",
+                 primaryButton: ("방 나가기", {
+            alertPresented.toggle()
+        }),
+                 secondaryButton: ("방 머물기", {
+            
+        })
+                 )
 
         
         
