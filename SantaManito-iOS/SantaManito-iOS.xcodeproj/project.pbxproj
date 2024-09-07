@@ -15,6 +15,8 @@
 		877CA07B2C8C4F6400D23193 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 877CA07A2C8C4F6400D23193 /* Pretendard-SemiBold.otf */; };
 		877CA07F2C8C50DC00D23193 /* Corner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA07E2C8C50DC00D23193 /* Corner.swift */; };
 		877CA0812C8C555D00D23193 /* SMScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0802C8C555C00D23193 /* SMScrollView.swift */; };
+		877CA0832C8CA75C00D23193 /* SMAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0822C8CA75C00D23193 /* SMAlertView.swift */; };
+		877CA0892C8CB61100D23193 /* DSKitDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0882C8CB61100D23193 /* DSKitDemoView.swift */; };
 		877EA2322C889DCB0073FFBD /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA2312C889DCB0073FFBD /* ButtonStyles.swift */; };
 		877EA2362C88AA740073FFBD /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA2352C88AA740073FFBD /* AuthView.swift */; };
 		877EA2392C88AA8A0073FFBD /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA2382C88AA8A0073FFBD /* OnboardingView.swift */; };
@@ -45,6 +47,8 @@
 		877CA07A2C8C4F6400D23193 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		877CA07E2C8C50DC00D23193 /* Corner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Corner.swift; sourceTree = "<group>"; };
 		877CA0802C8C555C00D23193 /* SMScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMScrollView.swift; sourceTree = "<group>"; };
+		877CA0822C8CA75C00D23193 /* SMAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMAlertView.swift; sourceTree = "<group>"; };
+		877CA0882C8CB61100D23193 /* DSKitDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSKitDemoView.swift; sourceTree = "<group>"; };
 		877EA2312C889DCB0073FFBD /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		877EA2352C88AA740073FFBD /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		877EA2382C88AA8A0073FFBD /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -85,6 +89,7 @@
 				877CA0702C8AB3DE00D23193 /* LoadingView.swift */,
 				877CA0722C8C4C5C00D23193 /* SMView.swift */,
 				877CA0802C8C555C00D23193 /* SMScrollView.swift */,
+				877CA0822C8CA75C00D23193 /* SMAlertView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -251,6 +256,7 @@
 		D22E9B782C8803F600086549 /* DSKit */ = {
 			isa = PBXGroup;
 			children = (
+				877CA0882C8CB61100D23193 /* DSKitDemoView.swift */,
 				877CA06B2C8AA1AD00D23193 /* Component */,
 				877EA2302C889DC10073FFBD /* Style */,
 				D22E9B792C8803FA00086549 /* Resource */,
@@ -383,8 +389,10 @@
 				D276B6082C8AB64B00230FA2 /* Font.swift in Sources */,
 				D22E9B752C8803EC00086549 /* Provider.swift in Sources */,
 				D22E9B6D2C8803C800086549 /* Extension.swift in Sources */,
+				877CA0832C8CA75C00D23193 /* SMAlertView.swift in Sources */,
 				877EA2362C88AA740073FFBD /* AuthView.swift in Sources */,
 				877CA0812C8C555D00D23193 /* SMScrollView.swift in Sources */,
+				877CA0892C8CB61100D23193 /* DSKitDemoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
