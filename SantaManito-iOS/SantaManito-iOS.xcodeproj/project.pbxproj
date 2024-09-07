@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		877CA0712C8AB3DE00D23193 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0702C8AB3DE00D23193 /* LoadingView.swift */; };
 		877EA2322C889DCB0073FFBD /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA2312C889DCB0073FFBD /* ButtonStyles.swift */; };
 		877EA2362C88AA740073FFBD /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA2352C88AA740073FFBD /* AuthView.swift */; };
 		877EA2392C88AA8A0073FFBD /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA2382C88AA8A0073FFBD /* OnboardingView.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		877CA0702C8AB3DE00D23193 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		877EA2312C889DCB0073FFBD /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		877EA2352C88AA740073FFBD /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		877EA2382C88AA8A0073FFBD /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -60,6 +62,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		877CA06B2C8AA1AD00D23193 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				877CA0702C8AB3DE00D23193 /* LoadingView.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		877EA2302C889DC10073FFBD /* Style */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +222,7 @@
 		D22E9B782C8803F600086549 /* DSKit */ = {
 			isa = PBXGroup;
 			children = (
+				877CA06B2C8AA1AD00D23193 /* Component */,
 				877EA2302C889DC10073FFBD /* Style */,
 				D22E9B792C8803FA00086549 /* Resource */,
 			);
@@ -312,6 +323,7 @@
 				877EA23B2C88AAC10073FFBD /* DIContainer.swift in Sources */,
 				D22E9B6B2C8803C100086549 /* Util.swift in Sources */,
 				D22E9B772C8803F100086549 /* Entity.swift in Sources */,
+				877CA0712C8AB3DE00D23193 /* LoadingView.swift in Sources */,
 				877EA2392C88AA8A0073FFBD /* OnboardingView.swift in Sources */,
 				D22E9B732C8803E500086549 /* Service.swift in Sources */,
 				877EA23F2C88AB930073FFBD /* AuthService.swift in Sources */,
@@ -456,6 +468,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SantaManito-iOS/Preview Content\"";
+				DEVELOPMENT_TEAM = T6DNHAHXG9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -485,6 +498,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SantaManito-iOS/Preview Content\"";
+				DEVELOPMENT_TEAM = T6DNHAHXG9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
