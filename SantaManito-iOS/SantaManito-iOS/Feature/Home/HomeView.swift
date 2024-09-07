@@ -9,56 +9,50 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @State var buttonState = false
     var body: some View {
         
-        VStack {
-            
-            Color.smNavy
-                .ignoresSafeArea()
-                .frame(height: 200)
-            
-            HStack(spacing: 20) {
-                HomeButton(imageResource: .iconSantaNeck,
-                           title: "방 만들기",
-                           description: "새로운 산타\n 마니또 시작하기")
-                {
+        SMScrollView(padding: -200) {
+            Image(.snow)
+                .resizable()
+                .scaledToFit()
+                .padding(.horizontal, 40)
+        } content: {
+            VStack {
+                HStack(spacing: 20) {
+                    HomeButton(imageResource: .graphicsSantaNeck,
+                               title: "방 만들기",
+                               description: "새로운 산타\n 마니또 시작하기")
+                    {
+                        
+                    }
                     
+                    HomeButton(imageResource: .graphicsRudolphNeck,
+                               title: "방 입장하기",
+                               description: "새로운 산타\n 입장코드 입력하기")
+                    {
+                        
+                    }
                 }
+                //            .padding(.top, -150)
+                .padding(.horizontal, 40)
                 
-                HomeButton(imageResource: .iconRudolphNeck,
-                           title: "방 입장하기",
-                           description: "새로운 산타\n 입장코드 입력하기")
-                {
-                    
+                HStack {
+                    Text("나의 산타 마니또")
+                        .font(.system(size: 18, weight: .bold))
+                    Spacer()
+                    Button {
+                        //TODO: 새로고침
+                    } label: {
+                        Image(systemName: "arrow.clockwise")
+                            .foregroundStyle(.gray)
+                    }
                 }
+                .padding(.top, 40)
+                .padding(.horizontal, 20)
             }
-            .padding(.top, -150)
-            .padding(.horizontal, 40)
             
-            HStack {
-                Text("나의 산타 마니또")
-                    .font(.system(size: 18, weight: .bold))
-                Spacer()
-                Button {
-                    //TODO: 새로고침
-                } label: {
-                    Image(systemName: "arrow.clockwise")
-                        .foregroundStyle(.gray)
-                }
-            }
-            .padding(.top, 40)
-            .padding(.horizontal, 20)
-            
-            Button("하이") {
-                buttonState.toggle()
-            }
-            .buttonStyle(SMBottomButtonStyle())
-            .disabled(buttonState)
-            
-            
-            Spacer()
         }
+
         
         
     }
