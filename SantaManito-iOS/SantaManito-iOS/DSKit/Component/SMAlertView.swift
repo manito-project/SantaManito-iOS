@@ -29,15 +29,21 @@ struct SMAlertView: View {
                 .padding(.top, 20)
             
             HStack {
-                Button(primaryAction.title) {
+                Button() {
                     primaryAction.action()
+                } label: {
+                    Text(primaryAction.title)
+                        .frame(maxWidth: .infinity)
                 }
                 .frame(height: 60)
-                .frame(maxWidth: .infinity)
+                
                 
                 if secondaryAction != nil {
-                    Button(secondaryAction!.title) {
+                    Button() {
                         secondaryAction!.action()
+                    } label: {
+                        Text(secondaryAction!.title)
+                            .frame(maxWidth: .infinity)
                     }
                     .frame(height: 60)
                     .frame(maxWidth: .infinity)
