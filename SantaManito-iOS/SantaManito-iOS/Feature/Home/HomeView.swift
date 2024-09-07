@@ -9,11 +9,12 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @State var buttonState = false
     var body: some View {
         
         VStack {
             
-            Color.blue
+            Color.smNavy
                 .ignoresSafeArea()
                 .frame(height: 200)
             
@@ -40,7 +41,7 @@ struct HomeView: View {
                     .font(.system(size: 18, weight: .bold))
                 Spacer()
                 Button {
-                    
+                    //TODO: 새로고침
                 } label: {
                     Image(systemName: "arrow.clockwise")
                         .foregroundStyle(.gray)
@@ -48,6 +49,12 @@ struct HomeView: View {
             }
             .padding(.top, 40)
             .padding(.horizontal, 20)
+            
+            Button("하이") {
+                buttonState.toggle()
+            }
+            .buttonStyle(SMBottomButtonStyle())
+            .disabled(buttonState)
             
             
             Spacer()
