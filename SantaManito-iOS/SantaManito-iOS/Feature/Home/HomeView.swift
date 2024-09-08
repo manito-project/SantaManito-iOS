@@ -9,49 +9,62 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @State var alertPresented: Bool = false
+    
     var body: some View {
         
-        VStack {
-            
-            Color.blue
-                .ignoresSafeArea()
-                .frame(height: 200)
-            
-            HStack(spacing: 20) {
-                HomeButton(imageResource: .iconSantaNeck,
-                           title: "방 만들기",
-                           description: "새로운 산타\n 마니또 시작하기")
-                {
+        SMScrollView(padding: -200) {
+            Image(.snow)
+                .resizable()
+                .scaledToFit()
+                .padding(.horizontal, 40)
+        } content: {
+            VStack {
+                HStack(spacing: 20) {
+                    HomeButton(imageResource: .graphicsSantaNeck,
+                               title: "방 만들기",
+                               description: "새로운 산타\n 마니또 시작하기")
+                    {
+                        
+                    }
                     
+                    HomeButton(imageResource: .graphicsRudolphNeck,
+                               title: "방 입장하기",
+                               description: "새로운 산타\n 입장코드 입력하기")
+                    {
+                        
+                    }
                 }
+                //            .padding(.top, -150)
+                .padding(.horizontal, 40)
                 
-                HomeButton(imageResource: .iconRudolphNeck,
-                           title: "방 입장하기",
-                           description: "새로운 산타\n 입장코드 입력하기")
-                {
-                    
+                HStack {
+                    Text("나의 산타 마니또")
+                        .font(.system(size: 18, weight: .bold))
+                    Spacer()
+                    Button {
+                        //TODO: 새로고침
+                        alertPresented = true
+                    } label: {
+                        Image(systemName: "arrow.clockwise")
+                            .foregroundStyle(.gray)
+                    }
                 }
+                .padding(.top, 40)
+                .padding(.horizontal, 20)
             }
-            .padding(.top, -150)
-            .padding(.horizontal, 40)
             
-            HStack {
-                Text("나의 산타 마니또")
-                    .font(.system(size: 18, weight: .bold))
-                Spacer()
-                Button {
-                    
-                } label: {
-                    Image(systemName: "arrow.clockwise")
-                        .foregroundStyle(.gray)
-                }
-            }
-            .padding(.top, 40)
-            .padding(.horizontal, 20)
-            
-            
-            Spacer()
         }
+        .smAlert(isPresented: alertPresented,
+                 title: "알럿 테스트",
+                 primaryButton: ("방 나가기", {
+            alertPresented.toggle()
+        }),
+                 secondaryButton: ("방 머물기", {
+            
+        })
+                 )
+
         
         
     }
