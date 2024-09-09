@@ -137,7 +137,9 @@ struct SettingRoomInfoView: View {
                 "",
                 text: $viewModel.roomName,
                 prompt: Text("재미있는 방 이름을 지어보자!").foregroundColor(.smLightgray)
-            )
+            ).onChange(of: viewModel.roomName) {
+                viewModel.send(action: .configRoomName($0))
+            }
             .font(.medium_16)
             .foregroundColor(.smDarkgray)
             .padding(.vertical, 16)
