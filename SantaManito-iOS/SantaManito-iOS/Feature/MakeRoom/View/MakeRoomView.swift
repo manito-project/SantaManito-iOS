@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MakeRoomView: View {
     
-    
+    @StateObject var viewModel: MakeRoomViewModel
     @State private var time = Date()
     
     var body: some View {
@@ -32,12 +32,12 @@ struct MakeRoomView: View {
                 }
             } content: {
                 VStack {
-                    SettingRoomInfoView(message: "")
+                    SettingRoomInfoView(viewModel: viewModel)
                     
                     Spacer()
                         .frame(height: 34)
                     
-                    MakeRoomButtonView()
+                    MakeRoomButtonView(viewModel: viewModel)
                     
                     Spacer()
                         .frame(height: 40)
@@ -82,7 +82,13 @@ struct InfoView: View {
 }
 
 struct SettingRoomInfoView: View {
-    @State var message: String
+    @ObservedObject private var viewModel: MakeRoomViewModel
+    
+    fileprivate init(viewModel: MakeRoomViewModel) {
+        self.viewModel = viewModel
+    }
+    
+    
     @State var isAM: Bool = true
     
     var body: some View {
@@ -129,7 +135,7 @@ struct SettingRoomInfoView: View {
             
             TextField(
                 "",
-                text: $message,
+                text: $viewModel.roomName,
                 prompt: Text("재미있는 방 이름을 지어보자!").foregroundColor(.smLightgray)
             )
             .font(.medium_16)
@@ -155,27 +161,29 @@ struct SettingRoomInfoView: View {
             
             HStack {
                 Button {
-                    //TODO: 버튼 눌럿을 때 색 변경 & 비즈니스 로직
+                    //TODO: 버튼 눌럿을 때 색 변경
+                    viewModel.send(action: .decreaseDuedate)
                 } label: {
-                    Image(.btnMinus)
+                    Image(viewModel.canDecreaseRemainingDays ? .btnMinus : .btnUnActivatedMinus)
                         .resizable()
                         .frame(width: 25, height: 25)
-                        .colorMultiply(.smLightgray)
                 }
+                .disabled(!viewModel.canDecreaseRemainingDays)
                 .padding(.all, 10)
                 
-                Text("7일 후")
+                Text("\(viewModel.remainingDays)일 후")
                     .font(.medium_16)
                     .foregroundColor(.smDarkgray)
                 
                 Button {
                     //TODO: 버튼 눌럿을 때 색 변경 & 비즈니스 로직
+                    viewModel.send(action: .increaseDuedate)
                 } label: {
-                    Image(.btnPlus)
+                    Image(viewModel.canIncreaseRemainingDays ? .btnPlus : .btnUnActivatedPlus)
                         .resizable()
                         .frame(width: 25, height: 25)
-                        .colorMultiply(.smLightgray)
                 }
+                .disabled(!viewModel.canIncreaseRemainingDays)
                 .padding(.all, 10)
             }
             .frame(height: 44)
@@ -239,8 +247,8 @@ struct SettingRoomInfoView: View {
                 Spacer()
                 
                 ColoredTextView(
-                    fullText:"7일 후인 2020/12/04 오전 10: 00에\n산타 마니또 결과가 공개될거야!",
-                    coloredWord: "2020/12/04 오전 10: 00에",
+                    fullText:"\(viewModel.remainingDays)일 후인 \(viewModel.dueDate)에\n산타 마니또 결과가 공개될거야!",
+                    coloredWord: "\(viewModel.dueDate)",
                     color: .smRed
                 )
                 .font(.medium_14)
@@ -257,10 +265,16 @@ struct SettingRoomInfoView: View {
 }
 
 struct MakeRoomButtonView: View {
+    @ObservedObject private var viewModel: MakeRoomViewModel
+    
+    fileprivate init(viewModel: MakeRoomViewModel) {
+        self.viewModel = viewModel
+    }
+    
     var body: some View {
         HStack(alignment: .center) {
             Button {
-                
+                viewModel.send(action: .noMissionButtonClicked)
             } label: {
                 Text("미션없이 방 만들기")
                     .font(.semibold_18)
@@ -276,7 +290,7 @@ struct MakeRoomButtonView: View {
                 .frame(width: 12)
             
             Button {
-                
+                viewModel.send(action: .missionButtonClicked)
             } label: {
                 Text("미션 만들기")
                     .font(.semibold_18)
@@ -293,5 +307,5 @@ struct MakeRoomButtonView: View {
 
 
 #Preview {
-    MakeRoomView()
+    MakeRoomView(viewModel: MakeRoomViewModel())
 }
