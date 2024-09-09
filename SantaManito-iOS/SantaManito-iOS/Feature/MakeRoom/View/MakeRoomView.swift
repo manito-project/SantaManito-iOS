@@ -7,71 +7,8 @@
 
 import SwiftUI
 
-struct MakeRoomView: View {
-    
-    @State var message: String
-    @State private var time = Date()
-    
+struct InfoView: View {
     var body: some View {
-        VStack {
-            
-            SMView(padding: -200) {
-                
-                HStack {
-                    infoView
-                    
-                    Spacer()
-                    
-                    VStack {
-                        Spacer()
-                            .frame(height: 49)
-                        
-                        Image(.graphicsSanta3)
-                            .resizable()
-                            .frame(width: 130, height: 250)
-                    }
-                    
-                }
-            } content: {
-                VStack {
-                    
-                    Spacer()
-                        .frame(height: 100)
-
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.white)
-                            .shadow(radius: 10)
-                        
-                        settingView
-                    }
-                    .frame(height: 448)
-                    .padding(.horizontal, 20)
-                    
-                    Spacer()
-                        .frame(height: 25)
-                    
-                    Button("미션 만들기") {
-                        // Action
-                    }
-                    .smBottomButtonStyle()
-                    
-                    Spacer()
-                        .frame(height: 10)
-                    
-                    Button("미션 만들기") {
-                        // Action
-                    }
-                    .smBottomButtonStyle()
-                    
-                    Spacer()
-                }
-            }
-        }
-    }
-    
-    
-    var infoView: some View {
         VStack(alignment: .leading) {
             Spacer()
                 .frame(height: 44)
@@ -91,8 +28,8 @@ struct MakeRoomView: View {
             Spacer()
                 .frame(height: 16)
             
-            Text("친구들이 방을 잘 찾아올 수 있도록\n방 이름과 종료일을 지정해보자!")
-                .font(.semibold_16)
+            Text("언제까지 마니또 게임하게 할거야 \n내 마니또를 봐 산타 기다리잖아")
+                .font(.medium_16)
                 .foregroundColor(.smWhite)
                 .lineSpacing(3.5)
                 .lineLimit(2)
@@ -101,26 +38,66 @@ struct MakeRoomView: View {
             
         }.padding(.leading, 16)
     }
+}
+
+struct SettingRoomInfoView: View {
+    @State var message: String
     
-    var settingView: some View {
-        VStack(alignment: .leading) {
-            Spacer()
-                .frame(height: 30)
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.white)
+                .shadow(radius: 10)
             
-            Text("방 이름")
-                .font(.semibold_20)
+            VStack(alignment: .leading) {
+                Spacer()
+                    .frame(height: 30)
+                
+                setRoomNameView
+                
+                Spacer()
+                    .frame(height: 30)
+                
+                setEndDateView
+                
+                Spacer()
+                    .frame(height: 30)
+                
+                setEndTimeView
+                
+            }.padding(.horizontal, 30)
+        }
+        .frame(height: 448)
+        .padding(.horizontal, 20)
+    }
+    
+    var setRoomNameView: some View {
+        VStack(alignment: .leading) {
+            Text("방이름 (최대 17자)")
+                .font(.semibold_16)
                 .foregroundColor(.smDarkgray)
             
-            TextField("이번 크리스마스에는 눈이 올까요?", text: $message)
-                .font(.system(size: 16))
-                .padding(.vertical, 11)
-                .padding(.horizontal, 12)
-                .background(.smLightgray)
-                .cornerRadius(10)
-            
             Spacer()
-                .frame(height: 30)
+                .frame(height: 12)
             
+            TextField(
+                "",
+                text: $message,
+                prompt: Text("재미있는 방 이름을 지어보자!").foregroundColor(.smLightgray)
+            )
+            .font(.medium_16)
+            .foregroundColor(.smDarkgray)
+            .padding(.vertical, 16)
+            .padding(.leading, 12)
+            .overlay {
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(.smLightgray, lineWidth: 1)
+            }
+        }
+    }
+    
+    var setEndDateView: some View {
+        VStack(alignment: .leading) {
             Text("마니또 산타 공개일 설정")
                 .font(.semibold_20)
                 .foregroundColor(.smDarkgray)
@@ -162,10 +139,11 @@ struct MakeRoomView: View {
             Text("최소 3일 부터 최대 14일까지 기간을 설정할 수 있어~")
                 .font(.medium_14)
                 .foregroundColor(.smDarkgray)
-            
-            Spacer()
-                .frame(height: 30)
-            
+        }
+    }
+    
+    var setEndTimeView: some View {
+        VStack(alignment: .leading) {
             Text("마니또 산타 공개 시간")
                 .font(.semibold_20)
                 .foregroundColor(.smDarkgray)
@@ -203,12 +181,69 @@ struct MakeRoomView: View {
                 .font(.medium_14)
                 .foregroundStyle(.smDarkgray)
                 .lineLimit(2)
+        }
+    }
+    
+    
+}
+
+struct MakeRoomView: View {
+    
+    
+    @State private var time = Date()
+    
+    var body: some View {
+        VStack {
             
-        }.padding(.horizontal, 30)
+            SMView(padding: -200) {
+                
+                HStack {
+                    InfoView()
+                    
+                    Spacer()
+                    
+                    VStack {
+                        Spacer()
+                            .frame(height: 49)
+                        
+                        Image(.graphicsSanta3)
+                            .resizable()
+                            .frame(width: 130, height: 250)
+                    }
+                }
+            } content: {
+                VStack {
+                    Spacer()
+                        .frame(height: 100)
+                    
+                    SettingRoomInfoView(message: "")
+                    
+                    Spacer()
+                        .frame(height: 25)
+                    
+                    VStack{
+                        Button("미션 만들기") {
+                            // Action
+                        }
+                        .smBottomButtonStyle()
+                        
+                        Spacer()
+                            .frame(height: 10)
+                        
+                        Button("미션 만들기") {
+                            // Action
+                        }
+                        .smBottomButtonStyle()
+                    }
+                    
+                    Spacer()
+                }
+            }
+        }
     }
 }
 
 
 #Preview {
-    MakeRoomView(message: "")
+    MakeRoomView()
 }
