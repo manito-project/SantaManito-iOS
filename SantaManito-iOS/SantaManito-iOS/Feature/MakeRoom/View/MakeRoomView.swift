@@ -7,16 +7,57 @@
 
 import SwiftUI
 
+struct MakeRoomView: View {
+    
+    
+    @State private var time = Date()
+    
+    var body: some View {
+        VStack {
+            SMView(padding: -100) {
+                HStack {
+                    InfoView()
+                    
+                    Spacer()
+                    
+                    VStack {
+                        Spacer()
+                            .frame(height: 80)
+                        
+                        Image(.graphicsSanta3)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 130, height: 220)
+                    }
+                }
+            } content: {
+                VStack {
+                    SettingRoomInfoView(message: "")
+                    
+                    Spacer()
+                        .frame(height: 34)
+                    
+                    MakeRoomButtonView()
+                    
+                    Spacer()
+                        .frame(height: 40)
+                }
+                .padding(.horizontal, 16)
+            }
+        }
+    }
+}
+
 struct InfoView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Spacer()
-                .frame(height: 44)
+                .frame(height: 68)
             
-            Button(action: {
-            }, label: {
+            Button {
+            } label: {
                 Image(.btnBack)
-            })
+            }
             
             Spacer()
                 .frame(height: 47)
@@ -48,11 +89,14 @@ struct SettingRoomInfoView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.white)
-                .shadow(radius: 10)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(.smLightgray, lineWidth: 1)
+                }
             
             VStack(alignment: .leading) {
                 Spacer()
-                    .frame(height: 30)
+                    .frame(height: 24)
                 
                 setRoomNameView
                 
@@ -66,10 +110,12 @@ struct SettingRoomInfoView: View {
                 
                 setEndTimeView
                 
-            }.padding(.horizontal, 30)
+                Spacer()
+                    .frame(height: 24)
+                
+            }.padding(.horizontal, 16)
         }
-        .frame(height: 448)
-        .padding(.horizontal, 20)
+        .frame(height: 402)
     }
     
     var setRoomNameView: some View {
@@ -90,6 +136,7 @@ struct SettingRoomInfoView: View {
             .foregroundColor(.smDarkgray)
             .padding(.vertical, 16)
             .padding(.leading, 12)
+            .frame(height: 48)
             .overlay {
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(.smLightgray, lineWidth: 1)
@@ -121,7 +168,7 @@ struct SettingRoomInfoView: View {
                     .font(.medium_16)
                     .foregroundColor(.smDarkgray)
                 
-                Button{
+                Button {
                     //TODO: 버튼 눌럿을 때 색 변경 & 비즈니스 로직
                 } label: {
                     Image(.btnPlus)
@@ -130,8 +177,8 @@ struct SettingRoomInfoView: View {
                         .colorMultiply(.smLightgray)
                 }
                 .padding(.all, 10)
-                
             }
+            .frame(height: 44)
             .background(content: {
                 RoundedRectangle(cornerRadius: 40)
                     .fill(.smLightbg)
@@ -156,11 +203,11 @@ struct SettingRoomInfoView: View {
                 .foregroundColor(.smDarkgray)
             
             Spacer()
-                .frame(height: 16)
+                .frame(height: 12)
             
             HStack {
                 Button{
-                    //TODO:
+                    //TODO: 누르면 DatePicker 나오기 + 비즈니스 로직
                 } label: {
                     Text("12:00")
                         .font(.medium_16)
@@ -174,12 +221,11 @@ struct SettingRoomInfoView: View {
                         .fill(.smLightbg)
                 }
                 
-                //TODO: configuration을 통해서 커스텀 토클 만들기
                 Toggle(isOn: $isAM) {
-                    
+                    //TODO: AM, PM과 관련된 비즈니스 로직
                 }
                 .toggleStyle(MyToggleStyle())
-                .frame(width: 122, height: 40)
+                .frame(width: 122, height: 44)
                 .background {
                     RoundedRectangle(cornerRadius: 10)
                         .foregroundColor(.smLightbg)
@@ -205,68 +251,45 @@ struct SettingRoomInfoView: View {
                 
                 Spacer()
             }
-            
+            .frame(height: 40)
         }
     }
-    
-    
 }
 
-struct MakeRoomView: View {
-    
-    
-    @State private var time = Date()
-    
+struct MakeRoomButtonView: View {
     var body: some View {
-        VStack {
-            
-            SMView(padding: -200) {
+        HStack(alignment: .center) {
+            Button {
                 
-                HStack {
-                    InfoView()
+            } label: {
+                Text("미션없이 방 만들기")
+                    .font(.semibold_18)
+                    .foregroundColor(.smWhite)
                     
-                    Spacer()
-                    
-                    VStack {
-                        Spacer()
-                            .frame(height: 49)
-                        
-                        Image(.graphicsSanta3)
-                            .resizable()
-                            .frame(width: 130, height: 250)
-                    }
-                }
-            } content: {
-                VStack {
-                    Spacer()
-                        .frame(height: 100)
-                    
-                    SettingRoomInfoView(message: "")
-                    
-                    Spacer()
-                        .frame(height: 25)
-                    
-                    VStack{
-                        Button("미션 만들기") {
-                            // Action
-                        }
-                        .smBottomButtonStyle()
-                        
-                        Spacer()
-                            .frame(height: 10)
-                        
-                        Button("미션 만들기") {
-                            // Action
-                        }
-                        .smBottomButtonStyle()
-                    }
-                    
-                    Spacer()
-                }
             }
+            .padding(.vertical, 17)
+            .frame(width: 165)
+            .background(.smDarkgray)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            
+            Spacer()
+                .frame(width: 12)
+            
+            Button {
+                
+            } label: {
+                Text("미션 만들기")
+                    .font(.semibold_18)
+                    .foregroundColor(.smWhite)
+            }
+            .padding(.vertical, 17)
+            .frame(width: 165)
+            .background(.smRed)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
         }
     }
 }
+
 
 
 #Preview {
