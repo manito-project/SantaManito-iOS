@@ -39,6 +39,8 @@
 		D25570ED2C8E85CB00CCC226 /* MakeRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570EC2C8E85CB00CCC226 /* MakeRoomViewModel.swift */; };
 		D25570EF2C8E86CD00CCC226 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570EE2C8E86CD00CCC226 /* Room.swift */; };
 		D276B6082C8AB64B00230FA2 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = D276B6072C8AB64B00230FA2 /* Font.swift */; };
+		D2BC1A8C2C8EBCF500CB32B8 /* Text+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A8B2C8EBCF500CB32B8 /* Text+.swift */; };
+		D2BC1A8E2C8EBFD500CB32B8 /* ToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A8D2C8EBFD500CB32B8 /* ToggleStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +78,8 @@
 		D25570EE2C8E86CD00CCC226 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		D276B5FA2C8AAB6200230FA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D276B6072C8AB64B00230FA2 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		D2BC1A8B2C8EBCF500CB32B8 /* Text+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+.swift"; sourceTree = "<group>"; };
+		D2BC1A8D2C8EBFD500CB32B8 /* ToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				877EA2312C889DCB0073FFBD /* ButtonStyles.swift */,
+				D2BC1A8D2C8EBFD500CB32B8 /* ToggleStyle.swift */,
 			);
 			path = Style;
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				D22E9B6C2C8803C800086549 /* Extension.swift */,
+				D2BC1A8B2C8EBCF500CB32B8 /* Text+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -404,6 +410,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2BC1A8C2C8EBCF500CB32B8 /* Text+.swift in Sources */,
 				D22E9B5B2C88031A00086549 /* HomeView.swift in Sources */,
 				877EA23B2C88AAC10073FFBD /* DIContainer.swift in Sources */,
 				D22E9B6B2C8803C100086549 /* Util.swift in Sources */,
@@ -428,6 +435,7 @@
 				877EA2362C88AA740073FFBD /* AuthView.swift in Sources */,
 				877CA0812C8C555D00D23193 /* SMScrollView.swift in Sources */,
 				877CA0892C8CB61100D23193 /* DSKitDemoView.swift in Sources */,
+				D2BC1A8E2C8EBFD500CB32B8 /* ToggleStyle.swift in Sources */,
 				D25570EF2C8E86CD00CCC226 /* Room.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -42,6 +42,7 @@ struct InfoView: View {
 
 struct SettingRoomInfoView: View {
     @State var message: String
+    @State var isAM: Bool = true
     
     var body: some View {
         ZStack {
@@ -139,6 +140,7 @@ struct SettingRoomInfoView: View {
             Spacer()
                 .frame(height: 10)
             
+            //TODO: 글자 수 잘리는 문제 해결하기
             Text("최소 3일부터 최대 14일까지 기간을 설정할 수 있어~")
                 .font(.medium_14)
                 .foregroundColor(.smDarkgray)
@@ -147,6 +149,7 @@ struct SettingRoomInfoView: View {
     }
     
     var setEndTimeView: some View {
+        
         VStack(alignment: .leading) {
             Text("마니또 공개 시간")
                 .font(.semibold_16)
@@ -156,35 +159,53 @@ struct SettingRoomInfoView: View {
                 .frame(height: 16)
             
             HStack {
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                    /*@START_MENU_TOKEN@*/Text("Button")/*@END_MENU_TOKEN@*/
-                })
-                .background(content: {
+                Button{
+                    //TODO:
+                } label: {
+                    Text("12:00")
+                        .font(.medium_16)
+                        .foregroundColor(.smDarkgray)
+                }
+                .padding(.horizontal, 14)
+                .padding(.vertical, 16)
+                .frame(width: 73, height: 44)
+                .background {
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(.smLightgray)
-                        .frame(width: 79, height: 40)
-                })
-                .frame(width: 79, height: 40)
+                        .fill(.smLightbg)
+                }
                 
                 //TODO: configuration을 통해서 커스텀 토클 만들기
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                    /*@START_MENU_TOKEN@*/Text("Button")/*@END_MENU_TOKEN@*/
-                })
-                .background(content: {
+                Toggle(isOn: $isAM) {
+                    
+                }
+                .toggleStyle(MyToggleStyle())
+                .frame(width: 122, height: 40)
+                .background {
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(.smLightgray)
-                        .frame(width: 112, height: 40)
-                })
-                .frame(width: 112, height: 40)
+                        .foregroundColor(.smLightbg)
+                }
             }
             
             Spacer()
-                .frame(height: 30)
+                .frame(height: 16)
             
-            Text("7일 후인 2020/12/04 오전 10: 00에\n산타 마니또 결과가 공개될거야!")
+            HStack {
+                Spacer()
+                
+                ColoredTextView(
+                    fullText:"7일 후인 2020/12/04 오전 10: 00에\n산타 마니또 결과가 공개될거야!",
+                    coloredWord: "2020/12/04 오전 10: 00에",
+                    color: .smRed
+                )
                 .font(.medium_14)
                 .foregroundStyle(.smDarkgray)
+                .lineSpacing(3)
                 .lineLimit(2)
+                .multilineTextAlignment(.center)
+                
+                Spacer()
+            }
+            
         }
     }
     
