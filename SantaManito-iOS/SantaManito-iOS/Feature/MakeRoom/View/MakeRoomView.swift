@@ -56,12 +56,12 @@ struct SettingRoomInfoView: View {
                 setRoomNameView
                 
                 Spacer()
-                    .frame(height: 30)
+                    .frame(height: 24)
                 
                 setEndDateView
                 
                 Spacer()
-                    .frame(height: 30)
+                    .frame(height: 24)
                 
                 setEndTimeView
                 
@@ -98,54 +98,58 @@ struct SettingRoomInfoView: View {
     
     var setEndDateView: some View {
         VStack(alignment: .leading) {
-            Text("마니또 산타 공개일 설정")
-                .font(.semibold_20)
+            Text("마니또 공개일")
+                .font(.semibold_16)
                 .foregroundColor(.smDarkgray)
             
             Spacer()
-                .frame(height: 16)
+                .frame(height: 12)
             
             HStack {
-                Button(action: {}, label: {
+                Button {
+                    //TODO: 버튼 눌럿을 때 색 변경 & 비즈니스 로직
+                } label: {
                     Image(.btnMinus)
                         .resizable()
                         .frame(width: 25, height: 25)
-                })
-                
-                Spacer()
-                    .frame(width: 16)
+                        .colorMultiply(.smLightgray)
+                }
+                .padding(.all, 10)
                 
                 Text("7일 후")
+                    .font(.medium_16)
+                    .foregroundColor(.smDarkgray)
                 
-                Spacer()
-                    .frame(width: 16)
-                
-                Button(action: {}, label: {
+                Button{
+                    //TODO: 버튼 눌럿을 때 색 변경 & 비즈니스 로직
+                } label: {
                     Image(.btnPlus)
                         .resizable()
                         .frame(width: 25, height: 25)
-                })
+                        .colorMultiply(.smLightgray)
+                }
+                .padding(.all, 10)
                 
-            }.background(content: {
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(.smLightgray)
-                    .frame(width: 150, height: 40)
+            }
+            .background(content: {
+                RoundedRectangle(cornerRadius: 40)
+                    .fill(.smLightbg)
             })
-            .frame(width: 150, height: 40)
             
             Spacer()
                 .frame(height: 10)
             
-            Text("최소 3일 부터 최대 14일까지 기간을 설정할 수 있어~")
+            Text("최소 3일부터 최대 14일까지 기간을 설정할 수 있어~")
                 .font(.medium_14)
                 .foregroundColor(.smDarkgray)
+                .lineLimit(1)
         }
     }
     
     var setEndTimeView: some View {
         VStack(alignment: .leading) {
-            Text("마니또 산타 공개 시간")
-                .font(.semibold_20)
+            Text("마니또 공개 시간")
+                .font(.semibold_16)
                 .foregroundColor(.smDarkgray)
             
             Spacer()
