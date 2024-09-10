@@ -135,7 +135,7 @@ private struct MissionCellView: View {
             .textFieldStyle(SMTextFieldStlyes())
 
             // Clear Button
-            if !mission.content.isEmpty {
+            if viewModel.deleteButtonIsEnabled {
                 HStack {
                     Spacer()
 
