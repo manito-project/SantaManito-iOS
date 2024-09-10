@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MakeMissionView: View {
     @EnvironmentObject private var viewModel: MakeMissionViewModel
-
+    
     var body: some View {
         VStack {
             SMView(padding: -80) {
@@ -18,13 +18,13 @@ struct MakeMissionView: View {
                         title: "미션 만들기",
                         description: "어떤 미션이 괜찮을까\n천 번쯤 고민 중"
                     )
-
+                    
                     Spacer()
-
+                    
                     VStack {
                         Spacer()
                             .frame(height: 80)
-
+                        
                         Image(.graphicsSanta3)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
@@ -34,12 +34,12 @@ struct MakeMissionView: View {
             } content: {
                 VStack {
                     SettingMissionView()
-
+                    
                     Spacer()
                         .frame(height: 34)
-
+                    
                     MakeMissionButtonView()
-
+                    
                     Spacer()
                         .frame(height: 74)
                 }
@@ -51,7 +51,7 @@ struct MakeMissionView: View {
 
 fileprivate struct SettingMissionView: View {
     @EnvironmentObject private var viewModel: MakeMissionViewModel
-
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
@@ -60,14 +60,14 @@ fileprivate struct SettingMissionView: View {
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(.smLightgray, lineWidth: 1)
                 }
-
+            
             VStack(alignment: .center) {
-
+                
                 MissionListView()
-
+                
                 Spacer()
                     .frame(height: 16)
-
+                
                 Button {
                     viewModel.send(action: .addMission)
                 } label: {
@@ -75,10 +75,10 @@ fileprivate struct SettingMissionView: View {
                         Text("마니또 미션 추가")
                             .font(.semibold_16)
                             .foregroundColor(.white)
-
+                        
                         Spacer()
                             .frame(width: 10)
-
+                        
                         Image(.btnPlus)
                             .resizable()
                             .frame(width: 24, height: 24)
@@ -89,9 +89,9 @@ fileprivate struct SettingMissionView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
                 .frame(height: 48)
-
+                
                 Spacer()
-
+                
             }.padding(.horizontal, 16)
         }
         .frame(height: 402)
@@ -100,12 +100,12 @@ fileprivate struct SettingMissionView: View {
 
 private struct MissionListView: View {
     @EnvironmentObject private var viewModel: MakeMissionViewModel
-
+    
     var body: some View {
         VStack {
             Spacer()
                 .frame(height: 24)
-
+            
             ScrollView(.vertical) {
                 ForEach($viewModel.missionList) { $mission in
                     MissionCellView(mission: $mission)
@@ -118,11 +118,11 @@ private struct MissionListView: View {
 private struct MissionCellView: View {
     @EnvironmentObject private var viewModel: MakeMissionViewModel
     @Binding var mission: Mission
-
+    
     fileprivate init(mission: Binding<Mission>) {
         self._mission = mission
     }
-
+    
     fileprivate var body: some View {
         ZStack {
             // 텍스트필드
@@ -132,13 +132,16 @@ private struct MissionCellView: View {
                 prompt: Text("산타 할아버지 여기 미션 하나 추가요!")
                     .foregroundColor(.smLightgray)
             )
+            .onChange(of: mission.content) { newValue in
+                viewModel.send(action: .editMission)
+            }
             .textFieldStyle(SMTextFieldStlyes())
-
+            
             // Clear Button
             if viewModel.deleteButtonIsEnabled {
                 HStack {
                     Spacer()
-
+                    
                     Button(action: {
                         viewModel.send(action: .deleteMission(mission))
                     }) {
@@ -155,7 +158,7 @@ private struct MissionCellView: View {
 
 fileprivate struct MakeMissionButtonView: View {
     @EnvironmentObject private var viewModel: MakeMissionViewModel
-
+    
     var body: some View {
         HStack(alignment: .center) {
             Button {
@@ -164,16 +167,16 @@ fileprivate struct MakeMissionButtonView: View {
                 Text("건너뛰기")
                     .font(.semibold_18)
                     .foregroundColor(.smWhite)
-
+                
             }
             .padding(.vertical, 17)
             .frame(width: 165)
             .background(.smDarkgray)
             .clipShape(RoundedRectangle(cornerRadius: 10))
-
+            
             Spacer()
                 .frame(width: 12)
-
+            
             Button {
                 viewModel.send(action: .makeMissionButtonClicked)
             } label: {
@@ -181,6 +184,7 @@ fileprivate struct MakeMissionButtonView: View {
                     .font(.semibold_18)
                     .foregroundColor(.smWhite)
             }
+            .disabled(!viewModel.makeMisstionButtonisEnabled)
             .padding(.vertical, 17)
             .frame(width: 165)
             .background(viewModel.makeMisstionButtonisEnabled ? .smRed : .smLightgray)
