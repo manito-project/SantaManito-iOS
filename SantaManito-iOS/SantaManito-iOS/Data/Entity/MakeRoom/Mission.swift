@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Mission: Hashable {
+struct Mission: Identifiable, Hashable {
     var content: String
     var id = UUID()
 }
