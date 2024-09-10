@@ -46,7 +46,6 @@
 		D2BC1A942C90102900CB32B8 /* MakeMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A932C90102900CB32B8 /* MakeMissionViewModel.swift */; };
 		D2BC1A962C9012B400CB32B8 /* SMInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A952C9012B400CB32B8 /* SMInfoView.swift */; };
 		D2BC1A982C90245700CB32B8 /* TextFieldStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A972C90245700CB32B8 /* TextFieldStyles.swift */; };
-		D2BC1A9A2C90341900CB32B8 /* SMClearButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A992C90341900CB32B8 /* SMClearButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,7 +90,6 @@
 		D2BC1A932C90102900CB32B8 /* MakeMissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeMissionViewModel.swift; sourceTree = "<group>"; };
 		D2BC1A952C9012B400CB32B8 /* SMInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMInfoView.swift; sourceTree = "<group>"; };
 		D2BC1A972C90245700CB32B8 /* TextFieldStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldStyles.swift; sourceTree = "<group>"; };
-		D2BC1A992C90341900CB32B8 /* SMClearButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMClearButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +112,6 @@
 				877CA0802C8C555C00D23193 /* SMScrollView.swift */,
 				877CA0822C8CA75C00D23193 /* SMAlertView.swift */,
 				D2BC1A952C9012B400CB32B8 /* SMInfoView.swift */,
-				D2BC1A992C90341900CB32B8 /* SMClearButton.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -455,7 +452,6 @@
 				877CA0832C8CA75C00D23193 /* SMAlertView.swift in Sources */,
 				877EA2362C88AA740073FFBD /* AuthView.swift in Sources */,
 				877CA0812C8C555D00D23193 /* SMScrollView.swift in Sources */,
-				D2BC1A9A2C90341900CB32B8 /* SMClearButton.swift in Sources */,
 				877CA0892C8CB61100D23193 /* DSKitDemoView.swift in Sources */,
 				D2BC1A8E2C8EBFD500CB32B8 /* ToggleStyle.swift in Sources */,
 				D2BC1A982C90245700CB32B8 /* TextFieldStyles.swift in Sources */,
