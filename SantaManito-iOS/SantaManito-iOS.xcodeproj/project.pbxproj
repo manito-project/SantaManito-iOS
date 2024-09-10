@@ -46,6 +46,8 @@
 		D2BC1A942C90102900CB32B8 /* MakeMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A932C90102900CB32B8 /* MakeMissionViewModel.swift */; };
 		D2BC1A962C9012B400CB32B8 /* SMInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A952C9012B400CB32B8 /* SMInfoView.swift */; };
 		D2BC1A982C90245700CB32B8 /* TextFieldStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A972C90245700CB32B8 /* TextFieldStyles.swift */; };
+		D2BC1A9C2C90473100CB32B8 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A9B2C90473000CB32B8 /* Mission.swift */; };
+		D2BC1A9F2C904A9700CB32B8 /* MissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A9E2C904A9700CB32B8 /* MissionViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +92,8 @@
 		D2BC1A932C90102900CB32B8 /* MakeMissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeMissionViewModel.swift; sourceTree = "<group>"; };
 		D2BC1A952C9012B400CB32B8 /* SMInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMInfoView.swift; sourceTree = "<group>"; };
 		D2BC1A972C90245700CB32B8 /* TextFieldStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldStyles.swift; sourceTree = "<group>"; };
+		D2BC1A9B2C90473000CB32B8 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
+		D2BC1A9E2C904A9700CB32B8 /* MissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,8 +258,8 @@
 		D22E9B6F2C8803D200086549 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				D2BC1A9D2C90473300CB32B8 /* MakeRoom */,
 				D22E9B762C8803F100086549 /* Entity.swift */,
-				D25570EE2C8E86CD00CCC226 /* Room.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -334,6 +338,7 @@
 			children = (
 				D25570EC2C8E85CB00CCC226 /* MakeRoomViewModel.swift */,
 				D2BC1A932C90102900CB32B8 /* MakeMissionViewModel.swift */,
+				D2BC1A9E2C904A9700CB32B8 /* MissionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -348,6 +353,15 @@
 				D276B6072C8AB64B00230FA2 /* Font.swift */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		D2BC1A9D2C90473300CB32B8 /* MakeRoom */ = {
+			isa = PBXGroup;
+			children = (
+				D2BC1A9B2C90473000CB32B8 /* Mission.swift */,
+				D25570EE2C8E86CD00CCC226 /* Room.swift */,
+			);
+			path = MakeRoom;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -425,6 +439,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2BC1A9C2C90473100CB32B8 /* Mission.swift in Sources */,
 				D2BC1A962C9012B400CB32B8 /* SMInfoView.swift in Sources */,
 				D2BC1A8C2C8EBCF500CB32B8 /* SMColoredTextView.swift in Sources */,
 				D22E9B5B2C88031A00086549 /* HomeView.swift in Sources */,
@@ -445,6 +460,7 @@
 				877EA2442C88AE750073FFBD /* DTO.swift in Sources */,
 				877EA23D2C88AB8D0073FFBD /* UserService.swift in Sources */,
 				877EA2412C88ABA00073FFBD /* PushNotificationService.swift in Sources */,
+				D2BC1A9F2C904A9700CB32B8 /* MissionViewModel.swift in Sources */,
 				D25570E92C8E858A00CCC226 /* MakeRoomView.swift in Sources */,
 				D276B6082C8AB64B00230FA2 /* Font.swift in Sources */,
 				D22E9B752C8803EC00086549 /* Provider.swift in Sources */,

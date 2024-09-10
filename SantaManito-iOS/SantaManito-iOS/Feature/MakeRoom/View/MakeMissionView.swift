@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct MakeMissionView: View {
-    
-    @StateObject var viewModel: MakeMissionViewModel
+    @EnvironmentObject private var viewModel: MakeMissionViewModel
+    @StateObject var missionViewModel: MissionViewModel
+
     
     var body: some View {
         VStack {
@@ -34,7 +35,7 @@ struct MakeMissionView: View {
                 }
             } content: {
                 VStack {
-                    SettingMissionView(viewModel: viewModel)
+                    SettingMissionView(missionViewModel: missionViewModel)
                     
                     Spacer()
                         .frame(height: 34)
@@ -51,11 +52,8 @@ struct MakeMissionView: View {
 }
 
 fileprivate struct SettingMissionView: View {
-    @ObservedObject private var viewModel: MakeMissionViewModel
-    
-    fileprivate init(viewModel: MakeMissionViewModel) {
-        self.viewModel = viewModel
-    }
+    @EnvironmentObject private var viewModel: MakeMissionViewModel
+    @StateObject var missionViewModel: MissionViewModel
     
     var body: some View {
         ZStack {
@@ -68,13 +66,13 @@ fileprivate struct SettingMissionView: View {
             
             VStack(alignment: .center) {
                 
-                MissionListView(viewModel: viewModel)
+                MissionListView(missionViewModel: missionViewModel)
                 
                 Spacer()
                     .frame(height: 16)
                 
                 Button {
-                    viewModel.send(action: .makeMissionButtonClicked)
+                    viewModel.send(action: .addMission(missionViewModel.mission))
                 } label: {
                     HStack {
                         Text("마니또 미션 추가")
@@ -104,10 +102,11 @@ fileprivate struct SettingMissionView: View {
 }
 
 private struct MissionListView: View {
-    @ObservedObject private var viewModel: MakeMissionViewModel
+    @EnvironmentObject private var viewModel: MakeMissionViewModel
+    @ObservedObject private var missionViewModel: MissionViewModel
     
-    fileprivate init(viewModel: MakeMissionViewModel) {
-        self.viewModel = viewModel
+    fileprivate init(missionViewModel: MissionViewModel) {
+        self.missionViewModel = missionViewModel
     }
     
     fileprivate var body: some View {
@@ -118,7 +117,7 @@ private struct MissionListView: View {
             ScrollView(.vertical) {
                 
                 ForEach(viewModel.missionList, id: \.self) { recordedFile in
-                    MissionCellView(viewModel: viewModel)
+                    MissionCellView(missionViewModel: missionViewModel)
                 }
             }
         }
@@ -126,10 +125,11 @@ private struct MissionListView: View {
 }
 
 private struct MissionCellView: View {
-    @ObservedObject private var viewModel: MakeMissionViewModel
+    @EnvironmentObject private var viewModel: MakeMissionViewModel
+    @ObservedObject private var missionViewModel: MissionViewModel
     
-    fileprivate init(viewModel: MakeMissionViewModel) {
-        self.viewModel = viewModel
+    fileprivate init(missionViewModel: MissionViewModel) {
+        self.missionViewModel = missionViewModel
     }
     
     fileprivate var body: some View {
@@ -137,19 +137,19 @@ private struct MissionCellView: View {
             // 텍스트필드
             TextField(
                 "",
-                text: $viewModel.mission,
+                text: $missionViewModel.mission.content,
                 prompt: Text("산타 할아버지 여기 미션 하나 추가요!")
                     .foregroundColor(.smLightgray)
             )
             .textFieldStyle(SMTextFieldStlyes())
             
             // Clear Button
-            if !viewModel.mission.isEmpty {
+            if !viewModel.missionList.isEmpty {
                 HStack {
                     Spacer()
                     
                     Button(action: {
-                        viewModel.send(action: .clearButtonClicked)
+                        viewModel.send(action: .deleteMission(missionViewModel.mission))
                     }) {
                         Image(.btnCancle)
                             .foregroundColor(.smDarkgray)
@@ -200,7 +200,7 @@ fileprivate struct MakeMissionButtonView: View {
             }
             .padding(.vertical, 17)
             .frame(width: 165)
-            .background(.smRed) //state 추가하기
+            .background(viewModel.makeMisstionButtonisEnabled ? .smRed : .smLightgray) //state 추가하기
             .clipShape(RoundedRectangle(cornerRadius: 10))
         }
     }
@@ -208,6 +208,13 @@ fileprivate struct MakeMissionButtonView: View {
 
 
 #Preview {
-    MakeMissionView(viewModel: MakeMissionViewModel())
+    MakeMissionView(
+        missionViewModel: .init(
+            mission: .init(
+                content: ""
+            )
+        )
+    )
+    .environmentObject(MakeMissionViewModel())
 }
 
