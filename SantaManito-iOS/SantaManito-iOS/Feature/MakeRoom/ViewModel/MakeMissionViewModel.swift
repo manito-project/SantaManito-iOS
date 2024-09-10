@@ -20,7 +20,7 @@ class MakeMissionViewModel: ObservableObject {
     }
     
     @Published var mission: String = ""
-    @Published var missionList: [String] = ["123", "123" , "!@3", "!@#42"]
+    @Published var missionList: [String] = ["123", "123" , "!@3", "!@#42", "!@#42", "!@#42", "!@#42", "!@#42", "!@#42", "!@#42", "!@#42"]
     
     func send(action: Action) {
         switch action {
