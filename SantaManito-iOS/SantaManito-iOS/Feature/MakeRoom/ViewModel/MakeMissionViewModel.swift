@@ -16,11 +16,14 @@ class MakeMissionViewModel: ObservableObject {
         case editMission
         case skipMissionButtonClicked
         case makeMissionButtonClicked
+        case ignoreMissionButtonClicked
+        case dismissAlert
     }
 
     @Published var missionList: [Mission] = [Mission(content: "")]
     @Published var makeMisstionButtonisEnabled: Bool = false
     @Published var deleteButtonIsEnabled: Bool = false
+    @Published var alertPresented: Bool = false
 
     func send(action: Action) {
         switch action {
@@ -41,9 +44,16 @@ class MakeMissionViewModel: ObservableObject {
             configMakeMissionButtonIsEnabled()
             
         case .skipMissionButtonClicked:
-            break
+            alertPresented = true
+            
+        case .ignoreMissionButtonClicked:
+            print("방 정보 확인 창으로 넘어갈거야!")
+            
         case .makeMissionButtonClicked:
-            break
+            print("방 정보 확인 창으로 넘어갈거야!")
+
+        case .dismissAlert:
+            alertPresented = false
         }
     }
 }

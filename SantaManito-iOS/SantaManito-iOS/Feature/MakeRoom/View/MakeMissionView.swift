@@ -46,6 +46,16 @@ struct MakeMissionView: View {
                 .padding(.horizontal, 16)
             }
         }
+        .smAlert(
+            isPresented: viewModel.alertPresented,
+            title: "아직 작성 중인 미션이 있어! \n미션이 사라져도 괜찮아?",
+            primaryButton: ("나가기", {
+                viewModel.send(action: .ignoreMissionButtonClicked)
+            }),
+            secondaryButton: ("미션 만들기", {
+                viewModel.send(action: .dismissAlert)
+            })
+        )
     }
 }
 
@@ -68,30 +78,6 @@ fileprivate struct SettingMissionView: View {
                 Spacer()
                     .frame(height: 16)
                 
-                Button {
-                    viewModel.send(action: .addMission)
-                } label: {
-                    HStack {
-                        Text("마니또 미션 추가")
-                            .font(.semibold_16)
-                            .foregroundColor(.white)
-                        
-                        Spacer()
-                            .frame(width: 10)
-                        
-                        Image(.btnPlus)
-                            .resizable()
-                            .frame(width: 24, height: 24)
-                    }
-                    .padding(.horizontal, 88)
-                    .padding(.vertical, 12)
-                    .background(.smDarkgray)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                }
-                .frame(height: 48)
-                
-                Spacer()
-                
             }.padding(.horizontal, 16)
         }
         .frame(height: 402)
@@ -110,6 +96,32 @@ private struct MissionListView: View {
                 ForEach($viewModel.missionList) { $mission in
                     MissionCellView(mission: $mission)
                 }
+                
+                Spacer()
+                    .frame(height: 16)
+                
+                Button {
+                    viewModel.send(action: .addMission)
+                } label: {
+                    HStack {
+                        Text("마니또 미션 추가")
+                            .font(.semibold_16)
+                            .foregroundColor(.white)
+                        
+                        Spacer()
+                            .frame(width: 10)
+                        
+                        //TODO: 플러스 버튼 피그마 에셋으로 교체하기
+                        Image(.btnPlus)
+                            .resizable()
+                            .frame(width: 24, height: 24)
+                    }
+                }
+                //TODO: 디테일 확인하면서 여기 크기 잡는 거. + 중앙 정렬 잘 되는지 다시 한번 확인
+                .padding(.vertical, 16)
+                .frame(width: 311, height: 48)
+                .background(.smDarkgray)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
             }
         }
     }
@@ -137,7 +149,7 @@ private struct MissionCellView: View {
             }
             .textFieldStyle(SMTextFieldStlyes())
             
-            // Clear Button
+            //TODO: 마이너스 에셋 피그마 있는걸로 적용하기
             if viewModel.deleteButtonIsEnabled {
                 HStack {
                     Spacer()
@@ -158,6 +170,7 @@ private struct MissionCellView: View {
 
 fileprivate struct MakeMissionButtonView: View {
     @EnvironmentObject private var viewModel: MakeMissionViewModel
+    
     
     var body: some View {
         HStack(alignment: .center) {
