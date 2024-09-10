@@ -217,24 +217,30 @@ struct SettingRoomInfoView: View {
             
             HStack {
                 Button{
-                    //TODO: 누르면 DatePicker 나오기 + 비즈니스 로직
                 } label: {
-                    Text("12:00")
-                        .font(.medium_16)
-                        .foregroundColor(.smDarkgray)
+                    DatePicker(
+                        "DatePicker",
+                        selection: $viewModel.dueDateTime,
+                        displayedComponents: [.hourAndMinute] // <-
+                    )
+                    .onChange(of: viewModel.dueDateTime) {
+                        viewModel.send(action: .configDuedateTime($0))
+                    }
+                    .labelsHidden()
+//                    .environment(\.locale, Locale(identifier: "en_GB")) // 24시간제로 설정
                 }
-                .padding(.horizontal, 14)
-                .padding(.vertical, 16)
-                .frame(width: 73, height: 44)
-                .background {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(.smLightbg)
-                }
+//                .padding(.horizontal, 14)
+//                .padding(.vertical, 16)
+//                .frame(width: 73, height: 44)
+//                .background {
+//                    RoundedRectangle(cornerRadius: 10)
+//                        .fill(.smLightbg)
+//                }
                 
                 Toggle(isOn: $isAM) {
                     //TODO: AM, PM과 관련된 비즈니스 로직
                 }
-                .toggleStyle(MyToggleStyle())
+                .toggleStyle(MyToggleStyle(viewModel: viewModel))
                 .frame(width: 122, height: 44)
                 .background {
                     RoundedRectangle(cornerRadius: 10)
@@ -248,7 +254,7 @@ struct SettingRoomInfoView: View {
             HStack {
                 Spacer()
                 
-                ColoredTextView(
+                SMColoredTextView(
                     fullText:"\(viewModel.remainingDays)일 후인 \(viewModel.dueDate)에\n산타 마니또 결과가 공개될거야!",
                     coloredWord: "\(viewModel.dueDate)",
                     color: .smRed
@@ -281,7 +287,7 @@ struct MakeRoomButtonView: View {
                 Text("미션없이 방 만들기")
                     .font(.semibold_18)
                     .foregroundColor(.smWhite)
-                    
+                
             }
             .padding(.vertical, 17)
             .frame(width: 165)

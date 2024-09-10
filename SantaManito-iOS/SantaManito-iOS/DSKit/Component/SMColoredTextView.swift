@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ColoredTextView: View {
+struct SMColoredTextView: View {
     let fullText: String
     let coloredWord: String
     let color: Color

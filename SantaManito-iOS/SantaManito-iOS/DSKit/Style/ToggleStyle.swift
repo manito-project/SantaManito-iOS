@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MyToggleStyle: ToggleStyle {
+    @ObservedObject var viewModel: MakeRoomViewModel
+    
     func makeBody(configuration: Configuration) -> some View {
         HStack {
             configuration.label
@@ -25,6 +27,7 @@ struct MyToggleStyle: ToggleStyle {
                     Button {
                         withAnimation {
                             configuration.$isOn.wrappedValue.toggle()
+                            viewModel.send(action: .configDuedateisAM(configuration.isOn))
                         }
                     } label: {
                         Text("AM")
@@ -39,6 +42,7 @@ struct MyToggleStyle: ToggleStyle {
                     Button {
                         withAnimation {
                             configuration.$isOn.wrappedValue.toggle()
+                            viewModel.send(action: .configDuedateisAM(configuration.isOn))
                         }
                     } label: {
                         Text("PM")
