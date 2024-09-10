@@ -9,30 +9,28 @@ import Foundation
 import Combine
 
 class MakeMissionViewModel: ObservableObject {
-    
-    //MARK: Action
+
     enum Action {
-        case addMission(Mission)
+        case addMission
         case deleteMission(Mission)
         case configMission
         case skipMissionButtonClicked
         case makeMissionButtonClicked
     }
-    
-    @Published var missionList: [Mission] = []
-    
+
+    @Published var missionList: [Mission] = [Mission(content: "")]
     @Published var makeMisstionButtonisEnabled: Bool = false
-    
+
     func send(action: Action) {
         switch action {
-        case .addMission(let mission):
-            missionList.append(mission)
+        case .addMission:
+            let newMission = Mission(content: "")
+            missionList.append(newMission)
             
         case .deleteMission(let mission):
             if let index = missionList.firstIndex(where: { $0.id == mission.id }) {
                 missionList.remove(at: index)
             }
-            
         case .configMission:
             break
         case .skipMissionButtonClicked:
