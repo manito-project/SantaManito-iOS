@@ -12,22 +12,27 @@ class MakeMissionViewModel: ObservableObject {
     
     //MARK: Action
     enum Action {
-        case addMissionButtonClicked
-        case clearButtonClicked
+        case addMission(Mission)
+        case deleteMission(Mission)
         case configMission
         case skipMissionButtonClicked
         case makeMissionButtonClicked
     }
     
-    @Published var mission: String = ""
-    @Published var missionList: [String] = ["123", "123" , "!@3", "!@#42", "!@#42", "!@#42", "!@#42", "!@#42", "!@#42", "!@#42", "!@#42"]
+    @Published var missionList: [Mission] = []
+    
+    @Published var makeMisstionButtonisEnabled: Bool = false
     
     func send(action: Action) {
         switch action {
-        case .addMissionButtonClicked:
-            break
-        case .clearButtonClicked:
-            break
+        case .addMission(let mission):
+            missionList.append(mission)
+            
+        case .deleteMission(let mission):
+            if let index = missionList.firstIndex(where: { $0.id == mission.id }) {
+                missionList.remove(at: index)
+            }
+            
         case .configMission:
             break
         case .skipMissionButtonClicked:
@@ -35,5 +40,11 @@ class MakeMissionViewModel: ObservableObject {
         case .makeMissionButtonClicked:
             break
         }
+    }
+}
+
+extension MakeMissionViewModel {
+    func configMakeMissionButtonIsEnabled() {
+        makeMisstionButtonisEnabled = !missionList.isEmpty
     }
 }
