@@ -15,8 +15,8 @@ class MakeRoomViewModel: ObservableObject {
         case configRoomName(String) // 방이름 작성
         case increaseDuedate // 마니또 마감 날짜 늘리기
         case decreaseDuedate // 마니또 마감 날짜 줄이기
-        case configEndTime // 마니또 종료 시간 설정
-        case configAmorPm(Bool) // 오전인지 오후인지 정하기
+        case configDuedateTime(Date) // 마니또 종료 시간 설정
+        case configDuedateisAM(Bool) // 오전인지 오후인지 정하기
         case backButtonClicked // backButton을 눌렀을 때 (이거 위치 어디로 할지 고민)
         case noMissionButtonClicked // 미션없이 방을 생성하려고 할때
         case missionButtonClicked // 미션 설정 후 방을 생성하려고 할때
@@ -24,12 +24,12 @@ class MakeRoomViewModel: ObservableObject {
     
     @Published var roomName: String = "" // 방 이름
     @Published var remainingDays: Int = 5 // 마감일자까지 남은 날짜
-    @Published var dueDate: Date = Date() // 마감일자 (마니또 공개일)
+    @Published var dueDateTime: Date = Date() // 마감일자 (마니또 공개일)
+    
     
     @Published var canDecreaseRemainingDays: Bool = true
     @Published var canIncreaseRemainingDays: Bool = true
-    
-    
+    @Published var dueDate: String = Date().toDueDate
     
     func send(action: Action) {
         switch action {
@@ -40,23 +40,45 @@ class MakeRoomViewModel: ObservableObject {
                 roomName = name
             }
             
-            print("방 제목은 \(roomName)이며, \(roomName.count)입니다!")
         case .increaseDuedate:
             if canIncreaseRemainingDays {
                 remainingDays += 1
             }
             checkRemainingDaysInRange()
+            configDuedata()
+            
         case .decreaseDuedate:
             if canDecreaseRemainingDays {
                 remainingDays -= 1
             }
             checkRemainingDaysInRange()
-        case .configEndTime:
-            // TimePicker을 통해서 시간 설정
-            break
-        case .configAmorPm:
-            break
-            // AM / PM을 따로 설정
+            configDuedata()
+            
+        case .configDuedateTime(let dueDate):
+            print("마니또 공개일 시간은 \(dueDate.toDueDate)입니다")
+            configDuedata()
+            
+        case .configDuedateisAM(let isAM):
+            if isAM  {
+                if dueDateTime.toHour >= 12 {
+
+                    let calendar = Calendar.current
+
+                    dueDateTime = calendar.date(byAdding: .hour, value: dueDateTime.toHour - 12, to: dueDateTime)! // 3시간 후
+
+                    // 두 날짜 사이의 차이 계산
+                    configDuedata()
+                }
+            } else {
+                
+            }
+            // AM이고 시간이 12시보다 클 경우 => 12시간을 빼준다
+            // AM이고 시간이 12시보다 작을 경우 => 그냥 그대로
+            
+            // PM이고 시간이 12시보다 클 경우 => 12시간을 빼준다
+            // AM이고 시간이 12시보다 작을 경우 => 그냥 그대로
+            configDuedata()
+            
         case .backButtonClicked:
             print("backButtonClicked")
             // Main 화면으로 돌아간다
@@ -76,4 +98,20 @@ extension MakeRoomViewModel {
         canIncreaseRemainingDays = remainingDays >= 14 ? false: true
         canDecreaseRemainingDays = remainingDays <= 3 ? false: true
     }
+    
+    ///마니또 공개일을 계산하는 함수
+    func configDuedata() {
+        // 날짜와 관련된 내용
+        let currentDate = Date()
+        guard let futureDate = Calendar.current.date(byAdding: .day, value: remainingDays, to: currentDate) else { return }
+        let dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: futureDate)
+        guard let newDate = Calendar.current.date(from: dateComponents) else { return }
+        
+        
+        //시간과 관련된 내용
+        
+        
+        dueDate = newDate.toDueDate + " " + dueDateTime.toDuedateTime
+    }
 }
+
