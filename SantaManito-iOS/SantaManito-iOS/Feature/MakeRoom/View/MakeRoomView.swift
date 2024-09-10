@@ -16,7 +16,9 @@ struct MakeRoomView: View {
         VStack {
             SMView(padding: -100) {
                 HStack {
-                    InfoView()
+                    SMInfoView(
+                        title: "방 정보 설정",
+                        description: "언제까지 마니또 게임하게 할 거야\n내 마니또를 봐 산타 기다리잖아")
                     
                     Spacer()
                     
@@ -48,40 +50,7 @@ struct MakeRoomView: View {
     }
 }
 
-struct InfoView: View {
-    var body: some View {
-        VStack(alignment: .leading) {
-            Spacer()
-                .frame(height: 68)
-            
-            Button {
-            } label: {
-                Image(.btnBack)
-            }
-            
-            Spacer()
-                .frame(height: 47)
-            
-            Text("방 정보 설정")
-                .font(.semibold_20)
-                .foregroundColor(.smWhite)
-            
-            Spacer()
-                .frame(height: 16)
-            
-            Text("언제까지 마니또 게임하게 할거야 \n내 마니또를 봐 산타 기다리잖아")
-                .font(.medium_16)
-                .foregroundColor(.smWhite)
-                .lineSpacing(3.5)
-                .lineLimit(2)
-            
-            Spacer()
-            
-        }.padding(.leading, 16)
-    }
-}
-
-struct SettingRoomInfoView: View {
+fileprivate struct SettingRoomInfoView: View {
     @ObservedObject private var viewModel: MakeRoomViewModel
     
     fileprivate init(viewModel: MakeRoomViewModel) {
@@ -272,7 +241,7 @@ struct SettingRoomInfoView: View {
     }
 }
 
-struct MakeRoomButtonView: View {
+fileprivate struct MakeRoomButtonView: View {
     @ObservedObject private var viewModel: MakeRoomViewModel
     
     fileprivate init(viewModel: MakeRoomViewModel) {

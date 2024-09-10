@@ -42,6 +42,11 @@
 		D2BC1A8C2C8EBCF500CB32B8 /* SMColoredTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A8B2C8EBCF500CB32B8 /* SMColoredTextView.swift */; };
 		D2BC1A8E2C8EBFD500CB32B8 /* ToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A8D2C8EBFD500CB32B8 /* ToggleStyle.swift */; };
 		D2BC1A902C8F4C6400CB32B8 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A8F2C8F4C6400CB32B8 /* Date+.swift */; };
+		D2BC1A922C90101E00CB32B8 /* MakeMissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A912C90101E00CB32B8 /* MakeMissionView.swift */; };
+		D2BC1A942C90102900CB32B8 /* MakeMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A932C90102900CB32B8 /* MakeMissionViewModel.swift */; };
+		D2BC1A962C9012B400CB32B8 /* SMInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A952C9012B400CB32B8 /* SMInfoView.swift */; };
+		D2BC1A982C90245700CB32B8 /* TextFieldStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A972C90245700CB32B8 /* TextFieldStyles.swift */; };
+		D2BC1A9A2C90341900CB32B8 /* SMClearButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A992C90341900CB32B8 /* SMClearButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +87,11 @@
 		D2BC1A8B2C8EBCF500CB32B8 /* SMColoredTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMColoredTextView.swift; sourceTree = "<group>"; };
 		D2BC1A8D2C8EBFD500CB32B8 /* ToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleStyle.swift; sourceTree = "<group>"; };
 		D2BC1A8F2C8F4C6400CB32B8 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		D2BC1A912C90101E00CB32B8 /* MakeMissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeMissionView.swift; sourceTree = "<group>"; };
+		D2BC1A932C90102900CB32B8 /* MakeMissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeMissionViewModel.swift; sourceTree = "<group>"; };
+		D2BC1A952C9012B400CB32B8 /* SMInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMInfoView.swift; sourceTree = "<group>"; };
+		D2BC1A972C90245700CB32B8 /* TextFieldStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldStyles.swift; sourceTree = "<group>"; };
+		D2BC1A992C90341900CB32B8 /* SMClearButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMClearButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +113,8 @@
 				877CA0722C8C4C5C00D23193 /* SMView.swift */,
 				877CA0802C8C555C00D23193 /* SMScrollView.swift */,
 				877CA0822C8CA75C00D23193 /* SMAlertView.swift */,
+				D2BC1A952C9012B400CB32B8 /* SMInfoView.swift */,
+				D2BC1A992C90341900CB32B8 /* SMClearButton.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -120,6 +132,7 @@
 			children = (
 				877EA2312C889DCB0073FFBD /* ButtonStyles.swift */,
 				D2BC1A8D2C8EBFD500CB32B8 /* ToggleStyle.swift */,
+				D2BC1A972C90245700CB32B8 /* TextFieldStyles.swift */,
 			);
 			path = Style;
 			sourceTree = "<group>";
@@ -314,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				D25570E82C8E858A00CCC226 /* MakeRoomView.swift */,
+				D2BC1A912C90101E00CB32B8 /* MakeMissionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -322,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				D25570EC2C8E85CB00CCC226 /* MakeRoomViewModel.swift */,
+				D2BC1A932C90102900CB32B8 /* MakeMissionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -413,6 +428,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2BC1A962C9012B400CB32B8 /* SMInfoView.swift in Sources */,
 				D2BC1A8C2C8EBCF500CB32B8 /* SMColoredTextView.swift in Sources */,
 				D22E9B5B2C88031A00086549 /* HomeView.swift in Sources */,
 				877EA23B2C88AAC10073FFBD /* DIContainer.swift in Sources */,
@@ -423,6 +439,7 @@
 				D2BC1A902C8F4C6400CB32B8 /* Date+.swift in Sources */,
 				D22E9B732C8803E500086549 /* Service.swift in Sources */,
 				877EA23F2C88AB930073FFBD /* AuthService.swift in Sources */,
+				D2BC1A922C90101E00CB32B8 /* MakeMissionView.swift in Sources */,
 				D22E9B592C88031A00086549 /* SantaManito_iOSApp.swift in Sources */,
 				D25570ED2C8E85CB00CCC226 /* MakeRoomViewModel.swift in Sources */,
 				877EA2322C889DCB0073FFBD /* ButtonStyles.swift in Sources */,
@@ -438,9 +455,12 @@
 				877CA0832C8CA75C00D23193 /* SMAlertView.swift in Sources */,
 				877EA2362C88AA740073FFBD /* AuthView.swift in Sources */,
 				877CA0812C8C555D00D23193 /* SMScrollView.swift in Sources */,
+				D2BC1A9A2C90341900CB32B8 /* SMClearButton.swift in Sources */,
 				877CA0892C8CB61100D23193 /* DSKitDemoView.swift in Sources */,
 				D2BC1A8E2C8EBFD500CB32B8 /* ToggleStyle.swift in Sources */,
+				D2BC1A982C90245700CB32B8 /* TextFieldStyles.swift in Sources */,
 				D25570EF2C8E86CD00CCC226 /* Room.swift in Sources */,
+				D2BC1A942C90102900CB32B8 /* MakeMissionViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
