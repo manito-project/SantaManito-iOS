@@ -23,6 +23,7 @@ class ManitoRoomViewModel: ObservableObject {
         case refreshParticipant
         case copyInviteCode
         case matchingButtonClicked
+        case editRoomInfo // 방 수정하기 뷰로 넘어감
     }
     
     @Published var inviteCode: String = ""
@@ -38,13 +39,17 @@ class ManitoRoomViewModel: ObservableObject {
     ]
     
     @Published private(set) var state = State(
-        isEnabled: false
+        isEnabled: false,
+        isLeader: true,
+        description: ""
     )
     
     //MARK: State
     
     struct State {
         var isEnabled: Bool
+        var isLeader: Bool
+        var description: String
     }
     
     //MARK: send
@@ -52,6 +57,7 @@ class ManitoRoomViewModel: ObservableObject {
     func send(action: Action) {
         switch action {
         case .load:
+            configDescription()
             //TODO: 참가자 정보 불러오기
             break
         case .refreshParticipant:
@@ -63,6 +69,15 @@ class ManitoRoomViewModel: ObservableObject {
         case .matchingButtonClicked:
             //TODO: 매칭시작하기
             break
+        case .editRoomInfo:
+            //TODO: 방 수정하기 뷰로 넘어감
+            break
         }
+    }
+}
+
+extension ManitoRoomViewModel {
+    func configDescription() {
+        state.description = state.isLeader ? "방장 산타는 참여자가 다 모이면 마니또 매칭을 해줘!" : "방장 산타가 마니또 매칭을 할 때까지 기다려보자!"
     }
 }
