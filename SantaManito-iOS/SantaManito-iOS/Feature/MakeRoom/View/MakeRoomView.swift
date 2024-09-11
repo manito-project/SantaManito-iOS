@@ -10,7 +10,6 @@ import SwiftUI
 struct MakeRoomView: View {
     
     @StateObject var viewModel: MakeRoomViewModel
-    @State private var time = Date()
     
     var body: some View {
         VStack {
@@ -34,6 +33,17 @@ struct MakeRoomView: View {
                 .padding(.horizontal, 16)
             }
         }
+        .smAlert(
+            isPresented: viewModel.state.isPresented,
+            title: "미션없는 마니또 게임은\n친구들이 심심해할 수 있어!",
+            primaryButton: ("건너뛰기", {
+                viewModel.send(action: .ignoreMissionButtonClicked)
+            }),
+            secondaryButton: ("미션 만들기", {
+                viewModel.send(action: .dismissAlert)
+            })
+        )
+        
         .onAppear {
             viewModel.send(action: .load)
         }
