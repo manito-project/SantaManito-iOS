@@ -21,10 +21,17 @@ extension Date {
         self = date
     }
     
-    var toDuedateTime: String {
+    var toDueDateTime: String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
         formatter.dateFormat = "a h:mm"
+        return formatter.string(from: self)
+    }
+    
+    var toDueDateAndTime: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "yyyy/MM/dd a h:mm"
         return formatter.string(from: self)
     }
     
@@ -35,20 +42,12 @@ extension Date {
         return formatter.string(from: self)
     }
     
-    var toHour: Int {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "HH"
-        return Int(formatter.string(from: self))!
+    func addingDays(remainingDays: Int) -> Date {
+        let calendar = Calendar.current
+        guard let futureDate = calendar.date(byAdding: .day, value: remainingDays, to: self) else { return Date() }
+        let dateComponents = calendar.dateComponents([.year, .month, .day], from: futureDate)
+        return calendar.date(from: dateComponents) ?? Date()
     }
-    // 2023-04-08 15:31
-    
-//    var toChatDataAccesbiility: String {
-//        let formatter = DateFormatter()
-//        formatter.locale = Locale(identifier: "ko_KR")
-//        formatter.dateFormat = "yyyy년 MM월 dd일 E"
-//        return formatter.string(from: self)
-//    }
 }
 
 extension String {
