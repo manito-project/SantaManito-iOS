@@ -27,6 +27,7 @@ struct CheckIRoomInfoView: View {
                         viewModel.send(action: .makeRoomButtonClicked)
                     }
                     .smBottomButtonStyle()
+                    .padding(.top, 30)
                     
                     Spacer()
                         .frame(height: 40)
@@ -123,9 +124,10 @@ fileprivate struct DuedateInfoView: View {
 private struct MissionListView: View {
     @EnvironmentObject private var viewModel: CheckIRoomInfoViewModel
     
+    //TODO: 여기 간격이 좀 이상한데 뭐 때문에 그런지 모르겠,,
     var body: some View {
         VStack {
-            ScrollView(.vertical) {
+            ScrollView(.vertical, showsIndicators: false) {
                 ForEach($viewModel.missionList) { $mission in
                     MissionCellView(mission: $mission)
                         .padding(.bottom, 16)
@@ -155,17 +157,13 @@ private struct MissionCellView: View {
                     .padding(.vertical, 16)
                 
                 Spacer()
-            }
-
-            //TODO: 마이너스 에셋 피그마 있는걸로 적용하기
-            HStack {
-                Spacer()
                 
                 Button(action: {
                     viewModel.send(action: .deleteMission(mission))
                 }) {
-                    Image(.btnCancle)
-                        .foregroundColor(.smDarkgray)
+                    Image(.btnDelete)
+                        .resizable()
+                        .frame(width: 24, height: 24)
                         .padding(.trailing, 12)
                 }
             }
