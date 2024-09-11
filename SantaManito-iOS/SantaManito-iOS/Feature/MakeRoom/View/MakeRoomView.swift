@@ -45,6 +45,9 @@ struct MakeRoomView: View {
                 .padding(.horizontal, 16)
             }
         }
+        .onAppear {
+            viewModel.send(action: .load)
+        }
     }
 }
 
@@ -166,11 +169,12 @@ struct SettingRoomInfoView: View {
                     //TODO: 버튼 눌럿을 때 색 변경
                     viewModel.send(action: .decreaseDuedate)
                 } label: {
-                    Image(viewModel.canDecreaseRemainingDays ? .btnMinus : .btnUnActivatedMinus)
+                    Image(viewModel.state.canDecreaseDays ? .btnMinus : .btnUnActivatedMinus)
                         .resizable()
                         .frame(width: 25, height: 25)
                 }
-                .disabled(!viewModel.canDecreaseRemainingDays)
+                .buttonStyle(PlainButtonStyle())
+                .disabled(!viewModel.state.canDecreaseDays)
                 .padding(.all, 10)
                 
                 Text("\(viewModel.remainingDays)일 후")
@@ -181,11 +185,12 @@ struct SettingRoomInfoView: View {
                     //TODO: 버튼 눌럿을 때 색 변경 & 비즈니스 로직
                     viewModel.send(action: .increaseDuedate)
                 } label: {
-                    Image(viewModel.canIncreaseRemainingDays ? .btnPlus : .btnUnActivatedPlus)
+                    Image(viewModel.state.canIncreaseDays ? .btnPlus : .btnUnActivatedPlus)
                         .resizable()
                         .frame(width: 25, height: 25)
                 }
-                .disabled(!viewModel.canIncreaseRemainingDays)
+                .buttonStyle(PlainButtonStyle())
+                .disabled(!viewModel.state.canIncreaseDays)
                 .padding(.all, 10)
             }
             .frame(height: 44)
@@ -237,8 +242,8 @@ struct SettingRoomInfoView: View {
                 Spacer()
                 
                 SMColoredTextView(
-                    fullText:"\(viewModel.remainingDays)일 후인 \(viewModel.dueDate)에\n산타 마니또 결과가 공개될거야!",
-                    coloredWord: "\(viewModel.dueDate)",
+                    fullText:"\(viewModel.remainingDays)일 후인 \(viewModel.state.dueDate)에\n산타 마니또 결과가 공개될거야!",
+                    coloredWord: "\(viewModel.state.dueDate)",
                     color: .smRed
                 )
                 .font(.medium_14)
@@ -269,11 +274,11 @@ struct MakeRoomButtonView: View {
                 Text("미션없이 방 만들기")
                     .font(.semibold_18)
                     .foregroundColor(.smWhite)
-                
             }
             .padding(.vertical, 17)
             .frame(width: 165)
-            .background(.smDarkgray)
+            .background(viewModel.state.isEnabled ? .smDarkgray : .smLightgray)
+            .disabled(!viewModel.state.isEnabled)
             .clipShape(RoundedRectangle(cornerRadius: 10))
             
             Spacer()
@@ -288,7 +293,8 @@ struct MakeRoomButtonView: View {
             }
             .padding(.vertical, 17)
             .frame(width: 165)
-            .background(.smRed)
+            .background(viewModel.state.isEnabled ? .smRed : .smLightgray)
+            .disabled(!viewModel.state.isEnabled)
             .clipShape(RoundedRectangle(cornerRadius: 10))
         }
     }

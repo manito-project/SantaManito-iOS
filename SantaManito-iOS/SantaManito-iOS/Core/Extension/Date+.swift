@@ -21,7 +21,7 @@ extension Date {
         self = date
     }
     
-    var toDuedateTime: String {
+    var toDueDateTime: String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
         formatter.dateFormat = "a h:mm"
@@ -42,7 +42,12 @@ extension Date {
         return formatter.string(from: self)
     }
     
-    
+    func addingDays(remainingDays: Int) -> Date {
+        let calendar = Calendar.current
+        guard let futureDate = calendar.date(byAdding: .day, value: remainingDays, to: self) else { return Date() }
+        let dateComponents = calendar.dateComponents([.year, .month, .day], from: futureDate)
+        return calendar.date(from: dateComponents) ?? Date()
+    }
 }
 
 extension String {
