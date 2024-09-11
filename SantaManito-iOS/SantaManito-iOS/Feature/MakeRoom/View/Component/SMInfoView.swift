@@ -18,34 +18,48 @@ struct SMInfoView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Spacer()
-                .frame(height: 68)
+        HStack {
+            VStack(alignment: .leading) {
+                Spacer()
+                    .frame(height: 68)
+                
+                Button {
+                } label: {
+                    Image(.btnBack)
+                }
+                
+                Spacer()
+                    .frame(height: 47)
+                
+                Text(title)
+                    .font(.semibold_20)
+                    .foregroundColor(.smWhite)
+                
+                Spacer()
+                    .frame(height: 16)
+                
+                Text(description)
+                    .font(.medium_16)
+                    .foregroundColor(.smWhite)
+                    .lineSpacing(3.5)
+                    .lineLimit(2)
+                
+                Spacer()
+                
+            }.padding(.leading, 16)
             
-            Button {
-            } label: {
-                Image(.btnBack)
+            Spacer()
+            
+            VStack {
+                Spacer()
+                    .frame(height: 80)
+                
+                Image(.graphicsSanta3)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 130, height: 220)
             }
-            
-            Spacer()
-                .frame(height: 47)
-            
-            Text(title)
-                .font(.semibold_20)
-                .foregroundColor(.smWhite)
-            
-            Spacer()
-                .frame(height: 16)
-            
-            Text(description)
-                .font(.medium_16)
-                .foregroundColor(.smWhite)
-                .lineSpacing(3.5)
-                .lineLimit(2)
-            
-            Spacer()
-            
-        }.padding(.leading, 16)
+        }
     }
 }
 

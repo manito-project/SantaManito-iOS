@@ -13,24 +13,10 @@ struct MakeMissionView: View {
     var body: some View {
         VStack {
             SMView(padding: -80) {
-                HStack {
-                    SMInfoView(
-                        title: "미션 만들기",
-                        description: "어떤 미션이 괜찮을까\n천 번쯤 고민 중"
-                    )
-                    
-                    Spacer()
-                    
-                    VStack {
-                        Spacer()
-                            .frame(height: 80)
-                        
-                        Image(.graphicsSanta3)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 130, height: 220)
-                    }
-                }
+                SMInfoView(
+                    title: "미션 만들기",
+                    description: "어떤 미션이 괜찮을까\n천 번쯤 고민 중"
+                )
             } content: {
                 VStack {
                     SettingMissionView()

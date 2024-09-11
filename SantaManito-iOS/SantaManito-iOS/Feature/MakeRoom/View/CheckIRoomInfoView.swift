@@ -13,24 +13,10 @@ struct CheckIRoomInfoView: View {
     var body: some View {
         VStack {
             SMView(padding: -100) {
-                HStack {
-                    SMInfoView(
-                        title: "방 정보 확인",
-                        description: "초대 전 상태 점검\n방 정보 췍~!"
-                    )
-                    
-                    Spacer()
-                    
-                    VStack {
-                        Spacer()
-                            .frame(height: 80)
-                        
-                        Image(.graphicsSanta3)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 130, height: 220)
-                    }
-                }
+                SMInfoView(
+                    title: "방 정보 확인",
+                    description: "초대 전 상태 점검\n방 정보 췍~!"
+                )
             } content: {
                 VStack {
                     RoomInfoView()
