@@ -15,23 +15,10 @@ struct MakeRoomView: View {
     var body: some View {
         VStack {
             SMView(padding: -100) {
-                HStack {
-                    SMInfoView(
-                        title: "방 정보 설정",
-                        description: "언제까지 마니또 게임하게 할 거야\n내 마니또를 봐 산타 기다리잖아")
-                    
-                    Spacer()
-                    
-                    VStack {
-                        Spacer()
-                            .frame(height: 80)
-                        
-                        Image(.graphicsSanta3)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 130, height: 220)
-                    }
-                }
+                SMInfoView(
+                    title: "방 정보 설정",
+                    description: "언제까지 마니또 게임하게 할 거야\n내 마니또를 봐 산타 기다리잖아"
+                )
             } content: {
                 VStack {
                     SettingRoomInfoView(viewModel: viewModel)
@@ -196,24 +183,6 @@ fileprivate struct SettingRoomInfoView: View {
                         viewModel.send(action: .configDuedateTime($0))
                     }
                     .labelsHidden()
-//                    .environment(\.locale, Locale(identifier: "en_GB")) // 24시간제로 설정
-                }
-//                .padding(.horizontal, 14)
-//                .padding(.vertical, 16)
-//                .frame(width: 73, height: 44)
-//                .background {
-//                    RoundedRectangle(cornerRadius: 10)
-//                        .fill(.smLightbg)
-//                }
-                
-                Toggle(isOn: $isAM) {
-                    //TODO: AM, PM과 관련된 비즈니스 로직
-                }
-                .toggleStyle(MyToggleStyle(viewModel: viewModel))
-                .frame(width: 122, height: 44)
-                .background {
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(.smLightbg)
                 }
             }
             
