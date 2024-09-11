@@ -119,7 +119,6 @@
 				877CA0722C8C4C5C00D23193 /* SMView.swift */,
 				877CA0802C8C555C00D23193 /* SMScrollView.swift */,
 				877CA0822C8CA75C00D23193 /* SMAlertView.swift */,
-				D2BC1A952C9012B400CB32B8 /* SMInfoView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -136,7 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				877EA2312C889DCB0073FFBD /* ButtonStyles.swift */,
-				D2BC1A8D2C8EBFD500CB32B8 /* ToggleStyle.swift */,
 				D2BC1A972C90245700CB32B8 /* TextFieldStyles.swift */,
 			);
 			path = Style;
@@ -331,6 +329,7 @@
 		D25570E62C8E857900CCC226 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D2BC1AA62C913C3300CB32B8 /* Component */,
 				D25570E82C8E858A00CCC226 /* MakeRoomView.swift */,
 				D2BC1A912C90101E00CB32B8 /* MakeMissionView.swift */,
 				D2BC1AA02C90A26B00CB32B8 /* CheckIRoomInfoView.swift */,
@@ -368,6 +367,15 @@
 				D25570EE2C8E86CD00CCC226 /* Room.swift */,
 			);
 			path = MakeRoom;
+			sourceTree = "<group>";
+		};
+		D2BC1AA62C913C3300CB32B8 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				D2BC1A8D2C8EBFD500CB32B8 /* ToggleStyle.swift */,
+				D2BC1A952C9012B400CB32B8 /* SMInfoView.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

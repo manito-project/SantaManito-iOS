@@ -142,11 +142,10 @@ private struct MissionListView: View {
             ScrollView(.vertical) {
                 ForEach($viewModel.missionList) { $mission in
                     MissionCellView(mission: $mission)
-                    Spacer()
-                        .frame(height: 16)
+                        .padding(.bottom, 16)
                 }
             }
-            .frame(height: 276)
+            .frame(height: 300)
         }
         .padding(.horizontal, 16)
     }
@@ -162,18 +161,16 @@ private struct MissionCellView: View {
     
     fileprivate var body: some View {
         ZStack {
-            // 텍스트필드
-            TextField(
-                "",
-                text: $mission.content,
-                prompt: Text("산타 할아버지 여기 미션 하나 추가요!")
-                    .foregroundColor(.smLightgray)
-            )
-            .onChange(of: mission.content) { newValue in
+            HStack {
+                Text(mission.content)
+                    .font(.medium_16)
+                    .foregroundColor(.smDarkgray)
+                    .padding(.leading, 12)
+                    .padding(.vertical, 16)
                 
+                Spacer()
             }
-            .textFieldStyle(SMTextFieldStlyes())
-            
+
             //TODO: 마이너스 에셋 피그마 있는걸로 적용하기
             HStack {
                 Spacer()
@@ -188,6 +185,10 @@ private struct MissionCellView: View {
             }
         }
         .frame(height: 48)
+        .overlay {
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(.smLightgray, lineWidth: 1)
+        }
     }
 }
 
