@@ -43,9 +43,12 @@ struct EnterRoomView: View {
                             
                             TextField(
                                 "",
-                                text: $text, //viewModel. 초대코드
+                                text: $viewModel.inviteCode,
                                 prompt: Text("코드를 입력하면 방에 들어갈 수 있어!")
                             ).smTextFieldStyle()
+                                .onChange(of: viewModel.inviteCode) { _ in
+                                    viewModel.send(action: .editInviteCode)
+                                }
                             
                             Spacer()
                                 .frame(height: 24)
@@ -60,35 +63,38 @@ struct EnterRoomView: View {
                         Spacer()
                             .frame(height: 16)
                         
-                        HStack {
-                            Image(.icError)
-                                .resizable()
-                                .frame(width: 20, height: 20)
-                            
-                            Text("이미 참여중인 방이야!") //viewModel의 errMessag
-                                .font(.medium_14)
-                                .foregroundColor(.smRed)
-                                .lineSpacing(3)
-                                .lineLimit(2)
+                        if !viewModel.state.isValid {
+                            HStack {
+                                Image(.icError)
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                
+                                Text(viewModel.state.errMessage)
+                                    .font(.medium_14)
+                                    .foregroundColor(.smRed)
+                                    .lineSpacing(3)
+                                    .lineLimit(2)
+                            }
                         }
                     }
-                    .padding(.horizontal, 16)
-                    
-                    Spacer()
-                    
-                    Button("입장하기") {
-                        //초대코드에따라 적용
-                    }
-                    .smBottomButtonStyle()
-                    
-                    Spacer()
-                        .frame(height: 40)
                 }
-               
+                .padding(.horizontal, 16)
+                
+                Spacer()
+                
+                Button("입장하기") {
+                    viewModel.send(action: .enterButtonDidClicked)
+                }
+                .disabled(!viewModel.state.isEnabled)
+                .smBottomButtonStyle()
+                
+                Spacer()
+                    .frame(height: 40)
             }
         }
     }
 }
+
 
 #Preview {
     EnterRoomView(viewModel: EnterRoomViewModel(), text: "")
