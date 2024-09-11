@@ -36,18 +36,15 @@ struct CheckIRoomInfoView: View {
                     RoomInfoView()
                     
                     Spacer()
-                        
                     
                     Button("방 만들기") {
-                        // Action
+                        
                     }
                     .smBottomButtonStyle()
                     
                     Spacer()
                         .frame(height: 40)
-
                 }
-                
             }
         }
     }
@@ -68,8 +65,6 @@ fileprivate struct RoomInfoView: View {
                 MissionListView()
             } else {
                 VStack {
-                    
-                    
                     Text("이번에는 마니또만 매칭될거야!\n다음에는 재미있는 미션을 추가해줘!")
                         .lineLimit(2)
                         .lineSpacing(3)
@@ -109,8 +104,8 @@ fileprivate struct DuedateInfoView: View {
                 .frame(height: 16)
             
             SMColoredTextView(
-                fullText: "7일 후인 2024/09/07 오전 12:00에 결과 공개!",
-                coloredWord: "2024/09/07 오전 12:00",
+                fullText: "\(viewModel.remainingDays)일 후인 \(viewModel.dueDate)에 결과 공개!",
+                coloredWord: viewModel.dueDate,
                 color: .smRed
             )
             .font(.semibold_16)
@@ -125,6 +120,9 @@ fileprivate struct DuedateInfoView: View {
                 .foregroundColor(.smLightgray)
         }
         .frame(height: 102)
+        .onAppear {
+            viewModel.send(action: .load)
+        }
     }
 }
 
