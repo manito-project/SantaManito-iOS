@@ -68,6 +68,6 @@ extension CheckIRoomInfoViewModel {
         //시간과 관련된 내용
         
         
-        dueDate = newDate.toDueDate + " " + dueDateTime.toDuedateTime
+        dueDate = newDate.toDueDate + " " + dueDateTime.toDueDateTime
     }
 }

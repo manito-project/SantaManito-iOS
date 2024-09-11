@@ -19,7 +19,18 @@ struct MakeMissionView: View {
                 )
             } content: {
                 VStack {
-                    SettingMissionView()
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.white)
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(.smLightgray, lineWidth: 1)
+                            }
+                        
+                        MissionListView()
+                            .padding(.horizontal, 16)
+                    }
+                    .frame(height: 402)
                     
                     Spacer()
                         .frame(height: 34)
@@ -45,31 +56,6 @@ struct MakeMissionView: View {
     }
 }
 
-fileprivate struct SettingMissionView: View {
-    @EnvironmentObject private var viewModel: MakeMissionViewModel
-    
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color.white)
-                .overlay {
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(.smLightgray, lineWidth: 1)
-                }
-            
-            VStack(alignment: .center) {
-                
-                MissionListView()
-                
-                Spacer()
-                    .frame(height: 16)
-                
-            }.padding(.horizontal, 16)
-        }
-        .frame(height: 402)
-    }
-}
-
 private struct MissionListView: View {
     @EnvironmentObject private var viewModel: MakeMissionViewModel
     
@@ -78,18 +64,21 @@ private struct MissionListView: View {
             Spacer()
                 .frame(height: 24)
             
-            ScrollView(.vertical) {
+            //TODO: 여기 간격이 좀 이상한데 뭐 때문에 그런지 모르겠,,
+            ScrollView(.vertical, showsIndicators: false) {
                 ForEach($viewModel.missionList) { $mission in
                     MissionCellView(mission: $mission)
+                        .padding(.bottom, 16)
                 }
                 
-                Spacer()
-                    .frame(height: 16)
-                
                 Button {
-                    viewModel.send(action: .addMission)
+                    withAnimation(nil) {
+                        viewModel.send(action: .addMission)
+                    }
                 } label: {
                     HStack {
+                        Spacer()
+                        
                         Text("마니또 미션 추가")
                             .font(.semibold_16)
                             .foregroundColor(.white)
@@ -97,15 +86,14 @@ private struct MissionListView: View {
                         Spacer()
                             .frame(width: 10)
                         
-                        //TODO: 플러스 버튼 피그마 에셋으로 교체하기
-                        Image(.btnPlus)
+                        Image(.btnPlusLine)
                             .resizable()
                             .frame(width: 24, height: 24)
+                        
+                        Spacer()
                     }
                 }
-                //TODO: 디테일 확인하면서 여기 크기 잡는 거. + 중앙 정렬 잘 되는지 다시 한번 확인
-                .padding(.vertical, 16)
-                .frame(width: 311, height: 48)
+                .frame(height: 48)
                 .background(.smDarkgray)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
             }
@@ -123,7 +111,6 @@ private struct MissionCellView: View {
     
     fileprivate var body: some View {
         ZStack {
-            // 텍스트필드
             TextField(
                 "",
                 text: $mission.content,
@@ -132,10 +119,8 @@ private struct MissionCellView: View {
             )
             .onChange(of: mission.content) { newValue in
                 viewModel.send(action: .editMission)
-            }
-            .textFieldStyle(SMTextFieldStlyes())
+            }.smTextFieldStyle()
             
-            //TODO: 마이너스 에셋 피그마 있는걸로 적용하기
             if viewModel.deleteButtonIsEnabled {
                 HStack {
                     Spacer()
@@ -143,20 +128,20 @@ private struct MissionCellView: View {
                     Button(action: {
                         viewModel.send(action: .deleteMission(mission))
                     }) {
-                        Image(.btnCancle)
-                            .foregroundColor(.smDarkgray)
+                        Image(.btnDelete)
+                            .resizable()
+                            .frame(width: 24, height: 24)
                             .padding(.trailing, 12)
                     }
                 }
-                .frame(height: 48)
             }
         }
+        .frame(height: 48)
     }
 }
 
 fileprivate struct MakeMissionButtonView: View {
     @EnvironmentObject private var viewModel: MakeMissionViewModel
-    
     
     var body: some View {
         HStack(alignment: .center) {
