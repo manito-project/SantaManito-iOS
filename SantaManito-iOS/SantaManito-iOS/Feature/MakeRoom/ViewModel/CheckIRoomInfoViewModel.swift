@@ -21,8 +21,16 @@ class CheckIRoomInfoViewModel: ObservableObject {
     @Published var remainingDays: Int = 5 //TODO: 서버통신으로 가져올 값 or dataBinding으로 가져올 값
     @Published var inviteCode: String = "1A2B3C" //TODO: 서버통신으로 가져올 값 or dataBinding으로 가져올 값
     
-    @Published var alertPresented: Bool = false
-    @Published var dueDate: String = "" // 마감일자까지 남은 날짜
+    @Published private(set) var state = State(
+        isPresented: false,
+        dueDate: Date().toDueDateAndTime
+    )
+    
+    struct State {
+        var isPresented: Bool
+        var dueDate: String
+    }
+    
     @Published var missionList: [Mission] = [
         Mission(content: "손 잡기"),
         Mission(content: "손 잡기2"),
@@ -42,7 +50,7 @@ class CheckIRoomInfoViewModel: ObservableObject {
         case .load:
             configDuedata() // 서버통신 이후 날짜로 변환하는 코드 
         case .makeRoomButtonClicked:
-            alertPresented =  true
+            state.isPresented = true
         case .deleteMission(let mission):
             if let index = missionList.firstIndex(where: { $0.id == mission.id }) {
                 missionList.remove(at: index)
@@ -68,6 +76,6 @@ extension CheckIRoomInfoViewModel {
         //시간과 관련된 내용
         
         
-        dueDate = newDate.toDueDate + " " + dueDateTime.toDueDateTime
+        state.dueDate = newDate.toDueDate + " " + dueDateTime.toDueDateTime
     }
 }

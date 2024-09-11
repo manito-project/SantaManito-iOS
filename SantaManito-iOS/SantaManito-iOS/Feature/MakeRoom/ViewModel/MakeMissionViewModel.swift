@@ -19,11 +19,20 @@ class MakeMissionViewModel: ObservableObject {
         case ignoreMissionButtonClicked
         case dismissAlert
     }
+    
+    @Published private(set) var state = State(
+        isEnabled: false,
+        isPresented: false,
+        canDelete: false
+    )
+    
+    struct State {
+        var isEnabled: Bool
+        var isPresented: Bool
+        var canDelete: Bool
+    }
 
     @Published var missionList: [Mission] = [Mission(content: "")]
-    @Published var makeMisstionButtonisEnabled: Bool = false
-    @Published var deleteButtonIsEnabled: Bool = false
-    @Published var alertPresented: Bool = false
 
     func send(action: Action) {
         switch action {
@@ -44,7 +53,7 @@ class MakeMissionViewModel: ObservableObject {
             configMakeMissionButtonIsEnabled()
             
         case .skipMissionButtonClicked:
-            alertPresented = true
+            state.isPresented = true
             
         case .ignoreMissionButtonClicked:
             print("방 정보 확인 창으로 넘어갈거야!")
@@ -53,7 +62,7 @@ class MakeMissionViewModel: ObservableObject {
             print("방 정보 확인 창으로 넘어갈거야!")
 
         case .dismissAlert:
-            alertPresented = false
+            state.isPresented = false
         }
     }
 }
@@ -62,15 +71,15 @@ extension MakeMissionViewModel {
     func configMakeMissionButtonIsEnabled() {
         for mission in missionList {
             if mission.content.count < 1 {
-                makeMisstionButtonisEnabled = false
+                state.isEnabled = false
                 return
             }
         }
         
-        makeMisstionButtonisEnabled = true
+        state.isEnabled = true
     }
     
     func configDeleteButtonIsEnabled() {
-        deleteButtonIsEnabled = missionList.count > 1
+        state.canDelete = missionList.count > 1
     }
 }

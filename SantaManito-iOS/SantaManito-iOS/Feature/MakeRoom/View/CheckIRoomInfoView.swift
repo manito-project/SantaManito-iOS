@@ -35,7 +35,7 @@ struct CheckIRoomInfoView: View {
             }
         }
         .smAlertWithInviteCode(
-            isPresented: viewModel.alertPresented,
+            isPresented: viewModel.state.isPresented,
             title: "초대 코드를 복사해서\n친구들에게 공유해 주자!",
             inviteCode: viewModel.inviteCode,
             primaryButton: ("초대 코드 복사", {
@@ -99,8 +99,8 @@ fileprivate struct DuedateInfoView: View {
                 .frame(height: 16)
             
             SMColoredTextView(
-                fullText: "\(viewModel.remainingDays)일 후인 \(viewModel.dueDate)에 결과 공개!",
-                coloredWord: viewModel.dueDate,
+                fullText: "\(viewModel.remainingDays)일 후인 \(viewModel.state.dueDate)에 결과 공개!",
+                coloredWord: viewModel.state.dueDate,
                 color: .smRed
             )
             .font(.semibold_16)
