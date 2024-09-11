@@ -38,6 +38,7 @@
 		D25570E92C8E858A00CCC226 /* MakeRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570E82C8E858A00CCC226 /* MakeRoomView.swift */; };
 		D25570ED2C8E85CB00CCC226 /* MakeRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570EC2C8E85CB00CCC226 /* MakeRoomViewModel.swift */; };
 		D25570EF2C8E86CD00CCC226 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570EE2C8E86CD00CCC226 /* Room.swift */; };
+		D26BFA802C91692700C5CF86 /* SMInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA7F2C91692700C5CF86 /* SMInfoView.swift */; };
 		D276B6082C8AB64B00230FA2 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = D276B6072C8AB64B00230FA2 /* Font.swift */; };
 		D2BC1A8C2C8EBCF500CB32B8 /* SMColoredTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A8B2C8EBCF500CB32B8 /* SMColoredTextView.swift */; };
 		D2BC1A902C8F4C6400CB32B8 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A8F2C8F4C6400CB32B8 /* Date+.swift */; };
@@ -83,6 +84,7 @@
 		D25570E82C8E858A00CCC226 /* MakeRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRoomView.swift; sourceTree = "<group>"; };
 		D25570EC2C8E85CB00CCC226 /* MakeRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRoomViewModel.swift; sourceTree = "<group>"; };
 		D25570EE2C8E86CD00CCC226 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		D26BFA7F2C91692700C5CF86 /* SMInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMInfoView.swift; sourceTree = "<group>"; };
 		D276B5FA2C8AAB6200230FA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D276B6072C8AB64B00230FA2 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		D2BC1A8B2C8EBCF500CB32B8 /* SMColoredTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMColoredTextView.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 		D25570E62C8E857900CCC226 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D26BFA7E2C91691A00C5CF86 /* Component */,
 				D25570E82C8E858A00CCC226 /* MakeRoomView.swift */,
 				D2BC1A912C90101E00CB32B8 /* MakeMissionView.swift */,
 				D2BC1AA02C90A26B00CB32B8 /* CheckIRoomInfoView.swift */,
@@ -341,6 +344,14 @@
 				D2BC1AA22C90A29100CB32B8 /* CheckIRoomInfoViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D26BFA7E2C91691A00C5CF86 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				D26BFA7F2C91692700C5CF86 /* SMInfoView.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 		D276B5E72C8AAB3F00230FA2 /* Font */ = {
@@ -462,6 +473,7 @@
 				877EA23D2C88AB8D0073FFBD /* UserService.swift in Sources */,
 				877EA2412C88ABA00073FFBD /* PushNotificationService.swift in Sources */,
 				D25570E92C8E858A00CCC226 /* MakeRoomView.swift in Sources */,
+				D26BFA802C91692700C5CF86 /* SMInfoView.swift in Sources */,
 				D276B6082C8AB64B00230FA2 /* Font.swift in Sources */,
 				D22E9B752C8803EC00086549 /* Provider.swift in Sources */,
 				D22E9B6D2C8803C800086549 /* Extension.swift in Sources */,
