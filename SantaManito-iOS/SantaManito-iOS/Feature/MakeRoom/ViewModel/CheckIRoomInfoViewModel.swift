@@ -24,17 +24,17 @@ class CheckIRoomInfoViewModel: ObservableObject {
     @Published var alertPresented: Bool = false
     @Published var dueDate: String = "" // 마감일자까지 남은 날짜
     @Published var missionList: [Mission] = [
-//        Mission(content: "손 잡기"),
-//        Mission(content: "손 잡기"),
-//        Mission(content: "손 잡기"),
-//        Mission(content: "손 잡기"),
-//        Mission(content: "손 잡기"),
-//        Mission(content: "손 잡기"),
-//        Mission(content: "손 잡기"),
-//        Mission(content: "손 잡기"),
-//        Mission(content: "손 잡기"),
-//        Mission(content: "손 잡기"),
-//        Mission(content: "손 잡기")
+        Mission(content: "손 잡기"),
+        Mission(content: "손 잡기2"),
+        Mission(content: "손 잡기3"),
+        Mission(content: "손 잡기4"),
+        Mission(content: "손 잡기5"),
+        Mission(content: "손 잡기6"),
+        Mission(content: "손 잡기7"),
+        Mission(content: "손 잡기8"),
+        Mission(content: "손 잡기"),
+        Mission(content: "손 잡기"),
+        Mission(content: "손 잡기")
     ]
 
     func send(action: Action) {
