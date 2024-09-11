@@ -38,7 +38,7 @@ struct CheckIRoomInfoView: View {
                     Spacer()
                     
                     Button("방 만들기") {
-                        
+                        viewModel.send(action: .makeRoomButtonClicked)
                     }
                     .smBottomButtonStyle()
                     
@@ -47,6 +47,14 @@ struct CheckIRoomInfoView: View {
                 }
             }
         }
+        .smAlertWithInviteCode(
+            isPresented: viewModel.alertPresented,
+            title: "초대 코드를 복사해서\n친구들에게 공유해 주자!",
+            inviteCode: viewModel.inviteCode,
+            primaryButton: ("초대 코드 복사", {
+                viewModel.send(action: .copyInviteCode)
+            })
+        )
     }
 }
 

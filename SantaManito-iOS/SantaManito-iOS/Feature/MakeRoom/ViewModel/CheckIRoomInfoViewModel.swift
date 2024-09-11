@@ -5,7 +5,7 @@
 //  Created by 류희재 on 9/11/24.
 //
 
-import Foundation
+import UIKit
 import Combine
 
 class CheckIRoomInfoViewModel: ObservableObject {
@@ -14,11 +14,14 @@ class CheckIRoomInfoViewModel: ObservableObject {
         case load
         case makeRoomButtonClicked
         case deleteMission(Mission)
+        case copyInviteCode
     }
     
     @Published var dueDateTime: Date = Date() //TODO: 서버통신으로 가져올 값 or dataBinding으로 가져올 값
     @Published var remainingDays: Int = 5 //TODO: 서버통신으로 가져올 값 or dataBinding으로 가져올 값
+    @Published var inviteCode: String = "1A2B3C" //TODO: 서버통신으로 가져올 값 or dataBinding으로 가져올 값
     
+    @Published var alertPresented: Bool = false
     @Published var dueDate: String = "" // 마감일자까지 남은 날짜
     @Published var missionList: [Mission] = [
 //        Mission(content: "손 잡기"),
@@ -39,11 +42,15 @@ class CheckIRoomInfoViewModel: ObservableObject {
         case .load:
             configDuedata() // 서버통신 이후 날짜로 변환하는 코드 
         case .makeRoomButtonClicked:
-            break
+            alertPresented =  true
         case .deleteMission(let mission):
             if let index = missionList.firstIndex(where: { $0.id == mission.id }) {
                 missionList.remove(at: index)
             }
+        case .copyInviteCode:
+            print("초대코드 복사")
+            UIPasteboard.general.string = inviteCode
+            break
         }
     }
 }

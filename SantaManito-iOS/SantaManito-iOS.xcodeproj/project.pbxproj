@@ -49,6 +49,7 @@
 		D2BC1A9C2C90473100CB32B8 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A9B2C90473000CB32B8 /* Mission.swift */; };
 		D2BC1AA12C90A26B00CB32B8 /* CheckIRoomInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1AA02C90A26B00CB32B8 /* CheckIRoomInfoView.swift */; };
 		D2BC1AA32C90A29200CB32B8 /* CheckIRoomInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1AA22C90A29100CB32B8 /* CheckIRoomInfoViewModel.swift */; };
+		D2BC1AA52C91357F00CB32B8 /* SMInviteCodeAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1AA42C91357F00CB32B8 /* SMInviteCodeAlertView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		D2BC1A9B2C90473000CB32B8 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		D2BC1AA02C90A26B00CB32B8 /* CheckIRoomInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIRoomInfoView.swift; sourceTree = "<group>"; };
 		D2BC1AA22C90A29100CB32B8 /* CheckIRoomInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIRoomInfoViewModel.swift; sourceTree = "<group>"; };
+		D2BC1AA42C91357F00CB32B8 /* SMInviteCodeAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMInviteCodeAlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,6 +334,7 @@
 				D25570E82C8E858A00CCC226 /* MakeRoomView.swift */,
 				D2BC1A912C90101E00CB32B8 /* MakeMissionView.swift */,
 				D2BC1AA02C90A26B00CB32B8 /* CheckIRoomInfoView.swift */,
+				D2BC1AA42C91357F00CB32B8 /* SMInviteCodeAlertView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				D276B6082C8AB64B00230FA2 /* Font.swift in Sources */,
 				D22E9B752C8803EC00086549 /* Provider.swift in Sources */,
 				D22E9B6D2C8803C800086549 /* Extension.swift in Sources */,
+				D2BC1AA52C91357F00CB32B8 /* SMInviteCodeAlertView.swift in Sources */,
 				877CA0832C8CA75C00D23193 /* SMAlertView.swift in Sources */,
 				877EA2362C88AA740073FFBD /* AuthView.swift in Sources */,
 				877CA0812C8C555D00D23193 /* SMScrollView.swift in Sources */,
