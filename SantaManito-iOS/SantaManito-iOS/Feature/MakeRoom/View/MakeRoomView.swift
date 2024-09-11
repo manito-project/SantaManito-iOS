@@ -15,21 +15,10 @@ struct MakeRoomView: View {
     var body: some View {
         VStack {
             SMView(padding: -100) {
-                HStack {
-                    InfoView()
-                    
-                    Spacer()
-                    
-                    VStack {
-                        Spacer()
-                            .frame(height: 80)
-                        
-                        Image(.graphicsSanta3)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 130, height: 220)
-                    }
-                }
+                SMInfoView(
+                    title: "방 정보 설정",
+                    description: "언제까지 마니또 게임하게 할거야\n내 마니또를 봐 산타 기다리잖아"
+                )
             } content: {
                 VStack {
                     SettingRoomInfoView(viewModel: viewModel)
@@ -48,39 +37,6 @@ struct MakeRoomView: View {
         .onAppear {
             viewModel.send(action: .load)
         }
-    }
-}
-
-struct InfoView: View {
-    var body: some View {
-        VStack(alignment: .leading) {
-            Spacer()
-                .frame(height: 68)
-            
-            Button {
-            } label: {
-                Image(.btnBack)
-            }
-            
-            Spacer()
-                .frame(height: 47)
-            
-            Text("방 정보 설정")
-                .font(.semibold_20)
-                .foregroundColor(.smWhite)
-            
-            Spacer()
-                .frame(height: 16)
-            
-            Text("언제까지 마니또 게임하게 할거야 \n내 마니또를 봐 산타 기다리잖아")
-                .font(.medium_16)
-                .foregroundColor(.smWhite)
-                .lineSpacing(3.5)
-                .lineLimit(2)
-            
-            Spacer()
-            
-        }.padding(.leading, 16)
     }
 }
 
