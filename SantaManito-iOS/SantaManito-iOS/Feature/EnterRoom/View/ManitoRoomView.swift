@@ -33,26 +33,75 @@ struct ManitoRoomView: View {
                     .padding(.horizontal, 16)
                     .frame(height: 360)
                     
-                    Text("방장 산타가 마니또 매칭을 할 때까지 기다려보자!")
-                        .font(.medium_14)
-                        .foregroundColor(.smDarkgray)
-                        .padding(.top, 16)
-                        .padding(.leading, 16)
-                    
                     Spacer()
-                        .frame(height: 40)
+                        .frame(height: 16)
                     
-                    Button("마니또 랜덤 매칭하기") {
-                        viewModel.send(action: .matchingButtonClicked)
-                    }
-                    .smBottomButtonStyle()
+                    MatchingButtonView()
                     
                     Spacer()
                         .frame(height: 40)
                 }
             }
+            .onAppear {
+                viewModel.send(action: .load)
+            }
         }
     }
+}
+
+fileprivate struct MatchingButtonView: View {
+    @EnvironmentObject private var viewModel: ManitoRoomViewModel
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(viewModel.state.description)
+                .font(.medium_14)
+                .foregroundColor(.smDarkgray)
+                .padding(.top, 16)
+                .padding(.leading, 16)
+            
+            Spacer()
+                .frame(height: 40)
+            
+            if viewModel.state.isLeader {
+                HStack {
+                    Button {
+                        viewModel.send(action: .editRoomInfo)
+                    } label: {
+                        Text("방 정보 수정하기")
+                            .font(.semibold_16)
+                            .foregroundColor(.smWhite)
+                    }
+                    .padding(.vertical, 17)
+                    .padding(.horizontal, 28)
+                    .background(.smDarkgray)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    
+                    Spacer()
+                        .frame(width: 12)
+                    
+                    Button {
+                        viewModel.send(action: .matchingButtonClicked)
+                    } label: {
+                        Text("바로 매칭 시작하기")
+                            .font(.semibold_16)
+                            .foregroundColor(.smWhite)
+                    }
+                    .padding(.vertical, 17)
+                    .padding(.horizontal, 22)
+                    .background(.smRed)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                }
+                .padding(.horizontal, 16)
+            } else {
+                Button("마니또 랜덤 매칭하기") {
+                    viewModel.send(action: .matchingButtonClicked)
+                }
+                .smBottomButtonStyle()
+            }
+        }
+    }
+    
 }
 
 fileprivate struct ParticipateView: View {
@@ -159,101 +208,6 @@ fileprivate struct ParticipateCellView: View {
         .frame(height: 36)
     }
 }
-
-//
-//
-//fileprivate struct RoomInfoView: View {
-//    @EnvironmentObject private var viewModel: CheckIRoomInfoViewModel
-//
-//    var body: some View {
-//        VStack(alignment: .leading, spacing: 0) {
-//            DuedateInfoView()
-//
-//            Spacer()
-//                .frame(height: 24)
-//
-//            if !viewModel.missionList.isEmpty {
-//                MissionListView()
-//            } else {
-//                VStack {
-//                    Text("이번에는 마니또만 매칭될거야!\n다음에는 재미있는 미션을 추가해줘!")
-//                        .lineLimit(2)
-//                        .lineSpacing(3)
-//                        .font(.medium_14)
-//                        .foregroundColor(.smDarkgray)
-//                        .padding(.leading, 16)
-//
-//                    Spacer()
-//                        .frame(height: 24)
-//                }
-//                .frame(height: 64)
-//            }
-//        }
-//        .background(.smWhite)
-//        .clipShape(RoundedRectangle(cornerRadius: 10))
-//        .overlay {
-//            RoundedRectangle(cornerRadius: 10)
-//                .stroke(.smLightgray, lineWidth: 1)
-//        }
-//        .padding(.horizontal, 16)
-//    }
-//}
-
-//
-//private struct MissionListView: View {
-//    @EnvironmentObject private var viewModel: CheckIRoomInfoViewModel
-//
-//    //TODO: 여기 간격이 좀 이상한데 뭐 때문에 그런지 모르겠,,
-//    var body: some View {
-//        VStack {
-//            ScrollView(.vertical, showsIndicators: false) {
-//                ForEach($viewModel.missionList) { $mission in
-//                    MissionCellView(mission: $mission)
-//                        .padding(.bottom, 16)
-//                }
-//            }
-//            .frame(height: 300)
-//        }
-//        .padding(.horizontal, 16)
-//    }
-//}
-//
-//private struct MissionCellView: View {
-//    @EnvironmentObject private var viewModel: CheckIRoomInfoViewModel
-//    @Binding var mission: Mission
-//
-//    fileprivate init(mission: Binding<Mission>) {
-//        self._mission = mission
-//    }
-//
-//    fileprivate var body: some View {
-//        ZStack {
-//            HStack {
-//                Text(mission.content)
-//                    .font(.medium_16)
-//                    .foregroundColor(.smDarkgray)
-//                    .padding(.leading, 12)
-//                    .padding(.vertical, 16)
-//
-//                Spacer()
-//
-//                Button(action: {
-//                    viewModel.send(action: .deleteMission(mission))
-//                }) {
-//                    Image(.btnDelete)
-//                        .resizable()
-//                        .frame(width: 24, height: 24)
-//                        .padding(.trailing, 12)
-//                }
-//            }
-//        }
-//        .frame(height: 48)
-//        .overlay {
-//            RoundedRectangle(cornerRadius: 10)
-//                .stroke(.smLightgray, lineWidth: 1)
-//        }
-//    }
-//}
 
 #Preview {
     ManitoRoomView()
