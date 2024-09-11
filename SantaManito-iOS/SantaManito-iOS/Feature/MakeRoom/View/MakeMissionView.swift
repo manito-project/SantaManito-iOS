@@ -44,7 +44,7 @@ struct MakeMissionView: View {
             }
         }
         .smAlert(
-            isPresented: viewModel.alertPresented,
+            isPresented: viewModel.state.isPresented,
             title: "아직 작성 중인 미션이 있어! \n미션이 사라져도 괜찮아?",
             primaryButton: ("나가기", {
                 viewModel.send(action: .ignoreMissionButtonClicked)
@@ -121,7 +121,7 @@ private struct MissionCellView: View {
                 viewModel.send(action: .editMission)
             }.smTextFieldStyle()
             
-            if viewModel.deleteButtonIsEnabled {
+            if viewModel.state.canDelete {
                 HStack {
                     Spacer()
                     
@@ -168,10 +168,10 @@ fileprivate struct MakeMissionButtonView: View {
                     .font(.semibold_18)
                     .foregroundColor(.smWhite)
             }
-            .disabled(!viewModel.makeMisstionButtonisEnabled)
+            .disabled(!viewModel.state.isEnabled)
             .padding(.vertical, 17)
             .frame(width: 165)
-            .background(viewModel.makeMisstionButtonisEnabled ? .smRed : .smLightgray)
+            .background(viewModel.state.isEnabled ? .smRed : .smLightgray)
             .clipShape(RoundedRectangle(cornerRadius: 10))
         }
     }
