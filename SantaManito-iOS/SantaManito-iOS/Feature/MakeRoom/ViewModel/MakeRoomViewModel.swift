@@ -19,6 +19,8 @@ class MakeRoomViewModel: ObservableObject {
         case configDuedateTime(Date) // 마니또 종료 시간 설정
         case noMissionButtonClicked // 미션없이 방을 생성하려고 할때
         case missionButtonClicked // 미션 설정 후 방을 생성하려고 할때
+        case ignoreMissionButtonClicked
+        case dismissAlert
     }
     
     @Published var roomName: String = "" // 방 이름
@@ -27,6 +29,7 @@ class MakeRoomViewModel: ObservableObject {
     
     @Published private(set) var state = State(
         isEnabled: false,
+        isPresented: false,
         canIncreaseDays: true,
         canDecreaseDays: true,
         dueDate: Date().toDueDateAndTime
@@ -34,6 +37,7 @@ class MakeRoomViewModel: ObservableObject {
     
     struct State {
         var isEnabled: Bool
+        var isPresented: Bool
         var canIncreaseDays: Bool
         var canDecreaseDays: Bool
         var dueDate: String
@@ -69,10 +73,17 @@ class MakeRoomViewModel: ObservableObject {
             
         case .noMissionButtonClicked:
             print("noMissionButtonClicked")
+            state.isPresented = true
             //미션 미설정 확인 모달 보여주고 거기서도 okay하면 바로 방 확정짓는 파일로 넘어가기
         case .missionButtonClicked:
             //미션 만드는 화면으로 넘어가
             print("missionButtonClicked")
+        case .ignoreMissionButtonClicked:
+            print("방 정보 확인 뷰로 넘어가기")
+            break
+        case .dismissAlert:
+            //미션 만드는 화면으로 넘어가
+            state.isPresented = false
         }
     }
 }
