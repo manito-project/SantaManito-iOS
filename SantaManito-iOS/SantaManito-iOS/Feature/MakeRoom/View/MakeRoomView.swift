@@ -15,12 +15,13 @@ struct MakeRoomView: View {
         VStack {
             SMView(padding: -100) {
                 SMInfoView(
-                    title: "방 정보 설정",
-                    description: "언제까지 마니또 게임하게 할거야\n내 마니또를 봐 산타 기다리잖아"
+                    title: viewModel.viewType.title,
+                    description: viewModel.viewType.description
                 )
             } content: {
                 VStack {
                     SettingRoomInfoView(viewModel: viewModel)
+                        .padding(.horizontal, 16)
                     
                     Spacer()
                         .frame(height: 34)
@@ -30,7 +31,6 @@ struct MakeRoomView: View {
                     Spacer()
                         .frame(height: 40)
                 }
-                .padding(.horizontal, 16)
             }
         }
         .smAlert(
@@ -233,41 +233,50 @@ fileprivate struct MakeRoomButtonView: View {
     }
     
     var body: some View {
-        HStack(alignment: .center) {
-            Button {
-                viewModel.send(action: .noMissionButtonClicked)
-            } label: {
-                Text("미션없이 방 만들기")
-                    .font(.semibold_18)
-                    .foregroundColor(.smWhite)
+        switch viewModel.viewType {
+        case .createMode:
+            HStack(alignment: .center) {
+                Button {
+                    viewModel.send(action: .noMissionButtonClicked)
+                } label: {
+                    Text("미션없이 방 만들기")
+                        .font(.semibold_18)
+                        .foregroundColor(.smWhite)
+                }
+                .padding(.vertical, 17)
+                .frame(width: 165)
+                .background(viewModel.state.isEnabled ? .smDarkgray : .smLightgray)
+                .disabled(!viewModel.state.isEnabled)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                
+                Spacer()
+                    .frame(width: 12)
+                
+                Button {
+                    viewModel.send(action: .missionButtonClicked)
+                } label: {
+                    Text("미션 만들기")
+                        .font(.semibold_18)
+                        .foregroundColor(.smWhite)
+                }
+                .padding(.vertical, 17)
+                .frame(width: 165)
+                .background(viewModel.state.isEnabled ? .smRed : .smLightgray)
+                .disabled(!viewModel.state.isEnabled)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
             }
-            .padding(.vertical, 17)
-            .frame(width: 165)
-            .background(viewModel.state.isEnabled ? .smDarkgray : .smLightgray)
-            .disabled(!viewModel.state.isEnabled)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            
-            Spacer()
-                .frame(width: 12)
-            
-            Button {
-                viewModel.send(action: .missionButtonClicked)
-            } label: {
-                Text("미션 만들기")
-                    .font(.semibold_18)
-                    .foregroundColor(.smWhite)
-            }
-            .padding(.vertical, 17)
-            .frame(width: 165)
-            .background(viewModel.state.isEnabled ? .smRed : .smLightgray)
-            .disabled(!viewModel.state.isEnabled)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .padding(.horizontal, 16)
+        case .editMode(let int, let date):
+            Button("수정 완료") {
+            }.smBottomButtonStyle()
         }
+        
     }
 }
 
 
 
 #Preview {
-    MakeRoomView(viewModel: MakeRoomViewModel())
+//    MakeRoomView(viewModel: MakeRoomViewModel(viewType: .editMode(5, Date())))
+    MakeRoomView(viewModel: MakeRoomViewModel(viewType: .createMode))
 }
