@@ -42,6 +42,13 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    var toDueDateWithoutYear: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.dateFormat = "MM월 dd일"
+        return formatter.string(from: self)
+    }
+    
     func addingDays(remainingDays: Int) -> Date {
         let calendar = Calendar.current
         guard let futureDate = calendar.date(byAdding: .day, value: remainingDays, to: self) else { return Date() }
