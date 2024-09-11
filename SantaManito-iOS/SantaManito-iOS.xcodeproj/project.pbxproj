@@ -40,7 +40,6 @@
 		D25570EF2C8E86CD00CCC226 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570EE2C8E86CD00CCC226 /* Room.swift */; };
 		D276B6082C8AB64B00230FA2 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = D276B6072C8AB64B00230FA2 /* Font.swift */; };
 		D2BC1A8C2C8EBCF500CB32B8 /* SMColoredTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A8B2C8EBCF500CB32B8 /* SMColoredTextView.swift */; };
-		D2BC1A8E2C8EBFD500CB32B8 /* ToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A8D2C8EBFD500CB32B8 /* ToggleStyle.swift */; };
 		D2BC1A902C8F4C6400CB32B8 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A8F2C8F4C6400CB32B8 /* Date+.swift */; };
 /* End PBXBuildFile section */
 
@@ -80,7 +79,6 @@
 		D276B5FA2C8AAB6200230FA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D276B6072C8AB64B00230FA2 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		D2BC1A8B2C8EBCF500CB32B8 /* SMColoredTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMColoredTextView.swift; sourceTree = "<group>"; };
-		D2BC1A8D2C8EBFD500CB32B8 /* ToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleStyle.swift; sourceTree = "<group>"; };
 		D2BC1A8F2C8F4C6400CB32B8 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,7 +117,6 @@
 			isa = PBXGroup;
 			children = (
 				877EA2312C889DCB0073FFBD /* ButtonStyles.swift */,
-				D2BC1A8D2C8EBFD500CB32B8 /* ToggleStyle.swift */,
 			);
 			path = Style;
 			sourceTree = "<group>";
@@ -439,7 +436,6 @@
 				877EA2362C88AA740073FFBD /* AuthView.swift in Sources */,
 				877CA0812C8C555D00D23193 /* SMScrollView.swift in Sources */,
 				877CA0892C8CB61100D23193 /* DSKitDemoView.swift in Sources */,
-				D2BC1A8E2C8EBFD500CB32B8 /* ToggleStyle.swift in Sources */,
 				D25570EF2C8E86CD00CCC226 /* Room.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

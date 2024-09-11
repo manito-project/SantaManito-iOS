@@ -221,30 +221,12 @@ struct SettingRoomInfoView: View {
                     DatePicker(
                         "DatePicker",
                         selection: $viewModel.dueDateTime,
-                        displayedComponents: [.hourAndMinute] // <-
+                        displayedComponents: [.hourAndMinute]
                     )
                     .onChange(of: viewModel.dueDateTime) {
                         viewModel.send(action: .configDuedateTime($0))
                     }
                     .labelsHidden()
-//                    .environment(\.locale, Locale(identifier: "en_GB")) // 24시간제로 설정
-                }
-//                .padding(.horizontal, 14)
-//                .padding(.vertical, 16)
-//                .frame(width: 73, height: 44)
-//                .background {
-//                    RoundedRectangle(cornerRadius: 10)
-//                        .fill(.smLightbg)
-//                }
-                
-                Toggle(isOn: $isAM) {
-                    //TODO: AM, PM과 관련된 비즈니스 로직
-                }
-                .toggleStyle(MyToggleStyle(viewModel: viewModel))
-                .frame(width: 122, height: 44)
-                .background {
-                    RoundedRectangle(cornerRadius: 10)
-                        .foregroundColor(.smLightbg)
                 }
             }
             
