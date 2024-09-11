@@ -43,7 +43,6 @@
 		D2BC1A902C8F4C6400CB32B8 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A8F2C8F4C6400CB32B8 /* Date+.swift */; };
 		D2BC1A922C90101E00CB32B8 /* MakeMissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A912C90101E00CB32B8 /* MakeMissionView.swift */; };
 		D2BC1A942C90102900CB32B8 /* MakeMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A932C90102900CB32B8 /* MakeMissionViewModel.swift */; };
-		D2BC1A962C9012B400CB32B8 /* SMInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A952C9012B400CB32B8 /* SMInfoView.swift */; };
 		D2BC1A982C90245700CB32B8 /* TextFieldStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A972C90245700CB32B8 /* TextFieldStyles.swift */; };
 		D2BC1A9C2C90473100CB32B8 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A9B2C90473000CB32B8 /* Mission.swift */; };
 		D2BC1AA12C90A26B00CB32B8 /* CheckIRoomInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1AA02C90A26B00CB32B8 /* CheckIRoomInfoView.swift */; };
@@ -90,7 +89,6 @@
 		D2BC1A8F2C8F4C6400CB32B8 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		D2BC1A912C90101E00CB32B8 /* MakeMissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeMissionView.swift; sourceTree = "<group>"; };
 		D2BC1A932C90102900CB32B8 /* MakeMissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeMissionViewModel.swift; sourceTree = "<group>"; };
-		D2BC1A952C9012B400CB32B8 /* SMInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMInfoView.swift; sourceTree = "<group>"; };
 		D2BC1A972C90245700CB32B8 /* TextFieldStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldStyles.swift; sourceTree = "<group>"; };
 		D2BC1A9B2C90473000CB32B8 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		D2BC1AA02C90A26B00CB32B8 /* CheckIRoomInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIRoomInfoView.swift; sourceTree = "<group>"; };
@@ -327,7 +325,6 @@
 		D25570E62C8E857900CCC226 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D2BC1AA62C913C3300CB32B8 /* Component */,
 				D25570E82C8E858A00CCC226 /* MakeRoomView.swift */,
 				D2BC1A912C90101E00CB32B8 /* MakeMissionView.swift */,
 				D2BC1AA02C90A26B00CB32B8 /* CheckIRoomInfoView.swift */,
@@ -365,14 +362,6 @@
 				D25570EE2C8E86CD00CCC226 /* Room.swift */,
 			);
 			path = MakeRoom;
-			sourceTree = "<group>";
-		};
-		D2BC1AA62C913C3300CB32B8 /* Component */ = {
-			isa = PBXGroup;
-			children = (
-				D2BC1A952C9012B400CB32B8 /* SMInfoView.swift */,
-			);
-			path = Component;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -452,7 +441,6 @@
 			files = (
 				D2BC1AA12C90A26B00CB32B8 /* CheckIRoomInfoView.swift in Sources */,
 				D2BC1A9C2C90473100CB32B8 /* Mission.swift in Sources */,
-				D2BC1A962C9012B400CB32B8 /* SMInfoView.swift in Sources */,
 				D2BC1A8C2C8EBCF500CB32B8 /* SMColoredTextView.swift in Sources */,
 				D22E9B5B2C88031A00086549 /* HomeView.swift in Sources */,
 				877EA23B2C88AAC10073FFBD /* DIContainer.swift in Sources */,
