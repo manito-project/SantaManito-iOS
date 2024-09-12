@@ -25,6 +25,10 @@
 		877EA23F2C88AB930073FFBD /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA23E2C88AB930073FFBD /* AuthService.swift */; };
 		877EA2412C88ABA00073FFBD /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA2402C88ABA00073FFBD /* PushNotificationService.swift */; };
 		877EA2442C88AE750073FFBD /* DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA2432C88AE750073FFBD /* DTO.swift */; };
+		D21987FA2C9298C600256FDC /* MatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21987F92C9298C600256FDC /* MatchingView.swift */; };
+		D21987FC2C9298CF00256FDC /* MatchingResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21987FB2C9298CF00256FDC /* MatchingResultView.swift */; };
+		D21987FE2C9298D800256FDC /* MatchingResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21987FD2C9298D800256FDC /* MatchingResultViewModel.swift */; };
+		D21988002C9298DF00256FDC /* MatchingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21987FF2C9298DF00256FDC /* MatchingViewModel.swift */; };
 		D22E9B592C88031A00086549 /* SantaManito_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B582C88031A00086549 /* SantaManito_iOSApp.swift */; };
 		D22E9B5B2C88031A00086549 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B5A2C88031A00086549 /* HomeView.swift */; };
 		D22E9B5D2C88031C00086549 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22E9B5C2C88031C00086549 /* Assets.xcassets */; };
@@ -74,6 +78,10 @@
 		877EA23E2C88AB930073FFBD /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		877EA2402C88ABA00073FFBD /* PushNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
 		877EA2432C88AE750073FFBD /* DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTO.swift; sourceTree = "<group>"; };
+		D21987F92C9298C600256FDC /* MatchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingView.swift; sourceTree = "<group>"; };
+		D21987FB2C9298CF00256FDC /* MatchingResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingResultView.swift; sourceTree = "<group>"; };
+		D21987FD2C9298D800256FDC /* MatchingResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingResultViewModel.swift; sourceTree = "<group>"; };
+		D21987FF2C9298DF00256FDC /* MatchingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingViewModel.swift; sourceTree = "<group>"; };
 		D22E9B552C88031A00086549 /* SantaManito-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SantaManito-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22E9B582C88031A00086549 /* SantaManito_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantaManito_iOSApp.swift; sourceTree = "<group>"; };
 		D22E9B5A2C88031A00086549 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -176,6 +184,33 @@
 				877EA2432C88AE750073FFBD /* DTO.swift */,
 			);
 			path = DTO;
+			sourceTree = "<group>";
+		};
+		D21987F62C9298A500256FDC /* MatchingRoom */ = {
+			isa = PBXGroup;
+			children = (
+				D21987F82C9298B400256FDC /* ViewModel */,
+				D21987F72C9298AE00256FDC /* View */,
+			);
+			path = MatchingRoom;
+			sourceTree = "<group>";
+		};
+		D21987F72C9298AE00256FDC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D21987F92C9298C600256FDC /* MatchingView.swift */,
+				D21987FB2C9298CF00256FDC /* MatchingResultView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D21987F82C9298B400256FDC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D21987FD2C9298D800256FDC /* MatchingResultViewModel.swift */,
+				D21987FF2C9298DF00256FDC /* MatchingViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		D22E9B4C2C88031A00086549 = {
@@ -315,6 +350,7 @@
 		D22E9B7A2C88042500086549 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				D21987F62C9298A500256FDC /* MatchingRoom */,
 				D26BFA882C91984700C5CF86 /* EnterRoom */,
 				D25570E52C8E857300CCC226 /* MakeRoom */,
 				877EA2342C88AA600073FFBD /* Auth */,
@@ -489,12 +525,14 @@
 				D2BC1AA12C90A26B00CB32B8 /* CheckIRoomInfoView.swift in Sources */,
 				D2BC1A9C2C90473100CB32B8 /* Mission.swift in Sources */,
 				D2BC1A8C2C8EBCF500CB32B8 /* SMColoredTextView.swift in Sources */,
+				D21987FA2C9298C600256FDC /* MatchingView.swift in Sources */,
 				D22E9B5B2C88031A00086549 /* HomeView.swift in Sources */,
 				877EA23B2C88AAC10073FFBD /* DIContainer.swift in Sources */,
 				D22E9B6B2C8803C100086549 /* Util.swift in Sources */,
 				D22E9B772C8803F100086549 /* Entity.swift in Sources */,
 				877CA0712C8AB3DE00D23193 /* LoadingView.swift in Sources */,
 				D26BFA8C2C91987200C5CF86 /* EnterRoomView.swift in Sources */,
+				D21987FE2C9298D800256FDC /* MatchingResultViewModel.swift in Sources */,
 				877EA2392C88AA8A0073FFBD /* OnboardingView.swift in Sources */,
 				D2BC1A902C8F4C6400CB32B8 /* Date+.swift in Sources */,
 				D22E9B732C8803E500086549 /* Service.swift in Sources */,
@@ -503,6 +541,7 @@
 				D22E9B592C88031A00086549 /* SantaManito_iOSApp.swift in Sources */,
 				D25570ED2C8E85CB00CCC226 /* MakeRoomViewModel.swift in Sources */,
 				877EA2322C889DCB0073FFBD /* ButtonStyles.swift in Sources */,
+				D21987FC2C9298CF00256FDC /* MatchingResultView.swift in Sources */,
 				877CA07F2C8C50DC00D23193 /* Corner.swift in Sources */,
 				877CA0732C8C4C5C00D23193 /* SMView.swift in Sources */,
 				D2BC1AA32C90A29200CB32B8 /* CheckIRoomInfoViewModel.swift in Sources */,
@@ -515,6 +554,7 @@
 				D276B6082C8AB64B00230FA2 /* Font.swift in Sources */,
 				D26BFA932C919D0900C5CF86 /* ManitoRoomViewModel.swift in Sources */,
 				D22E9B752C8803EC00086549 /* Provider.swift in Sources */,
+				D21988002C9298DF00256FDC /* MatchingViewModel.swift in Sources */,
 				D22E9B6D2C8803C800086549 /* Extension.swift in Sources */,
 				D2BC1AA52C91357F00CB32B8 /* SMInviteCodeAlertView.swift in Sources */,
 				877CA0832C8CA75C00D23193 /* SMAlertView.swift in Sources */,
