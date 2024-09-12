@@ -9,6 +9,6 @@ import Foundation
 
 struct Room {
     var name: String
+    var remainingDats: Int
     var endData: Date
-    var endTime: Date
 }

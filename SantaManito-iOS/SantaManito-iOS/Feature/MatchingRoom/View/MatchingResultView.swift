@@ -8,16 +8,18 @@
 import SwiftUI
 
 struct MatchingResultView: View {
+    @StateObject var viewModel: MatchingResultViewModel
+    
     var body: some View {
         VStack {
             SMView(padding: -100) {
                 SMInfoView(
-                    title: "마니또 방 이름 최대...",
-                    description: "오늘부터 7일 후인 12월 4일\n오전 10:00까지 진행되는 마니또"
+                    title: viewModel.state.room.name,
+                    description: "오늘부터 \(viewModel.state.room.remainingDats)일 후인 \(viewModel.state.room.endData.toDueDateWithoutYear)\n\(viewModel.state.room.endData.toDueDateTime)까지 진행되는 마니또"
                 )
             } content: {
                 VStack {
-                    MatchingInfoView()
+                    MatchingInfoView(viewModel: viewModel)
                         .padding(.horizontal, 16)
                     
                     Spacer()
@@ -35,6 +37,12 @@ struct MatchingResultView: View {
 }
 
 fileprivate struct MatchingInfoView: View {
+    @ObservedObject private var viewModel: MatchingResultViewModel
+    
+    init(viewModel: MatchingResultViewModel) {
+        self.viewModel = viewModel
+    }
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
@@ -47,7 +55,7 @@ fileprivate struct MatchingInfoView: View {
                 Spacer()
                     .frame(height: 24)
                 
-                Text("이영진 산타의 마니또는")
+                Text("\(viewModel.state.me) 산타의 마니또는") //TODO: 마니또
                     .font(.semibold_18)
                     .foregroundColor(.smDarkgray)
                 
@@ -57,7 +65,7 @@ fileprivate struct MatchingInfoView: View {
                 HStack {
                     Spacer()
                     
-                    Text("이한나")
+                    Text(viewModel.state.manito)
                         .font(.semibold_24)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.white)
@@ -72,11 +80,11 @@ fileprivate struct MatchingInfoView: View {
                 Spacer()
                     .frame(height: 30)
                 
-                Text("이영진 산타의 미션은")
+                Text("\(viewModel.state.me) 산타의 미션은")
                     .font(.semibold_18)
                     .foregroundColor(.smDarkgray)
                 
-                Text("5천원 이하의 선물과 함께 카톡으로 수고했다고")
+                Text(viewModel.state.mission)
                     .font(.medium_16)
                     .foregroundColor(.smDarkgray)
                     .multilineTextAlignment(.center)
@@ -108,5 +116,5 @@ fileprivate struct MatchingInfoView: View {
 }
 
 #Preview {
-    MatchingResultView()
+    MatchingResultView(viewModel: MatchingResultViewModel())
 }
