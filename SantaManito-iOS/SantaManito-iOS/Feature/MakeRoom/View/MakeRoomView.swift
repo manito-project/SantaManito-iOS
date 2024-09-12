@@ -266,7 +266,7 @@ fileprivate struct MakeRoomButtonView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 10))
             }
             .padding(.horizontal, 16)
-        case .editMode(let int, let date):
+        case .editMode:
             Button("수정 완료") {
             }.smBottomButtonStyle()
         }
