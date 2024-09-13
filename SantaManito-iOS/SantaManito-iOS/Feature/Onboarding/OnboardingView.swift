@@ -81,11 +81,10 @@ struct OnboardingView: View {
                 .padding(.top, 34)
                 .padding(.bottom, 20)
                 
-                VStack(alignment: .leading) {
+                Group {
                     switch viewModel.state.step {
                     case .nickname:
                         nicknameView
-                            .padding(.horizontal, 16)
                     case .agreement:
                         agreementView
                     }
@@ -114,23 +113,26 @@ struct OnboardingView: View {
         
     }
     
-    @ViewBuilder
+    
     var nicknameView: some View {
-        Text("내 이름 (최대 10자)")
-            .font(.semibold_16)
-            .foregroundStyle(.smDarkgray)
-            .padding(.top, 24)
-        
-        
-        TextField(
-            "",
-            text: $viewModel.nickname,
-            prompt: Text("마니또가 부를 비밀스러운 이름을 지어줘!")
-                .foregroundColor(.smLightgray)
-        )
-        .smTextFieldStyle()
-        .padding(.top, 12)
-        .padding(.bottom, 24)
+        VStack(alignment: .leading) {
+            Text("내 이름 (최대 10자)")
+                .font(.semibold_16)
+                .foregroundStyle(.smDarkgray)
+                .padding(.top, 24)
+            
+            
+            TextField(
+                "",
+                text: $viewModel.nickname,
+                prompt: Text("마니또가 부를 비밀스러운 이름을 지어줘!")
+                    .foregroundColor(.smLightgray)
+            )
+            .smTextFieldStyle()
+            .padding(.top, 12)
+            .padding(.bottom, 24)
+        }
+        .padding(.horizontal, 16)
     }
     
     var agreementView: some View {
