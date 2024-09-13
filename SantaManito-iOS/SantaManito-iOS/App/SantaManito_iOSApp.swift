@@ -14,7 +14,7 @@ struct SantaManito_iOSApp: App {
     
     var body: some Scene {
         WindowGroup {
-            AuthView()
+            SplashView(viewModel: .init(authService: container.service.authService))
                 .environmentObject(container)
         }
     }
