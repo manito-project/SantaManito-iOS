@@ -50,7 +50,7 @@ struct MakeRoomView: View {
     }
 }
 
-struct SettingRoomInfoView: View {
+fileprivate struct SettingRoomInfoView: View {
     @ObservedObject private var viewModel: MakeRoomViewModel
     
     fileprivate init(viewModel: MakeRoomViewModel) {
@@ -225,7 +225,7 @@ struct SettingRoomInfoView: View {
     }
 }
 
-struct MakeRoomButtonView: View {
+fileprivate struct MakeRoomButtonView: View {
     @ObservedObject private var viewModel: MakeRoomViewModel
     
     fileprivate init(viewModel: MakeRoomViewModel) {
