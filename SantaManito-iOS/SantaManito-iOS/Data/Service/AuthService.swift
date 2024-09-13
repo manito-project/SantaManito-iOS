@@ -7,13 +7,16 @@
 
 import Combine
 
+enum AuthError: Error {
+    case autoLoginFail
+}
+
 protocol AuthenticationServiceType {
     func autoLogin() -> AnyPublisher<Void, Error>
 }
 
 struct StubAuthenticationService: AuthenticationServiceType {
     func autoLogin() -> AnyPublisher<Void, Error> {
-        Just(())
-            .setFailureType(to: Error.self).eraseToAnyPublisher()
+        Fail(error: AuthError.autoLoginFail).eraseToAnyPublisher()
     }
 }
