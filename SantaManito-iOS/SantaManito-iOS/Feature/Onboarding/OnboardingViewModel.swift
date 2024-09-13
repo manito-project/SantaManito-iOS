@@ -47,8 +47,9 @@ final class OnboardingViewModel: ObservableObject {
         var bottomButtonDisabled = true // step1, step2 모두 쓰이는 bottom Button state입니다
         var signUpCompleted = false // step 2 까지 끝나면 true로
         var agreements = AgreementModel.allCases.map { (agreement: $0, isSelected: false) }
-        
         var allAccepted: Bool { agreements.allSatisfy { $0.isSelected } }
+        
+        fileprivate var requiredAccepted: Bool {agreements.filter { $0.agreement.required }.allSatisfy { $0.isSelected }  } // 뷰에선 사용하지 않는 프로퍼티
         
         enum Step {
             case nickname
@@ -80,14 +81,25 @@ final class OnboardingViewModel: ObservableObject {
     //MARK: - Method
 
     func send(_ action: Action) {
+        
+        weak var owner = self
+        guard let owner else { return }
+        
         switch action {
         case .bottomButtonDidTap:
             switch state.step {
             case .nickname:
                 state.step = .agreement
                 state.bottomButtonDisabled = true
+                
             case .agreement:
-                signUpCompleted?()
+                userService.signUp(nickname: nickname)
+                    .sink { completion in
+                        
+                    } receiveValue: { _ in
+                        owner.signUpCompleted?()
+                    }
+                    .store(in: cancelBag)
             }
             
         case .acceptAllCellDidTap:
@@ -98,7 +110,7 @@ final class OnboardingViewModel: ObservableObject {
                 state.agreements[i].isSelected = newValue
             }
             
-            state.bottomButtonDisabled = !state.agreements.filter { $0.agreement.required }.allSatisfy { $0.isSelected }
+            state.bottomButtonDisabled = !state.requiredAccepted
             
         case let .agreementCellDidTap(agreement):
             for i in state.agreements.indices {
@@ -106,7 +118,7 @@ final class OnboardingViewModel: ObservableObject {
                 state.agreements[i].isSelected.toggle()
             }
             
-            state.bottomButtonDisabled = !state.agreements.filter { $0.agreement.required }.allSatisfy { $0.isSelected }
+            state.bottomButtonDisabled = !state.requiredAccepted
         }
     }
     

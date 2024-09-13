@@ -135,11 +135,13 @@ struct OnboardingView: View {
     
     var agreementView: some View {
         VStack(spacing: 20) {
+            
+            Spacer().frame(height: 0) // 상단 spacing 20을 위해
+            
             AgreementCell(isSelected: viewModel.state.allAccepted, title: "전체 동의")
                 .onTapGesture {
                     viewModel.send(.acceptAllCellDidTap)
                 }
-                .padding(.top, 20)
             
             Divider()
                 .background(Color.smLightgray)
@@ -150,7 +152,8 @@ struct OnboardingView: View {
                         viewModel.send(.agreementCellDidTap(agreement))
                     }
             }
-            .padding(.bottom, 20)
+            
+            Spacer().frame(height: 0) // 하단 spacing 20을 위해
         }
     }
 }
