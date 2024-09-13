@@ -18,7 +18,9 @@ struct SplashView: View {
             switch viewModel.state.desination {
             case .splash: splashView
             case .onboarding: OnboardingView(
-                viewModel: .init(userService: container.service.userService)
+                viewModel: .init(userService: container.service.userService, signUpCompleted: {
+                    viewModel.state.desination = .main
+                })
             )
             case .main: HomeView()
             }
