@@ -35,7 +35,13 @@
 		D22E9B752C8803EC00086549 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B742C8803EC00086549 /* Provider.swift */; };
 		D22E9B772C8803F100086549 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B762C8803F100086549 /* Entity.swift */; };
 		D22E9B7E2C8804B600086549 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22E9B7D2C8804B600086549 /* Colors.xcassets */; };
+		D25570E92C8E858A00CCC226 /* MakeRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570E82C8E858A00CCC226 /* MakeRoomView.swift */; };
+		D25570ED2C8E85CB00CCC226 /* MakeRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570EC2C8E85CB00CCC226 /* MakeRoomViewModel.swift */; };
+		D25570EF2C8E86CD00CCC226 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570EE2C8E86CD00CCC226 /* Room.swift */; };
+		D26BFA802C91692700C5CF86 /* SMInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA7F2C91692700C5CF86 /* SMInfoView.swift */; };
 		D276B6082C8AB64B00230FA2 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = D276B6072C8AB64B00230FA2 /* Font.swift */; };
+		D2BC1A8C2C8EBCF500CB32B8 /* SMColoredTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A8B2C8EBCF500CB32B8 /* SMColoredTextView.swift */; };
+		D2BC1A902C8F4C6400CB32B8 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A8F2C8F4C6400CB32B8 /* Date+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,8 +74,14 @@
 		D22E9B742C8803EC00086549 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		D22E9B762C8803F100086549 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		D22E9B7D2C8804B600086549 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		D25570E82C8E858A00CCC226 /* MakeRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRoomView.swift; sourceTree = "<group>"; };
+		D25570EC2C8E85CB00CCC226 /* MakeRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRoomViewModel.swift; sourceTree = "<group>"; };
+		D25570EE2C8E86CD00CCC226 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		D26BFA7F2C91692700C5CF86 /* SMInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMInfoView.swift; sourceTree = "<group>"; };
 		D276B5FA2C8AAB6200230FA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D276B6072C8AB64B00230FA2 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		D2BC1A8B2C8EBCF500CB32B8 /* SMColoredTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMColoredTextView.swift; sourceTree = "<group>"; };
+		D2BC1A8F2C8F4C6400CB32B8 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +98,7 @@
 		877CA06B2C8AA1AD00D23193 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				D2BC1A8B2C8EBCF500CB32B8 /* SMColoredTextView.swift */,
 				877CA0702C8AB3DE00D23193 /* LoadingView.swift */,
 				877CA0722C8C4C5C00D23193 /* SMView.swift */,
 				877CA0802C8C555C00D23193 /* SMScrollView.swift */,
@@ -202,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				D22E9B6C2C8803C800086549 /* Extension.swift */,
+				D2BC1A8F2C8F4C6400CB32B8 /* Date+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -230,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				D22E9B762C8803F100086549 /* Entity.swift */,
+				D25570EE2C8E86CD00CCC226 /* Room.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -277,11 +292,46 @@
 		D22E9B7A2C88042500086549 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				D25570E52C8E857300CCC226 /* MakeRoom */,
 				877EA2342C88AA600073FFBD /* Auth */,
 				877EA2332C88AA410073FFBD /* Home */,
 				877EA2372C88AA780073FFBD /* Onboarding */,
 			);
 			path = Feature;
+			sourceTree = "<group>";
+		};
+		D25570E52C8E857300CCC226 /* MakeRoom */ = {
+			isa = PBXGroup;
+			children = (
+				D25570E72C8E857D00CCC226 /* ViewModel */,
+				D25570E62C8E857900CCC226 /* View */,
+			);
+			path = MakeRoom;
+			sourceTree = "<group>";
+		};
+		D25570E62C8E857900CCC226 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D26BFA7E2C91691A00C5CF86 /* Component */,
+				D25570E82C8E858A00CCC226 /* MakeRoomView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D25570E72C8E857D00CCC226 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D25570EC2C8E85CB00CCC226 /* MakeRoomViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D26BFA7E2C91691A00C5CF86 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				D26BFA7F2C91692700C5CF86 /* SMInfoView.swift */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 		D276B5E72C8AAB3F00230FA2 /* Font */ = {
@@ -371,21 +421,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2BC1A8C2C8EBCF500CB32B8 /* SMColoredTextView.swift in Sources */,
 				D22E9B5B2C88031A00086549 /* HomeView.swift in Sources */,
 				877EA23B2C88AAC10073FFBD /* DIContainer.swift in Sources */,
 				D22E9B6B2C8803C100086549 /* Util.swift in Sources */,
 				D22E9B772C8803F100086549 /* Entity.swift in Sources */,
 				877CA0712C8AB3DE00D23193 /* LoadingView.swift in Sources */,
 				877EA2392C88AA8A0073FFBD /* OnboardingView.swift in Sources */,
+				D2BC1A902C8F4C6400CB32B8 /* Date+.swift in Sources */,
 				D22E9B732C8803E500086549 /* Service.swift in Sources */,
 				877EA23F2C88AB930073FFBD /* AuthService.swift in Sources */,
 				D22E9B592C88031A00086549 /* SantaManito_iOSApp.swift in Sources */,
+				D25570ED2C8E85CB00CCC226 /* MakeRoomViewModel.swift in Sources */,
 				877EA2322C889DCB0073FFBD /* ButtonStyles.swift in Sources */,
 				877CA07F2C8C50DC00D23193 /* Corner.swift in Sources */,
 				877CA0732C8C4C5C00D23193 /* SMView.swift in Sources */,
 				877EA2442C88AE750073FFBD /* DTO.swift in Sources */,
 				877EA23D2C88AB8D0073FFBD /* UserService.swift in Sources */,
 				877EA2412C88ABA00073FFBD /* PushNotificationService.swift in Sources */,
+				D25570E92C8E858A00CCC226 /* MakeRoomView.swift in Sources */,
+				D26BFA802C91692700C5CF86 /* SMInfoView.swift in Sources */,
 				D276B6082C8AB64B00230FA2 /* Font.swift in Sources */,
 				D22E9B752C8803EC00086549 /* Provider.swift in Sources */,
 				D22E9B6D2C8803C800086549 /* Extension.swift in Sources */,
@@ -393,6 +448,7 @@
 				877EA2362C88AA740073FFBD /* AuthView.swift in Sources */,
 				877CA0812C8C555D00D23193 /* SMScrollView.swift in Sources */,
 				877CA0892C8CB61100D23193 /* DSKitDemoView.swift in Sources */,
+				D25570EF2C8E86CD00CCC226 /* Room.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,7 +582,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SantaManito-iOS/Preview Content\"";
-				DEVELOPMENT_TEAM = T6DNHAHXG9;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "SantaManito-iOS/Info.plist";
@@ -560,7 +616,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SantaManito-iOS/Preview Content\"";
-				DEVELOPMENT_TEAM = T6DNHAHXG9;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "SantaManito-iOS/Info.plist";
