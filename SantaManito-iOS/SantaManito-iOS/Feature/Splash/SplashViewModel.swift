@@ -9,6 +9,7 @@ import Combine
 
 class SplashViewModel: ObservableObject {
     
+//MARK: - Action, State
     
     enum Action {
         case onAppear
@@ -25,20 +26,22 @@ class SplashViewModel: ObservableObject {
         }
     }
     
-//MARK: - Dependency
+    //MARK: - Dependency
     
     var authService: AuthenticationServiceType
     
-//MARK: - Properties
+    //MARK: - Properties
     
     @Published var state = State()
     private let cancelBag = CancelBag()
+
+    //MARK: - Init
     
     init(authService: AuthenticationServiceType) {
         self.authService = authService
     }
     
-//MARK: - Methods
+    //MARK: - Methods
     
     func send(_ action: Action) {
         switch action {
@@ -51,3 +54,4 @@ class SplashViewModel: ObservableObject {
         }
     }
 }
+    
