@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SplashView: View {
     
+    @EnvironmentObject var container: DIContainer
     @StateObject var viewModel: SplashViewModel
     
     var body: some View {
@@ -16,7 +17,11 @@ struct SplashView: View {
         Group {
             switch viewModel.state.desination {
             case .splash: splashView
-            case .onboarding: OnboardingView()
+            case .onboarding: OnboardingView(
+                viewModel: .init(userService: container.service.userService, signUpCompleted: {
+                    viewModel.state.desination = .main
+                })
+            )
             case .main: HomeView()
             }
         }
@@ -58,4 +63,5 @@ struct SplashView: View {
 
 #Preview {
     SplashView(viewModel: SplashViewModel(authService: DIContainer(service: StubService()).service.authService))
+        .environmentObject(DIContainer(service: StubService()))
 }

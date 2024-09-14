@@ -6,11 +6,21 @@
 //
 
 import Foundation
+import Combine
 
 protocol UserServiceType {
-    
+    func signUp(nickname: String) -> AnyPublisher<Void, Error>
 }
 
 struct StubUserService: UserServiceType {
-    
+    func signUp(nickname: String) -> AnyPublisher<Void, Error> {
+        Future<Void, Error> { promise in
+            
+            DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
+                // Simulate success
+                promise(.success(()))
+            }
+        }
+        .eraseToAnyPublisher()
+    }
 }
