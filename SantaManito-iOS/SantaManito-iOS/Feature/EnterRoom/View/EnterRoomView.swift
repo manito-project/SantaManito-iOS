@@ -9,11 +9,10 @@ import SwiftUI
 
 struct EnterRoomView: View {
     @StateObject var viewModel: EnterRoomViewModel
-    @State var text: String
     
     var body: some View {
         VStack {
-            SMView(padding: -70) {
+            SMView() {
                 SMInfoView(
                     title: "방 입장하기",
                     description: "산타가 초대한 방으로\n마니또를 찾아 떠나볼까?"
@@ -77,19 +76,19 @@ struct EnterRoomView: View {
                             }
                         }
                     }
+                    
+                    Spacer()
+                    
+                    Button("입장하기") {
+                        viewModel.send(action: .enterButtonDidClicked)
+                    }
+                    .disabled(!viewModel.state.isEnabled)
+                    .smBottomButtonStyle()
+                    
+                    Spacer()
+                        .frame(height: 40)
                 }
                 .padding(.horizontal, 16)
-                
-                Spacer()
-                
-                Button("입장하기") {
-                    viewModel.send(action: .enterButtonDidClicked)
-                }
-                .disabled(!viewModel.state.isEnabled)
-                .smBottomButtonStyle()
-                
-                Spacer()
-                    .frame(height: 40)
             }
         }
     }
@@ -97,5 +96,5 @@ struct EnterRoomView: View {
 
 
 #Preview {
-    EnterRoomView(viewModel: EnterRoomViewModel(), text: "")
+    EnterRoomView(viewModel: EnterRoomViewModel())
 }
