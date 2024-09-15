@@ -12,14 +12,13 @@ struct ManitoRoomView: View {
     
     var body: some View {
         VStack {
-            SMView(padding: -100) {
+            SMView(padding: -30) {
                 SMInfoView(
                     title: "마니또방이름최대1줄",
                     description: "오늘부터 7일 후인 12월 4일\n오전 10:00까지 진행되는 마니또"
                 )
             } content: {
-                
-                VStack(alignment: .leading) {
+                VStack {
                     ZStack {
                         RoundedRectangle(cornerRadius: 10)
                             .fill(Color.white)
@@ -30,17 +29,18 @@ struct ManitoRoomView: View {
                         
                         ParticipateView()
                     }
-                    .padding(.horizontal, 16)
                     .frame(height: 360)
                     
                     Spacer()
                         .frame(height: 16)
                     
                     MatchingButtonView()
+                        
                     
                     Spacer()
                         .frame(height: 40)
                 }
+                .padding(.horizontal, 16)
             }
             .onAppear {
                 viewModel.send(action: .load)
@@ -58,13 +58,14 @@ fileprivate struct MatchingButtonView: View {
                 .font(.medium_14)
                 .foregroundColor(.smDarkgray)
                 .padding(.top, 16)
-                .padding(.leading, 16)
             
             Spacer()
                 .frame(height: 40)
             
             if viewModel.state.isLeader {
                 HStack {
+                    Spacer()
+                    
                     Button {
                         viewModel.send(action: .editRoomInfo)
                     } label: {
@@ -91,8 +92,9 @@ fileprivate struct MatchingButtonView: View {
                     .padding(.horizontal, 22)
                     .background(.smRed)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
+                    
+                    Spacer()
                 }
-                .padding(.horizontal, 16)
             } else {
                 Button("마니또 랜덤 매칭하기") {
                     viewModel.send(action: .matchingButtonClicked)
