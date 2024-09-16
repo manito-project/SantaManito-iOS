@@ -257,7 +257,7 @@ fileprivate struct HomeRoomCell: View {
         .frame(width: width)
         .frame(height: 240)
         .background(roomInfo.state == .deleted
-                    ? .smLightgray
+                    ? .smLightbg
                     : .smWhite)
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .overlay(
@@ -292,7 +292,7 @@ fileprivate struct HomeRoomStateChip: View {
         case .inProgress:
             return .smRed
         case .completed:
-            return .smLightbg
+            return .smLightgray
         case .deleted:
             return .clear
         }
