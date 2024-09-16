@@ -44,6 +44,10 @@
 		D25570ED2C8E85CB00CCC226 /* MakeRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570EC2C8E85CB00CCC226 /* MakeRoomViewModel.swift */; };
 		D25570EF2C8E86CD00CCC226 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570EE2C8E86CD00CCC226 /* Room.swift */; };
 		D26BFA802C91692700C5CF86 /* SMInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA7F2C91692700C5CF86 /* SMInfoView.swift */; };
+		D26BFA8C2C91987200C5CF86 /* EnterRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA8B2C91987200C5CF86 /* EnterRoomView.swift */; };
+		D26BFA8E2C91987900C5CF86 /* EnterRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA8D2C91987900C5CF86 /* EnterRoomViewModel.swift */; };
+		D26BFA912C919D0000C5CF86 /* ManitoRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA902C919D0000C5CF86 /* ManitoRoomView.swift */; };
+		D26BFA932C919D0900C5CF86 /* ManitoRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA922C919D0900C5CF86 /* ManitoRoomViewModel.swift */; };
 		D276B6082C8AB64B00230FA2 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = D276B6072C8AB64B00230FA2 /* Font.swift */; };
 		D2BC1A8C2C8EBCF500CB32B8 /* SMColoredTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A8B2C8EBCF500CB32B8 /* SMColoredTextView.swift */; };
 		D2BC1A902C8F4C6400CB32B8 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A8F2C8F4C6400CB32B8 /* Date+.swift */; };
@@ -95,6 +99,10 @@
 		D25570EC2C8E85CB00CCC226 /* MakeRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRoomViewModel.swift; sourceTree = "<group>"; };
 		D25570EE2C8E86CD00CCC226 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		D26BFA7F2C91692700C5CF86 /* SMInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMInfoView.swift; sourceTree = "<group>"; };
+		D26BFA8B2C91987200C5CF86 /* EnterRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomView.swift; sourceTree = "<group>"; };
+		D26BFA8D2C91987900C5CF86 /* EnterRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomViewModel.swift; sourceTree = "<group>"; };
+		D26BFA902C919D0000C5CF86 /* ManitoRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManitoRoomView.swift; sourceTree = "<group>"; };
+		D26BFA922C919D0900C5CF86 /* ManitoRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManitoRoomViewModel.swift; sourceTree = "<group>"; };
 		D276B5FA2C8AAB6200230FA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D276B6072C8AB64B00230FA2 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		D2BC1A8B2C8EBCF500CB32B8 /* SMColoredTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMColoredTextView.swift; sourceTree = "<group>"; };
@@ -322,6 +330,7 @@
 		D22E9B7A2C88042500086549 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				D26BFA882C91984700C5CF86 /* EnterRoom */,
 				877CA0A02C94303200D23193 /* Splash */,
 				D25570E52C8E857300CCC226 /* MakeRoom */,
 				877EA2332C88AA410073FFBD /* Home */,
@@ -367,6 +376,33 @@
 				D26BFA7F2C91692700C5CF86 /* SMInfoView.swift */,
 			);
 			path = Component;
+			sourceTree = "<group>";
+		};
+		D26BFA882C91984700C5CF86 /* EnterRoom */ = {
+			isa = PBXGroup;
+			children = (
+				D26BFA8A2C91986100C5CF86 /* ViewModel */,
+				D26BFA892C91985C00C5CF86 /* View */,
+			);
+			path = EnterRoom;
+			sourceTree = "<group>";
+		};
+		D26BFA892C91985C00C5CF86 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D26BFA8B2C91987200C5CF86 /* EnterRoomView.swift */,
+				D26BFA902C919D0000C5CF86 /* ManitoRoomView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D26BFA8A2C91986100C5CF86 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D26BFA8D2C91987900C5CF86 /* EnterRoomViewModel.swift */,
+				D26BFA922C919D0900C5CF86 /* ManitoRoomViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		D276B5E72C8AAB3F00230FA2 /* Font */ = {
@@ -476,6 +512,7 @@
 				D22E9B772C8803F100086549 /* Entity.swift in Sources */,
 				87D797A42C9454BF003BA602 /* OnboardingViewModel.swift in Sources */,
 				877CA0712C8AB3DE00D23193 /* LoadingView.swift in Sources */,
+				D26BFA8C2C91987200C5CF86 /* EnterRoomView.swift in Sources */,
 				877EA2392C88AA8A0073FFBD /* OnboardingView.swift in Sources */,
 				D2BC1A902C8F4C6400CB32B8 /* Date+.swift in Sources */,
 				D22E9B732C8803E500086549 /* Service.swift in Sources */,
@@ -492,7 +529,9 @@
 				877EA2412C88ABA00073FFBD /* PushNotificationService.swift in Sources */,
 				D25570E92C8E858A00CCC226 /* MakeRoomView.swift in Sources */,
 				D26BFA802C91692700C5CF86 /* SMInfoView.swift in Sources */,
+				D26BFA8E2C91987900C5CF86 /* EnterRoomViewModel.swift in Sources */,
 				D276B6082C8AB64B00230FA2 /* Font.swift in Sources */,
+				D26BFA932C919D0900C5CF86 /* ManitoRoomViewModel.swift in Sources */,
 				D22E9B752C8803EC00086549 /* Provider.swift in Sources */,
 				D22E9B6D2C8803C800086549 /* Extension.swift in Sources */,
 				877CA0A22C94304B00D23193 /* SplashView.swift in Sources */,
@@ -501,6 +540,7 @@
 				877CA0812C8C555D00D23193 /* SMScrollView.swift in Sources */,
 				879829072C98284B00A863EC /* RoomService.swift in Sources */,
 				879829052C9827B200A863EC /* HomeViewModel.swift in Sources */,
+				D26BFA912C919D0000C5CF86 /* ManitoRoomView.swift in Sources */,
 				877CA0892C8CB61100D23193 /* DSKitDemoView.swift in Sources */,
 				D2BC1A982C90245700CB32B8 /* TextFieldStyles.swift in Sources */,
 				D25570EF2C8E86CD00CCC226 /* Room.swift in Sources */,
