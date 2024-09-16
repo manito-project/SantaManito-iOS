@@ -8,7 +8,37 @@
 import Foundation
 import Combine
 
+enum ViewType {
+    case createMode
+    case editMode(Int, Date)
+
+    var title: String {
+        switch self {
+        case .createMode:
+            return "방 정보 설정"
+        case .editMode:
+            return "방 정보 수정"
+        }
+    }
+
+    var description: String {
+        switch self {
+        case .createMode:
+            return "언제까지 마니또 게임하게 할거야\n내 마니또를 봐 산타 기다리잖아"
+        case .editMode(let remainingDays, let dueDate):
+            return "오늘부터 \(remainingDays)일 후인 \(dueDate.toDueDateWithoutYear)\n\(dueDate.toDueDateTime)까지 진행되는 마니또"
+        }
+    }
+}
+
+
+
 class MakeRoomViewModel: ObservableObject {
+    var viewType: ViewType
+    
+    init(viewType: ViewType) {
+        self.viewType = viewType
+    }
     
     //MARK: Action
     enum Action {
@@ -21,6 +51,7 @@ class MakeRoomViewModel: ObservableObject {
         case missionButtonClicked // 미션 설정 후 방을 생성하려고 할때
         case ignoreMissionButtonClicked
         case dismissAlert
+        case editButtonClicked // 수정 버튼을 눌렀을 때
     }
     
     @Published var roomName: String = "" // 방 이름
@@ -84,6 +115,9 @@ class MakeRoomViewModel: ObservableObject {
         case .dismissAlert:
             //미션 만드는 화면으로 넘어가
             state.isPresented = false
+        case .editButtonClicked:
+            break
+            //TODO: 방 정보 수정
         }
     }
 }
@@ -105,4 +139,3 @@ extension MakeRoomViewModel {
         state.isEnabled = !roomName.isEmpty
     }
 }
-
