@@ -22,7 +22,7 @@ struct SplashView: View {
                     viewModel.state.desination = .main
                 })
             )
-            case .main: HomeView()
+            case .main: HomeView(viewModel: HomeViewModel(roomService: container.service.roomService))
             }
         }
         .onAppear {
