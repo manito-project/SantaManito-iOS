@@ -7,32 +7,29 @@
 
 import SwiftUI
 
-struct MakeRoomView: View {
-    
-    @StateObject var viewModel: MakeRoomViewModel
-    
+struct RoomInfoView: View {
+    @StateObject var viewModel: RoomInfoViewModel
+
     var body: some View {
-        VStack {
-            SMView(padding: -100) {
-                SMInfoView(
-                    title: viewModel.viewType.title,
-                    description: viewModel.viewType.description
-                )
-            } content: {
-                VStack {
-                    SettingRoomInfoView(viewModel: viewModel)
-                        .padding(.horizontal, 16)
-                    
-                    Spacer()
-                        .frame(height: 34)
-                    
-                    MakeRoomButtonView(viewModel: viewModel)
-                    
-                    Spacer()
-                        .frame(height: 40)
-                }
+        SMScrollView (padding: -50, topView: {
+            SMInfoView(
+                title: viewModel.viewType.title,
+                description: viewModel.viewType.description
+            )
+        }, content: {
+            VStack {
+                SettingRoomInfoView(viewModel: viewModel)
+                
+                Spacer()
+                    .frame(height: 34)
+                
+                MakeRoomButtonView(viewModel: viewModel)
+                
+                Spacer()
+                    .frame(height: 40)
             }
-        }
+            .padding(.horizontal, 16)
+        })
         .smAlert(
             isPresented: viewModel.state.isPresented,
             title: "미션없는 마니또 게임은\n친구들이 심심해할 수 있어!",
@@ -43,7 +40,6 @@ struct MakeRoomView: View {
                 viewModel.send(action: .dismissAlert)
             })
         )
-        
         .onAppear {
             viewModel.send(action: .load)
         }
@@ -51,14 +47,11 @@ struct MakeRoomView: View {
 }
 
 fileprivate struct SettingRoomInfoView: View {
-    @ObservedObject private var viewModel: MakeRoomViewModel
+    @ObservedObject private var viewModel: RoomInfoViewModel
     
-    fileprivate init(viewModel: MakeRoomViewModel) {
+    fileprivate init(viewModel: RoomInfoViewModel) {
         self.viewModel = viewModel
     }
-    
-    
-    @State var isAM: Bool = true
     
     var body: some View {
         ZStack {
@@ -78,12 +71,12 @@ fileprivate struct SettingRoomInfoView: View {
                 Spacer()
                     .frame(height: 24)
                 
-                setEndDateView
+                dueDateView
                 
                 Spacer()
                     .frame(height: 24)
                 
-                setEndTimeView
+                dueTimeView
                 
                 Spacer()
                     .frame(height: 24)
@@ -121,7 +114,7 @@ fileprivate struct SettingRoomInfoView: View {
         }
     }
     
-    var setEndDateView: some View {
+    var dueDateView: some View {
         VStack(alignment: .leading) {
             Text("마니또 공개일")
                 .font(.semibold_16)
@@ -176,8 +169,7 @@ fileprivate struct SettingRoomInfoView: View {
         }
     }
     
-    var setEndTimeView: some View {
-        
+    var dueTimeView: some View {
         VStack(alignment: .leading) {
             Text("마니또 공개 시간")
                 .font(.semibold_16)
@@ -226,9 +218,9 @@ fileprivate struct SettingRoomInfoView: View {
 }
 
 fileprivate struct MakeRoomButtonView: View {
-    @ObservedObject private var viewModel: MakeRoomViewModel
+    @ObservedObject private var viewModel: RoomInfoViewModel
     
-    fileprivate init(viewModel: MakeRoomViewModel) {
+    fileprivate init(viewModel: RoomInfoViewModel) {
         self.viewModel = viewModel
     }
     
@@ -239,12 +231,19 @@ fileprivate struct MakeRoomButtonView: View {
                 Button {
                     viewModel.send(action: .noMissionButtonClicked)
                 } label: {
-                    Text("미션없이 방 만들기")
-                        .font(.semibold_18)
-                        .foregroundColor(.smWhite)
+                    HStack {
+                        Spacer()
+                        Text("미션없이 방 만들기")
+                            .font(.semibold_18)
+                            .foregroundColor(.smWhite)
+                            .lineLimit(1)
+                            .multilineTextAlignment(.center)
+                        Spacer()
+                    }
+                    
                 }
                 .padding(.vertical, 17)
-                .frame(width: 165)
+                .frame(width: .infinity)
                 .background(viewModel.state.isEnabled ? .smDarkgray : .smLightgray)
                 .disabled(!viewModel.state.isEnabled)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -255,17 +254,21 @@ fileprivate struct MakeRoomButtonView: View {
                 Button {
                     viewModel.send(action: .missionButtonClicked)
                 } label: {
-                    Text("미션 만들기")
-                        .font(.semibold_18)
-                        .foregroundColor(.smWhite)
+                    HStack {
+                        Spacer()
+                        Text("미션 만들기")
+                            .font(.semibold_18)
+                            .foregroundColor(.smWhite)
+                            .lineLimit(1)
+                            .multilineTextAlignment(.center)
+                        Spacer()
+                    }
                 }
                 .padding(.vertical, 17)
-                .frame(width: 165)
                 .background(viewModel.state.isEnabled ? .smRed : .smLightgray)
                 .disabled(!viewModel.state.isEnabled)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
             }
-            .padding(.horizontal, 16)
         case .editMode:
             Button("수정 완료") {
             }.smBottomButtonStyle()
@@ -277,6 +280,5 @@ fileprivate struct MakeRoomButtonView: View {
 
 
 #Preview {
-//    MakeRoomView(viewModel: MakeRoomViewModel(viewType: .editMode(5, Date())))
-    MakeRoomView(viewModel: MakeRoomViewModel(viewType: .createMode))
+    RoomInfoView(viewModel: RoomInfoViewModel(viewType: .createMode))
 }

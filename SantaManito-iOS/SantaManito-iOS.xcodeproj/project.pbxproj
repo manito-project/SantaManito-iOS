@@ -38,8 +38,8 @@
 		D22E9B752C8803EC00086549 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B742C8803EC00086549 /* Provider.swift */; };
 		D22E9B772C8803F100086549 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B762C8803F100086549 /* Entity.swift */; };
 		D22E9B7E2C8804B600086549 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22E9B7D2C8804B600086549 /* Colors.xcassets */; };
-		D25570E92C8E858A00CCC226 /* MakeRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570E82C8E858A00CCC226 /* MakeRoomView.swift */; };
-		D25570ED2C8E85CB00CCC226 /* MakeRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570EC2C8E85CB00CCC226 /* MakeRoomViewModel.swift */; };
+		D25570E92C8E858A00CCC226 /* RoomInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570E82C8E858A00CCC226 /* RoomInfoView.swift */; };
+		D25570ED2C8E85CB00CCC226 /* RoomInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570EC2C8E85CB00CCC226 /* RoomInfoViewModel.swift */; };
 		D25570EF2C8E86CD00CCC226 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570EE2C8E86CD00CCC226 /* Room.swift */; };
 		D26BFA802C91692700C5CF86 /* SMInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA7F2C91692700C5CF86 /* SMInfoView.swift */; };
 		D26BFA8C2C91987200C5CF86 /* EnterRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA8B2C91987200C5CF86 /* EnterRoomView.swift */; };
@@ -91,8 +91,8 @@
 		D22E9B742C8803EC00086549 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		D22E9B762C8803F100086549 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		D22E9B7D2C8804B600086549 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		D25570E82C8E858A00CCC226 /* MakeRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRoomView.swift; sourceTree = "<group>"; };
-		D25570EC2C8E85CB00CCC226 /* MakeRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRoomViewModel.swift; sourceTree = "<group>"; };
+		D25570E82C8E858A00CCC226 /* RoomInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomInfoView.swift; sourceTree = "<group>"; };
+		D25570EC2C8E85CB00CCC226 /* RoomInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomInfoViewModel.swift; sourceTree = "<group>"; };
 		D25570EE2C8E86CD00CCC226 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		D26BFA7F2C91692700C5CF86 /* SMInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMInfoView.swift; sourceTree = "<group>"; };
 		D26BFA8B2C91987200C5CF86 /* EnterRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomView.swift; sourceTree = "<group>"; };
@@ -346,7 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				D26BFA7E2C91691A00C5CF86 /* Component */,
-				D25570E82C8E858A00CCC226 /* MakeRoomView.swift */,
+				D25570E82C8E858A00CCC226 /* RoomInfoView.swift */,
 				D2BC1A912C90101E00CB32B8 /* MakeMissionView.swift */,
 				D2BC1AA02C90A26B00CB32B8 /* CheckIRoomInfoView.swift */,
 				D2BC1AA42C91357F00CB32B8 /* SMInviteCodeAlertView.swift */,
@@ -357,7 +357,7 @@
 		D25570E72C8E857D00CCC226 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				D25570EC2C8E85CB00CCC226 /* MakeRoomViewModel.swift */,
+				D25570EC2C8E85CB00CCC226 /* RoomInfoViewModel.swift */,
 				D2BC1A932C90102900CB32B8 /* MakeMissionViewModel.swift */,
 				D2BC1AA22C90A29100CB32B8 /* CheckIRoomInfoViewModel.swift */,
 			);
@@ -513,7 +513,7 @@
 				877EA23F2C88AB930073FFBD /* AuthService.swift in Sources */,
 				D2BC1A922C90101E00CB32B8 /* MakeMissionView.swift in Sources */,
 				D22E9B592C88031A00086549 /* SantaManito_iOSApp.swift in Sources */,
-				D25570ED2C8E85CB00CCC226 /* MakeRoomViewModel.swift in Sources */,
+				D25570ED2C8E85CB00CCC226 /* RoomInfoViewModel.swift in Sources */,
 				877EA2322C889DCB0073FFBD /* ButtonStyles.swift in Sources */,
 				877CA07F2C8C50DC00D23193 /* Corner.swift in Sources */,
 				877CA0732C8C4C5C00D23193 /* SMView.swift in Sources */,
@@ -521,7 +521,7 @@
 				877EA2442C88AE750073FFBD /* DTO.swift in Sources */,
 				877EA23D2C88AB8D0073FFBD /* UserService.swift in Sources */,
 				877EA2412C88ABA00073FFBD /* PushNotificationService.swift in Sources */,
-				D25570E92C8E858A00CCC226 /* MakeRoomView.swift in Sources */,
+				D25570E92C8E858A00CCC226 /* RoomInfoView.swift in Sources */,
 				D26BFA802C91692700C5CF86 /* SMInfoView.swift in Sources */,
 				D26BFA8E2C91987900C5CF86 /* EnterRoomViewModel.swift in Sources */,
 				D276B6082C8AB64B00230FA2 /* Font.swift in Sources */,
