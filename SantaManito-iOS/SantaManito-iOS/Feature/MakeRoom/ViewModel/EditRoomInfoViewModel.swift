@@ -33,7 +33,7 @@ enum ViewType {
 
 
 
-class RoomInfoViewModel: ObservableObject {
+class EditRoomInfoViewModel: ObservableObject {
     var viewType: ViewType
     
     init(viewType: ViewType) {
@@ -122,7 +122,7 @@ class RoomInfoViewModel: ObservableObject {
     }
 }
 
-extension RoomInfoViewModel {
+extension EditRoomInfoViewModel {
     /// 남은 기한을 3~14일 사이로 설정가능한지 확인하는 함수
     func checkRemainingDaysInRange() {
         state.canIncreaseDays = remainingDays >= 14 ? false: true

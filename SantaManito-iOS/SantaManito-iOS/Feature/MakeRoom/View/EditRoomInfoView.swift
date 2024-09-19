@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct RoomInfoView: View {
-    @StateObject var viewModel: RoomInfoViewModel
+struct EditRoomInfoView: View {
+    @StateObject var viewModel: EditRoomInfoViewModel
 
     var body: some View {
         SMScrollView (padding: -50, topView: {
@@ -47,9 +47,9 @@ struct RoomInfoView: View {
 }
 
 fileprivate struct SettingRoomInfoView: View {
-    @ObservedObject private var viewModel: RoomInfoViewModel
+    @ObservedObject private var viewModel: EditRoomInfoViewModel
     
-    fileprivate init(viewModel: RoomInfoViewModel) {
+    fileprivate init(viewModel: EditRoomInfoViewModel) {
         self.viewModel = viewModel
     }
     
@@ -218,9 +218,9 @@ fileprivate struct SettingRoomInfoView: View {
 }
 
 fileprivate struct MakeRoomButtonView: View {
-    @ObservedObject private var viewModel: RoomInfoViewModel
+    @ObservedObject private var viewModel: EditRoomInfoViewModel
     
-    fileprivate init(viewModel: RoomInfoViewModel) {
+    fileprivate init(viewModel: EditRoomInfoViewModel) {
         self.viewModel = viewModel
     }
     
@@ -280,5 +280,5 @@ fileprivate struct MakeRoomButtonView: View {
 
 
 #Preview {
-    RoomInfoView(viewModel: RoomInfoViewModel(viewType: .createMode))
+    EditRoomInfoView(viewModel: EditRoomInfoViewModel(viewType: .createMode))
 }
