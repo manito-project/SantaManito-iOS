@@ -19,7 +19,7 @@ struct CheckIRoomInfoView: View {
                 )
             } content: {
                 VStack {
-                    RoomInfoView()
+                    CheckRoomInfoView()
                     
                     Spacer()
                     
@@ -46,7 +46,7 @@ struct CheckIRoomInfoView: View {
 }
 
 
-fileprivate struct RoomInfoView: View {
+fileprivate struct CheckRoomInfoView: View {
     @EnvironmentObject private var viewModel: CheckIRoomInfoViewModel
     
     var body: some View {
