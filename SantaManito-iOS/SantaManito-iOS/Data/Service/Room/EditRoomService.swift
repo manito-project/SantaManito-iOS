@@ -12,6 +12,7 @@ import Combine
 protocol EditRoomServiceType {
     func getRoomInfo(with roomID: String) -> AnyPublisher<MakeRoomInfo, Error>
     func editRoomInfo(with roomID: String, roomInfo: MakeRoomInfo) -> AnyPublisher<Void, Error>
+    func createRoom(roomInfo: MakeRoomInfo, missions: [Mission]) -> AnyPublisher<Void, Error>
 }
 
 struct StubEditRoomService: EditRoomServiceType {
@@ -27,6 +28,10 @@ struct StubEditRoomService: EditRoomServiceType {
                 dueDate: Date()
             )
         ).setFailureType(to: Error.self).eraseToAnyPublisher()
+    }
+    
+    func createRoom(roomInfo: MakeRoomInfo, missions: [Mission]) -> AnyPublisher<Void, any Error> {
+        return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }
 

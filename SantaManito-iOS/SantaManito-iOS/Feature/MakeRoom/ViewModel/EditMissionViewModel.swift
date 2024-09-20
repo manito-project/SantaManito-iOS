@@ -10,47 +10,45 @@ import Combine
 
 class EditMissionViewModel: ObservableObject {
 
+    //MARK: - Action, State
+    
     enum Action {
         case addMission
         case deleteMission(Mission)
-        case editMission
+        case updateMissionContent
         case skipMissionButtonClicked
         case makeMissionButtonClicked
         case ignoreMissionButtonClicked
         case dismissAlert
     }
     
-    @Published private(set) var state = State(
-        isEnabled: false,
-        isPresented: false,
-        canDelete: false
-    )
-    
     struct State {
-        var isEnabled: Bool
-        var isPresented: Bool
-        var canDelete: Bool
+        var isEnabled: Bool = false
+        var isPresented: Bool = false
+        var canDelete: Bool = false
     }
-
+    
+    //MARK: - Properties
+    
+    @Published private(set) var state = State()
     @Published var missionList: [Mission] = [Mission(content: "")]
 
+    //MARK: - Methods
+    
     func send(action: Action) {
         switch action {
         case .addMission:
-            let newMission = Mission(content: "")
-            missionList.append(newMission)
-            configDeleteButtonIsEnabled()
-            configMakeMissionButtonIsEnabled()
+            missionList.append(Mission(content: ""))
+            updateState()
             
         case .deleteMission(let mission):
             if let index = missionList.firstIndex(where: { $0.id == mission.id }) {
                 missionList.remove(at: index)
             }
-            configDeleteButtonIsEnabled()
-            configMakeMissionButtonIsEnabled()
+            updateState()
             
-        case .editMission:
-            configMakeMissionButtonIsEnabled()
+        case .updateMissionContent:
+            updateState()
             
         case .skipMissionButtonClicked:
             state.isPresented = true
@@ -65,18 +63,16 @@ class EditMissionViewModel: ObservableObject {
             state.isPresented = false
         }
     }
+    
+    private func updateState() {
+        configMakeMissionButtonIsEnabled()
+        configDeleteButtonIsEnabled()
+    }
 }
 
 extension EditMissionViewModel {
     func configMakeMissionButtonIsEnabled() {
-        for mission in missionList {
-            if mission.content.count < 1 {
-                state.isEnabled = false
-                return
-            }
-        }
-        
-        state.isEnabled = true
+        state.isEnabled = missionList.allSatisfy { $0.content.count >= 1 }
     }
     
     func configDeleteButtonIsEnabled() {
