@@ -49,11 +49,10 @@ class EnterRoomViewModel: ObservableObject {
         switch action {
         case .editInviteCode:
             configButtonisEnabled()
+            
         case .enterButtonDidClicked:
-            print("버튼 눌림")
             roomService.validateParticipationCode(inviteCode: inviteCode)
                 .sink(receiveCompletion: { completion in
-                    print("처리됨")
                     if case .failure(let error) = completion {
                         owner.state.isValid = false
                         switch error {
