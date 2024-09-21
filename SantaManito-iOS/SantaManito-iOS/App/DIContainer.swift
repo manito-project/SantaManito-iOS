@@ -7,13 +7,20 @@
 
 import Foundation
 
+typealias NavigationRoutableType = NavigationRoutable & ObservableObjectSettable
+
 class DIContainer: ObservableObject {
-  
-  var service: ServiceType
-  
-  init(
-    service: ServiceType
-  ) {
-    self.service = service
-  }
+    
+    var service: ServiceType
+    var navigationRouter: NavigationRoutable & ObservableObjectSettable
+    
+    init(
+        service: ServiceType,
+        navigationRouter: NavigationRoutable & ObservableObjectSettable = NavigationRouter()
+    ) {
+        self.service = service
+        self.navigationRouter = navigationRouter
+        
+        navigationRouter.setObjectWillChange(objectWillChange)
+    }
 }
