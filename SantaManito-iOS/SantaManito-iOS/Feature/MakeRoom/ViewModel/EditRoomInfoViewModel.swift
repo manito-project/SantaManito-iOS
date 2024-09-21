@@ -57,7 +57,6 @@ final class EditRoomInfoViewModel: ObservableObject {
         var dueDate: String = Date().toDueDateAndTime
     }
     
-    
     //MARK: - Dependency
     
     var viewType: ViewType
