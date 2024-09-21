@@ -5,45 +5,66 @@
 //  Created by 류희재 on 9/11/24.
 //
 
+
 import Foundation
 import Combine
 
 class EnterRoomViewModel: ObservableObject {
     
-    //MARK: Action
+    //MARK: Action, State
     
     enum Action {
         case editInviteCode
         case enterButtonDidClicked
     }
     
-    @Published var inviteCode: String = ""
-    
-    @Published private(set) var state = State(
-        isEnabled: false,
-        canPush: false,
-        isValid: true,
-        errMessage: "이미 참여중인 방입니다!"
-    )
-    
-    //MARK: State
-    
     struct State {
-        var isEnabled: Bool
-        var canPush: Bool // 다음 화면으로 넘어갈 수 있는지를 나타내는 상태값
-        var isValid: Bool // 에러가 있는지 없는지 즉, 초대코드가 유효한지 근데 이걸 errMessage로 구분할지 애매한 상황
-        var errMessage: String
+        var isEnabled: Bool = false
+        var canPush: Bool = false // 다음 화면으로 넘어갈 수 있는지를 나타내는 상태값
+        var isValid: Bool = true // 에러가 있는지 없는지 즉, 초대코드가 유효한지 근데 이걸 errMessage로 구분할지 애매한 상황
+        var errMessage: String?
     }
     
-    //MARK: send
+    //MARK: Dependency
+    
+    var roomService: EnterRoomServiceType
+    
+    //MARK: Init
+    
+    init(roomService: EnterRoomServiceType) {
+        self.roomService = roomService
+    }
+    
+    //MARK: Properties
+    
+    @Published var inviteCode: String = ""
+    @Published private(set) var state = State()
+    private let cancelBag = CancelBag()
+    
+    //MARK: Methods
     
     func send(action: Action) {
+        weak var owner = self
+        guard let owner else { return }
+        
         switch action {
         case .editInviteCode:
             configButtonisEnabled()
         case .enterButtonDidClicked:
-            //TODO: 초대코드 유효성 검사
-            configisValid()
+            roomService.validateParticipationCode(inviteCode: inviteCode)
+                .sink(receiveCompletion: { completion in
+                    if case .failure(let error) = completion {
+                        switch error {
+                        case .deletedRoomCode, .invalidateCode, .alreadyMatchedError:
+                            owner.state.errMessage = "참여가 불가능한 방이야! 혹시 초대코드에 공백이 있는지 확인해줘."
+                        case .alreadyInRoomError:
+                            owner.state.errMessage = "이미 참여중인 방이야!"
+                        }
+                    }
+                }, receiveValue: { _ in
+                    owner.state.isValid = true
+                })
+                .store(in: cancelBag)
         }
     }
 }
@@ -52,9 +73,4 @@ extension EnterRoomViewModel {
     func configButtonisEnabled() {
         state.isEnabled = !inviteCode.isEmpty
     }
-    
-    func configisValid() {
-        state.isValid = !state.errMessage.isEmpty
-    }
-
 }
