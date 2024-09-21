@@ -9,112 +9,116 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @EnvironmentObject var container: DIContainer
     @StateObject var viewModel: HomeViewModel
     
     var body: some View {
-        
-        SMView(padding: -140) {
+        NavigationStack(path: $container.navigationRouter.destinations) {
             
-            ZStack {
-                Image(.snow)
-                    .resizable()
-                    .scaledToFit()
-                    .padding(.horizontal, 40)
+            SMView(padding: -140) {
                 
-                
-                VStack {
-                    ZStack {
-                        Image(.logo)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 36)
-                        
-                        HStack {
-                            Spacer()
-                            Button {
-                                viewModel.send(.myPageButtonDidTap)
-                            } label: {
-                                Image(.btnMinus) //TODO: 사람 에셋으로 변경
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 42, height: 42)
-                            }
-                        }
-                    }
-                    .frame(height: 44)
-                    Spacer()
-                }
-                .padding(.top, 70)
-                .padding(.horizontal, 16)
-                
-            }
-        } content: {
-            VStack {
-                HStack(spacing: 20) {
-                    HomeButton(imageResource: .graphicsSantaNeck,
-                               title: "방 만들기",
-                               description: "새로운 산타\n 마니또 시작하기")
-                    {
-                        viewModel.send(.makeRoomButtonDidTap)
-                    }
+                ZStack {
+                    Image(.snow)
+                        .resizable()
+                        .scaledToFit()
+                        .padding(.horizontal, 40)
                     
-                    HomeButton(imageResource: .graphicsRudolphNeck,
-                               title: "방 입장하기",
-                               description: "새로운 산타\n 입장코드 입력하기")
-                    {
-                        viewModel.send(.joinRoomButtonDidTap)
-                    }
-                }
-                .padding(.horizontal, 40)
-                
-                HStack {
-                    Text("나의 산타 마니또")
-                        .font(.semibold_20)
-                        .foregroundStyle(.smBlack)
-                    Spacer()
-                    Button {
-                        viewModel.send(.refreshButtonDidTap)
-                    } label: {
-                        Image(systemName: "arrow.clockwise") // TODO: 에셋 변경
-                            .foregroundStyle(.gray)
-                    }
-                }
-                .padding(.top, 40)
-                .padding(.horizontal, 20)
-                
-                GeometryReader { proxy in
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
-                            ForEach(viewModel.state.rooms, id: \.id) { room in
-                                Button {
-                                    
-                                } label: {
-                                    HomeRoomCell(room, width: proxy.size.width / 2.4)
-                                }
-                                .buttonStyle(ScaleButtonStyle())
+                    
+                    VStack {
+                        ZStack {
+                            Image(.logo)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 36)
                             
-                                    
-                                
-                                Spacer().frame(width: 15)
+                            HStack {
+                                Spacer()
+                                Button {
+                                    viewModel.send(.myPageButtonDidTap)
+                                } label: {
+                                    Image(.btnMinus) //TODO: 사람 에셋으로 변경
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 42, height: 42)
+                                }
                             }
                         }
-                        .padding(.horizontal, 20)
+                        .frame(height: 44)
+                        Spacer()
                     }
+                    .padding(.top, 70)
+                    .padding(.horizontal, 16)
+                    
                 }
-                .padding(.top, 20)
-         
-                Spacer()
+            } content: {
+                VStack {
+                    HStack(spacing: 20) {
+                        HomeButton(imageResource: .graphicsSantaNeck,
+                                   title: "방 만들기",
+                                   description: "새로운 산타\n 마니또 시작하기")
+                        {
+                            viewModel.send(.makeRoomButtonDidTap)
+                        }
+                        
+                        HomeButton(imageResource: .graphicsRudolphNeck,
+                                   title: "방 입장하기",
+                                   description: "새로운 산타\n 입장코드 입력하기")
+                        {
+                            viewModel.send(.enterRoomButtonDidTap)
+                        }
+                    }
+                    .padding(.horizontal, 40)
+                    
+                    HStack {
+                        Text("나의 산타 마니또")
+                            .font(.semibold_20)
+                            .foregroundStyle(.smBlack)
+                        Spacer()
+                        Button {
+                            viewModel.send(.refreshButtonDidTap)
+                        } label: {
+                            Image(systemName: "arrow.clockwise") // TODO: 에셋 변경
+                                .foregroundStyle(.gray)
+                        }
+                    }
+                    .padding(.top, 40)
+                    .padding(.horizontal, 20)
+                    
+                    GeometryReader { proxy in
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(viewModel.state.rooms, id: \.id) { room in
+                                    Button {
+                                        
+                                    } label: {
+                                        HomeRoomCell(room, width: proxy.size.width / 2.4)
+                                    }
+                                    .buttonStyle(ScaleButtonStyle())
+                                    
+                                    
+                                    
+                                    Spacer().frame(width: 15)
+                                }
+                            }
+                            .padding(.horizontal, 20)
+                        }
+                    }
+                    .padding(.top, 20)
+                    
+                    Spacer()
+                }
+                
             }
-            
+            .onAppear {
+                viewModel.send(.onAppear)
+            }
         }
-        .onAppear {
-            viewModel.send(.onAppear)
-        }
+        
         
         
         
     }
-        
+    
 }
 
 
@@ -274,7 +278,7 @@ fileprivate struct HomeRoomStateChip: View {
     let state: RoomState
     var title: String {
         switch state {
-        case .notStarted: 
+        case .notStarted:
             "매칭 대기 중"
         case let .inProgress(deadline):
             "공개 \(deadline)일 전"
@@ -312,5 +316,7 @@ fileprivate struct HomeRoomStateChip: View {
 
 
 #Preview {
-    HomeView(viewModel: HomeViewModel(roomService: StubRoomService()))
+    let container = DIContainer(service: StubService())
+    return HomeView(viewModel: HomeViewModel(roomService: StubRoomService(), navigationRouter: container.navigationRouter))
+        .environmentObject(container)
 }
