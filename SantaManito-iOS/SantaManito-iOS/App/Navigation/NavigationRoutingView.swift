@@ -26,3 +26,15 @@ struct NavigationRoutingView: View {
         }
     }
 }
+
+
+extension View {
+    
+    func setSMNavigation() -> some View {
+        self.navigationDestination(for: NavigationDestination.self) { destination in
+            return NavigationRoutingView(destination: destination)
+        }
+    }
+    
+
+}

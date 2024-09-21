@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EditRoomInfoView: View {
+    @EnvironmentObject var container: DIContainer
     @StateObject var viewModel: EditRoomInfoViewModel
 
     var body: some View {
@@ -43,6 +44,7 @@ struct EditRoomInfoView: View {
         .onAppear {
             viewModel.send(action: .load)
         }
+        .navigationBarBackButtonHidden()
     }
 }
 
@@ -243,7 +245,7 @@ fileprivate struct MakeRoomButtonView: View {
                     
                 }
                 .padding(.vertical, 17)
-                .frame(width: .infinity)
+                .frame(maxWidth: .infinity)
                 .background(viewModel.state.isEnabled ? .smDarkgray : .smLightgray)
                 .disabled(!viewModel.state.isEnabled)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
