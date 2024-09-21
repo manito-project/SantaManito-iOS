@@ -22,10 +22,10 @@ protocol EnterRoomServiceType {
 struct StubEnterRoomService: EnterRoomServiceType {
     func validateParticipationCode(inviteCode: String) -> AnyPublisher<Void, EnterError> {
         return Just(()).setFailureType(to: EnterError.self).eraseToAnyPublisher()
-        //Fail(error: EnterError.deletedRoomCode).eraseToAnyPublisher()
-        //Fail(error: EnterError.invalidateCode).eraseToAnyPublisher()
-        //Fail(error: EnterError.alreadyInRoomError).eraseToAnyPublisher()
-        //Fail(error: EnterError.alreadyMatchedError).eraseToAnyPublisher()
+//        return Fail(error: EnterError.deletedRoomCode).eraseToAnyPublisher()
+//        return Fail(error: EnterError.invalidateCode).eraseToAnyPublisher()
+//        return Fail(error: EnterError.alreadyInRoomError).eraseToAnyPublisher()
+//        return Fail(error: EnterError.alreadyMatchedError).eraseToAnyPublisher()
     }
 }
 

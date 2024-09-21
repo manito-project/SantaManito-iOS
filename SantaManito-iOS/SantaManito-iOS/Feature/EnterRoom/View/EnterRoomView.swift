@@ -68,7 +68,7 @@ struct EnterRoomView: View {
                                     .resizable()
                                     .frame(width: 20, height: 20)
                                 
-                                Text(viewModel.state.errMessage!)
+                                Text(viewModel.state.errMessage)
                                     .font(.medium_14)
                                     .foregroundColor(.smRed)
                                     .lineSpacing(3)
