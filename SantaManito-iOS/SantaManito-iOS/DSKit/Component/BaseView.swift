@@ -7,16 +7,19 @@
 
 import SwiftUI
 
-
 protocol BaseView: View {
     
+    associatedtype NavigationBar: View
     associatedtype TopView : View
     associatedtype Content : View
     
     var padding: CGFloat { get }
+    
+    @ViewBuilder var navigationBar: Self.NavigationBar { get }
     @ViewBuilder var topView: Self.TopView { get }
     @ViewBuilder var content: Self.Content { get}
 }
+
 
 extension BaseView {
     
@@ -29,6 +32,11 @@ extension BaseView {
                 Color.smNavy
                 
                 topView
+                
+                navigationBar
+                    .padding(.top, Device.topInset)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: Device.navigationBarHeight)
             }
             .frame(height: 300)
             .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
