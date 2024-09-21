@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-enum ViewType {
+enum ViewType: Hashable {
     case createMode
     case editMode(Int, Date)
 
