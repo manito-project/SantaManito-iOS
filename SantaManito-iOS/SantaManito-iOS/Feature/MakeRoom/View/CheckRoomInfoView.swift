@@ -106,6 +106,7 @@ fileprivate struct DuedateInfoView: View {
             Spacer()
                 .frame(height: 16)
             
+            //TODO: 기기에 따라서 레이아웃이 어색함
             SMColoredTextView(
                 fullText: "\(viewModel.roomInfo.remainingDays)일 후인 \(viewModel.state.dueDate)에 결과 공개!",
                 coloredWord: viewModel.state.dueDate,
@@ -123,9 +124,6 @@ fileprivate struct DuedateInfoView: View {
                 .foregroundColor(.smLightgray)
         }
         .frame(height: 102)
-        .onAppear {
-            viewModel.send(action: .onAppear)
-        }
     }
 }
 

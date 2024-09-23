@@ -13,7 +13,6 @@ class CheckRoomInfoViewModel: ObservableObject {
     //MARK: - Action, State
     
     enum Action {
-        case onAppear
         case makeRoomButtonClicked
         case deleteMission(Mission)
         case copyInviteCode
@@ -43,6 +42,7 @@ class CheckRoomInfoViewModel: ObservableObject {
         self.roomInfo = roomInfo
         self.missionList = missionList
         self.roomService = roomService
+        observe()
     }
     
     //MARK: - Properties
@@ -54,14 +54,22 @@ class CheckRoomInfoViewModel: ObservableObject {
     
     //MARK: - Methods
     
+    func observe() {
+        $roomInfo
+            .map { roomInfo in
+                let adjustDay = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: roomInfo.dueDate))!
+                print(adjustDay)
+                return adjustDay.toDueDateAndTime
+            }
+            .assign(to: \.state.dueDate, on: self)
+            .store(in: cancelBag)
+    }
+    
     func send(action: Action) {
         weak var owner = self
         guard let owner else { return }
         
         switch action {
-        case .onAppear:
-            updateDueDate() // 서버통신 이후 날짜로 변환하는 코드
-            
         case .deleteMission(let mission):
             if let index = missionList.firstIndex(where: { $0.id == mission.id }) {
                 missionList.remove(at: index)
@@ -72,7 +80,6 @@ class CheckRoomInfoViewModel: ObservableObject {
                 .catch { _ in Empty() }
                 .sink { inviteCode in
                     owner.inviteCode = inviteCode
-                    owner.updateDueDate()
                     owner.state.isPresented = true
                 }
                 .store(in: cancelBag)
@@ -83,16 +90,5 @@ class CheckRoomInfoViewModel: ObservableObject {
             state.isPresented = false
             break
         }
-    }
-}
-
-extension CheckRoomInfoViewModel {
-    ///마니또 공개일을 계산하는 함수
-    func updateDueDate() {
-        // 날짜와 관련된 내용
-        guard let futureDate = Calendar.current.date(byAdding: .day, value: roomInfo.remainingDays, to: Date()),
-              let newDate = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: futureDate)) else { return }
-        //시간과 관련된 내용
-        state.dueDate = newDate.toDueDate + " " + roomInfo.dueDate.toDueDateTime
     }
 }
