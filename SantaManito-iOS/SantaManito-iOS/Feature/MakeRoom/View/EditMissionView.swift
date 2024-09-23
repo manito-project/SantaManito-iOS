@@ -68,7 +68,6 @@ fileprivate struct MissionListView: View {
             Spacer()
                 .frame(height: 24)
             
-            //TODO: 여기 간격이 좀 이상한데 뭐 때문에 그런지 모르겠,,
             ScrollView(.vertical, showsIndicators: false) {
                 ForEach($viewModel.missionList) { $mission in
                     MissionCellView(viewModel: viewModel, mission: $mission)
@@ -124,18 +123,15 @@ private struct MissionCellView: View {
                 text: $mission.content,
                 prompt: Text("산타 할아버지 여기 미션 하나 추가요!")
                     .foregroundColor(.smLightgray)
-            )
-            .onChange(of: mission.content) { newValue in
-                viewModel.send(action: .editMission)
-            }.smTextFieldStyle()
+            ).smTextFieldStyle()
             
             if viewModel.state.canDelete {
                 HStack {
                     Spacer()
                     
-                    Button(action: {
+                    Button{
                         viewModel.send(action: .deleteMission(mission))
-                    }) {
+                    } label: {
                         Image(.btnDelete)
                             .resizable()
                             .frame(width: 24, height: 24)

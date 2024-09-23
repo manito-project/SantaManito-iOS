@@ -37,7 +37,7 @@ struct CheckRoomInfoView: View {
             .smAlertWithInviteCode(
                 isPresented: viewModel.state.isPresented,
                 title: "초대 코드를 복사해서\n친구들에게 공유해 주자!",
-                inviteCode: viewModel.inviteCode,
+                inviteCode: viewModel.inviteCode ?? "몰루?",
                 primaryButton: ("초대 코드 복사", {
                     viewModel.send(action: .copyInviteCode)
                 })
@@ -106,8 +106,9 @@ fileprivate struct DuedateInfoView: View {
             Spacer()
                 .frame(height: 16)
             
+            //TODO: 기기에 따라서 레이아웃이 어색함
             SMColoredTextView(
-                fullText: "\(viewModel.remainingDays)일 후인 \(viewModel.state.dueDate)에 결과 공개!",
+                fullText: "\(viewModel.roomInfo.remainingDays)일 후인 \(viewModel.state.dueDate)에 결과 공개!",
                 coloredWord: viewModel.state.dueDate,
                 color: .smRed
             )
@@ -123,9 +124,6 @@ fileprivate struct DuedateInfoView: View {
                 .foregroundColor(.smLightgray)
         }
         .frame(height: 102)
-        .onAppear {
-            viewModel.send(action: .load)
-        }
     }
 }
 
@@ -196,5 +194,12 @@ private struct MissionCellView: View {
 }
 
 #Preview {
-    CheckRoomInfoView(viewModel: CheckRoomInfoViewModel())
+    CheckRoomInfoView(viewModel: CheckRoomInfoViewModel(
+        roomInfo: MakeRoomInfo(
+            name: "여기가 마니또 방", remainingDays: 3, dueDate: Date()
+        ),
+        missionList: Mission.dummy(),
+        roomService: StubEditRoomService()
+        )
+    )
 }

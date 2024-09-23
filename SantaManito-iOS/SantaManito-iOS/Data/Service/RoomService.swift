@@ -98,6 +98,4 @@ struct StubRoomService: RoomServiceType {
     func delete(with roomID: String) -> AnyPublisher<Void, Error> {
         Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
-    
-    
 }

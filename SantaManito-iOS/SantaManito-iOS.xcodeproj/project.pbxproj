@@ -47,13 +47,15 @@
 		D22E9B7E2C8804B600086549 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22E9B7D2C8804B600086549 /* Colors.xcassets */; };
 		D25570E92C8E858A00CCC226 /* EditRoomInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570E82C8E858A00CCC226 /* EditRoomInfoView.swift */; };
 		D25570ED2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570EC2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift */; };
-		D25570EF2C8E86CD00CCC226 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570EE2C8E86CD00CCC226 /* Room.swift */; };
 		D26BFA802C91692700C5CF86 /* SMInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA7F2C91692700C5CF86 /* SMInfoView.swift */; };
 		D26BFA8C2C91987200C5CF86 /* EnterRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA8B2C91987200C5CF86 /* EnterRoomView.swift */; };
 		D26BFA8E2C91987900C5CF86 /* EnterRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA8D2C91987900C5CF86 /* EnterRoomViewModel.swift */; };
 		D26BFA912C919D0000C5CF86 /* ManitoRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA902C919D0000C5CF86 /* ManitoRoomView.swift */; };
 		D26BFA932C919D0900C5CF86 /* ManitoRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA922C919D0900C5CF86 /* ManitoRoomViewModel.swift */; };
 		D276B6082C8AB64B00230FA2 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = D276B6072C8AB64B00230FA2 /* Font.swift */; };
+		D2A8F60E2C9D18FF00810BCF /* EditRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */; };
+		D2A8F6122C9D1A4F00810BCF /* MakeRoomInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */; };
+		D2A8F6142C9E792100810BCF /* EnterRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6132C9E792100810BCF /* EnterRoomService.swift */; };
 		D2BC1A8C2C8EBCF500CB32B8 /* SMColoredTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A8B2C8EBCF500CB32B8 /* SMColoredTextView.swift */; };
 		D2BC1A902C8F4C6400CB32B8 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A8F2C8F4C6400CB32B8 /* Date+.swift */; };
 		D2BC1A922C90101E00CB32B8 /* EditMissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A912C90101E00CB32B8 /* EditMissionView.swift */; };
@@ -107,7 +109,6 @@
 		D22E9B7D2C8804B600086549 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D25570E82C8E858A00CCC226 /* EditRoomInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomInfoView.swift; sourceTree = "<group>"; };
 		D25570EC2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomInfoViewModel.swift; sourceTree = "<group>"; };
-		D25570EE2C8E86CD00CCC226 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		D26BFA7F2C91692700C5CF86 /* SMInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMInfoView.swift; sourceTree = "<group>"; };
 		D26BFA8B2C91987200C5CF86 /* EnterRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomView.swift; sourceTree = "<group>"; };
 		D26BFA8D2C91987900C5CF86 /* EnterRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomViewModel.swift; sourceTree = "<group>"; };
@@ -115,6 +116,9 @@
 		D26BFA922C919D0900C5CF86 /* ManitoRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManitoRoomViewModel.swift; sourceTree = "<group>"; };
 		D276B5FA2C8AAB6200230FA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D276B6072C8AB64B00230FA2 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomService.swift; sourceTree = "<group>"; };
+		D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRoomInfo.swift; sourceTree = "<group>"; };
+		D2A8F6132C9E792100810BCF /* EnterRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomService.swift; sourceTree = "<group>"; };
 		D2BC1A8B2C8EBCF500CB32B8 /* SMColoredTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMColoredTextView.swift; sourceTree = "<group>"; };
 		D2BC1A8F2C8F4C6400CB32B8 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		D2BC1A912C90101E00CB32B8 /* EditMissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMissionView.swift; sourceTree = "<group>"; };
@@ -320,6 +324,7 @@
 		D22E9B712C8803DD00086549 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				D2A8F60C2C9D18E700810BCF /* Room */,
 				D22E9B722C8803E500086549 /* Service.swift */,
 				877EA23C2C88AB8D0073FFBD /* UserService.swift */,
 				877EA23E2C88AB930073FFBD /* AuthService.swift */,
@@ -440,11 +445,20 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		D2A8F60C2C9D18E700810BCF /* Room */ = {
+			isa = PBXGroup;
+			children = (
+				D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */,
+				D2A8F6132C9E792100810BCF /* EnterRoomService.swift */,
+			);
+			path = Room;
+			sourceTree = "<group>";
+		};
 		D2BC1A9D2C90473300CB32B8 /* MakeRoom */ = {
 			isa = PBXGroup;
 			children = (
 				D2BC1A9B2C90473000CB32B8 /* Mission.swift */,
-				D25570EE2C8E86CD00CCC226 /* Room.swift */,
+				D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */,
 			);
 			path = MakeRoom;
 			sourceTree = "<group>";
@@ -563,15 +577,17 @@
 				D22E9B752C8803EC00086549 /* Provider.swift in Sources */,
 				D22E9B6D2C8803C800086549 /* Extension.swift in Sources */,
 				877CA0A22C94304B00D23193 /* SplashView.swift in Sources */,
+				D2A8F6122C9D1A4F00810BCF /* MakeRoomInfo.swift in Sources */,
 				D2BC1AA52C91357F00CB32B8 /* SMInviteCodeAlertView.swift in Sources */,
 				877CA0832C8CA75C00D23193 /* SMAlertView.swift in Sources */,
 				877CA0812C8C555D00D23193 /* SMScrollView.swift in Sources */,
 				879829072C98284B00A863EC /* RoomService.swift in Sources */,
+				D2A8F6142C9E792100810BCF /* EnterRoomService.swift in Sources */,
+				D2A8F60E2C9D18FF00810BCF /* EditRoomService.swift in Sources */,
 				879829052C9827B200A863EC /* HomeViewModel.swift in Sources */,
 				D26BFA912C919D0000C5CF86 /* ManitoRoomView.swift in Sources */,
 				877CA0892C8CB61100D23193 /* DSKitDemoView.swift in Sources */,
 				D2BC1A982C90245700CB32B8 /* TextFieldStyles.swift in Sources */,
-				D25570EF2C8E86CD00CCC226 /* Room.swift in Sources */,
 				D2BC1A942C90102900CB32B8 /* EditMissionViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
