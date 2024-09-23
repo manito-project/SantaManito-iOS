@@ -14,7 +14,6 @@ class EnterRoomViewModel: ObservableObject {
     //MARK: Action, State
     
     enum Action {
-        case editInviteCode
         case enterButtonDidClicked
     }
     struct State {
@@ -32,6 +31,7 @@ class EnterRoomViewModel: ObservableObject {
     
     init(roomService: EnterRoomServiceType) {
         self.roomService = roomService
+        observe()
     }
     
     //MARK: Properties
@@ -42,14 +42,18 @@ class EnterRoomViewModel: ObservableObject {
     
     //MARK: Methods
     
+    func observe() {
+        $inviteCode
+            .map { !$0.isEmpty }
+            .assign(to: \.state.isEnabled, on: self)
+            .store(in: cancelBag)
+    }
+    
     func send(action: Action) {
         weak var owner = self
         guard let owner else { return }
         
         switch action {
-        case .editInviteCode:
-            configButtonisEnabled()
-            
         case .enterButtonDidClicked:
             roomService.validateParticipationCode(inviteCode: inviteCode)
                 .sink(receiveCompletion: { completion in
@@ -68,11 +72,5 @@ class EnterRoomViewModel: ObservableObject {
                 })
                 .store(in: cancelBag)
         }
-    }
-}
-
-extension EnterRoomViewModel {
-    func configButtonisEnabled() {
-        state.isEnabled = !inviteCode.isEmpty
     }
 }
