@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 //TODO: 서버통신 되기 전에 description 어떻게 설정할지 고민
-enum ViewType {
+enum EditRoomViewType: Hashable {
     case createMode
     case editMode
     
@@ -51,12 +51,12 @@ final class EditRoomInfoViewModel: ObservableObject {
     
     //MARK: - Dependency
     
-    var viewType: ViewType
+    var viewType: EditRoomViewType
     var roomService: EditRoomServiceType
     
     //MARK: - Init
     
-    init(viewType: ViewType, roomService: EditRoomServiceType) {
+    init(viewType: EditRoomViewType, roomService: EditRoomServiceType) {
         self.viewType = viewType
         self.roomService = roomService
         observe()
