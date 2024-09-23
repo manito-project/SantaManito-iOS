@@ -1,5 +1,5 @@
 //
-//  MatchingViewModel.swift
+//  MatchingResultViewModel.swift
 //  SantaManito-iOS
 //
 //  Created by 류희재 on 9/12/24.
@@ -10,36 +10,51 @@ import Combine
 
 class MatchingResultViewModel: ObservableObject {
     
-    //MARK: Action
+    //MARK: Action, State
     
     enum Action {
-        case load
+        case onAppear
         case goHomeButtonClicked
     }
     
-    @Published private(set) var state = State(
-        me: "이영진",
-        manito: "이한나",
-        mission: "5천원 이하의 선물과 함께 카톡으로 수고했다고",
-        room: MakeRoomInfo(name: "마니또 방", remainingDays: 3, dueDate: Date())
-    )
-    
-    //MARK: State
-    
     struct State {
-        var me: String //TODO: 나를 표시해야함
-        var manito: String //TODO: 나중에 User로 변경해야됨
-        var mission: String //TODO: 이것도 나중에 Entity 고민
-        var room: MakeRoomInfo //TODO: 나중에 서버통신으로 변경해야됨
+        var me: String = "류희재"
+        var manito: ManitoUser = ManitoUser(manito: "", mission: "")
+        var room: MakeRoomInfo = MakeRoomInfo(name: "마니또 방", remainingDays: 3, dueDate: Date()) //TODO: 나중에 서버통신으로 변경해야됨
     }
     
-    //MARK: send
+    //MARK: Dependency
+    
+    private var matchRoomService: MatchRoomServiceType
+    private var editRoomService: EditRoomServiceType
+    
+    //MARK: Init
+    
+    init(matchRoomService: MatchRoomServiceType, editRoomService: EditRoomServiceType) {
+        self.matchRoomService = matchRoomService
+        self.editRoomService = editRoomService
+    }
+    
+    //MARK: Properties
+    
+    @Published private(set) var state = State()
+    private let cancelBag = CancelBag()
+    
+    //MARK: Methods
     
     func send(action: Action) {
         switch action {
-        case .load:
-            break
-            //TODO: 마니또 매칭된 사람 및 방 정보를 가져와야 함
+        case .onAppear:
+            matchRoomService.getManito("")
+                .catch { _ in Empty() }
+                .assign(to: \.state.manito, on: self)
+                .store(in: cancelBag)
+                
+            editRoomService.getRoomInfo(with: "")
+                .catch { _ in Empty() }
+                .assign(to: \.state.room, on: self)
+                .store(in: cancelBag)
+
         case .goHomeButtonClicked:
             break
             //TODO: 홈 화면으로 전환

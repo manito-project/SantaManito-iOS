@@ -8,33 +8,52 @@
 import Foundation
 import Combine
 
+import Foundation
+import Combine
+
 class MatchingViewModel: ObservableObject {
     
-    //MARK: Action
+    //MARK: Action, State
     
     enum Action {
-        case load
+        case onAppear
     }
-    
-    @Published private(set) var state = State(
-        isAnimating: false
-    )
-    
-    //MARK: State
     
     struct State {
-        var isAnimating: Bool
+        var isAnimating: Bool = false
     }
     
-    //MARK: send
+    //MARK: Dependency
+    
+    private var roomService: MatchRoomServiceType
+    
+    //MARK: Init
+    
+    init(roomService: MatchRoomServiceType) {
+        self.roomService = roomService
+    }
+    
+    //MARK: Properties
+    
+    @Published private(set) var state = State()
+    private let cancelBag = CancelBag()
+    
+    //MARK: Methods
     
     func send(action: Action) {
         switch action {
-        case .load:
             //TODO: 마니또 서버 통신
             //TODO: isMatched 변수 변경
-            break
+        case .onAppear:
+            self.state.isAnimating = true
+            roomService.matchPlayer()
+                .catch { _ in Empty() }
+                .sink { [weak self] _ in
+                    //화면 전환
+                    self?.state.isAnimating = false
+                    print("성공해서 화면 전환")
+                }
+                .store(in: cancelBag)
         }
     }
 }
-

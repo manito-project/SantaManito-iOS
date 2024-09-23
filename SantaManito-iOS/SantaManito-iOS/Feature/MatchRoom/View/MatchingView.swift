@@ -59,5 +59,9 @@ struct MatchingView: View {
 }
 
 #Preview {
-    MatchingView(viewModel: MatchingViewModel())
+    MatchingView(
+        viewModel: MatchingViewModel(
+            roomService: StubMatchRoomService()
+        )
+    )
 }

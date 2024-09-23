@@ -12,26 +12,30 @@ struct MatchingResultView: View {
     
     var body: some View {
         VStack {
-            SMView(padding: -100) {
+            SMView(padding: -40) {
                 SMInfoView(
                     title: viewModel.state.room.name,
-                    description: "오늘부터 \(viewModel.state.room.remainingDats)일 후인 \(viewModel.state.room.endData.toDueDateWithoutYear)\n\(viewModel.state.room.endData.toDueDateTime)까지 진행되는 마니또"
+                    description: "오늘부터 \(viewModel.state.room.remainingDays)일 후인 \(viewModel.state.room.dueDate.toDueDateWithoutYear)\n\(viewModel.state.room.dueDate.toDueDateTime)까지 진행되는 마니또"
                 )
             } content: {
                 VStack {
                     MatchingInfoView(viewModel: viewModel)
-                        .padding(.horizontal, 16)
                     
                     Spacer()
                         .frame(height: 92)
                     
-                    Button("수정 완료") {
+                    Button("마니또 하러 가기") {
+                        viewModel.send(action: .goHomeButtonClicked)
                     }.smBottomButtonStyle()
                     
                     Spacer()
                         .frame(height: 40)
                 }
+                .padding(.horizontal, 16)
             }
+        }
+        .onAppear {
+            viewModel.send(action: .onAppear)
         }
     }
 }
@@ -65,7 +69,7 @@ fileprivate struct MatchingInfoView: View {
                 HStack {
                     Spacer()
                     
-                    Text(viewModel.state.manito)
+                    Text(viewModel.state.manito.manito)
                         .font(.semibold_24)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.white)
@@ -84,18 +88,18 @@ fileprivate struct MatchingInfoView: View {
                     .font(.semibold_18)
                     .foregroundColor(.smDarkgray)
                 
-                Text(viewModel.state.mission)
+                Text(viewModel.state.manito.mission)
                     .font(.medium_16)
                     .foregroundColor(.smDarkgray)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 16)
-                    .frame(height: 98, alignment: .top)
+                    .frame(maxWidth: .infinity, minHeight: 98, alignment: .top)
                     .background(.smLightbg)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                    
                 
                 Spacer()
+                    .frame(height: 19)
                 
                 HStack {
                     Image(.graphicsTree)
@@ -116,5 +120,10 @@ fileprivate struct MatchingInfoView: View {
 }
 
 #Preview {
-    MatchingResultView(viewModel: MatchingResultViewModel())
+    MatchingResultView(
+        viewModel: MatchingResultViewModel(
+            matchRoomService: StubMatchRoomService(),
+            editRoomService: StubEditRoomService()
+        )
+    )
 }
