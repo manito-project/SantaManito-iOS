@@ -15,7 +15,7 @@ struct EditRoomInfoView: View {
         SMScrollView (padding: -50, topView: {
             SMInfoView(
                 title: viewModel.viewType.title,
-                description: viewModel.viewType.description
+                description: viewModel.state.description
             )
         }, content: {
             VStack {
@@ -42,7 +42,7 @@ struct EditRoomInfoView: View {
             })
         )
         .onAppear {
-            viewModel.send(action: .load)
+            viewModel.send(action: .onAppear)
         }
         .navigationBarBackButtonHidden()
     }
@@ -99,9 +99,9 @@ fileprivate struct SettingRoomInfoView: View {
             
             TextField(
                 "",
-                text: $viewModel.roomName,
+                text: $viewModel.roomInfo.name,
                 prompt: Text("재미있는 방 이름을 지어보자!").foregroundColor(.smLightgray)
-            ).onChange(of: viewModel.roomName) {
+            ).onChange(of: viewModel.roomInfo.name) {
                 viewModel.send(action: .configRoomName($0))
             }
             .font(.medium_16)
@@ -138,7 +138,7 @@ fileprivate struct SettingRoomInfoView: View {
                 .disabled(!viewModel.state.canDecreaseDays)
                 .padding(.all, 10)
                 
-                Text("\(viewModel.remainingDays)일 후")
+                Text("\(viewModel.roomInfo.remainingDays)일 후")
                     .font(.medium_16)
                     .foregroundColor(.smDarkgray)
                 
@@ -163,7 +163,6 @@ fileprivate struct SettingRoomInfoView: View {
             Spacer()
                 .frame(height: 10)
             
-            //TODO: 글자 수 잘리는 문제 해결하기
             Text("최소 3일부터 최대 14일까지 기간을 설정할 수 있어~")
                 .font(.medium_14)
                 .foregroundColor(.smDarkgray)
@@ -185,10 +184,10 @@ fileprivate struct SettingRoomInfoView: View {
                 } label: {
                     DatePicker(
                         "DatePicker",
-                        selection: $viewModel.dueDateTime,
+                        selection: $viewModel.roomInfo.dueDate,
                         displayedComponents: [.hourAndMinute]
                     )
-                    .onChange(of: viewModel.dueDateTime) {
+                    .onChange(of: viewModel.roomInfo.dueDate) {
                         viewModel.send(action: .configDuedateTime($0))
                     }
                     .labelsHidden()
@@ -202,7 +201,7 @@ fileprivate struct SettingRoomInfoView: View {
                 Spacer()
                 
                 SMColoredTextView(
-                    fullText:"\(viewModel.remainingDays)일 후인 \(viewModel.state.dueDate)에\n산타 마니또 결과가 공개될거야!",
+                    fullText:"\(viewModel.roomInfo.remainingDays)일 후인 \(viewModel.state.dueDate)에\n산타 마니또 결과가 공개될거야!",
                     coloredWord: "\(viewModel.state.dueDate)",
                     color: .smRed
                 )
@@ -273,6 +272,7 @@ fileprivate struct MakeRoomButtonView: View {
             }
         case .editMode:
             Button("수정 완료") {
+                viewModel.send(action: .editButtonClicked)
             }.smBottomButtonStyle()
         }
         
@@ -282,5 +282,10 @@ fileprivate struct MakeRoomButtonView: View {
 
 
 #Preview {
-    EditRoomInfoView(viewModel: EditRoomInfoViewModel(viewType: .createMode))
+    EditRoomInfoView(
+        viewModel: EditRoomInfoViewModel(
+            viewType: .createMode,
+            roomService: StubEditRoomService()
+        )
+    )
 }

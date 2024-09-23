@@ -46,9 +46,6 @@ struct EnterRoomView: View {
                                 text: $viewModel.inviteCode,
                                 prompt: Text("코드를 입력하면 방에 들어갈 수 있어!")
                             ).smTextFieldStyle()
-                                .onChange(of: viewModel.inviteCode) { _ in
-                                    viewModel.send(action: .editInviteCode)
-                                }
                             
                             Spacer()
                                 .frame(height: 24)
@@ -97,6 +94,10 @@ struct EnterRoomView: View {
 
 
 #Preview {
-    EnterRoomView(viewModel: EnterRoomViewModel())
+    EnterRoomView(
+        viewModel: EnterRoomViewModel(
+            roomService: StubEnterRoomService()
+        )
+    )
         .environmentObject(DIContainer(service: StubService()))
 }

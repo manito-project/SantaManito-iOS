@@ -14,8 +14,8 @@ struct ManitoRoomView: View {
         VStack {
             SMScrollView (padding: -50, topView: {
                 SMInfoView(
-                    title: "마니또방이름최대1줄",
-                    description: "오늘부터 7일 후인 12월 4일\n오전 10:00까지 진행되는 마니또"
+                    title: viewModel.roomInfo.name,
+                    description: "오늘부터 \(viewModel.roomInfo.remainingDays)일 후인 \(viewModel.roomInfo.dueDate.toDueDateWithoutYear)\n\(viewModel.roomInfo.dueDate.toDueDateTime)까지 진행되는 마니또"
                 )
             }, content: {
                 VStack {
@@ -47,7 +47,7 @@ struct ManitoRoomView: View {
                 .padding(.horizontal, 16)
             })
             .onAppear {
-                viewModel.send(action: .load)
+                viewModel.send(action: .onAppear)
             }
             
         }
@@ -125,7 +125,7 @@ fileprivate struct ParticipateListView: View {
                 .frame(height: 20)
             
             ScrollView(.vertical) {
-                ForEach($viewModel.participantList) { $participantList in
+                ForEach($viewModel.participateList) { $participantList in
                     ParticipateCellView(participate: $participantList)
                         .padding(.bottom, 16)
                 }
@@ -172,7 +172,7 @@ fileprivate struct MatchingButtonView: View {
             Spacer()
                 .frame(height: 40)
             
-            if viewModel.state.isLeader {
+            if viewModel.state.isHost {
                 HStack {
                     Spacer()
                     
@@ -215,6 +215,7 @@ fileprivate struct MatchingButtonView: View {
                 Button("마니또 랜덤 매칭하기") {
                     viewModel.send(action: .matchingButtonClicked)
                 }
+                .disabled(true)
                 .smBottomButtonStyle()
             }
         }
@@ -222,5 +223,10 @@ fileprivate struct MatchingButtonView: View {
 }
 
 #Preview {
-    ManitoRoomView(viewModel: ManitoRoomViewModel())
+    ManitoRoomView(
+        viewModel: ManitoRoomViewModel(
+            enterRoomService: StubEnterRoomService(),
+            editRoomService: StubEditRoomService()
+        )
+    )
 }
