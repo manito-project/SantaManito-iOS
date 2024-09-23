@@ -22,7 +22,7 @@ class EnterRoomViewModel: ObservableObject {
     @Published private(set) var state = State(
         isEnabled: false,
         canPush: false,
-        isValid: false,
+        isValid: true,
         errMessage: "이미 참여중인 방입니다!"
     )
     

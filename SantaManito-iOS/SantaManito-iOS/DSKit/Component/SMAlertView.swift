@@ -27,6 +27,7 @@ struct SMAlertView: View {
                 .font(.semibold_18)
                 .foregroundStyle(.smDarkgray)
                 .padding(.top, 20)
+                .multilineTextAlignment(.center)
             
             HStack {
                 Button() {

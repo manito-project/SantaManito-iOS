@@ -8,17 +8,18 @@
 import Foundation
 
 protocol ServiceType {
-  var authService: AuthenticationServiceType { get set }
-  var userService: UserServiceType { get set }
-  var pushNotificationService: PushNotificationServiceType { get set }
+    var authService: AuthenticationServiceType { get set }
+    var userService: UserServiceType { get set }
+    var roomService: RoomServiceType { get }
+    var pushNotificationService: PushNotificationServiceType { get set }
 }
 
 //class Service: ServiceType {
-//  
+//
 //  var authService: AuthenticationServiceType
 //  var userService: UserServiceType
 //  var pushNotificationService: PushNotificationServiceType
-//  
+//
 //  init() {
 //    self.authService = AuthenticationService()
 //    self.userService = UserService()
@@ -28,9 +29,10 @@ protocol ServiceType {
 
 
 class StubService: ServiceType {
-  
-  var authService: AuthenticationServiceType = StubAuthenticationService()
-  var userService: UserServiceType = StubUserService()
-  var pushNotificationService: PushNotificationServiceType = StubPushNotificationService()
-
+    
+    var authService: AuthenticationServiceType = StubAuthenticationService()
+    var userService: UserServiceType = StubUserService()
+    var roomService: RoomServiceType = StubRoomService()
+    var pushNotificationService: PushNotificationServiceType = StubPushNotificationService()
+    
 }

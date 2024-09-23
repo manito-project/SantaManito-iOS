@@ -7,17 +7,17 @@
 
 import SwiftUI
 
-struct MakeMissionView: View {
-    @EnvironmentObject private var viewModel: MakeMissionViewModel
+struct EditMissionView: View {
+    @StateObject var viewModel: EditMissionViewModel
     
     var body: some View {
         VStack {
-            SMView(padding: -80) {
+            SMScrollView (padding: -50, topView: {
                 SMInfoView(
                     title: "미션 만들기",
                     description: "어떤 미션이 괜찮을까\n천 번쯤 고민 중"
                 )
-            } content: {
+            }, content: {
                 VStack {
                     ZStack {
                         RoundedRectangle(cornerRadius: 10)
@@ -27,7 +27,7 @@ struct MakeMissionView: View {
                                     .stroke(.smLightgray, lineWidth: 1)
                             }
                         
-                        MissionListView()
+                        MissionListView(viewModel: viewModel)
                             .padding(.horizontal, 16)
                     }
                     .frame(height: 402)
@@ -35,29 +35,33 @@ struct MakeMissionView: View {
                     Spacer()
                         .frame(height: 34)
                     
-                    MakeMissionButtonView()
+                    MakeMissionButtonView(viewModel: viewModel)
                     
                     Spacer()
-                        .frame(height: 74)
+                        .frame(height: 40)
                 }
                 .padding(.horizontal, 16)
-            }
-        }
-        .smAlert(
-            isPresented: viewModel.state.isPresented,
-            title: "아직 작성 중인 미션이 있어! \n미션이 사라져도 괜찮아?",
-            primaryButton: ("나가기", {
-                viewModel.send(action: .ignoreMissionButtonClicked)
-            }),
-            secondaryButton: ("미션 만들기", {
-                viewModel.send(action: .dismissAlert)
             })
-        )
+            .smAlert(
+                isPresented: viewModel.state.isPresented,
+                title: "아직 작성 중인 미션이 있어! \n미션이 사라져도 괜찮아?",
+                primaryButton: ("나가기", {
+                    viewModel.send(action: .ignoreMissionButtonClicked)
+                }),
+                secondaryButton: ("미션 만들기", {
+                    viewModel.send(action: .dismissAlert)
+                })
+            )
+        }
     }
 }
 
-private struct MissionListView: View {
-    @EnvironmentObject private var viewModel: MakeMissionViewModel
+fileprivate struct MissionListView: View {
+    @ObservedObject private var viewModel: EditMissionViewModel
+    
+    fileprivate init(viewModel: EditMissionViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         VStack {
@@ -67,7 +71,7 @@ private struct MissionListView: View {
             //TODO: 여기 간격이 좀 이상한데 뭐 때문에 그런지 모르겠,,
             ScrollView(.vertical, showsIndicators: false) {
                 ForEach($viewModel.missionList) { $mission in
-                    MissionCellView(mission: $mission)
+                    MissionCellView(viewModel: viewModel, mission: $mission)
                         .padding(.bottom, 16)
                 }
                 
@@ -102,13 +106,17 @@ private struct MissionListView: View {
 }
 
 private struct MissionCellView: View {
-    @EnvironmentObject private var viewModel: MakeMissionViewModel
-    @Binding var mission: Mission
+    @ObservedObject private var viewModel: EditMissionViewModel
+    @Binding private var mission: Mission
     
-    fileprivate init(mission: Binding<Mission>) {
+    fileprivate init(
+        viewModel: EditMissionViewModel,
+        mission: Binding<Mission>
+    ) {
+        self.viewModel = viewModel
         self._mission = mission
     }
-    
+
     fileprivate var body: some View {
         ZStack {
             TextField(
@@ -141,7 +149,11 @@ private struct MissionCellView: View {
 }
 
 fileprivate struct MakeMissionButtonView: View {
-    @EnvironmentObject private var viewModel: MakeMissionViewModel
+    @ObservedObject private var viewModel: EditMissionViewModel
+    
+    fileprivate init(viewModel: EditMissionViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         HStack(alignment: .center) {
@@ -178,6 +190,5 @@ fileprivate struct MakeMissionButtonView: View {
 }
 
 #Preview {
-    MakeMissionView()
-        .environmentObject(MakeMissionViewModel())
+    EditMissionView(viewModel: EditMissionViewModel())
 }

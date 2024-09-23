@@ -28,7 +28,6 @@ struct SMBottomButtonStyle: ButtonStyle {
             .foregroundStyle(.smWhite)
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .scaleEffect(configuration.isPressed ? 0.95 : 1)
-            .padding(.horizontal, 16)
     }
 }
 

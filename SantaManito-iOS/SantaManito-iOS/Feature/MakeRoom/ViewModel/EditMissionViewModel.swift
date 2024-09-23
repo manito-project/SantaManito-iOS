@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class MakeMissionViewModel: ObservableObject {
+class EditMissionViewModel: ObservableObject {
 
     enum Action {
         case addMission
@@ -67,7 +67,7 @@ class MakeMissionViewModel: ObservableObject {
     }
 }
 
-extension MakeMissionViewModel {
+extension EditMissionViewModel {
     func configMakeMissionButtonIsEnabled() {
         for mission in missionList {
             if mission.content.count < 1 {

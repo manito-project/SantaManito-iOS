@@ -24,7 +24,7 @@ struct SMView<TopView: View, Content: View>: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             ZStack {
                 Color.smNavy
                 
@@ -32,13 +32,14 @@ struct SMView<TopView: View, Content: View>: View {
             }
             .frame(height: 300)
             .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
-            .ignoresSafeArea()
+            
             
             content
                 .padding(.top, padding)
             
             Spacer()
         }
+        .ignoresSafeArea(edges: .top)
         
     }
 }
