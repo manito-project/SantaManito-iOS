@@ -15,7 +15,6 @@ class EditMissionViewModel: ObservableObject {
     enum Action {
         case addMission
         case deleteMission(Mission)
-        case updateMissionContent
         case skipMissionButtonClicked
         case makeMissionButtonClicked
         case ignoreMissionButtonClicked
@@ -28,27 +27,41 @@ class EditMissionViewModel: ObservableObject {
         var canDelete: Bool = false
     }
     
+    //MARK: - Init
+    
+    init() {
+        observe()
+    }
+    
     //MARK: - Properties
     
     @Published private(set) var state = State()
+    private let cancelBag = CancelBag()
     @Published var missionList: [Mission] = [Mission(content: "")]
 
     //MARK: - Methods
+    
+    func observe() {
+      $missionList
+          .map { $0.allSatisfy { $0.content.count >= 1 } }
+          .assign(to: \.state.isEnabled, on: self)
+          .store(in: cancelBag)
+
+      $missionList
+          .map { $0.count > 1 }
+          .assign(to: \.state.canDelete, on: self)
+          .store(in: cancelBag)
+    }
     
     func send(action: Action) {
         switch action {
         case .addMission:
             missionList.append(Mission(content: ""))
-            updateState()
             
         case .deleteMission(let mission):
             if let index = missionList.firstIndex(where: { $0.id == mission.id }) {
                 missionList.remove(at: index)
             }
-            updateState()
-            
-        case .updateMissionContent:
-            updateState()
             
         case .skipMissionButtonClicked:
             state.isPresented = true
@@ -62,20 +75,5 @@ class EditMissionViewModel: ObservableObject {
         case .dismissAlert:
             state.isPresented = false
         }
-    }
-    
-    private func updateState() {
-        configMakeMissionButtonIsEnabled()
-        configDeleteButtonIsEnabled()
-    }
-}
-
-extension EditMissionViewModel {
-    func configMakeMissionButtonIsEnabled() {
-        state.isEnabled = missionList.allSatisfy { $0.content.count >= 1 }
-    }
-    
-    func configDeleteButtonIsEnabled() {
-        state.canDelete = missionList.count > 1
     }
 }
