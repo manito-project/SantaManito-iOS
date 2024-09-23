@@ -7,19 +7,19 @@
 
 import SwiftUI
 
-struct CheckIRoomInfoView: View {
-    @EnvironmentObject private var viewModel: CheckIRoomInfoViewModel
+struct CheckRoomInfoView: View {
+    @StateObject var viewModel: CheckRoomInfoViewModel
     
     var body: some View {
         VStack {
-            SMView(padding: -100) {
+            SMScrollView (padding: -50, topView: {
                 SMInfoView(
                     title: "방 정보 확인",
                     description: "초대 전 상태 점검\n방 정보 췍~!"
                 )
-            } content: {
+            }, content: {
                 VStack {
-                    RoomInfoView()
+                    RoomInfoView(viewModel: viewModel)
                     
                     Spacer()
                     
@@ -32,32 +32,37 @@ struct CheckIRoomInfoView: View {
                     Spacer()
                         .frame(height: 40)
                 }
-            }
-        }
-        .smAlertWithInviteCode(
-            isPresented: viewModel.state.isPresented,
-            title: "초대 코드를 복사해서\n친구들에게 공유해 주자!",
-            inviteCode: viewModel.inviteCode,
-            primaryButton: ("초대 코드 복사", {
-                viewModel.send(action: .copyInviteCode)
+                .padding(.horizontal, 16)
             })
-        )
+            .smAlertWithInviteCode(
+                isPresented: viewModel.state.isPresented,
+                title: "초대 코드를 복사해서\n친구들에게 공유해 주자!",
+                inviteCode: viewModel.inviteCode,
+                primaryButton: ("초대 코드 복사", {
+                    viewModel.send(action: .copyInviteCode)
+                })
+            )
+        }
     }
 }
 
 
 fileprivate struct RoomInfoView: View {
-    @EnvironmentObject private var viewModel: CheckIRoomInfoViewModel
+    @ObservedObject private var viewModel: CheckRoomInfoViewModel
+    
+    fileprivate init(viewModel: CheckRoomInfoViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            DuedateInfoView()
+            DuedateInfoView(viewModel: viewModel)
             
             Spacer()
                 .frame(height: 24)
             
             if !viewModel.missionList.isEmpty {
-                MissionListView()
+                MissionListView(viewModel: viewModel)
             } else {
                 VStack {
                     Text("이번에는 마니또만 매칭될거야!\n다음에는 재미있는 미션을 추가해줘!")
@@ -79,11 +84,14 @@ fileprivate struct RoomInfoView: View {
             RoundedRectangle(cornerRadius: 10)
                 .stroke(.smLightgray, lineWidth: 1)
         }
-        .padding(.horizontal, 16)
     }
 }
 fileprivate struct DuedateInfoView: View {
-    @EnvironmentObject private var viewModel: CheckIRoomInfoViewModel
+    @ObservedObject private var viewModel: CheckRoomInfoViewModel
+    
+    fileprivate init(viewModel: CheckRoomInfoViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -122,15 +130,22 @@ fileprivate struct DuedateInfoView: View {
 }
 
 private struct MissionListView: View {
-    @EnvironmentObject private var viewModel: CheckIRoomInfoViewModel
+    @ObservedObject private var viewModel: CheckRoomInfoViewModel
+    
+    fileprivate init(viewModel: CheckRoomInfoViewModel) {
+        self.viewModel = viewModel
+    }
     
     //TODO: 여기 간격이 좀 이상한데 뭐 때문에 그런지 모르겠,,
     var body: some View {
         VStack {
             ScrollView(.vertical, showsIndicators: false) {
                 ForEach($viewModel.missionList) { $mission in
-                    MissionCellView(mission: $mission)
-                        .padding(.bottom, 16)
+                    MissionCellView(
+                        viewModel: viewModel,
+                        mission: $mission
+                    )
+                    .padding(.bottom, 16)
                 }
             }
             .frame(height: 300)
@@ -140,10 +155,14 @@ private struct MissionListView: View {
 }
 
 private struct MissionCellView: View {
-    @EnvironmentObject private var viewModel: CheckIRoomInfoViewModel
+    @ObservedObject private var viewModel: CheckRoomInfoViewModel
     @Binding var mission: Mission
     
-    fileprivate init(mission: Binding<Mission>) {
+    fileprivate init(
+        viewModel: CheckRoomInfoViewModel,
+        mission: Binding<Mission>
+    ) {
+        self.viewModel = viewModel
         self._mission = mission
     }
     
@@ -177,6 +196,5 @@ private struct MissionCellView: View {
 }
 
 #Preview {
-    CheckIRoomInfoView()
-        .environmentObject(CheckIRoomInfoViewModel())
+    CheckRoomInfoView(viewModel: CheckRoomInfoViewModel())
 }

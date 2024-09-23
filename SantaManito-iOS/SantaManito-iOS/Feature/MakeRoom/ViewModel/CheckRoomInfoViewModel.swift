@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class CheckIRoomInfoViewModel: ObservableObject {
+class CheckRoomInfoViewModel: ObservableObject {
 
     enum Action {
         case load
@@ -63,7 +63,7 @@ class CheckIRoomInfoViewModel: ObservableObject {
     }
 }
 
-extension CheckIRoomInfoViewModel {
+extension CheckRoomInfoViewModel {
     ///마니또 공개일을 계산하는 함수
     func configDuedata() {
         // 날짜와 관련된 내용

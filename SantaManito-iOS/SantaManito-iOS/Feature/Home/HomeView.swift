@@ -9,15 +9,45 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @State var alertPresented: Bool = false
+    @StateObject var viewModel: HomeViewModel
     
     var body: some View {
         
-        SMScrollView(padding: -200) {
-            Image(.snow)
-                .resizable()
-                .scaledToFit()
-                .padding(.horizontal, 40)
+        SMView(padding: -140) {
+            
+            ZStack {
+                Image(.snow)
+                    .resizable()
+                    .scaledToFit()
+                    .padding(.horizontal, 40)
+                
+                
+                VStack {
+                    ZStack {
+                        Image(.logo)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 36)
+                        
+                        HStack {
+                            Spacer()
+                            Button {
+                                viewModel.send(.myPageButtonDidTap)
+                            } label: {
+                                Image(.btnMinus) //TODO: 사람 에셋으로 변경
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 42, height: 42)
+                            }
+                        }
+                    }
+                    .frame(height: 44)
+                    Spacer()
+                }
+                .padding(.top, 70)
+                .padding(.horizontal, 16)
+                
+            }
         } content: {
             VStack {
                 HStack(spacing: 20) {
@@ -25,49 +55,66 @@ struct HomeView: View {
                                title: "방 만들기",
                                description: "새로운 산타\n 마니또 시작하기")
                     {
-                        
+                        viewModel.send(.makeRoomButtonDidTap)
                     }
                     
                     HomeButton(imageResource: .graphicsRudolphNeck,
                                title: "방 입장하기",
                                description: "새로운 산타\n 입장코드 입력하기")
                     {
-                        
+                        viewModel.send(.joinRoomButtonDidTap)
                     }
                 }
-                //            .padding(.top, -150)
                 .padding(.horizontal, 40)
                 
                 HStack {
                     Text("나의 산타 마니또")
-                        .font(.system(size: 18, weight: .bold))
+                        .font(.semibold_20)
+                        .foregroundStyle(.smBlack)
                     Spacer()
                     Button {
-                        //TODO: 새로고침
-                        alertPresented = true
+                        viewModel.send(.refreshButtonDidTap)
                     } label: {
-                        Image(systemName: "arrow.clockwise")
+                        Image(systemName: "arrow.clockwise") // TODO: 에셋 변경
                             .foregroundStyle(.gray)
                     }
                 }
                 .padding(.top, 40)
                 .padding(.horizontal, 20)
+                
+                GeometryReader { proxy in
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            ForEach(viewModel.state.rooms, id: \.id) { room in
+                                Button {
+                                    
+                                } label: {
+                                    HomeRoomCell(room, width: proxy.size.width / 2.4)
+                                }
+                                .buttonStyle(ScaleButtonStyle())
+                            
+                                    
+                                
+                                Spacer().frame(width: 15)
+                            }
+                        }
+                        .padding(.horizontal, 20)
+                    }
+                }
+                .padding(.top, 20)
+         
+                Spacer()
             }
             
         }
-        .smAlert(isPresented: alertPresented,
-                 title: "알럿 테스트",
-                 primaryButton: ("방 나가기", {
-            alertPresented.toggle()
-        }),
-                 secondaryButton: ("방 머물기", {
-            
-        })
-                 )
-
+        .onAppear {
+            viewModel.send(.onAppear)
+        }
+        
         
         
     }
+        
 }
 
 
@@ -93,17 +140,20 @@ fileprivate struct HomeButton : View {
                 VStack(spacing: 10) {
                     
                     Text(title)
-                        .font(.system(size: 18, weight: .semibold))
+                        .font(.semibold_18)
+                        .foregroundStyle(.smBlack)
                         .padding(.top, 30)
                     
                     Text(description)
-                        .font(.system(size: 14, weight: .medium))
+                        .font(.medium_14)
+                        .foregroundStyle(.smDarkgray)
                         .padding(.bottom, 30)
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal, 20)
                 .foregroundStyle(.black)
                 .background(.white)
+                .multilineTextAlignment(.center)
                 .clipShape(RoundedRectangle(cornerRadius: 4))
                 .shadow(radius: 2)
             }
@@ -111,10 +161,156 @@ fileprivate struct HomeButton : View {
         .buttonStyle(ScaleButtonStyle())
         
     }
+    
+}
 
+fileprivate struct HomeRoomCell: View {
+    
+    var roomInfo: RoomInfo
+    let width: CGFloat
+    
+    init(_ roomInfo: RoomInfo, width: CGFloat) {
+        self.roomInfo = roomInfo
+        self.width = width
+    }
+    
+    fileprivate var body: some View {
+        
+        Group {
+            VStack(alignment: .leading) {
+                
+                Text(roomInfo.name)
+                    .font(.semibold_20)
+                    .foregroundStyle(.smNavy)
+                    .lineLimit(2)
+                    .frame(height: 50)
+                
+                HStack { Spacer() }
+                Spacer()
+                
+                
+                if roomInfo.state != .deleted {
+                    Text(roomInfo.creatorName + "의 산타")
+                        .font(.medium_14)
+                        .foregroundStyle(.smBlack)
+                        .lineLimit(1)
+                        .frame(height: 14)
+                        .padding(.top, 22)
+                    
+                    HomeRoomStateChip(state: roomInfo.state)
+                        .padding(.top, 10)
+                } else {
+                    Text("해당 방은 방장에 의해 삭제된 방이야")
+                        .font(.medium_14)
+                        .foregroundStyle(.smDarkgray)
+                    Spacer()
+                }
+                
+                
+                Group { // 칩 하단
+                    switch roomInfo.state {
+                    case .inProgress, .completed:
+                        Text(roomInfo.mission)
+                            .font(.medium_14)
+                            .foregroundStyle(.smDarkgray)
+                            .lineLimit(2)
+                            .padding(.top, 12)
+                        
+                    case .notStarted:
+                        VStack {
+                            Spacer()
+                            Button {
+                                
+                            } label : {
+                                Text("방 나가기")
+                                    .font(.medium_14)
+                                    .foregroundStyle(.smDarkgray)
+                                    .padding(.vertical, 6)
+                                    .padding(.horizontal, 16)
+                                    .background(.smLightbg)
+                            }
+                        }
+                    case .deleted:
+                        VStack {
+                            Spacer()
+                            Button {
+                                
+                            } label : {
+                                Text("삭제하기")
+                                    .font(.medium_14)
+                                    .foregroundStyle(.smDarkgray)
+                                    .padding(.vertical, 6)
+                                    .padding(.horizontal, 16)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 4)
+                                            .stroke(Color.smDarkgray, lineWidth: 1)
+                                    )
+                            }
+                        }
+                    }
+                }
+                .frame(height: 60)
+            }
+            .padding(.vertical, 20)
+            .padding(.horizontal, 12)
+        }
+        .frame(width: width)
+        .frame(height: 240)
+        .background(roomInfo.state == .deleted
+                    ? .smLightbg
+                    : .smWhite)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.smLightgray, lineWidth: 1)
+        )
+        
+        
+    }
+}
+
+fileprivate struct HomeRoomStateChip: View {
+    
+    let state: RoomState
+    var title: String {
+        switch state {
+        case .notStarted: 
+            "매칭 대기 중"
+        case let .inProgress(deadline):
+            "공개 \(deadline)일 전"
+        case .completed:
+            "결과 발표 완료"
+        case .deleted:
+            "삭제"
+        }
+    }
+    
+    var backgroundColor: Color {
+        switch state {
+        case .notStarted:
+            return .smDarkgray
+        case .inProgress:
+            return .smRed
+        case .completed:
+            return .smLightgray
+        case .deleted:
+            return .clear
+        }
+    }
+    
+    var body: some View {
+        Text(title)
+            .font(.medium_14)
+            .foregroundStyle(.white)
+            .padding(.vertical, 6)
+            .padding(.horizontal, 16)
+            .background(backgroundColor)
+            .clipShape(.capsule)
+    }
+    
 }
 
 
 #Preview {
-    HomeView()
+    HomeView(viewModel: HomeViewModel(roomService: StubRoomService()))
 }

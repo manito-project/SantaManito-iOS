@@ -8,18 +8,17 @@
 import SwiftUI
 
 struct ManitoRoomView: View {
-    @EnvironmentObject private var viewModel: ManitoRoomViewModel
+    @StateObject var viewModel: ManitoRoomViewModel
     
     var body: some View {
         VStack {
-            SMView(padding: -100) {
+            SMScrollView (padding: -50, topView: {
                 SMInfoView(
                     title: "마니또방이름최대1줄",
                     description: "오늘부터 7일 후인 12월 4일\n오전 10:00까지 진행되는 마니또"
                 )
-            } content: {
-                
-                VStack(alignment: .leading) {
+            }, content: {
+                VStack {
                     ZStack {
                         RoundedRectangle(cornerRadius: 10)
                             .fill(Color.white)
@@ -28,96 +27,39 @@ struct ManitoRoomView: View {
                                     .stroke(.smLightgray, lineWidth: 1)
                             }
                         
-                        ParticipateView()
+                        VStack{
+                            TitleView(viewModel: viewModel)
+                            
+                            ParticipateListView(viewModel: viewModel)
+                        }
                     }
-                    .padding(.horizontal, 16)
                     .frame(height: 360)
                     
                     Spacer()
                         .frame(height: 16)
                     
-                    MatchingButtonView()
+                    MatchingButtonView(viewModel: viewModel)
+                    
                     
                     Spacer()
                         .frame(height: 40)
                 }
-            }
+                .padding(.horizontal, 16)
+            })
             .onAppear {
                 viewModel.send(action: .load)
             }
-        }
-    }
-}
-
-fileprivate struct MatchingButtonView: View {
-    @EnvironmentObject private var viewModel: ManitoRoomViewModel
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text(viewModel.state.description)
-                .font(.medium_14)
-                .foregroundColor(.smDarkgray)
-                .padding(.top, 16)
-                .padding(.leading, 16)
             
-            Spacer()
-                .frame(height: 40)
-            
-            if viewModel.state.isLeader {
-                HStack {
-                    Button {
-                        viewModel.send(action: .editRoomInfo)
-                    } label: {
-                        Text("방 정보 수정하기")
-                            .font(.semibold_16)
-                            .foregroundColor(.smWhite)
-                    }
-                    .padding(.vertical, 17)
-                    .padding(.horizontal, 28)
-                    .background(.smDarkgray)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    
-                    Spacer()
-                        .frame(width: 12)
-                    
-                    Button {
-                        viewModel.send(action: .matchingButtonClicked)
-                    } label: {
-                        Text("바로 매칭 시작하기")
-                            .font(.semibold_16)
-                            .foregroundColor(.smWhite)
-                    }
-                    .padding(.vertical, 17)
-                    .padding(.horizontal, 22)
-                    .background(.smRed)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                }
-                .padding(.horizontal, 16)
-            } else {
-                Button("마니또 랜덤 매칭하기") {
-                    viewModel.send(action: .matchingButtonClicked)
-                }
-                .smBottomButtonStyle()
-            }
-        }
-    }
-    
-}
-
-fileprivate struct ParticipateView: View {
-    @EnvironmentObject private var viewModel: ManitoRoomViewModel
-    
-    var body: some View {
-        VStack{
-            TitleView()
-            
-            ParticipateListView()
         }
     }
 }
 
 fileprivate struct TitleView: View {
-    @EnvironmentObject private var viewModel: ManitoRoomViewModel
+    @ObservedObject private var viewModel: ManitoRoomViewModel
+    
+    fileprivate init(viewModel: ManitoRoomViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         VStack {
@@ -171,7 +113,11 @@ fileprivate struct TitleView: View {
 }
 
 fileprivate struct ParticipateListView: View {
-    @EnvironmentObject private var viewModel: ManitoRoomViewModel
+    @ObservedObject private var viewModel: ManitoRoomViewModel
+    
+    fileprivate init(viewModel: ManitoRoomViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -209,7 +155,72 @@ fileprivate struct ParticipateCellView: View {
     }
 }
 
+fileprivate struct MatchingButtonView: View {
+    @ObservedObject private var viewModel: ManitoRoomViewModel
+    
+    fileprivate init(viewModel: ManitoRoomViewModel) {
+        self.viewModel = viewModel
+    }
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(viewModel.state.description)
+                .font(.medium_14)
+                .foregroundColor(.smDarkgray)
+                .padding(.top, 16)
+            
+            Spacer()
+                .frame(height: 40)
+            
+            if viewModel.state.isLeader {
+                HStack {
+                    Spacer()
+                    
+                    Button {
+                        viewModel.send(action: .editRoomInfo)
+                    } label: {
+                        HStack {
+                            Spacer()
+                            Text("방 정보 수정하기")
+                                .font(.semibold_16)
+                                .foregroundColor(.smWhite)
+                            Spacer()
+                        }
+                    }
+                    .padding(.vertical, 17)
+                    .background(.smDarkgray)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    
+                    Spacer()
+                        .frame(width: 12)
+                    
+                    Button {
+                        viewModel.send(action: .matchingButtonClicked)
+                    } label: {
+                        HStack {
+                            Spacer()
+                            Text("바로 매칭 시작하기")
+                                .font(.semibold_16)
+                                .foregroundColor(.smWhite)
+                            Spacer()
+                        }
+                    }
+                    .padding(.vertical, 17)
+                    .background(.smRed)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    
+                    Spacer()
+                }
+            } else {
+                Button("마니또 랜덤 매칭하기") {
+                    viewModel.send(action: .matchingButtonClicked)
+                }
+                .smBottomButtonStyle()
+            }
+        }
+    }
+}
+
 #Preview {
-    ManitoRoomView()
-        .environmentObject(ManitoRoomViewModel())
+    ManitoRoomView(viewModel: ManitoRoomViewModel())
 }
