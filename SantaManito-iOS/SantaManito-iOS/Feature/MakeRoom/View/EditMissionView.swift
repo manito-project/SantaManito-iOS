@@ -123,10 +123,7 @@ private struct MissionCellView: View {
                 text: $mission.content,
                 prompt: Text("산타 할아버지 여기 미션 하나 추가요!")
                     .foregroundColor(.smLightgray)
-            )
-            .onChange(of: mission.content) { newValue in
-                viewModel.send(action: .updateMissionContent)
-            }.smTextFieldStyle()
+            ).smTextFieldStyle()
             
             if viewModel.state.canDelete {
                 HStack {

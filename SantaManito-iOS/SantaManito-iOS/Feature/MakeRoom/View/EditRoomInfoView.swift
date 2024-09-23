@@ -14,7 +14,7 @@ struct EditRoomInfoView: View {
         SMScrollView (padding: -50, topView: {
             SMInfoView(
                 title: viewModel.viewType.title,
-                description: viewModel.viewType.description
+                description: viewModel.state.description
             )
         }, content: {
             VStack {
@@ -280,5 +280,10 @@ fileprivate struct MakeRoomButtonView: View {
 
 
 #Preview {
-    EditRoomInfoView(viewModel: EditRoomInfoViewModel(viewType: .editMode(3, Date()), roomService: StubEditRoomService()))
+    EditRoomInfoView(
+        viewModel: EditRoomInfoViewModel(
+            viewType: .createMode,
+            roomService: StubEditRoomService()
+        )
+    )
 }

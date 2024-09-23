@@ -11,7 +11,7 @@ import Combine
 //TODO: 서버통신 되기 전에 description 어떻게 설정할지 고민
 enum ViewType {
     case createMode
-    case editMode(Int, Date)
+    case editMode
     
     var title: String {
         switch self {
@@ -19,15 +19,6 @@ enum ViewType {
             return "방 정보 설정"
         case .editMode:
             return "방 정보 수정"
-        }
-    }
-    
-    var description: String {
-        switch self {
-        case .createMode:
-            return "언제까지 마니또 게임하게 할거야\n내 마니또를 봐 산타 기다리잖아"
-        case .editMode(let remainingDays, let dueDate):
-            return "오늘부터 \(remainingDays)일 후인 \(dueDate.toDueDateWithoutYear)\n\(dueDate.toDueDateTime)까지 진행되는 마니또"
         }
     }
 }
@@ -55,6 +46,7 @@ final class EditRoomInfoViewModel: ObservableObject {
         var canIncreaseDays: Bool = true
         var canDecreaseDays: Bool = true
         var dueDate: String = Date().toDueDateAndTime
+        var description: String = ""
     }
     
     //MARK: - Dependency
@@ -67,6 +59,7 @@ final class EditRoomInfoViewModel: ObservableObject {
     init(viewType: ViewType, roomService: EditRoomServiceType) {
         self.viewType = viewType
         self.roomService = roomService
+        observe()
     }
     
     //MARK: - Properties
@@ -82,6 +75,45 @@ final class EditRoomInfoViewModel: ObservableObject {
     
     //MARK: - Methods
     
+    func observe() {
+        $roomInfo
+            .map { !$0.name.isEmpty }
+            .assign(to: \.state.isEnabled, on: self)
+            .store(in: cancelBag)
+        
+        $roomInfo
+            .map { $0.remainingDays < 14 }
+            .assign(to: \.state.canIncreaseDays, on: self)
+            .store(in: cancelBag)
+        
+        $roomInfo
+            .map { $0.remainingDays > 3 }
+            .assign(to: \.state.canDecreaseDays, on: self)
+            .store(in: cancelBag)
+        
+        $roomInfo
+            .map { roomInfo in
+                let adjustedDate = roomInfo.dueDate.addingDays(remainingDays: roomInfo.remainingDays)
+                return "\(adjustedDate.toDueDate) \(adjustedDate.toDueDateTime)"
+            }
+            .assign(to: \.state.dueDate, on: self)
+            .store(in: cancelBag)
+        
+        $roomInfo
+            .map { [weak self] roomInfo in
+                switch self?.viewType {
+                case .createMode:
+                    return "언제까지 마니또 게임하게 할거야\n내 마니또를 봐 산타 기다리잖아"
+                case .editMode:
+                    return "오늘부터 \(roomInfo.remainingDays)일 후인 \(roomInfo.dueDate.toDueDateWithoutYear)\n\(roomInfo.dueDate.toDueDateTime)까지 진행되는 마니또"
+                case .none:
+                    return  ""
+                }
+            }
+            .assign(to: \.state.description, on: self)
+            .store(in: cancelBag)
+    }
+    
     func send(action: Action) {
         weak var owner = self
         guard let owner else { return }
@@ -93,30 +125,21 @@ final class EditRoomInfoViewModel: ObservableObject {
                     .catch { _ in Empty() }
                     .sink { roomInfo in
                         owner.roomInfo = roomInfo
-                        owner.configDuedata()
                     }
                     .store(in: cancelBag)
             }
-            checkRemainingDaysInRange()
-            configDuedata()
             
         case .configRoomName(let name):
             roomInfo.name = name.count >= 17 ? String(name.prefix(17)) : name
-            updateButtonState()
             
         case .increaseDuedate:
-            if state.canIncreaseDays {
-                adjustRemainingDays(by: 1)
-            }
+            if state.canIncreaseDays { roomInfo.remainingDays += 1 }
             
         case .decreaseDuedate:
-            if state.canDecreaseDays {
-                adjustRemainingDays(by: -1)
-            }
+            if state.canDecreaseDays { roomInfo.remainingDays -= 1 }
             
         case .configDuedateTime(let dueDateTime):
             roomInfo.dueDate = dueDateTime
-            configDuedata()
             
         case .noMissionButtonClicked:
             print("noMissionButtonClicked")
@@ -144,29 +167,5 @@ final class EditRoomInfoViewModel: ObservableObject {
                 }
                 .store(in: cancelBag)
         }
-    }
-}
-
-extension EditRoomInfoViewModel {
-    func adjustRemainingDays(by offset: Int) {
-        roomInfo.remainingDays += offset
-        checkRemainingDaysInRange()
-        configDuedata()
-    }
-    
-    /// 남은 기한을 3~14일 사이로 설정가능한지 확인하는 함수
-    func checkRemainingDaysInRange() {
-        state.canIncreaseDays = roomInfo.remainingDays >= 14 ? false: true
-        state.canDecreaseDays = roomInfo.remainingDays <= 3 ? false: true
-    }
-    
-    ///마니또 공개일을 계산하는 함수
-    func configDuedata() {
-        let addingDate = Date().addingDays(remainingDays: roomInfo.remainingDays)
-        state.dueDate = addingDate.toDueDate + " " + roomInfo.dueDate.toDueDateTime
-    }
-    
-    func updateButtonState() {
-        state.isEnabled = !roomInfo.name.isEmpty
     }
 }
