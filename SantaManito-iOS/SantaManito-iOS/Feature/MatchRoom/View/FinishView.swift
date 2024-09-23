@@ -8,30 +8,46 @@
 import SwiftUI
 
 struct FinishView: View {
+    @StateObject var viewModel: FinishViewModel
+    
     var body: some View {
-        VStack(alignment: .leading) {
-            Spacer()
+        ZStack {
+            // 전체 화면에 배경색을 적용
+            Color.smNavy
             
-            FinishTitleView()
-            
-            FinishResultView()
-            
-            Spacer()
-                .frame(height: 28)
-            
-            FinishButtonView()
-            
-            Spacer()
-                .frame(height: 40)
+            // 콘텐츠를 VStack으로 구성
+            VStack(alignment: .leading) {
+                FinishTitleView(viewModel: viewModel)
+                
+                FinishResultView(viewModel: viewModel)
+                
+                Spacer()
+                    .frame(height: 28)
+                
+                Button("전체 결과 보기") {
+                }.smBottomButtonStyle()
+                
+                Spacer()
+                    .frame(height: 100)
+            }
+            .padding(.horizontal, 16)
         }
         .ignoresSafeArea()
-        .background(.smNavy)
+        .onAppear {
+            viewModel.send(action: .onAppear)
+        }
     }
 }
 
 fileprivate struct FinishTitleView: View {
+    @ObservedObject private var viewModel: FinishViewModel
+    
+    init(viewModel: FinishViewModel) {
+        self.viewModel = viewModel
+    }
+    
     var body: some View {
-        HStack {
+        HStack(alignment: .top) {
             VStack(alignment: .leading) {
                 Button {
                 } label: {
@@ -44,19 +60,16 @@ fileprivate struct FinishTitleView: View {
                 Spacer()
                     .frame(height: 50)
                 
-                Text("마니또 방 이름")
+                Text(viewModel.state.roomName)
                     .font(.semibold_18)
                     .foregroundColor(.smWhite)
                 
                 Spacer()
                     .frame(height: 16)
                 
-                Text("7일동안의 산타 마니또 종료!\n나의 산타 마니또는 누구일까?")
+                Text(viewModel.state.description)
                     .font(.medium_16)
                     .foregroundColor(.smWhite)
-                
-                
-                Spacer()
             }
             
             Spacer()
@@ -87,12 +100,17 @@ fileprivate struct FinishTitleView: View {
                 
             }
         }
-
-        .padding(.horizontal, 16)
+        .frame(height: 224)
     }
 }
 
 fileprivate struct FinishResultView: View {
+    @ObservedObject private var viewModel: FinishViewModel
+    
+    init(viewModel: FinishViewModel) {
+        self.viewModel = viewModel
+    }
+    
     var body: some View {
         VStack {
             VStack(alignment: .leading) {
@@ -110,7 +128,7 @@ fileprivate struct FinishResultView: View {
                 HStack {
                     Spacer()
                     
-                    Text("이한나")
+                    Text(viewModel.state.manito.manito)
                         .font(.semibold_24)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.white)
@@ -125,11 +143,11 @@ fileprivate struct FinishResultView: View {
                 Spacer()
                     .frame(height: 30)
                 
-                Text("이영진 산타의 미션은")
+                Text("\(viewModel.state.manito.manito) 산타의 미션은")
                     .font(.semibold_18)
                     .foregroundColor(.smDarkgray)
                 
-                Text("미션최대삼십육자야그럼한줄에열두자만가능함더이상은안되지롱메롱바보똥개멍")
+                Text(viewModel.state.manito.mission)
                     .font(.medium_16)
                     .foregroundColor(.smDarkgray)
                     .multilineTextAlignment(.center)
@@ -148,27 +166,14 @@ fileprivate struct FinishResultView: View {
             .background(.smWhite)
             .clipShape(RoundedRectangle(cornerRadius: 10))
         }
-        .padding(.horizontal, 16)
-    }
-}
-
-fileprivate struct FinishButtonView: View {
-    var body: some View {
-        VStack {
-            Button("전체 결과 보기") {
-                
-            }.smBottomButtonStyle()
-            
-            Spacer()
-                .frame(height: 16)
-            
-            Button("나의 산타 마니또에서 삭제하기") {
-                
-            }.smBottomButtonStyle()
-        }
     }
 }
 
 #Preview {
-    FinishView()
+    FinishView(
+        viewModel: FinishViewModel(
+            matchRoomService: StubMatchRoomService(),
+            editRoomService: StubEditRoomService()
+        )
+    )
 }
