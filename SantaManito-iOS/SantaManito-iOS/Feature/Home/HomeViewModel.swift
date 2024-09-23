@@ -16,28 +16,19 @@ class HomeViewModel: ObservableObject {
         case refreshButtonDidTap
         case myPageButtonDidTap
         case makeRoomButtonDidTap
-        case joinRoomButtonDidTap
-        case roomCellDidTap
+        case enterRoomButtonDidTap
+        case roomCellDidTap(roomInfo: MakeRoomInfo, misson: [Mission])
     }
     
     
     struct State {
-        
-        var desination: Destination = .none
         var rooms: [RoomInfo] = []
-        
-        enum Destination {
-            case none
-            case myPage
-            case makeRoom
-            case joinRoom
-            case room
-        }
     }
     
     //MARK: - Dependency
     
     var roomService: RoomServiceType
+    private var navigationRouter: NavigationRoutableType
     
     //MARK: - Properties
     
@@ -46,8 +37,12 @@ class HomeViewModel: ObservableObject {
 
     //MARK: - Init
     
-    init(roomService: RoomServiceType) {
+    init(
+        roomService: RoomServiceType,
+        navigationRouter: NavigationRoutableType
+    ) {
         self.roomService = roomService
+        self.navigationRouter = navigationRouter
     }
     
     //MARK: - Methods
@@ -66,17 +61,19 @@ class HomeViewModel: ObservableObject {
                 .store(in: cancelBag)
             
         case .myPageButtonDidTap:
-            break
+            navigationRouter.push(to: .myPage)
         
         case .makeRoomButtonDidTap:
-            break
+            navigationRouter.push(to: .editRoom(viewType: .createMode))
             
-        case .joinRoomButtonDidTap:
-            break
+        case .enterRoomButtonDidTap:
+            navigationRouter.push(to: .enterRoom)
+            
         case .refreshButtonDidTap:
             break
-        case .roomCellDidTap:
-            break
+            
+        case let .roomCellDidTap(roomInfo, missions):
+            navigationRouter.push(to: .roomInfo(roomInfo: roomInfo, missionList: missions) )
         }
     }
 }

@@ -19,6 +19,8 @@ struct SMInfoView: View {
     let title: String
     let description: String
     
+    @Environment(\.dismiss) var dismiss
+    
     init(title: String, description: String) {
         self.title = title
         self.description = description
@@ -31,6 +33,7 @@ struct SMInfoView: View {
                     .frame(height: 68)
                 
                 Button {
+                    dismiss() // @Environment dismiss 사용한 이유는 router pop 사용시 애니메이션이 부자연 스러움
                 } label: {
                     Image(.btnBack)
                 }

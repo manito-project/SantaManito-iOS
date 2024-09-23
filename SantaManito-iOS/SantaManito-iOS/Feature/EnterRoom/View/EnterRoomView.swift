@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EnterRoomView: View {
     @StateObject var viewModel: EnterRoomViewModel
+    @EnvironmentObject var container: DIContainer
     
     var body: some View {
         VStack {
@@ -98,4 +99,5 @@ struct EnterRoomView: View {
             roomService: StubEnterRoomService()
         )
     )
+        .environmentObject(DIContainer(service: StubService()))
 }
