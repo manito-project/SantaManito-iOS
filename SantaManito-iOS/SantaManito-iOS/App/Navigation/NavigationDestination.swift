@@ -9,8 +9,8 @@ import Foundation
 
 enum NavigationDestination: Hashable {
     
-    case editRoom(viewType: ViewType)
+    case editRoom(viewType: EditRoomViewType)
     case enterRoom
-    case roomInfo
+    case roomInfo(roomInfo: MakeRoomInfo, missionList: [Mission])
     case myPage
 }

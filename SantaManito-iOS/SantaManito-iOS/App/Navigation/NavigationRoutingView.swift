@@ -16,11 +16,11 @@ struct NavigationRoutingView: View {
     var body: some View {
         switch destination {
         case let .editRoom(viewType):
-            EditRoomInfoView(viewModel: .init(viewType: viewType))
+            EditRoomInfoView(viewModel: .init(viewType: viewType, roomService: container.service.editRoomService))
         case .enterRoom:
-            EnterRoomView(viewModel: .init())
-        case .roomInfo:
-            CheckRoomInfoView(viewModel: .init())
+            EnterRoomView(viewModel: .init(roomService: container.service.enterRoomService))
+        case let .roomInfo(roomInfo, missionList):
+            CheckRoomInfoView(viewModel: .init(roomInfo: roomInfo, missionList: missionList, roomService: container.service.editRoomService))
         case .myPage:
             Text("마이페이지")
         }
