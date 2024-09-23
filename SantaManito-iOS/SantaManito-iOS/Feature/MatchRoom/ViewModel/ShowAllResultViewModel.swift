@@ -1,36 +1,25 @@
 //
-//  FinishViewModel.swift
+//  ShowAllResultViewModel.swift
 //  SantaManito-iOS
 //
 //  Created by 류희재 on 9/23/24.
 //
 
 import Foundation
-
-import Foundation
 import Combine
 
-class FinishViewModel: ObservableObject {
+class ShowAllResultViewModel: ObservableObject {
     
     //MARK: Action, State
     
     enum Action {
         case onAppear
-        case showAllManitoButtonClicked
-        case deleteRoomButtonClicked // 휴지통 버튼 눌럿을때?
+        case goHomeButtonClicked
+        case deleteRoomButtonClicked
     }
     
     struct State {
-        var me: String = "류희재"
-        var manito: MatchingFinishData = .init(
-            userID: 1, 
-            santaUserID: 2,
-            manittoUserID: 3,
-            myMission: MissionToMe(content: ""), 
-            missionToMe: MissionToMe(content: ""),
-            santaUsername: "", 
-            manittoUsername: ""
-        )
+        var participateList: [MatchingFinishData] = []
         var roomName: String = ""
         var description: String = ""
     }
@@ -57,9 +46,9 @@ class FinishViewModel: ObservableObject {
     func send(action: Action) {
         switch action {
         case .onAppear:
-            matchRoomService.getManito("")
+            matchRoomService.getManitoResult("")
                 .catch { _ in Empty() }
-                .assign(to: \.state.manito, on: self)
+                .assign(to: \.state.participateList, on: self)
                 .store(in: cancelBag)
             
             editRoomService.getRoomInfo(with: "")
@@ -73,8 +62,8 @@ class FinishViewModel: ObservableObject {
                 .assign(to: \.state.description, on: self)
                 .store(in: cancelBag)
             
-        case .showAllManitoButtonClicked:
-            print("화면 이동")
+        case .goHomeButtonClicked:
+            print("홈으로 화면 이동")
             
         case .deleteRoomButtonClicked:
             matchRoomService.deleteRoom("")

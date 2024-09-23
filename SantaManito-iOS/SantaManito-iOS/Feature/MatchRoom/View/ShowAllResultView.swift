@@ -1,4 +1,11 @@
 //
+//  showAllResultView.swift
+//  SantaManito-iOS
+//
+//  Created by 류희재 on 9/23/24.
+//
+
+//
 //  FinishView.swift
 //  SantaManito-iOS
 //
@@ -7,8 +14,8 @@
 
 import SwiftUI
 
-struct FinishView: View {
-    @StateObject var viewModel: FinishViewModel
+struct ShowAllResultView: View {
+    @StateObject var viewModel: ShowAllResultViewModel
     
     var body: some View {
         ZStack {
@@ -17,15 +24,15 @@ struct FinishView: View {
             
             // 콘텐츠를 VStack으로 구성
             VStack(alignment: .leading) {
-                FinishTitleView(viewModel: viewModel)
+                ShowAllResultTitleView(viewModel: viewModel)
                 
-                FinishResultView(viewModel: viewModel)
+                ParticipateListView(viewModel: viewModel)
                 
                 Spacer()
                     .frame(height: 28)
                 
-                Button("전체 결과 보기") {
-                    viewModel.send(action: .showAllManitoButtonClicked)
+                Button("마니또 하러 가기") {
+                    viewModel.send(action: .goHomeButtonClicked)
                 }.smBottomButtonStyle()
                 
                 Spacer()
@@ -40,10 +47,10 @@ struct FinishView: View {
     }
 }
 
-fileprivate struct FinishTitleView: View {
-    @ObservedObject private var viewModel: FinishViewModel
+fileprivate struct ShowAllResultTitleView: View {
+    @ObservedObject private var viewModel: ShowAllResultViewModel
     
-    init(viewModel: FinishViewModel) {
+    init(viewModel: ShowAllResultViewModel) {
         self.viewModel = viewModel
     }
     
@@ -105,64 +112,41 @@ fileprivate struct FinishTitleView: View {
     }
 }
 
-fileprivate struct FinishResultView: View {
-    @ObservedObject private var viewModel: FinishViewModel
+fileprivate struct ParticipateListView: View {
+    @ObservedObject private var viewModel: ShowAllResultViewModel
     
-    init(viewModel: FinishViewModel) {
+    init(viewModel: ShowAllResultViewModel) {
         self.viewModel = viewModel
     }
-    
+            
     var body: some View {
         VStack {
             VStack(alignment: .leading) {
                 Spacer()
                     .frame(height: 20)
                 
-                Text("나를 챙겨준 사람") //TODO: 마니또
+                Text("총 16명")
                     .font(.semibold_18)
                     .foregroundColor(.smDarkgray)
-                    .lineSpacing(2)
+                    .padding(.horizontal, 28)
                 
                 Spacer()
-                    .frame(height: 30)
+                    .frame(height: 16)
                 
-                HStack {
-                    Spacer()
-                    
-                    Text(viewModel.state.manito.santaUsername)
-                        .font(.semibold_24)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 30)
-                        .padding(.vertical, 12)
-                        .background(.smNavy)
-                        .clipShape(RoundedRectangle(cornerRadius: 30))
-                    
-                    Spacer()
+                Rectangle()
+                    .frame(width: .infinity, height: 1)
+                    .foregroundColor(.smLightgray)
+                
+                ScrollView(.vertical, showsIndicators: false) {
+                    ForEach(viewModel.state.participateList, id: \.userID) { manitoResult in
+                        ParticipateCellView(manitoResult: manitoResult)
+                            .padding(.top, 15)
+                    }
                 }
-                
+                .padding(.horizontal, 28)
                 Spacer()
-                    .frame(height: 30)
                 
-                Text("\(viewModel.state.manito.manittoUsername) 산타의 미션은")
-                    .font(.semibold_18)
-                    .foregroundColor(.smDarkgray)
-                
-                Text(viewModel.state.manito.missionToMe.content)
-                    .font(.medium_16)
-                    .foregroundColor(.smDarkgray)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 61)
-                    .padding(.vertical, 11)
-                    .frame(height: 98, alignment: .top)
-                    .background(.smLightbg)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                
-                Spacer()
-                    .frame(height: 20)
             }
-            .padding(.horizontal, 28)
-            
             .frame(height: 324)
             .background(.smWhite)
             .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -170,9 +154,49 @@ fileprivate struct FinishResultView: View {
     }
 }
 
+fileprivate struct ParticipateCellView: View {
+    var manitoResult: MatchingFinishData
+    
+    init(manitoResult: MatchingFinishData) {
+        self.manitoResult = manitoResult
+    }
+            
+    var body: some View {
+        HStack {
+            Text(manitoResult.santaUsername)
+                .font(.semibold_18)
+                .foregroundColor(.white)
+                .padding(.vertical, 4)
+                .padding(.horizontal, 14)
+                .multilineTextAlignment(.center)
+                .background(.smNavy)
+                .clipShape(RoundedRectangle(cornerRadius: 30))
+            
+            Spacer()
+            
+            Image(.arrow)
+                .resizable()
+                .frame(width: 30, height: 8)
+            
+            Spacer()
+            
+            Text(manitoResult.manittoUsername)
+                .font(.semibold_18)
+                .foregroundColor(.white)
+                .padding(.vertical, 4)
+                .padding(.horizontal, 14)
+                .cornerRadius(30)
+                .multilineTextAlignment(.center)
+                .background(.smGreen)
+                .clipShape(RoundedRectangle(cornerRadius: 30))
+        }
+        .frame(height: 30)
+    }
+}
+
 #Preview {
-    FinishView(
-        viewModel: FinishViewModel(
+    ShowAllResultView(
+        viewModel: ShowAllResultViewModel(
             matchRoomService: StubMatchRoomService(),
             editRoomService: StubEditRoomService()
         )

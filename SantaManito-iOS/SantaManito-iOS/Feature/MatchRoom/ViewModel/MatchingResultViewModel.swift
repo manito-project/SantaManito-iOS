@@ -18,8 +18,16 @@ class MatchingResultViewModel: ObservableObject {
     }
     
     struct State {
-        var me: String = "류희재"
-        var manito: ManitoUser = ManitoUser(manito: "", mission: "")
+        var manito: MatchingFinishData =
+            .init(
+                userID: 1,
+                santaUserID: 2,
+                manittoUserID: 1,
+                myMission: MissionToMe(content: "뭐시기뭐시기뭐시기뭐시기"),
+                missionToMe: MissionToMe(content: "뭐시기뭐시기뭐시기뭐시기"),
+                santaUsername: "류희재",
+                manittoUsername: "장석우"
+            )
         var room: MakeRoomInfo = MakeRoomInfo(name: "마니또 방", remainingDays: 3, dueDate: Date()) //TODO: 나중에 서버통신으로 변경해야됨
     }
     

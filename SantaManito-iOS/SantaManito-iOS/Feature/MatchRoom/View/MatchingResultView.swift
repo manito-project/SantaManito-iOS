@@ -59,7 +59,7 @@ fileprivate struct MatchingInfoView: View {
                 Spacer()
                     .frame(height: 24)
                 
-                Text("\(viewModel.state.me) 산타의 마니또는") //TODO: 마니또
+                Text("\(viewModel.state.manito.santaUsername) 산타의 마니또는") //TODO: 마니또
                     .font(.semibold_18)
                     .foregroundColor(.smDarkgray)
                 
@@ -69,7 +69,7 @@ fileprivate struct MatchingInfoView: View {
                 HStack {
                     Spacer()
                     
-                    Text(viewModel.state.manito.manito)
+                    Text(viewModel.state.manito.manittoUsername)
                         .font(.semibold_24)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.white)
@@ -84,11 +84,11 @@ fileprivate struct MatchingInfoView: View {
                 Spacer()
                     .frame(height: 30)
                 
-                Text("\(viewModel.state.me) 산타의 미션은")
+                Text("\(viewModel.state.manito.santaUsername) 산타의 미션은")
                     .font(.semibold_18)
                     .foregroundColor(.smDarkgray)
                 
-                Text(viewModel.state.manito.mission)
+                Text(viewModel.state.manito.missionToMe.content)
                     .font(.medium_16)
                     .foregroundColor(.smDarkgray)
                     .multilineTextAlignment(.center)
