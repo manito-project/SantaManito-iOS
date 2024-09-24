@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct SantaManito_iOSApp: App {
     
-    @StateObject var container = DIContainer(service: StubService())
+    @StateObject var container = DIContainer.stub
     
     var body: some Scene {
         WindowGroup {

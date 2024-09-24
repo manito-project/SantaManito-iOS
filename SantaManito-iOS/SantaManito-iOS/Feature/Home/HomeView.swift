@@ -316,7 +316,6 @@ fileprivate struct HomeRoomStateChip: View {
 
 
 #Preview {
-    let container = DIContainer(service: StubService())
-    return HomeView(viewModel: HomeViewModel(roomService: StubRoomService(), navigationRouter: container.navigationRouter))
-        .environmentObject(container)
+    return HomeView(viewModel: HomeViewModel(roomService: StubRoomService(), navigationRouter: DIContainer.stub.navigationRouter))
+        .environmentObject(DIContainer.stub)
 }
