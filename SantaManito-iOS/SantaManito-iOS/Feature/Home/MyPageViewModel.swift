@@ -15,7 +15,7 @@ class MyPageViewModel: ObservableObject {
     
     struct State {
         let items = MyPageItem.allCases
-        var goKakaoTalk = false
+        var isPresentedWebView = (isPresented: false, url: "")
     }
     
     private var navigationRouter: NavigationRoutableType
@@ -31,14 +31,10 @@ class MyPageViewModel: ObservableObject {
             switch item {
             case .editUsername:
                 navigationRouter.push(to: .editUsername)
-            case .inquiry:
-                state.goKakaoTalk = true
-            case .announcement:
-                return
-            case .termsOfUse:
-                return
-            case .privacyPolicy:
-                return
+            
+            case .inquiry, .termsOfUse, .privacyPolicy:
+                guard let url = item.url else { return}
+                state.isPresentedWebView = (true, url)
             }
             
         }
