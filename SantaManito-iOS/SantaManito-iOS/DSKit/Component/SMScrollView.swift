@@ -47,7 +47,9 @@ struct SMScrollView<TopView: View, Content: View>: View {
         .onDisappear {
             UIScrollView.appearance().bounces = true
         }
-        .ignoresSafeArea()
+        .ignoresSafeArea(edges: .top)
+        .navigationBarBackButtonHidden()
+        .setSMNavigation()
         
     }
 }
