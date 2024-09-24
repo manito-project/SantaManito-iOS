@@ -12,6 +12,7 @@ struct MyPageView: View {
     @EnvironmentObject var container: DIContainer
     @StateObject var viewModel: MyPageViewModel
     @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         VStack {
             ZStack {

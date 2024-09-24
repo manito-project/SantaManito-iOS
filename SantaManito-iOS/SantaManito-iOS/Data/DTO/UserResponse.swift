@@ -12,3 +12,9 @@ struct UserResponse: Decodable {
     let username: String
     let manittoUserId: String?
 }
+
+extension UserResponse {
+    func toEntity() -> User {
+        .init(id: id, username: username)
+    }
+}

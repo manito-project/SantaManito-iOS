@@ -1,0 +1,76 @@
+//
+//  EditUsernameViewModel.swift
+//  SantaManito-iOS
+//
+//  Created by 장석우 on 9/24/24.
+//
+
+import Foundation
+import Combine
+
+final class EditUsernameViewModel: ObservableObject {
+    
+    enum Action {
+        case onAppear
+        case doneButtonDidTap
+    }
+    
+    struct State {
+        var isLoading: Bool = false
+        var doneButtonDisabled: Bool = true
+    }
+    
+    //MARK: - Dependency
+    
+    private let navigationRouter: NavigationRoutableType
+    private let userService: UserServiceType
+    
+    @Published private(set) var state = State()
+    @Published var username: String = ""
+    
+    private var oldUsername = ""
+    private let cancelBag = CancelBag()
+    
+    //MARK: - Init
+    
+    init(userService: UserServiceType, navigationRouter: NavigationRoutableType) {
+        self.userService = userService
+        self.navigationRouter = navigationRouter
+        
+        observe()
+    }
+    
+    //MARK: - Methods
+    
+    func send(_ action: Action) {
+        
+        switch action {
+        case .onAppear:
+            state.isLoading = true
+            userService.getUser(with: "") // TODO: KeyChain에서 가져오기
+                .receive(on: DispatchQueue.main)
+                .map { $0.username }
+                .catch { _ in Empty() }
+                .sink{ [weak self] username in
+                    self?.state.isLoading = false
+                    self?.oldUsername = username
+                    self?.username = username
+                }
+                .store(in: cancelBag)
+            
+        case .doneButtonDidTap:
+            return
+        }
+    }
+    
+    private func observe() {
+        $username
+            .map { $0.isEmpty || $0 == self.oldUsername}
+            .assign(to: \.state.doneButtonDisabled, on: self)
+            .store(in: cancelBag)
+    }
+    
+    
+    
+        
+}

@@ -16,6 +16,8 @@
 		874017B02CA29C820096E847 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017AF2CA29C820096E847 /* MyPageViewModel.swift */; };
 		874017B32CA29FEF0096E847 /* MyPageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017B22CA29FEF0096E847 /* MyPageItem.swift */; };
 		874017B52CA2A68A0096E847 /* EditUsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017B42CA2A68A0096E847 /* EditUsernameView.swift */; };
+		874017B72CA2A9F30096E847 /* EditUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017B62CA2A9F30096E847 /* EditUsernameViewModel.swift */; };
+		874017B92CA2B0020096E847 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017B82CA2B0020096E847 /* User.swift */; };
 		877CA0712C8AB3DE00D23193 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0702C8AB3DE00D23193 /* LoadingView.swift */; };
 		877CA0732C8C4C5C00D23193 /* SMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0722C8C4C5C00D23193 /* SMView.swift */; };
 		877CA0752C8C4F4800D23193 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 877CA0742C8C4F4800D23193 /* Pretendard-Bold.otf */; };
@@ -84,6 +86,8 @@
 		874017AF2CA29C820096E847 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
 		874017B22CA29FEF0096E847 /* MyPageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageItem.swift; sourceTree = "<group>"; };
 		874017B42CA2A68A0096E847 /* EditUsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUsernameView.swift; sourceTree = "<group>"; };
+		874017B62CA2A9F30096E847 /* EditUsernameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUsernameViewModel.swift; sourceTree = "<group>"; };
+		874017B82CA2B0020096E847 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		877CA0702C8AB3DE00D23193 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		877CA0722C8C4C5C00D23193 /* SMView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMView.swift; sourceTree = "<group>"; };
 		877CA0742C8C4F4800D23193 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
@@ -211,6 +215,7 @@
 				874017AD2CA29C690096E847 /* MyPageView.swift */,
 				874017AF2CA29C820096E847 /* MyPageViewModel.swift */,
 				874017B42CA2A68A0096E847 /* EditUsernameView.swift */,
+				874017B62CA2A9F30096E847 /* EditUsernameViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -338,6 +343,7 @@
 				D2BC1A9D2C90473300CB32B8 /* MakeRoom */,
 				874017A92CA1B2FC0096E847 /* RoomDetail.swift */,
 				874017AB2CA1B3040096E847 /* RoomState.swift */,
+				874017B82CA2B0020096E847 /* User.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -575,6 +581,7 @@
 				874017AA2CA1B2FC0096E847 /* RoomDetail.swift in Sources */,
 				D22E9B5B2C88031A00086549 /* HomeView.swift in Sources */,
 				877CA0A62C94305A00D23193 /* CancelBag.swift in Sources */,
+				874017B92CA2B0020096E847 /* User.swift in Sources */,
 				877EA23B2C88AAC10073FFBD /* DIContainer.swift in Sources */,
 				D22E9B6B2C8803C100086549 /* ObservableObjectSettable.swift in Sources */,
 				87D797A42C9454BF003BA602 /* OnboardingViewModel.swift in Sources */,
@@ -615,6 +622,7 @@
 				D2BC1AA52C91357F00CB32B8 /* SMInviteCodeAlertView.swift in Sources */,
 				877CA0832C8CA75C00D23193 /* SMAlertView.swift in Sources */,
 				877CA0812C8C555D00D23193 /* SMScrollView.swift in Sources */,
+				874017B72CA2A9F30096E847 /* EditUsernameViewModel.swift in Sources */,
 				879829072C98284B00A863EC /* RoomService.swift in Sources */,
 				D2A8F6142C9E792100810BCF /* EnterRoomService.swift in Sources */,
 				D2A8F60E2C9D18FF00810BCF /* EditRoomService.swift in Sources */,
