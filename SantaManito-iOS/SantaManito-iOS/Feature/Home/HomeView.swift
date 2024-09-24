@@ -170,10 +170,10 @@ fileprivate struct HomeButton : View {
 
 fileprivate struct HomeRoomCell: View {
     
-    var roomInfo: RoomInfo
+    var roomInfo: RoomDetail
     let width: CGFloat
     
-    init(_ roomInfo: RoomInfo, width: CGFloat) {
+    init(_ roomInfo: RoomDetail, width: CGFloat) {
         self.roomInfo = roomInfo
         self.width = width
     }
@@ -214,7 +214,7 @@ fileprivate struct HomeRoomCell: View {
                 Group { // 칩 하단
                     switch roomInfo.state {
                     case .inProgress, .completed:
-                        Text(roomInfo.mission)
+                        Text(roomInfo.mission.first?.content ?? "")
                             .font(.medium_14)
                             .foregroundStyle(.smDarkgray)
                             .lineLimit(2)
@@ -280,8 +280,8 @@ fileprivate struct HomeRoomStateChip: View {
         switch state {
         case .notStarted:
             "매칭 대기 중"
-        case let .inProgress(deadline):
-            "공개 \(deadline)일 전"
+        case .inProgress:
+            "공개 몇일 전" //TODO: asdf
         case .completed:
             "결과 발표 완료"
         case .deleted:
