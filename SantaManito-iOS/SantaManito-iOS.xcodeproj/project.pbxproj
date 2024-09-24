@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		874017A42CA1AB610096E847 /* RoomDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017A32CA1AB610096E847 /* RoomDetailResponse.swift */; };
+		874017A62CA1ABBE0096E847 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017A52CA1ABBE0096E847 /* UserResponse.swift */; };
+		874017A82CA1AC010096E847 /* MissionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017A72CA1AC010096E847 /* MissionResponse.swift */; };
+		874017AA2CA1B2FC0096E847 /* RoomDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017A92CA1B2FC0096E847 /* RoomDetail.swift */; };
+		874017AC2CA1B3040096E847 /* RoomState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017AB2CA1B3040096E847 /* RoomState.swift */; };
 		877CA0712C8AB3DE00D23193 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0702C8AB3DE00D23193 /* LoadingView.swift */; };
 		877CA0732C8C4C5C00D23193 /* SMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0722C8C4C5C00D23193 /* SMView.swift */; };
 		877CA0752C8C4F4800D23193 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 877CA0742C8C4F4800D23193 /* Pretendard-Bold.otf */; };
@@ -26,7 +31,6 @@
 		877EA23D2C88AB8D0073FFBD /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA23C2C88AB8D0073FFBD /* UserService.swift */; };
 		877EA23F2C88AB930073FFBD /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA23E2C88AB930073FFBD /* AuthService.swift */; };
 		877EA2412C88ABA00073FFBD /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA2402C88ABA00073FFBD /* PushNotificationService.swift */; };
-		877EA2442C88AE750073FFBD /* DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA2432C88AE750073FFBD /* DTO.swift */; };
 		879829052C9827B200A863EC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879829042C9827B200A863EC /* HomeViewModel.swift */; };
 		879829072C98284B00A863EC /* RoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879829062C98284B00A863EC /* RoomService.swift */; };
 		879829092C9EA54B00A863EC /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879829082C9EA54B00A863EC /* BaseView.swift */; };
@@ -43,7 +47,6 @@
 		D22E9B6D2C8803C800086549 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B6C2C8803C800086549 /* Extension.swift */; };
 		D22E9B732C8803E500086549 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B722C8803E500086549 /* Service.swift */; };
 		D22E9B752C8803EC00086549 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B742C8803EC00086549 /* Provider.swift */; };
-		D22E9B772C8803F100086549 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B762C8803F100086549 /* Entity.swift */; };
 		D22E9B7E2C8804B600086549 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22E9B7D2C8804B600086549 /* Colors.xcassets */; };
 		D25570E92C8E858A00CCC226 /* EditRoomInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570E82C8E858A00CCC226 /* EditRoomInfoView.swift */; };
 		D25570ED2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570EC2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift */; };
@@ -68,6 +71,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		874017A32CA1AB610096E847 /* RoomDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailResponse.swift; sourceTree = "<group>"; };
+		874017A52CA1ABBE0096E847 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
+		874017A72CA1AC010096E847 /* MissionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionResponse.swift; sourceTree = "<group>"; };
+		874017A92CA1B2FC0096E847 /* RoomDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetail.swift; sourceTree = "<group>"; };
+		874017AB2CA1B3040096E847 /* RoomState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomState.swift; sourceTree = "<group>"; };
 		877CA0702C8AB3DE00D23193 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		877CA0722C8C4C5C00D23193 /* SMView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMView.swift; sourceTree = "<group>"; };
 		877CA0742C8C4F4800D23193 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
@@ -87,7 +95,6 @@
 		877EA23C2C88AB8D0073FFBD /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		877EA23E2C88AB930073FFBD /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		877EA2402C88ABA00073FFBD /* PushNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
-		877EA2432C88AE750073FFBD /* DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTO.swift; sourceTree = "<group>"; };
 		879829042C9827B200A863EC /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		879829062C98284B00A863EC /* RoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomService.swift; sourceTree = "<group>"; };
 		879829082C9EA54B00A863EC /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -105,7 +112,6 @@
 		D22E9B6C2C8803C800086549 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		D22E9B722C8803E500086549 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		D22E9B742C8803EC00086549 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
-		D22E9B762C8803F100086549 /* Entity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		D22E9B7D2C8804B600086549 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D25570E82C8E858A00CCC226 /* EditRoomInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomInfoView.swift; sourceTree = "<group>"; };
 		D25570EC2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomInfoViewModel.swift; sourceTree = "<group>"; };
@@ -202,7 +208,9 @@
 		877EA2422C88AE6B0073FFBD /* DTO */ = {
 			isa = PBXGroup;
 			children = (
-				877EA2432C88AE750073FFBD /* DTO.swift */,
+				874017A32CA1AB610096E847 /* RoomDetailResponse.swift */,
+				874017A52CA1ABBE0096E847 /* UserResponse.swift */,
+				874017A72CA1AC010096E847 /* MissionResponse.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -308,7 +316,8 @@
 			isa = PBXGroup;
 			children = (
 				D2BC1A9D2C90473300CB32B8 /* MakeRoom */,
-				D22E9B762C8803F100086549 /* Entity.swift */,
+				874017A92CA1B2FC0096E847 /* RoomDetail.swift */,
+				874017AB2CA1B3040096E847 /* RoomState.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -543,16 +552,18 @@
 				87C06E5D2C9EAB6800F03637 /* NaivgationRouter.swift in Sources */,
 				D2BC1A8C2C8EBCF500CB32B8 /* SMColoredTextView.swift in Sources */,
 				877CA0A42C94305200D23193 /* SplashViewModel.swift in Sources */,
+				874017AA2CA1B2FC0096E847 /* RoomDetail.swift in Sources */,
 				D22E9B5B2C88031A00086549 /* HomeView.swift in Sources */,
 				877CA0A62C94305A00D23193 /* CancelBag.swift in Sources */,
 				877EA23B2C88AAC10073FFBD /* DIContainer.swift in Sources */,
 				D22E9B6B2C8803C100086549 /* ObservableObjectSettable.swift in Sources */,
-				D22E9B772C8803F100086549 /* Entity.swift in Sources */,
 				87D797A42C9454BF003BA602 /* OnboardingViewModel.swift in Sources */,
 				877CA0712C8AB3DE00D23193 /* LoadingView.swift in Sources */,
 				D26BFA8C2C91987200C5CF86 /* EnterRoomView.swift in Sources */,
 				877EA2392C88AA8A0073FFBD /* OnboardingView.swift in Sources */,
 				D2BC1A902C8F4C6400CB32B8 /* Date+.swift in Sources */,
+				874017AC2CA1B3040096E847 /* RoomState.swift in Sources */,
+				874017A62CA1ABBE0096E847 /* UserResponse.swift in Sources */,
 				D22E9B732C8803E500086549 /* Service.swift in Sources */,
 				877EA23F2C88AB930073FFBD /* AuthService.swift in Sources */,
 				879829092C9EA54B00A863EC /* BaseView.swift in Sources */,
@@ -565,13 +576,13 @@
 				877CA0732C8C4C5C00D23193 /* SMView.swift in Sources */,
 				87C06E5F2C9EADD600F03637 /* NavigationRoutingView.swift in Sources */,
 				D2BC1AA32C90A29200CB32B8 /* CheckRoomInfoViewModel.swift in Sources */,
-				877EA2442C88AE750073FFBD /* DTO.swift in Sources */,
 				877EA23D2C88AB8D0073FFBD /* UserService.swift in Sources */,
 				877EA2412C88ABA00073FFBD /* PushNotificationService.swift in Sources */,
 				D25570E92C8E858A00CCC226 /* EditRoomInfoView.swift in Sources */,
 				D26BFA802C91692700C5CF86 /* SMInfoView.swift in Sources */,
 				87C06E612C9EADE700F03637 /* NavigationDestination.swift in Sources */,
 				D26BFA8E2C91987900C5CF86 /* EnterRoomViewModel.swift in Sources */,
+				874017A42CA1AB610096E847 /* RoomDetailResponse.swift in Sources */,
 				D276B6082C8AB64B00230FA2 /* Font.swift in Sources */,
 				D26BFA932C919D0900C5CF86 /* ManitoRoomViewModel.swift in Sources */,
 				D22E9B752C8803EC00086549 /* Provider.swift in Sources */,
@@ -587,6 +598,7 @@
 				879829052C9827B200A863EC /* HomeViewModel.swift in Sources */,
 				D26BFA912C919D0000C5CF86 /* ManitoRoomView.swift in Sources */,
 				877CA0892C8CB61100D23193 /* DSKitDemoView.swift in Sources */,
+				874017A82CA1AC010096E847 /* MissionResponse.swift in Sources */,
 				D2BC1A982C90245700CB32B8 /* TextFieldStyles.swift in Sources */,
 				D2BC1A942C90102900CB32B8 /* EditMissionViewModel.swift in Sources */,
 			);
