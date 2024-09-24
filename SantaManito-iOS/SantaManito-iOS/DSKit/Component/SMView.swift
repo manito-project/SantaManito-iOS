@@ -40,6 +40,8 @@ struct SMView<TopView: View, Content: View>: View {
             Spacer()
         }
         .ignoresSafeArea(edges: .top)
+        .navigationBarBackButtonHidden()
+        .setSMNavigation()
         
     }
 }
