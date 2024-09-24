@@ -14,11 +14,12 @@ class MyPageViewModel: ObservableObject {
     }
     
     struct State {
-        let items: [MyPageItem] = MyPageItem.allCases
+        let items = MyPageItem.allCases
+        var goKakaoTalk = false
     }
     
     private var navigationRouter: NavigationRoutableType
-    @Published private(set) var state = State()
+    @Published var state = State()
     
     init(navigationRouter: NavigationRoutableType) {
         self.navigationRouter = navigationRouter
@@ -31,7 +32,7 @@ class MyPageViewModel: ObservableObject {
             case .editUsername:
                 navigationRouter.push(to: .editUsername)
             case .inquiry:
-                return
+                state.goKakaoTalk = true
             case .announcement:
                 return
             case .termsOfUse:

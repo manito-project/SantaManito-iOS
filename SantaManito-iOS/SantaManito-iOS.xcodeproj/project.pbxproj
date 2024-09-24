@@ -18,6 +18,7 @@
 		874017B52CA2A68A0096E847 /* EditUsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017B42CA2A68A0096E847 /* EditUsernameView.swift */; };
 		874017B72CA2A9F30096E847 /* EditUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017B62CA2A9F30096E847 /* EditUsernameViewModel.swift */; };
 		874017B92CA2B0020096E847 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017B82CA2B0020096E847 /* User.swift */; };
+		874017BB2CA2B64E0096E847 /* WKWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017BA2CA2B64E0096E847 /* WKWebView.swift */; };
 		877CA0712C8AB3DE00D23193 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0702C8AB3DE00D23193 /* LoadingView.swift */; };
 		877CA0732C8C4C5C00D23193 /* SMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0722C8C4C5C00D23193 /* SMView.swift */; };
 		877CA0752C8C4F4800D23193 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 877CA0742C8C4F4800D23193 /* Pretendard-Bold.otf */; };
@@ -88,6 +89,7 @@
 		874017B42CA2A68A0096E847 /* EditUsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUsernameView.swift; sourceTree = "<group>"; };
 		874017B62CA2A9F30096E847 /* EditUsernameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUsernameViewModel.swift; sourceTree = "<group>"; };
 		874017B82CA2B0020096E847 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		874017BA2CA2B64E0096E847 /* WKWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebView.swift; sourceTree = "<group>"; };
 		877CA0702C8AB3DE00D23193 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		877CA0722C8C4C5C00D23193 /* SMView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMView.swift; sourceTree = "<group>"; };
 		877CA0742C8C4F4800D23193 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				874017AF2CA29C820096E847 /* MyPageViewModel.swift */,
 				874017B42CA2A68A0096E847 /* EditUsernameView.swift */,
 				874017B62CA2A9F30096E847 /* EditUsernameViewModel.swift */,
+				874017BA2CA2B64E0096E847 /* WKWebView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -598,6 +601,7 @@
 				D2BC1A922C90101E00CB32B8 /* EditMissionView.swift in Sources */,
 				D22E9B592C88031A00086549 /* SantaManito_iOSApp.swift in Sources */,
 				D25570ED2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift in Sources */,
+				874017BB2CA2B64E0096E847 /* WKWebView.swift in Sources */,
 				877EA2322C889DCB0073FFBD /* ButtonStyles.swift in Sources */,
 				87C06E5A2C9EA5FE00F03637 /* Device.swift in Sources */,
 				874017B32CA29FEF0096E847 /* MyPageItem.swift in Sources */,

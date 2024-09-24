@@ -16,8 +16,8 @@ final class EditUsernameViewModel: ObservableObject {
     }
     
     struct State {
-        var isLoading: Bool = false
-        var doneButtonDisabled: Bool = true
+        var isLoading = false
+        var doneButtonDisabled = true
     }
     
     //MARK: - Dependency

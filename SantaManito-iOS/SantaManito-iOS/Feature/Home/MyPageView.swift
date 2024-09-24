@@ -66,6 +66,10 @@ struct MyPageView: View {
         .navigationBarBackButtonHidden()
         .ignoresSafeArea(edges: .top)
         .setSMNavigation()
+        .sheet(isPresented: $viewModel.state.goKakaoTalk)  {
+            SMWebView(url: "https://pf.kakao.com/_hxkGIn")
+        }
+       
         
         
     }
