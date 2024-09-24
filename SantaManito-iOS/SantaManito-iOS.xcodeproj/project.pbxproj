@@ -14,6 +14,8 @@
 		874017AC2CA1B3040096E847 /* RoomState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017AB2CA1B3040096E847 /* RoomState.swift */; };
 		874017AE2CA29C690096E847 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017AD2CA29C690096E847 /* MyPageView.swift */; };
 		874017B02CA29C820096E847 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017AF2CA29C820096E847 /* MyPageViewModel.swift */; };
+		874017B32CA29FEF0096E847 /* MyPageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017B22CA29FEF0096E847 /* MyPageItem.swift */; };
+		874017B52CA2A68A0096E847 /* EditUsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017B42CA2A68A0096E847 /* EditUsernameView.swift */; };
 		877CA0712C8AB3DE00D23193 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0702C8AB3DE00D23193 /* LoadingView.swift */; };
 		877CA0732C8C4C5C00D23193 /* SMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0722C8C4C5C00D23193 /* SMView.swift */; };
 		877CA0752C8C4F4800D23193 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 877CA0742C8C4F4800D23193 /* Pretendard-Bold.otf */; };
@@ -80,6 +82,8 @@
 		874017AB2CA1B3040096E847 /* RoomState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomState.swift; sourceTree = "<group>"; };
 		874017AD2CA29C690096E847 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		874017AF2CA29C820096E847 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
+		874017B22CA29FEF0096E847 /* MyPageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageItem.swift; sourceTree = "<group>"; };
+		874017B42CA2A68A0096E847 /* EditUsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUsernameView.swift; sourceTree = "<group>"; };
 		877CA0702C8AB3DE00D23193 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		877CA0722C8C4C5C00D23193 /* SMView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMView.swift; sourceTree = "<group>"; };
 		877CA0742C8C4F4800D23193 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
@@ -151,6 +155,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		874017B12CA29FE20096E847 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				874017B22CA29FEF0096E847 /* MyPageItem.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
 		877CA06B2C8AA1AD00D23193 /* Component */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +210,7 @@
 				879829042C9827B200A863EC /* HomeViewModel.swift */,
 				874017AD2CA29C690096E847 /* MyPageView.swift */,
 				874017AF2CA29C820096E847 /* MyPageViewModel.swift */,
+				874017B42CA2A68A0096E847 /* EditUsernameView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -321,6 +334,7 @@
 		D22E9B6F2C8803D200086549 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				874017B12CA29FE20096E847 /* MyPage */,
 				D2BC1A9D2C90473300CB32B8 /* MakeRoom */,
 				874017A92CA1B2FC0096E847 /* RoomDetail.swift */,
 				874017AB2CA1B3040096E847 /* RoomState.swift */,
@@ -579,6 +593,7 @@
 				D25570ED2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift in Sources */,
 				877EA2322C889DCB0073FFBD /* ButtonStyles.swift in Sources */,
 				87C06E5A2C9EA5FE00F03637 /* Device.swift in Sources */,
+				874017B32CA29FEF0096E847 /* MyPageItem.swift in Sources */,
 				877CA07F2C8C50DC00D23193 /* Corner.swift in Sources */,
 				877CA0732C8C4C5C00D23193 /* SMView.swift in Sources */,
 				87C06E5F2C9EADD600F03637 /* NavigationRoutingView.swift in Sources */,
@@ -608,6 +623,7 @@
 				877CA0892C8CB61100D23193 /* DSKitDemoView.swift in Sources */,
 				874017A82CA1AC010096E847 /* MissionResponse.swift in Sources */,
 				D2BC1A982C90245700CB32B8 /* TextFieldStyles.swift in Sources */,
+				874017B52CA2A68A0096E847 /* EditUsernameView.swift in Sources */,
 				D2BC1A942C90102900CB32B8 /* EditMissionViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
