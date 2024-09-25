@@ -29,7 +29,7 @@ extension Participate {
 import Foundation
 import Combine
 
-class ManitoRoomViewModel: ObservableObject {
+class ManitoWaitingRoomViewModel: ObservableObject {
     
     //MARK: Action, State
     

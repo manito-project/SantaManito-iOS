@@ -94,9 +94,11 @@ struct EnterRoomView: View {
 
 
 #Preview {
-    EnterRoomView(
+    let container = DIContainer.stub
+    return EnterRoomView(
         viewModel: EnterRoomViewModel(
-            roomService: StubEnterRoomService()
+            roomService: StubEnterRoomService(),
+            navigationRouter: container.navigationRouter
         )
     )
     .environmentObject(DIContainer.default)

@@ -22,10 +22,11 @@ struct NavigationRoutingView: View {
                     roomService: container.service.editRoomService,
                     navigationRouter: container.navigationRouter
                 ))
-        case .enterRoom:
-            EnterRoomView(
-                viewModel: .init(
-                    roomService: container.service.enterRoomService
+        case let .makeMission(roomInfo):
+            EditMissionView(
+                viewModel: EditMissionViewModel(
+                    roomInfo: roomInfo,
+                    navigationRouter: container.navigationRouter
                 )
             )
         case let .roomInfo(roomInfo, missionList):
@@ -36,18 +37,28 @@ struct NavigationRoutingView: View {
                     roomService: container.service.editRoomService
                 )
             )
+            
+        case .enterRoom:
+            EnterRoomView(
+                viewModel: .init(
+                    roomService: container.service.enterRoomService,
+                    navigationRouter: container.navigationRouter
+                )
+            )
+        case .manitoWaitingRoom:
+            ManitoWaitingRoomView(
+                viewModel: .init(
+                    enterRoomService: container.service.enterRoomService,
+                    editRoomService: container.service.editRoomService
+                )
+            )
+
         case .myPage:
             MyPageView(viewModel: MyPageViewModel(navigationRouter: container.navigationRouter))
         case .editUsername:
             EditUsernameView(viewModel: EditUsernameViewModel(userService: container.service.userService, navigationRouter: container.navigationRouter))
             Text("마이페이지")
-        case let .makeMission(roomInfo):
-            EditMissionView(
-                viewModel: EditMissionViewModel(
-                    roomInfo: roomInfo,
-                    navigationRouter: container.navigationRouter
-                )
-            )
+
         }
     }
 }

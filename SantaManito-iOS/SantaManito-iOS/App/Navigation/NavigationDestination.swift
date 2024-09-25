@@ -9,7 +9,9 @@ import Foundation
 
 enum NavigationDestination: Hashable {
     
+    //EnterRoom
     case enterRoom
+    case manitoWaitingRoom
     
     case myPage
     case editUsername
