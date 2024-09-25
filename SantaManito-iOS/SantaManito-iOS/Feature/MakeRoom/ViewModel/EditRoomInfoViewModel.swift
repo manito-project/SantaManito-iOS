@@ -101,7 +101,7 @@ final class EditRoomInfoViewModel: ObservableObject {
         $roomInfo
             .map { roomInfo in
                 let adjustedDate = roomInfo.dueDate.addingDays(remainingDays: roomInfo.remainingDays)
-                return "\(adjustedDate.toDueDate) \(adjustedDate.toDueDateTime)"
+                return "\(adjustedDate.toDueDate) \(roomInfo.dueDate.toDueDateTime)"
             }
             .assign(to: \.state.dueDate, on: self)
             .store(in: cancelBag)
@@ -149,27 +149,24 @@ final class EditRoomInfoViewModel: ObservableObject {
             roomInfo.dueDate = dueDateTime
             
         case .noMissionButtonClicked:
-            print("noMissionButtonClicked")
             state.isPresented = true
-            //미션 미설정 확인 모달 보여주고 거기서도 okay하면 바로 방 확정짓는 파일로 넘어가기
             
         case .missionButtonClicked:
             navigationRouter.push(to: .makeMission(roomInfo: roomInfo))
-            print("missionButtonClicked")
             
         case .ignoreMissionButtonClicked:
-            print("방 정보 확인 뷰로 넘어가기")
-            break
-            
-        case .dismissAlert:
-            //미션 만드는 화면으로 넘어가
             state.isPresented = false
+            navigationRouter.push(to: .roomInfo(roomInfo: roomInfo, missionList: []))
+                    
+        case .dismissAlert:
+            state.isPresented = false
+            navigationRouter.push(to: .makeMission(roomInfo: roomInfo))
             
         case .editButtonClicked:
             roomService.editRoomInfo(with: "1", roomInfo: roomInfo)
                 .catch { _ in Empty() }
-                .sink { _ in
-                    //화면 전환
+                .sink { [weak self] _ in
+                    self?.navigationRouter.pop()
                     print("성공해서 화면 전환")
                 }
                 .store(in: cancelBag)
