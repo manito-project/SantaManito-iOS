@@ -39,6 +39,13 @@ struct StubUserService: UserServiceType {
     }
     
     func editUsername(with username: String) -> AnyPublisher<Void, Error> {
-        Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+        Future<Void, Error> { promise in
+            
+            DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
+                // Simulate success
+                promise(.success(()))
+            }
+        }
+        .eraseToAnyPublisher()
     }
 }

@@ -51,7 +51,7 @@ final class EditUsernameViewModel: ObservableObject {
                 .receive(on: DispatchQueue.main)
                 .map { $0.username }
                 .catch { _ in Empty() }
-                .sink{ [weak self] username in
+                .sink { [weak self] username in
                     self?.state.isLoading = false
                     self?.oldUsername = username
                     self?.username = username
@@ -59,6 +59,17 @@ final class EditUsernameViewModel: ObservableObject {
                 .store(in: cancelBag)
             
         case .doneButtonDidTap:
+            state.isLoading = true
+            userService.editUsername(with: username)
+                .receive(on: DispatchQueue.main)
+                .catch { _ in Empty() }
+                .sink { [weak self] username in
+                    self?.state.isLoading = false
+                    self?.navigationRouter.popToRootView()
+                }
+                .store(in: cancelBag)
+                
+                
             return
         }
     }
