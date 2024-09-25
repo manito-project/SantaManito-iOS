@@ -37,6 +37,9 @@ struct NavigationRoutingView: View {
                 )
             )
         case .myPage:
+            MyPageView(viewModel: MyPageViewModel(navigationRouter: container.navigationRouter))
+        case .editUsername:
+            EditUsernameView(viewModel: EditUsernameViewModel(userService: container.service.userService, navigationRouter: container.navigationRouter))
             Text("마이페이지")
         case let .makeMission(roomInfo):
             EditMissionView(
