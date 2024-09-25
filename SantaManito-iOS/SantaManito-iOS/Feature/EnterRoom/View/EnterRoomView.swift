@@ -99,5 +99,5 @@ struct EnterRoomView: View {
             roomService: StubEnterRoomService()
         )
     )
-        .environmentObject(DIContainer(service: StubService()))
+    .environmentObject(DIContainer.default)
 }

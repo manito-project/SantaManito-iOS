@@ -22,7 +22,9 @@ struct NavigationRoutingView: View {
         case let .roomInfo(roomInfo, missionList):
             CheckRoomInfoView(viewModel: .init(roomInfo: roomInfo, missionList: missionList, roomService: container.service.editRoomService))
         case .myPage:
-            Text("마이페이지")
+            MyPageView(viewModel: MyPageViewModel(navigationRouter: container.navigationRouter))
+        case .editUsername:
+            EditUsernameView(viewModel: EditUsernameViewModel(userService: container.service.userService, navigationRouter: container.navigationRouter))
         }
     }
 }

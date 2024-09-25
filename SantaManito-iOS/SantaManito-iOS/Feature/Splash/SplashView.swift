@@ -68,6 +68,6 @@ struct SplashView: View {
 }
 
 #Preview {
-    SplashView(viewModel: SplashViewModel(authService: DIContainer(service: StubService()).service.authService))
-        .environmentObject(DIContainer(service: StubService()))
+    SplashView(viewModel: SplashViewModel(authService: DIContainer.stub.service.authService))
+        .environmentObject(DIContainer.stub)
 }
