@@ -49,7 +49,7 @@ extension Date {
         return formatter.string(from: self)
     }
     
-    func addingDays(remainingDays: Int) -> Date {
+    func adjustDays(remainingDays: Int) -> Date {
         let calendar = Calendar.current
         guard let futureDate = calendar.date(byAdding: .day, value: remainingDays, to: self) else { return Date() }
         let dateComponents = calendar.dateComponents([.year, .month, .day], from: futureDate)

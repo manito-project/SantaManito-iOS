@@ -66,6 +66,15 @@
 		D2A8F60E2C9D18FF00810BCF /* EditRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */; };
 		D2A8F6122C9D1A4F00810BCF /* MakeRoomInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */; };
 		D2A8F6142C9E792100810BCF /* EnterRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6132C9E792100810BCF /* EnterRoomService.swift */; };
+		D2A8F6192CA1168B00810BCF /* MatchingResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6182CA1168B00810BCF /* MatchingResultViewModel.swift */; };
+		D2A8F61B2CA116BD00810BCF /* MatchingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F61A2CA116BD00810BCF /* MatchingViewModel.swift */; };
+		D2A8F61D2CA116F800810BCF /* MatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F61C2CA116F800810BCF /* MatchingView.swift */; };
+		D2A8F61F2CA1170B00810BCF /* MatchingResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F61E2CA1170B00810BCF /* MatchingResultView.swift */; };
+		D2A8F6212CA1172100810BCF /* FinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6202CA1172100810BCF /* FinishView.swift */; };
+		D2A8F6232CA1173600810BCF /* FinishViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6222CA1173600810BCF /* FinishViewModel.swift */; };
+		D2A8F6252CA118EA00810BCF /* MatchRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6242CA118E900810BCF /* MatchRoomService.swift */; };
+		D2A8F6272CA1458300810BCF /* ShowAllResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6262CA1458300810BCF /* ShowAllResultView.swift */; };
+		D2A8F6292CA145A100810BCF /* ShowAllResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6282CA145A100810BCF /* ShowAllResultViewModel.swift */; };
 		D2BC1A8C2C8EBCF500CB32B8 /* SMColoredTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A8B2C8EBCF500CB32B8 /* SMColoredTextView.swift */; };
 		D2BC1A902C8F4C6400CB32B8 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A8F2C8F4C6400CB32B8 /* Date+.swift */; };
 		D2BC1A922C90101E00CB32B8 /* EditMissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A912C90101E00CB32B8 /* EditMissionView.swift */; };
@@ -139,6 +148,15 @@
 		D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomService.swift; sourceTree = "<group>"; };
 		D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRoomInfo.swift; sourceTree = "<group>"; };
 		D2A8F6132C9E792100810BCF /* EnterRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomService.swift; sourceTree = "<group>"; };
+		D2A8F6182CA1168B00810BCF /* MatchingResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingResultViewModel.swift; sourceTree = "<group>"; };
+		D2A8F61A2CA116BD00810BCF /* MatchingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingViewModel.swift; sourceTree = "<group>"; };
+		D2A8F61C2CA116F800810BCF /* MatchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingView.swift; sourceTree = "<group>"; };
+		D2A8F61E2CA1170B00810BCF /* MatchingResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingResultView.swift; sourceTree = "<group>"; };
+		D2A8F6202CA1172100810BCF /* FinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishView.swift; sourceTree = "<group>"; };
+		D2A8F6222CA1173600810BCF /* FinishViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishViewModel.swift; sourceTree = "<group>"; };
+		D2A8F6242CA118E900810BCF /* MatchRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchRoomService.swift; sourceTree = "<group>"; };
+		D2A8F6262CA1458300810BCF /* ShowAllResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAllResultView.swift; sourceTree = "<group>"; };
+		D2A8F6282CA145A100810BCF /* ShowAllResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAllResultViewModel.swift; sourceTree = "<group>"; };
 		D2BC1A8B2C8EBCF500CB32B8 /* SMColoredTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMColoredTextView.swift; sourceTree = "<group>"; };
 		D2BC1A8F2C8F4C6400CB32B8 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		D2BC1A912C90101E00CB32B8 /* EditMissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMissionView.swift; sourceTree = "<group>"; };
@@ -396,6 +414,7 @@
 		D22E9B7A2C88042500086549 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				D2A8F6152CA1165D00810BCF /* MatchRoom */,
 				D26BFA882C91984700C5CF86 /* EnterRoom */,
 				877CA0A02C94303200D23193 /* Splash */,
 				D25570E52C8E857300CCC226 /* MakeRoom */,
@@ -488,8 +507,40 @@
 			children = (
 				D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */,
 				D2A8F6132C9E792100810BCF /* EnterRoomService.swift */,
+				D2A8F6242CA118E900810BCF /* MatchRoomService.swift */,
 			);
 			path = Room;
+			sourceTree = "<group>";
+		};
+		D2A8F6152CA1165D00810BCF /* MatchRoom */ = {
+			isa = PBXGroup;
+			children = (
+				D2A8F6172CA1166D00810BCF /* ViewModel */,
+				D2A8F6162CA1166800810BCF /* View */,
+			);
+			path = MatchRoom;
+			sourceTree = "<group>";
+		};
+		D2A8F6162CA1166800810BCF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D2A8F61E2CA1170B00810BCF /* MatchingResultView.swift */,
+				D2A8F61C2CA116F800810BCF /* MatchingView.swift */,
+				D2A8F6202CA1172100810BCF /* FinishView.swift */,
+				D2A8F6262CA1458300810BCF /* ShowAllResultView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D2A8F6172CA1166D00810BCF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D2A8F6182CA1168B00810BCF /* MatchingResultViewModel.swift */,
+				D2A8F61A2CA116BD00810BCF /* MatchingViewModel.swift */,
+				D2A8F6222CA1173600810BCF /* FinishViewModel.swift */,
+				D2A8F6282CA145A100810BCF /* ShowAllResultViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		D2BC1A9D2C90473300CB32B8 /* MakeRoom */ = {
@@ -581,6 +632,7 @@
 				87C06E5D2C9EAB6800F03637 /* NaivgationRouter.swift in Sources */,
 				D2BC1A8C2C8EBCF500CB32B8 /* SMColoredTextView.swift in Sources */,
 				877CA0A42C94305200D23193 /* SplashViewModel.swift in Sources */,
+				D2A8F6272CA1458300810BCF /* ShowAllResultView.swift in Sources */,
 				874017AA2CA1B2FC0096E847 /* RoomDetail.swift in Sources */,
 				D22E9B5B2C88031A00086549 /* HomeView.swift in Sources */,
 				877CA0A62C94305A00D23193 /* CancelBag.swift in Sources */,
@@ -599,19 +651,24 @@
 				877EA23F2C88AB930073FFBD /* AuthService.swift in Sources */,
 				879829092C9EA54B00A863EC /* BaseView.swift in Sources */,
 				D2BC1A922C90101E00CB32B8 /* EditMissionView.swift in Sources */,
+				D2A8F6212CA1172100810BCF /* FinishView.swift in Sources */,
 				D22E9B592C88031A00086549 /* SantaManito_iOSApp.swift in Sources */,
+				D2A8F6192CA1168B00810BCF /* MatchingResultViewModel.swift in Sources */,
 				D25570ED2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift in Sources */,
 				874017BB2CA2B64E0096E847 /* WKWebView.swift in Sources */,
+				D2A8F6232CA1173600810BCF /* FinishViewModel.swift in Sources */,
 				877EA2322C889DCB0073FFBD /* ButtonStyles.swift in Sources */,
 				87C06E5A2C9EA5FE00F03637 /* Device.swift in Sources */,
 				874017B32CA29FEF0096E847 /* MyPageItem.swift in Sources */,
 				877CA07F2C8C50DC00D23193 /* Corner.swift in Sources */,
+				D2A8F6292CA145A100810BCF /* ShowAllResultViewModel.swift in Sources */,
 				877CA0732C8C4C5C00D23193 /* SMView.swift in Sources */,
 				87C06E5F2C9EADD600F03637 /* NavigationRoutingView.swift in Sources */,
 				D2BC1AA32C90A29200CB32B8 /* CheckRoomInfoViewModel.swift in Sources */,
 				877EA23D2C88AB8D0073FFBD /* UserService.swift in Sources */,
 				874017B02CA29C820096E847 /* MyPageViewModel.swift in Sources */,
 				877EA2412C88ABA00073FFBD /* PushNotificationService.swift in Sources */,
+				D2A8F6252CA118EA00810BCF /* MatchRoomService.swift in Sources */,
 				D25570E92C8E858A00CCC226 /* EditRoomInfoView.swift in Sources */,
 				D26BFA802C91692700C5CF86 /* SMInfoView.swift in Sources */,
 				87C06E612C9EADE700F03637 /* NavigationDestination.swift in Sources */,
@@ -623,13 +680,16 @@
 				D22E9B6D2C8803C800086549 /* Extension.swift in Sources */,
 				877CA0A22C94304B00D23193 /* SplashView.swift in Sources */,
 				D2A8F6122C9D1A4F00810BCF /* MakeRoomInfo.swift in Sources */,
+				D2A8F61F2CA1170B00810BCF /* MatchingResultView.swift in Sources */,
 				D2BC1AA52C91357F00CB32B8 /* SMInviteCodeAlertView.swift in Sources */,
 				877CA0832C8CA75C00D23193 /* SMAlertView.swift in Sources */,
 				877CA0812C8C555D00D23193 /* SMScrollView.swift in Sources */,
 				874017B72CA2A9F30096E847 /* EditUsernameViewModel.swift in Sources */,
 				879829072C98284B00A863EC /* RoomService.swift in Sources */,
 				D2A8F6142C9E792100810BCF /* EnterRoomService.swift in Sources */,
+				D2A8F61B2CA116BD00810BCF /* MatchingViewModel.swift in Sources */,
 				D2A8F60E2C9D18FF00810BCF /* EditRoomService.swift in Sources */,
+				D2A8F61D2CA116F800810BCF /* MatchingView.swift in Sources */,
 				879829052C9827B200A863EC /* HomeViewModel.swift in Sources */,
 				D26BFA912C919D0000C5CF86 /* ManitoRoomView.swift in Sources */,
 				877CA0892C8CB61100D23193 /* DSKitDemoView.swift in Sources */,
