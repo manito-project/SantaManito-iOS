@@ -13,6 +13,18 @@ struct LoadingView: View {
     }
 }
 
+extension View {
+    func loading(_ isLoading: Bool) -> some View {
+        self.overlay {
+            if isLoading {
+                LoadingView()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(.black.opacity(0.2))
+            }
+        }
+    }
+}
+
 #Preview {
     LoadingView()
 }

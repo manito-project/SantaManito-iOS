@@ -12,6 +12,7 @@ enum NavigationDestination: Hashable {
     case enterRoom
     
     case myPage
+    case editUsername
     
     //EditRoom
     case editRoom(viewType: EditRoomViewType)

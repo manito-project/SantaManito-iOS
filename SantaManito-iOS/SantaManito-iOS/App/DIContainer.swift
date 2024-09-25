@@ -9,18 +9,29 @@ import Foundation
 
 typealias NavigationRoutableType = NavigationRoutable & ObservableObjectSettable
 
-class DIContainer: ObservableObject {
+final class DIContainer: ObservableObject {
     
     var service: ServiceType
-    var navigationRouter: NavigationRoutable & ObservableObjectSettable
+    var navigationRouter: NavigationRoutableType
     
-    init(
+    fileprivate init(
         service: ServiceType,
-        navigationRouter: NavigationRoutable & ObservableObjectSettable = NavigationRouter()
+        navigationRouter: NavigationRoutableType = NavigationRouter()
     ) {
         self.service = service
         self.navigationRouter = navigationRouter
         
         navigationRouter.setObjectWillChange(objectWillChange)
+    }
+}
+
+extension DIContainer {
+    
+    static var `default`: DIContainer {
+        DIContainer(service: StubService()) // TODO: 실제 service로 변경 필요
+    }
+    
+    static var stub: DIContainer {
+        return .init(service: StubService())
     }
 }

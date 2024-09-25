@@ -189,6 +189,6 @@ fileprivate struct AgreementCell: View {
 }
 
 #Preview {
-    OnboardingView(viewModel: .init(userService: DIContainer(service: StubService()).service.userService, signUpCompleted: nil))
+    OnboardingView(viewModel: .init(userService: DIContainer.stub.service.userService, signUpCompleted: nil))
     
 }

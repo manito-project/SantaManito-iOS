@@ -36,10 +36,10 @@ struct HomeView: View {
                                 Button {
                                     viewModel.send(.myPageButtonDidTap)
                                 } label: {
-                                    Image(.btnMinus) //TODO: 사람 에셋으로 변경
+                                    Image(.btnPerson) //TODO: 사람 에셋으로 변경
                                         .resizable()
                                         .scaledToFit()
-                                        .frame(width: 42, height: 42)
+                                        .frame(width: 24, height: 24)
                                 }
                             }
                         }
@@ -316,7 +316,9 @@ fileprivate struct HomeRoomStateChip: View {
 
 
 #Preview {
-    let container = DIContainer(service: StubService())
-    return HomeView(viewModel: HomeViewModel(roomService: StubRoomService(), navigationRouter: container.navigationRouter))
-        .environmentObject(container)
+    HomeView(viewModel:
+                HomeViewModel(roomService:
+                                DIContainer.stub.service.roomService,
+                              navigationRouter: DIContainer.stub.navigationRouter))
+        .environmentObject(DIContainer.stub)
 }
