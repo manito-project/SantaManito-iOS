@@ -15,6 +15,6 @@ struct UserResponse: Decodable {
 
 extension UserResponse {
     func toEntity() -> User {
-        .init(id: id, username: username)
+        .init(id: id, username: username) // TODO: manittoUserId 사용되는 값인지 확인 필요. 사용된다면 추가해야됨
     }
 }

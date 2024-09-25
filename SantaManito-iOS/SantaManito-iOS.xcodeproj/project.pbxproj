@@ -18,7 +18,7 @@
 		874017B52CA2A68A0096E847 /* EditUsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017B42CA2A68A0096E847 /* EditUsernameView.swift */; };
 		874017B72CA2A9F30096E847 /* EditUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017B62CA2A9F30096E847 /* EditUsernameViewModel.swift */; };
 		874017B92CA2B0020096E847 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017B82CA2B0020096E847 /* User.swift */; };
-		874017BB2CA2B64E0096E847 /* WKWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017BA2CA2B64E0096E847 /* WKWebView.swift */; };
+		874017BB2CA2B64E0096E847 /* SMWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017BA2CA2B64E0096E847 /* SMWebView.swift */; };
 		877CA0712C8AB3DE00D23193 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0702C8AB3DE00D23193 /* LoadingView.swift */; };
 		877CA0732C8C4C5C00D23193 /* SMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0722C8C4C5C00D23193 /* SMView.swift */; };
 		877CA0752C8C4F4800D23193 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 877CA0742C8C4F4800D23193 /* Pretendard-Bold.otf */; };
@@ -51,7 +51,6 @@
 		D22E9B5D2C88031C00086549 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22E9B5C2C88031C00086549 /* Assets.xcassets */; };
 		D22E9B602C88031C00086549 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22E9B5F2C88031C00086549 /* Preview Assets.xcassets */; };
 		D22E9B6B2C8803C100086549 /* ObservableObjectSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B6A2C8803C100086549 /* ObservableObjectSettable.swift */; };
-		D22E9B6D2C8803C800086549 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B6C2C8803C800086549 /* Extension.swift */; };
 		D22E9B732C8803E500086549 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B722C8803E500086549 /* Service.swift */; };
 		D22E9B752C8803EC00086549 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B742C8803EC00086549 /* Provider.swift */; };
 		D22E9B7E2C8804B600086549 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22E9B7D2C8804B600086549 /* Colors.xcassets */; };
@@ -98,7 +97,7 @@
 		874017B42CA2A68A0096E847 /* EditUsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUsernameView.swift; sourceTree = "<group>"; };
 		874017B62CA2A9F30096E847 /* EditUsernameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUsernameViewModel.swift; sourceTree = "<group>"; };
 		874017B82CA2B0020096E847 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		874017BA2CA2B64E0096E847 /* WKWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebView.swift; sourceTree = "<group>"; };
+		874017BA2CA2B64E0096E847 /* SMWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMWebView.swift; sourceTree = "<group>"; };
 		877CA0702C8AB3DE00D23193 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		877CA0722C8C4C5C00D23193 /* SMView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMView.swift; sourceTree = "<group>"; };
 		877CA0742C8C4F4800D23193 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
@@ -132,7 +131,6 @@
 		D22E9B5C2C88031C00086549 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D22E9B5F2C88031C00086549 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D22E9B6A2C8803C100086549 /* ObservableObjectSettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableObjectSettable.swift; sourceTree = "<group>"; };
-		D22E9B6C2C8803C800086549 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		D22E9B722C8803E500086549 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		D22E9B742C8803EC00086549 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		D22E9B7D2C8804B600086549 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -187,6 +185,52 @@
 			path = MyPage;
 			sourceTree = "<group>";
 		};
+		874017BC2CA3EEFD0096E847 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				874017BD2CA3EF290096E847 /* MyPage */,
+				874017BE2CA3EF2F0096E847 /* EditUsername */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		874017BD2CA3EF290096E847 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				874017AD2CA29C690096E847 /* MyPageView.swift */,
+				874017AF2CA29C820096E847 /* MyPageViewModel.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		874017BE2CA3EF2F0096E847 /* EditUsername */ = {
+			isa = PBXGroup;
+			children = (
+				874017B42CA2A68A0096E847 /* EditUsernameView.swift */,
+				874017B62CA2A9F30096E847 /* EditUsernameViewModel.swift */,
+			);
+			path = EditUsername;
+			sourceTree = "<group>";
+		};
+		874017BF2CA3EFBE0096E847 /* Room */ = {
+			isa = PBXGroup;
+			children = (
+				D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */,
+				D2BC1A9B2C90473000CB32B8 /* Mission.swift */,
+				874017AB2CA1B3040096E847 /* RoomState.swift */,
+				874017A92CA1B2FC0096E847 /* RoomDetail.swift */,
+			);
+			path = Room;
+			sourceTree = "<group>";
+		};
+		874017C02CA3EFC70096E847 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				874017B82CA2B0020096E847 /* User.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		877CA06B2C8AA1AD00D23193 /* Component */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +247,7 @@
 		877CA07D2C8C50D000D23193 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				874017BA2CA2B64E0096E847 /* SMWebView.swift */,
 				877CA07E2C8C50DC00D23193 /* Corner.swift */,
 			);
 			path = View;
@@ -232,11 +277,6 @@
 			children = (
 				D22E9B5A2C88031A00086549 /* HomeView.swift */,
 				879829042C9827B200A863EC /* HomeViewModel.swift */,
-				874017AD2CA29C690096E847 /* MyPageView.swift */,
-				874017AF2CA29C820096E847 /* MyPageViewModel.swift */,
-				874017B42CA2A68A0096E847 /* EditUsernameView.swift */,
-				874017B62CA2A9F30096E847 /* EditUsernameViewModel.swift */,
-				874017BA2CA2B64E0096E847 /* WKWebView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -330,7 +370,6 @@
 		D22E9B682C8803B100086549 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				D22E9B6C2C8803C800086549 /* Extension.swift */,
 				D2BC1A8F2C8F4C6400CB32B8 /* Date+.swift */,
 			);
 			path = Extension;
@@ -360,11 +399,9 @@
 		D22E9B6F2C8803D200086549 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				874017C02CA3EFC70096E847 /* User */,
+				874017BF2CA3EFBE0096E847 /* Room */,
 				874017B12CA29FE20096E847 /* MyPage */,
-				D2BC1A9D2C90473300CB32B8 /* MakeRoom */,
-				874017A92CA1B2FC0096E847 /* RoomDetail.swift */,
-				874017AB2CA1B3040096E847 /* RoomState.swift */,
-				874017B82CA2B0020096E847 /* User.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -414,12 +451,13 @@
 		D22E9B7A2C88042500086549 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
-				D2A8F6152CA1165D00810BCF /* MatchRoom */,
-				D26BFA882C91984700C5CF86 /* EnterRoom */,
 				877CA0A02C94303200D23193 /* Splash */,
-				D25570E52C8E857300CCC226 /* MakeRoom */,
-				877EA2332C88AA410073FFBD /* Home */,
 				877EA2372C88AA780073FFBD /* Onboarding */,
+				877EA2332C88AA410073FFBD /* Home */,
+				D25570E52C8E857300CCC226 /* MakeRoom */,
+				D26BFA882C91984700C5CF86 /* EnterRoom */,
+				D2A8F6152CA1165D00810BCF /* MatchRoom */,
+				874017BC2CA3EEFD0096E847 /* MyPage */,
 			);
 			path = Feature;
 			sourceTree = "<group>";
@@ -543,15 +581,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		D2BC1A9D2C90473300CB32B8 /* MakeRoom */ = {
-			isa = PBXGroup;
-			children = (
-				D2BC1A9B2C90473000CB32B8 /* Mission.swift */,
-				D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */,
-			);
-			path = MakeRoom;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -655,7 +684,7 @@
 				D22E9B592C88031A00086549 /* SantaManito_iOSApp.swift in Sources */,
 				D2A8F6192CA1168B00810BCF /* MatchingResultViewModel.swift in Sources */,
 				D25570ED2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift in Sources */,
-				874017BB2CA2B64E0096E847 /* WKWebView.swift in Sources */,
+				874017BB2CA2B64E0096E847 /* SMWebView.swift in Sources */,
 				D2A8F6232CA1173600810BCF /* FinishViewModel.swift in Sources */,
 				877EA2322C889DCB0073FFBD /* ButtonStyles.swift in Sources */,
 				87C06E5A2C9EA5FE00F03637 /* Device.swift in Sources */,
@@ -677,7 +706,6 @@
 				D276B6082C8AB64B00230FA2 /* Font.swift in Sources */,
 				D26BFA932C919D0900C5CF86 /* ManitoRoomViewModel.swift in Sources */,
 				D22E9B752C8803EC00086549 /* Provider.swift in Sources */,
-				D22E9B6D2C8803C800086549 /* Extension.swift in Sources */,
 				877CA0A22C94304B00D23193 /* SplashView.swift in Sources */,
 				D2A8F6122C9D1A4F00810BCF /* MakeRoomInfo.swift in Sources */,
 				D2A8F61F2CA1170B00810BCF /* MatchingResultView.swift in Sources */,
