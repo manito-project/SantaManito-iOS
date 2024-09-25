@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EditMissionView: View {
+    @EnvironmentObject var container: DIContainer
     @StateObject var viewModel: EditMissionViewModel
     
     var body: some View {
@@ -186,5 +187,11 @@ fileprivate struct MakeMissionButtonView: View {
 }
 
 #Preview {
-    EditMissionView(viewModel: EditMissionViewModel())
+    let container = DIContainer(service: StubService())
+    return EditMissionView(
+        viewModel: EditMissionViewModel(
+            navigationRouter: container.navigationRouter
+        )
+    )
+    .environmentObject(container)
 }

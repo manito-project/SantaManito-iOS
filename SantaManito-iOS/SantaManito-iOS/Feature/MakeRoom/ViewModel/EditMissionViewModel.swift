@@ -29,7 +29,11 @@ class EditMissionViewModel: ObservableObject {
     
     //MARK: - Init
     
-    init() {
+    private var navigationRouter: NavigationRoutableType
+    
+    init(navigationRouter: NavigationRoutableType) {
+        self.navigationRouter = navigationRouter
+        
         observe()
     }
     
