@@ -12,7 +12,6 @@ struct EditRoomInfoView: View {
     @StateObject var viewModel: EditRoomInfoViewModel
 
     var body: some View {
-        NavigationStack(path: $container.navigationRouter.destinations) {
             SMScrollView (padding: -50, topView: {
                 SMInfoView(
                     title: viewModel.viewType.title,
@@ -44,7 +43,6 @@ struct EditRoomInfoView: View {
             )
             .onAppear {
                 viewModel.send(action: .onAppear)
-            }
         }.navigationBarBackButtonHidden()
     }
 }

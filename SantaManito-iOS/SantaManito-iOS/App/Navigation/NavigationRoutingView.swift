@@ -38,9 +38,10 @@ struct NavigationRoutingView: View {
             )
         case .myPage:
             Text("마이페이지")
-        case .makeMission:
+        case let .makeMission(roomInfo):
             EditMissionView(
                 viewModel: EditMissionViewModel(
+                    roomInfo: roomInfo,
                     navigationRouter: container.navigationRouter
                 )
             )
