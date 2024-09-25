@@ -49,14 +49,20 @@ class ManitoWaitingRoomViewModel: ObservableObject {
     
     //MARK: Dependency
     
-    var enterRoomService: EnterRoomServiceType
-    var editRoomService: EditRoomServiceType
+    private var enterRoomService: EnterRoomServiceType
+    private var editRoomService: EditRoomServiceType
+    private var navigationRouter: NavigationRoutableType
     
     //MARK: Init
     
-    init(enterRoomService: EnterRoomServiceType, editRoomService: EditRoomServiceType) {
+    init(
+        enterRoomService: EnterRoomServiceType,
+        editRoomService: EditRoomServiceType,
+        navigationRouter: NavigationRoutableType
+    ) {
         self.enterRoomService = enterRoomService
         self.editRoomService = editRoomService
+        self.navigationRouter = navigationRouter
     }
     
     //MARK: Properties
@@ -117,15 +123,17 @@ class ManitoWaitingRoomViewModel: ObservableObject {
                 }, receiveValue: { participate in
                     owner.participateList = participate
                 }).store(in: cancelBag)
+            
         case .copyInviteCode:
             //TODO: 초대코드 복사하기
             break
+            
         case .matchingButtonClicked:
-            //TODO: 매칭시작하기 -> 화면 전환을 해야겠죠
-            break
+//            navigationRouter.push(to: .matchRoom) -> 원래는 이거
+            navigationRouter.push(to: .matchedRoom)
+            
         case .editRoomInfo:
-            //TODO: 방 수정하기 뷰로 넘어감
-            break
+            navigationRouter.push(to: .editRoom(viewType: .editMode))
         }
     }
 }

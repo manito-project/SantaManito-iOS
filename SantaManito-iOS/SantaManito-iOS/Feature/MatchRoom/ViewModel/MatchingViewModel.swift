@@ -26,11 +26,16 @@ class MatchingViewModel: ObservableObject {
     //MARK: Dependency
     
     private var roomService: MatchRoomServiceType
+    private var navigationRouter: NavigationRoutable
     
     //MARK: Init
     
-    init(roomService: MatchRoomServiceType) {
+    init(
+        roomService: MatchRoomServiceType,
+        navigationRouter: NavigationRoutable
+    ) {
         self.roomService = roomService
+        self.navigationRouter = navigationRouter
     }
     
     //MARK: Properties
@@ -49,9 +54,8 @@ class MatchingViewModel: ObservableObject {
             roomService.matchPlayer()
                 .catch { _ in Empty() }
                 .sink { [weak self] _ in
-                    //화면 전환
                     self?.state.isAnimating = false
-                    print("성공해서 화면 전환")
+                    self?.navigationRouter.push(to: .matchedRoom)
                 }
                 .store(in: cancelBag)
         }

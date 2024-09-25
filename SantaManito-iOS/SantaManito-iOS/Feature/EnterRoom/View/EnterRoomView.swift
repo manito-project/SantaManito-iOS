@@ -97,7 +97,7 @@ struct EnterRoomView: View {
     let container = DIContainer.stub
     return EnterRoomView(
         viewModel: EnterRoomViewModel(
-            roomService: StubEnterRoomService(),
+            roomService: container.service.enterRoomService,
             navigationRouter: container.navigationRouter
         )
     )

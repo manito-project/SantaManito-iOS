@@ -49,16 +49,38 @@ struct NavigationRoutingView: View {
             ManitoWaitingRoomView(
                 viewModel: .init(
                     enterRoomService: container.service.enterRoomService,
-                    editRoomService: container.service.editRoomService
+                    editRoomService: container.service.editRoomService, 
+                    navigationRouter: container.navigationRouter
                 )
             )
 
         case .myPage:
             MyPageView(viewModel: MyPageViewModel(navigationRouter: container.navigationRouter))
+            
         case .editUsername:
-            EditUsernameView(viewModel: EditUsernameViewModel(userService: container.service.userService, navigationRouter: container.navigationRouter))
+            EditUsernameView(
+                viewModel: EditUsernameViewModel(
+                    userService: container.service.userService,
+                    navigationRouter: container.navigationRouter
+                )
+            )
             Text("마이페이지")
 
+        case .matchRoom:
+            MatchingView(
+                viewModel: MatchingViewModel(
+                    roomService: container.service.matchRoomService,
+                    navigationRouter: container.navigationRouter
+                )
+            )
+        case .matchedRoom:
+            MatchingResultView(
+                viewModel: MatchingResultViewModel(
+                    matchRoomService: container.service.matchRoomService,
+                    editRoomService: container.service.editRoomService,
+                    navigationRouter: container.navigationRouter
+                )
+            )
         }
     }
 }
