@@ -18,19 +18,24 @@ class EnterRoomViewModel: ObservableObject {
     }
     struct State {
         var isEnabled: Bool = false //MARK: 히디의 고민: isEnabled라는 변수명이 너무 모호함 (초대코드에 텍스트가 있으면 버튼을 누를 수 있도록 하는 역할)
-        var canPush: Bool = false // 다음 화면으로 넘어갈 수 있는지를 나타내는 상태값 //MARK: 히디의 고민: canPush 조금 이상한? 느낌 ㅠ
         var isValid: Bool = true // 에러가 있는지 없는지 즉, 초대코드가 유효한지 근데 이걸 errMessage로 구분할지 애매한 상황
         var errMessage: String = ""
     }
     
     //MARK: Dependency
     
-    var roomService: EnterRoomServiceType
+    private var roomService: EnterRoomServiceType
+    private var navigationRouter: NavigationRoutableType
     
     //MARK: Init
     
-    init(roomService: EnterRoomServiceType) {
+    init(
+        roomService: EnterRoomServiceType,
+        navigationRouter: NavigationRoutableType
+    ) {
         self.roomService = roomService
+        self.navigationRouter = navigationRouter
+        
         observe()
     }
     
@@ -68,7 +73,7 @@ class EnterRoomViewModel: ObservableObject {
                     }
                 }, receiveValue: { _ in
                     owner.state.isValid = true
-                    owner.state.canPush = true
+                    owner.navigationRouter.push(to: .manitoWaitingRoom)
                 })
                 .store(in: cancelBag)
         }

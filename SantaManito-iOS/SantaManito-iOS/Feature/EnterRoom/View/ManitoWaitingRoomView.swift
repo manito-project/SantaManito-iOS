@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct ManitoRoomView: View {
-    @StateObject var viewModel: ManitoRoomViewModel
+struct ManitoWaitingRoomView: View {
+    @StateObject var viewModel: ManitoWaitingRoomViewModel
     
     var body: some View {
         VStack {
@@ -55,9 +55,9 @@ struct ManitoRoomView: View {
 }
 
 fileprivate struct TitleView: View {
-    @ObservedObject private var viewModel: ManitoRoomViewModel
+    @ObservedObject private var viewModel: ManitoWaitingRoomViewModel
     
-    fileprivate init(viewModel: ManitoRoomViewModel) {
+    fileprivate init(viewModel: ManitoWaitingRoomViewModel) {
         self.viewModel = viewModel
     }
     
@@ -113,9 +113,9 @@ fileprivate struct TitleView: View {
 }
 
 fileprivate struct ParticipateListView: View {
-    @ObservedObject private var viewModel: ManitoRoomViewModel
+    @ObservedObject private var viewModel: ManitoWaitingRoomViewModel
     
-    fileprivate init(viewModel: ManitoRoomViewModel) {
+    fileprivate init(viewModel: ManitoWaitingRoomViewModel) {
         self.viewModel = viewModel
     }
     
@@ -156,9 +156,9 @@ fileprivate struct ParticipateCellView: View {
 }
 
 fileprivate struct MatchingButtonView: View {
-    @ObservedObject private var viewModel: ManitoRoomViewModel
+    @ObservedObject private var viewModel: ManitoWaitingRoomViewModel
     
-    fileprivate init(viewModel: ManitoRoomViewModel) {
+    fileprivate init(viewModel: ManitoWaitingRoomViewModel) {
         self.viewModel = viewModel
     }
     
@@ -223,8 +223,8 @@ fileprivate struct MatchingButtonView: View {
 }
 
 #Preview {
-    ManitoRoomView(
-        viewModel: ManitoRoomViewModel(
+    ManitoWaitingRoomView(
+        viewModel: ManitoWaitingRoomViewModel(
             enterRoomService: StubEnterRoomService(),
             editRoomService: StubEditRoomService()
         )

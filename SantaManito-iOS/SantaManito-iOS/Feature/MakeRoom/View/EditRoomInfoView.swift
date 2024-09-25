@@ -281,7 +281,7 @@ fileprivate struct MakeRoomButtonView: View {
 
 
 #Preview {
-    let container = DIContainer(service: StubService())
+    let container = DIContainer.stub
     return EditRoomInfoView(
         viewModel: EditRoomInfoViewModel(
             viewType: .createMode,

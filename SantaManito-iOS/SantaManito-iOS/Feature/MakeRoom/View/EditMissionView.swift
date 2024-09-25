@@ -187,7 +187,7 @@ fileprivate struct MakeMissionButtonView: View {
 }
 
 #Preview {
-    let container = DIContainer(service: StubService())
+    let container = DIContainer.stub
     return EditMissionView(
         viewModel: EditMissionViewModel(
             roomInfo:
