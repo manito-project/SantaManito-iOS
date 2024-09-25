@@ -10,6 +10,7 @@ import SwiftUI
 extension Font {
     
     //weight: 600
+    static let semibold_24: Font = .custom("Pretendard-SemiBold", size: 24)
     static let semibold_20: Font = .custom("Pretendard-SemiBold", size: 20)
     static let semibold_18: Font = .custom("Pretendard-SemiBold", size: 18)
     static let semibold_16: Font = .custom("Pretendard-SemiBold", size: 16)

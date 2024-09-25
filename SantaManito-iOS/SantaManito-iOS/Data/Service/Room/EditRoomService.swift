@@ -25,7 +25,7 @@ struct StubEditRoomService: EditRoomServiceType {
             MakeRoomInfo(
                 name: "마니또 방 이름",
                 remainingDays: 10,
-                dueDate: Date().addingDays(remainingDays: 10)
+                dueDate: Date().adjustDays(remainingDays: 10)
             )
         ).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
