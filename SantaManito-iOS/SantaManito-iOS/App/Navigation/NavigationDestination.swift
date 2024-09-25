@@ -20,4 +20,8 @@ enum NavigationDestination: Hashable {
     case editRoom(viewType: EditRoomViewType)
     case makeMission(roomInfo: MakeRoomInfo)
     case roomInfo(roomInfo: MakeRoomInfo, missionList: [Mission])
+    
+    //Match
+    case matchRoom
+    case matchedRoom
 }

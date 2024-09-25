@@ -35,12 +35,18 @@ class MatchingResultViewModel: ObservableObject {
     
     private var matchRoomService: MatchRoomServiceType
     private var editRoomService: EditRoomServiceType
+    private var navigationRouter: NavigationRoutable
     
     //MARK: Init
     
-    init(matchRoomService: MatchRoomServiceType, editRoomService: EditRoomServiceType) {
+    init(
+        matchRoomService: MatchRoomServiceType,
+        editRoomService: EditRoomServiceType,
+        navigationRouter: NavigationRoutable
+    ) {
         self.matchRoomService = matchRoomService
         self.editRoomService = editRoomService
+        self.navigationRouter = navigationRouter
     }
     
     //MARK: Properties
@@ -64,8 +70,7 @@ class MatchingResultViewModel: ObservableObject {
                 .store(in: cancelBag)
 
         case .goHomeButtonClicked:
-            break
-            //TODO: 홈 화면으로 전환
+            navigationRouter.popToRootView()
         }
     }
 }

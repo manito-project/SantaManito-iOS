@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MatchingView: View {
+    @EnvironmentObject var container: DIContainer
     @StateObject var viewModel: MatchingViewModel
     @State private var rotation: Double = 0
     
@@ -59,9 +60,12 @@ struct MatchingView: View {
 }
 
 #Preview {
-    MatchingView(
+    let container = DIContainer.stub
+    return MatchingView(
         viewModel: MatchingViewModel(
-            roomService: StubMatchRoomService()
+            roomService: container.service.matchRoomService, 
+            navigationRouter: container.navigationRouter
         )
     )
+    .environmentObject(DIContainer.default)
 }

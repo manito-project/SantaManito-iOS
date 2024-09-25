@@ -285,7 +285,7 @@ fileprivate struct MakeRoomButtonView: View {
     return EditRoomInfoView(
         viewModel: EditRoomInfoViewModel(
             viewType: .createMode,
-            roomService: StubEditRoomService(),
+            roomService: container.service.editRoomService,
             navigationRouter: container.navigationRouter
         )
     )

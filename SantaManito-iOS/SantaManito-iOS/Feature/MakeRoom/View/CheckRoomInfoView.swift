@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CheckRoomInfoView: View {
+    @EnvironmentObject var container: DIContainer
     @StateObject var viewModel: CheckRoomInfoViewModel
     
     var body: some View {
@@ -194,12 +195,15 @@ private struct MissionCellView: View {
 }
 
 #Preview {
-    CheckRoomInfoView(viewModel: CheckRoomInfoViewModel(
-        roomInfo: MakeRoomInfo(
-            name: "여기가 마니또 방", remainingDays: 3, dueDate: Date()
-        ),
-        missionList: Mission.dummy(),
-        roomService: StubEditRoomService()
+    let container = DIContainer.stub
+    return CheckRoomInfoView(
+        viewModel: CheckRoomInfoViewModel(
+            roomInfo: MakeRoomInfo(
+                name: "여기가 마니또 방", remainingDays: 3, dueDate: Date()
+            ),
+            missionList: Mission.dummy(),
+            roomService: container.service.editRoomService
         )
     )
+    .environmentObject(DIContainer.default)
 }

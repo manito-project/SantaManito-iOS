@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ManitoWaitingRoomView: View {
+    @EnvironmentObject var container: DIContainer
     @StateObject var viewModel: ManitoWaitingRoomViewModel
     
     var body: some View {
@@ -223,10 +224,13 @@ fileprivate struct MatchingButtonView: View {
 }
 
 #Preview {
-    ManitoWaitingRoomView(
+    let container = DIContainer.stub
+    return ManitoWaitingRoomView(
         viewModel: ManitoWaitingRoomViewModel(
-            enterRoomService: StubEnterRoomService(),
-            editRoomService: StubEditRoomService()
+            enterRoomService: container.service.enterRoomService,
+            editRoomService: container.service.editRoomService,
+            navigationRouter: container.navigationRouter
         )
     )
+    .environmentObject(DIContainer.default)
 }
