@@ -12,39 +12,40 @@ struct EditRoomInfoView: View {
     @StateObject var viewModel: EditRoomInfoViewModel
 
     var body: some View {
-        SMScrollView (padding: -50, topView: {
-            SMInfoView(
-                title: viewModel.viewType.title,
-                description: viewModel.state.description
-            )
-        }, content: {
-            VStack {
-                SettingRoomInfoView(viewModel: viewModel)
-                
-                Spacer()
-                    .frame(height: 34)
-                
-                MakeRoomButtonView(viewModel: viewModel)
-                
-                Spacer()
-                    .frame(height: 40)
-            }
-            .padding(.horizontal, 16)
-        })
-        .smAlert(
-            isPresented: viewModel.state.isPresented,
-            title: "미션없는 마니또 게임은\n친구들이 심심해할 수 있어!",
-            primaryButton: ("건너뛰기", {
-                viewModel.send(action: .ignoreMissionButtonClicked)
-            }),
-            secondaryButton: ("미션 만들기", {
-                viewModel.send(action: .dismissAlert)
+        NavigationStack(path: $container.navigationRouter.destinations) {
+            SMScrollView (padding: -50, topView: {
+                SMInfoView(
+                    title: viewModel.viewType.title,
+                    description: viewModel.state.description
+                )
+            }, content: {
+                VStack {
+                    SettingRoomInfoView(viewModel: viewModel)
+                    
+                    Spacer()
+                        .frame(height: 34)
+                    
+                    MakeRoomButtonView(viewModel: viewModel)
+                    
+                    Spacer()
+                        .frame(height: 40)
+                }
+                .padding(.horizontal, 16)
             })
-        )
-        .onAppear {
-            viewModel.send(action: .onAppear)
-        }
-        .navigationBarBackButtonHidden()
+            .smAlert(
+                isPresented: viewModel.state.isPresented,
+                title: "미션없는 마니또 게임은\n친구들이 심심해할 수 있어!",
+                primaryButton: ("건너뛰기", {
+                    viewModel.send(action: .ignoreMissionButtonClicked)
+                }),
+                secondaryButton: ("미션 만들기", {
+                    viewModel.send(action: .dismissAlert)
+                })
+            )
+            .onAppear {
+                viewModel.send(action: .onAppear)
+            }
+        }.navigationBarBackButtonHidden()
     }
 }
 

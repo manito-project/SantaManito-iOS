@@ -16,7 +16,9 @@ struct NavigationRoutingView: View {
     var body: some View {
         switch destination {
         case let .editRoom(viewType):
-            EditRoomInfoView(viewModel: .init(viewType: viewType, roomService: container.service.editRoomService))
+            EditRoomInfoView(viewModel: .init(
+                viewType: viewType,
+                roomService: container.service.editRoomService))
         case .enterRoom:
             EnterRoomView(viewModel: .init(roomService: container.service.enterRoomService))
         case let .roomInfo(roomInfo, missionList):
