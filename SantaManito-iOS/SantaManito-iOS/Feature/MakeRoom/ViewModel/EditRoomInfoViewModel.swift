@@ -51,7 +51,7 @@ final class EditRoomInfoViewModel: ObservableObject {
     
     //MARK: - Dependency
     
-    private var viewType: EditRoomViewType
+    var viewType: EditRoomViewType
     private var roomService: EditRoomServiceType
     private var navigationRouter: NavigationRoutableType
     
@@ -154,7 +154,7 @@ final class EditRoomInfoViewModel: ObservableObject {
             //미션 미설정 확인 모달 보여주고 거기서도 okay하면 바로 방 확정짓는 파일로 넘어가기
             
         case .missionButtonClicked:
-            navigationRouter.push(to: <#T##NavigationDestination#>)
+            navigationRouter.push(to: .makeMission)
             print("missionButtonClicked")
             
         case .ignoreMissionButtonClicked:

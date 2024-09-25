@@ -13,4 +13,7 @@ enum NavigationDestination: Hashable {
     case enterRoom
     case roomInfo(roomInfo: MakeRoomInfo, missionList: [Mission])
     case myPage
+    
+    //EnterRoom
+    case makeMission
 }

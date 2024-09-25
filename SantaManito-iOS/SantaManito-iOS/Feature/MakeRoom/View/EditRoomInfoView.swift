@@ -283,10 +283,13 @@ fileprivate struct MakeRoomButtonView: View {
 
 
 #Preview {
-    EditRoomInfoView(
+    let container = DIContainer(service: StubService())
+    return EditRoomInfoView(
         viewModel: EditRoomInfoViewModel(
             viewType: .createMode,
-            roomService: StubEditRoomService()
+            roomService: StubEditRoomService(),
+            navigationRouter: container.navigationRouter
         )
     )
+    .environmentObject(container)
 }
