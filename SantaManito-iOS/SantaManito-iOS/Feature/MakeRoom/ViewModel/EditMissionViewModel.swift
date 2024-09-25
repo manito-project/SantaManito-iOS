@@ -30,8 +30,10 @@ class EditMissionViewModel: ObservableObject {
     //MARK: - Init
     
     private var navigationRouter: NavigationRoutableType
+    private var roomInfo: MakeRoomInfo
     
-    init(navigationRouter: NavigationRoutableType) {
+    init(roomInfo: MakeRoomInfo, navigationRouter: NavigationRoutableType) {
+        self.roomInfo = roomInfo
         self.navigationRouter = navigationRouter
         
         observe()
@@ -70,11 +72,8 @@ class EditMissionViewModel: ObservableObject {
         case .skipMissionButtonClicked:
             state.isPresented = true
             
-        case .ignoreMissionButtonClicked:
-            print("방 정보 확인 창으로 넘어갈거야!")
-            
-        case .makeMissionButtonClicked:
-            print("방 정보 확인 창으로 넘어갈거야!")
+        case .ignoreMissionButtonClicked, .makeMissionButtonClicked:
+            navigationRouter.push(to: .roomInfo(roomInfo: roomInfo, missionList: missionList))
 
         case .dismissAlert:
             state.isPresented = false
