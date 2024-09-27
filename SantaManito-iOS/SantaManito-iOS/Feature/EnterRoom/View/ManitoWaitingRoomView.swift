@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct ManitoRoomView: View {
-    @StateObject var viewModel: ManitoRoomViewModel
+struct ManitoWaitingRoomView: View {
+    @EnvironmentObject var container: DIContainer
+    @StateObject var viewModel: ManitoWaitingRoomViewModel
     
     var body: some View {
         VStack {
@@ -55,9 +56,9 @@ struct ManitoRoomView: View {
 }
 
 fileprivate struct TitleView: View {
-    @ObservedObject private var viewModel: ManitoRoomViewModel
+    @ObservedObject private var viewModel: ManitoWaitingRoomViewModel
     
-    fileprivate init(viewModel: ManitoRoomViewModel) {
+    fileprivate init(viewModel: ManitoWaitingRoomViewModel) {
         self.viewModel = viewModel
     }
     
@@ -113,9 +114,9 @@ fileprivate struct TitleView: View {
 }
 
 fileprivate struct ParticipateListView: View {
-    @ObservedObject private var viewModel: ManitoRoomViewModel
+    @ObservedObject private var viewModel: ManitoWaitingRoomViewModel
     
-    fileprivate init(viewModel: ManitoRoomViewModel) {
+    fileprivate init(viewModel: ManitoWaitingRoomViewModel) {
         self.viewModel = viewModel
     }
     
@@ -156,9 +157,9 @@ fileprivate struct ParticipateCellView: View {
 }
 
 fileprivate struct MatchingButtonView: View {
-    @ObservedObject private var viewModel: ManitoRoomViewModel
+    @ObservedObject private var viewModel: ManitoWaitingRoomViewModel
     
-    fileprivate init(viewModel: ManitoRoomViewModel) {
+    fileprivate init(viewModel: ManitoWaitingRoomViewModel) {
         self.viewModel = viewModel
     }
     
@@ -223,10 +224,13 @@ fileprivate struct MatchingButtonView: View {
 }
 
 #Preview {
-    ManitoRoomView(
-        viewModel: ManitoRoomViewModel(
-            enterRoomService: StubEnterRoomService(),
-            editRoomService: StubEditRoomService()
+    let container = DIContainer.stub
+    return ManitoWaitingRoomView(
+        viewModel: ManitoWaitingRoomViewModel(
+            enterRoomService: container.service.enterRoomService,
+            editRoomService: container.service.editRoomService,
+            navigationRouter: container.navigationRouter
         )
     )
+    .environmentObject(DIContainer.default)
 }

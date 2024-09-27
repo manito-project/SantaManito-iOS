@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MatchingResultView: View {
+    @EnvironmentObject var container: DIContainer
     @StateObject var viewModel: MatchingResultViewModel
     
     var body: some View {
@@ -120,10 +121,13 @@ fileprivate struct MatchingInfoView: View {
 }
 
 #Preview {
-    MatchingResultView(
+    let container = DIContainer.stub
+    return MatchingResultView(
         viewModel: MatchingResultViewModel(
-            matchRoomService: StubMatchRoomService(),
-            editRoomService: StubEditRoomService()
+            matchRoomService: container.service.matchRoomService,
+            editRoomService: container.service.editRoomService,
+            navigationRouter: container.navigationRouter
         )
     )
+    .environmentObject(DIContainer.default)
 }

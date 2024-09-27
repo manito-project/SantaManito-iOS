@@ -60,13 +60,13 @@ struct EnterRoomView: View {
                         Spacer()
                             .frame(height: 16)
                         
-                        if !viewModel.state.isValid {
+                        if viewModel.state.enterFailMessage.isPresented {
                             HStack {
                                 Image(.icError)
                                     .resizable()
                                     .frame(width: 20, height: 20)
                                 
-                                Text(viewModel.state.errMessage)
+                                Text(viewModel.state.enterFailMessage.text)
                                     .font(.medium_14)
                                     .foregroundColor(.smRed)
                                     .lineSpacing(3)
@@ -80,7 +80,7 @@ struct EnterRoomView: View {
                     Button("입장하기") {
                         viewModel.send(action: .enterButtonDidClicked)
                     }
-                    .disabled(!viewModel.state.isEnabled)
+                    .disabled(!viewModel.state.enterButtonDisabled)
                     .smBottomButtonStyle()
                     
                     Spacer()
@@ -94,9 +94,11 @@ struct EnterRoomView: View {
 
 
 #Preview {
-    EnterRoomView(
+    let container = DIContainer.stub
+    return EnterRoomView(
         viewModel: EnterRoomViewModel(
-            roomService: StubEnterRoomService()
+            roomService: container.service.enterRoomService,
+            navigationRouter: container.navigationRouter
         )
     )
     .environmentObject(DIContainer.default)

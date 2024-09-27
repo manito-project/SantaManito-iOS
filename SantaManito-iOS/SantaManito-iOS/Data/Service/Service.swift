@@ -13,6 +13,7 @@ protocol ServiceType {
     var roomService: RoomServiceType { get }
     var editRoomService: EditRoomServiceType { get }
     var enterRoomService: EnterRoomServiceType { get }
+    var matchRoomService: MatchRoomServiceType { get }
     var pushNotificationService: PushNotificationServiceType { get set }
 }
 
@@ -37,6 +38,7 @@ class StubService: ServiceType {
     var roomService: RoomServiceType = StubRoomService()
     var editRoomService: EditRoomServiceType = StubEditRoomService()
     var enterRoomService: EnterRoomServiceType = StubEnterRoomService()
+    var matchRoomService: MatchRoomServiceType = StubMatchRoomService()
     var pushNotificationService: PushNotificationServiceType = StubPushNotificationService()
     
 }
