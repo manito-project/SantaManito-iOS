@@ -17,9 +17,8 @@ class EnterRoomViewModel: ObservableObject {
         case enterButtonDidClicked
     }
     struct State {
-        var isEnabled: Bool = false //MARK: 히디의 고민: isEnabled라는 변수명이 너무 모호함 (초대코드에 텍스트가 있으면 버튼을 누를 수 있도록 하는 역할)
-        var isValid: Bool = true // 에러가 있는지 없는지 즉, 초대코드가 유효한지 근데 이걸 errMessage로 구분할지 애매한 상황
-        var errMessage: String = ""
+        var enterButtonDisabled: Bool = false //MARK: 히디의 고민: isEnabled라는 변수명이 너무 모호함 (초대코드에 텍스트가 있으면 버튼을 누를 수 있도록 하는 역할)
+        var enterFailMessage: (isPresented: Bool, text: String) = (false, "")
     }
     
     //MARK: Dependency
@@ -50,7 +49,7 @@ class EnterRoomViewModel: ObservableObject {
     func observe() {
         $inviteCode
             .map { !$0.isEmpty }
-            .assign(to: \.state.isEnabled, on: self)
+            .assign(to: \.state.enterButtonDisabled, on: self)
             .store(in: cancelBag)
     }
     
@@ -63,16 +62,14 @@ class EnterRoomViewModel: ObservableObject {
             roomService.validateParticipationCode(inviteCode: inviteCode)
                 .sink(receiveCompletion: { completion in
                     if case .failure(let error) = completion {
-                        owner.state.isValid = false
                         switch error {
                         case .deletedRoomCode, .invalidateCode, .alreadyMatchedError:
-                            owner.state.errMessage = "참여가 불가능한 방이야! 혹시 초대코드에 공백이 있는지 확인해줘."
+                            owner.state.enterFailMessage = (true, "참여가 불가능한 방이야! 혹시 초대코드에 공백이 있는지 확인해줘.")
                         case .alreadyInRoomError:
-                            owner.state.errMessage = "이미 참여중인 방이야!"
+                            owner.state.enterFailMessage = (true, "참여가 불가능한 방이야! 혹시 초대코드에 공백이 있는지 확인해줘.")
                         }
                     }
                 }, receiveValue: { _ in
-                    owner.state.isValid = true
                     owner.navigationRouter.push(to: .manitoWaitingRoom)
                 })
                 .store(in: cancelBag)
