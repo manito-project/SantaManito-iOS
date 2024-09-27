@@ -16,7 +16,7 @@ struct MatchingView: View {
         ZStack {
             Image(.splashBackground)
                 .resizable()
-                .frame(width: .infinity, height: .infinity)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             
             VStack{
                 Spacer()

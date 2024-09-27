@@ -42,7 +42,7 @@ struct CheckRoomInfoView: View {
             primaryButton: ("초대 코드 복사", {
                 viewModel.send(action: .copyInviteCode)
             })
-        )
+        ) //TODO: 몰루 변경 ㅋㅋ 뻘하게 웃기네
     }
     
 }
@@ -121,7 +121,8 @@ fileprivate struct DuedateInfoView: View {
                 .frame(height: 24)
             
             Rectangle()
-                .frame(width: .infinity, height: 1)
+                .frame(maxWidth: .infinity)
+                .frame(height: 1)
                 .foregroundColor(.smLightgray)
         }
         .frame(height: 102)

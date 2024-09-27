@@ -21,7 +21,7 @@ class EditMissionViewModel: ObservableObject {
         case dismissAlert
     }
     
-    struct State {
+    struct State { 
         var isEnabled: Bool = false
         var isPresented: Bool = false
         var canDelete: Bool = false
@@ -74,7 +74,7 @@ class EditMissionViewModel: ObservableObject {
             
         case .ignoreMissionButtonClicked, .makeMissionButtonClicked:
             state.isPresented = false
-            navigationRouter.push(to: .roomInfo(roomInfo: roomInfo, missionList: missionList))
+            navigationRouter.push(to: .roomInfo(roomInfo: roomInfo, missionList: missionList)) //TODO: string.empty인 미션도 같이 넘어가는 오류 해결해야함.
 
         case .dismissAlert:
             state.isPresented = false
