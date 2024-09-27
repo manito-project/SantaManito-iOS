@@ -100,9 +100,9 @@ fileprivate struct SettingRoomInfoView: View {
                 "",
                 text: $viewModel.roomInfo.name,
                 prompt: Text("재미있는 방 이름을 지어보자!").foregroundColor(.smLightgray)
-            ).onChange(of: viewModel.roomInfo.name) {
-                viewModel.send(action: .configRoomName($0))
-            }
+            )
+            .submitLabel(.done)
+            .inputLimit($viewModel.roomInfo.name, maxLength: 17)
             .font(.medium_16)
             .foregroundColor(.smDarkgray)
             .padding(.vertical, 16)
@@ -240,13 +240,19 @@ fileprivate struct MakeRoomButtonView: View {
                             .multilineTextAlignment(.center)
                         Spacer()
                     }
+                    .padding(.vertical, 17)
+                    .frame(maxWidth: .infinity)
+                    .background(
+                        viewModel.state.isBottomButtonsDisabled
+                        ? .smLightgray
+                        : .smDarkgray
+                    )
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
                     
                 }
-                .padding(.vertical, 17)
-                .frame(maxWidth: .infinity)
-                .background(viewModel.state.isEnabled ? .smDarkgray : .smLightgray)
-                .disabled(!viewModel.state.isEnabled)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .buttonStyle(ScaleButtonStyle())
+                .disabled(viewModel.state.isBottomButtonsDisabled)
+                
                 
                 Spacer()
                     .frame(width: 12)
@@ -263,11 +269,16 @@ fileprivate struct MakeRoomButtonView: View {
                             .multilineTextAlignment(.center)
                         Spacer()
                     }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 17)
+                    .background(viewModel.state.isBottomButtonsDisabled
+                                ? .smLightgray
+                                :.smRed)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
-                .padding(.vertical, 17)
-                .background(viewModel.state.isEnabled ? .smRed : .smLightgray)
-                .disabled(!viewModel.state.isEnabled)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .buttonStyle(ScaleButtonStyle())
+                .disabled(viewModel.state.isBottomButtonsDisabled)
+                
             }
         case .editMode:
             Button("수정 완료") {

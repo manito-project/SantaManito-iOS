@@ -29,7 +29,6 @@ final class EditRoomInfoViewModel: ObservableObject {
     
     enum Action {
         case onAppear // 방이름 작성
-        case configRoomName(String) // 방이름 작성
         case increaseDuedate // 마니또 마감 날짜 늘리기
         case decreaseDuedate // 마니또 마감 날짜 줄이기
         case configDuedateTime(Date) // 마니또 종료 시간 설정
@@ -41,7 +40,7 @@ final class EditRoomInfoViewModel: ObservableObject {
     }
     
     struct State {
-        var isEnabled: Bool = false
+        var isBottomButtonsDisabled: Bool = false
         var isPresented: Bool = false
         var canIncreaseDays: Bool = true
         var canDecreaseDays: Bool = true
@@ -84,8 +83,8 @@ final class EditRoomInfoViewModel: ObservableObject {
     
     func observe() {
         $roomInfo
-            .map { !$0.name.isEmpty }
-            .assign(to: \.state.isEnabled, on: self)
+            .map { $0.name.isEmpty }
+            .assign(to: \.state.isBottomButtonsDisabled, on: self)
             .store(in: cancelBag)
         
         $roomInfo
@@ -135,9 +134,6 @@ final class EditRoomInfoViewModel: ObservableObject {
                     }
                     .store(in: cancelBag)
             }
-            
-        case .configRoomName(let name):
-            roomInfo.name = name.count >= 17 ? String(name.prefix(17)) : name
             
         case .increaseDuedate:
             if state.canIncreaseDays { roomInfo.remainingDays += 1 }
