@@ -64,7 +64,6 @@ struct NavigationRoutingView: View {
                     navigationRouter: container.navigationRouter
                 )
             )
-            Text("마이페이지")
 
         case .matchRoom:
             MatchingView(
