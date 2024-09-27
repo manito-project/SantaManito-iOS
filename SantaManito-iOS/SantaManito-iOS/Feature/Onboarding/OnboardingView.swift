@@ -11,7 +11,7 @@ struct OnboardingView: View {
     
     @EnvironmentObject var container: DIContainer
     @StateObject var viewModel: OnboardingViewModel
-    
+    @FocusState var nicknameTextFieldFocused: Bool
     var body: some View {
         SMView {
             ZStack {
@@ -95,6 +95,7 @@ struct OnboardingView: View {
                 )
                 
                 Spacer()
+                    
                 
                 Button(
                     viewModel.state.step == .nickname
@@ -105,11 +106,14 @@ struct OnboardingView: View {
                 }
                 .smBottomButtonStyle()
                 .disabled(viewModel.state.bottomButtonDisabled)
-                
-                
-            }.padding(.horizontal, 16)
-            
+            }
+            .padding(.horizontal, 16)
+            .ignoresSafeArea(.keyboard)
         }
+        .onTapGesture {
+            nicknameTextFieldFocused = false
+        }
+        
         
     }
     
@@ -129,6 +133,9 @@ struct OnboardingView: View {
                     .foregroundColor(.smLightgray)
             )
             .smTextFieldStyle()
+            .inputLimit($viewModel.nickname, maxLength: 10)
+            .submitLabel(.done)
+            .focused($nicknameTextFieldFocused)
             .padding(.top, 12)
             .padding(.bottom, 24)
         }
