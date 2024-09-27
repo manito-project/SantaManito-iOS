@@ -36,7 +36,7 @@ struct StubEnterRoomService: EnterRoomServiceType {
     }
     
     func getUser(_ userID: String) -> AnyPublisher<Bool, Error> {
-        return Just(false).setFailureType(to: Error.self).eraseToAnyPublisher()
+        return Just(true).setFailureType(to: Error.self).eraseToAnyPublisher()
 //        return Just(false).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
     

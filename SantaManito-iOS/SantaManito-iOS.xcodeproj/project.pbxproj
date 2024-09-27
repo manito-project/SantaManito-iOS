@@ -54,13 +54,13 @@
 		D22E9B732C8803E500086549 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B722C8803E500086549 /* Service.swift */; };
 		D22E9B752C8803EC00086549 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B742C8803EC00086549 /* Provider.swift */; };
 		D22E9B7E2C8804B600086549 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22E9B7D2C8804B600086549 /* Colors.xcassets */; };
+		D25411A42CA4007A00B87568 /* ManitoWaitingRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA922C919D0900C5CF86 /* ManitoWaitingRoomViewModel.swift */; };
 		D25570E92C8E858A00CCC226 /* EditRoomInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570E82C8E858A00CCC226 /* EditRoomInfoView.swift */; };
 		D25570ED2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570EC2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift */; };
 		D26BFA802C91692700C5CF86 /* SMInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA7F2C91692700C5CF86 /* SMInfoView.swift */; };
 		D26BFA8C2C91987200C5CF86 /* EnterRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA8B2C91987200C5CF86 /* EnterRoomView.swift */; };
 		D26BFA8E2C91987900C5CF86 /* EnterRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA8D2C91987900C5CF86 /* EnterRoomViewModel.swift */; };
-		D26BFA912C919D0000C5CF86 /* ManitoRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA902C919D0000C5CF86 /* ManitoRoomView.swift */; };
-		D26BFA932C919D0900C5CF86 /* ManitoRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA922C919D0900C5CF86 /* ManitoRoomViewModel.swift */; };
+		D26BFA912C919D0000C5CF86 /* ManitoWaitingRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA902C919D0000C5CF86 /* ManitoWaitingRoomView.swift */; };
 		D276B6082C8AB64B00230FA2 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = D276B6072C8AB64B00230FA2 /* Font.swift */; };
 		D2A8F60E2C9D18FF00810BCF /* EditRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */; };
 		D2A8F6122C9D1A4F00810BCF /* MakeRoomInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */; };
@@ -139,8 +139,8 @@
 		D26BFA7F2C91692700C5CF86 /* SMInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMInfoView.swift; sourceTree = "<group>"; };
 		D26BFA8B2C91987200C5CF86 /* EnterRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomView.swift; sourceTree = "<group>"; };
 		D26BFA8D2C91987900C5CF86 /* EnterRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomViewModel.swift; sourceTree = "<group>"; };
-		D26BFA902C919D0000C5CF86 /* ManitoRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManitoRoomView.swift; sourceTree = "<group>"; };
-		D26BFA922C919D0900C5CF86 /* ManitoRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManitoRoomViewModel.swift; sourceTree = "<group>"; };
+		D26BFA902C919D0000C5CF86 /* ManitoWaitingRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManitoWaitingRoomView.swift; sourceTree = "<group>"; };
+		D26BFA922C919D0900C5CF86 /* ManitoWaitingRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManitoWaitingRoomViewModel.swift; sourceTree = "<group>"; };
 		D276B5FA2C8AAB6200230FA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D276B6072C8AB64B00230FA2 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomService.swift; sourceTree = "<group>"; };
@@ -514,7 +514,7 @@
 			isa = PBXGroup;
 			children = (
 				D26BFA8B2C91987200C5CF86 /* EnterRoomView.swift */,
-				D26BFA902C919D0000C5CF86 /* ManitoRoomView.swift */,
+				D26BFA902C919D0000C5CF86 /* ManitoWaitingRoomView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -523,7 +523,7 @@
 			isa = PBXGroup;
 			children = (
 				D26BFA8D2C91987900C5CF86 /* EnterRoomViewModel.swift */,
-				D26BFA922C919D0900C5CF86 /* ManitoRoomViewModel.swift */,
+				D26BFA922C919D0900C5CF86 /* ManitoWaitingRoomViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -656,6 +656,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D25411A42CA4007A00B87568 /* ManitoWaitingRoomViewModel.swift in Sources */,
 				D2BC1AA12C90A26B00CB32B8 /* CheckRoomInfoView.swift in Sources */,
 				D2BC1A9C2C90473100CB32B8 /* Mission.swift in Sources */,
 				87C06E5D2C9EAB6800F03637 /* NaivgationRouter.swift in Sources */,
@@ -704,7 +705,6 @@
 				D26BFA8E2C91987900C5CF86 /* EnterRoomViewModel.swift in Sources */,
 				874017A42CA1AB610096E847 /* RoomDetailResponse.swift in Sources */,
 				D276B6082C8AB64B00230FA2 /* Font.swift in Sources */,
-				D26BFA932C919D0900C5CF86 /* ManitoRoomViewModel.swift in Sources */,
 				D22E9B752C8803EC00086549 /* Provider.swift in Sources */,
 				877CA0A22C94304B00D23193 /* SplashView.swift in Sources */,
 				D2A8F6122C9D1A4F00810BCF /* MakeRoomInfo.swift in Sources */,
@@ -719,7 +719,7 @@
 				D2A8F60E2C9D18FF00810BCF /* EditRoomService.swift in Sources */,
 				D2A8F61D2CA116F800810BCF /* MatchingView.swift in Sources */,
 				879829052C9827B200A863EC /* HomeViewModel.swift in Sources */,
-				D26BFA912C919D0000C5CF86 /* ManitoRoomView.swift in Sources */,
+				D26BFA912C919D0000C5CF86 /* ManitoWaitingRoomView.swift in Sources */,
 				877CA0892C8CB61100D23193 /* DSKitDemoView.swift in Sources */,
 				874017A82CA1AC010096E847 /* MissionResponse.swift in Sources */,
 				D2BC1A982C90245700CB32B8 /* TextFieldStyles.swift in Sources */,
