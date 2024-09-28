@@ -134,7 +134,8 @@ fileprivate struct ParticipateListView: View {
                     .frame(height: 16)
                 
                 Rectangle()
-                    .frame(width: .infinity, height: 1)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 1)
                     .foregroundColor(.smLightgray)
                 
                 ScrollView(.vertical, showsIndicators: false) {

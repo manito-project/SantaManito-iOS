@@ -12,39 +12,39 @@ struct CheckRoomInfoView: View {
     @StateObject var viewModel: CheckRoomInfoViewModel
     
     var body: some View {
-        VStack {
-            SMScrollView (padding: -50, topView: {
-                SMInfoView(
-                    title: "방 정보 확인",
-                    description: "초대 전 상태 점검\n방 정보 췍~!"
-                )
-            }, content: {
-                VStack {
-                    RoomInfoView(viewModel: viewModel)
-                    
-                    Spacer()
-                    
-                    Button("방 만들기") {
-                        viewModel.send(action: .makeRoomButtonClicked)
-                    }
-                    .smBottomButtonStyle()
-                    .padding(.top, 30)
-                    
-                    Spacer()
-                        .frame(height: 40)
-                }
-                .padding(.horizontal, 16)
-            })
-            .smAlertWithInviteCode(
-                isPresented: viewModel.state.isPresented,
-                title: "초대 코드를 복사해서\n친구들에게 공유해 주자!",
-                inviteCode: viewModel.inviteCode ?? "몰루?",
-                primaryButton: ("초대 코드 복사", {
-                    viewModel.send(action: .copyInviteCode)
-                })
+        
+        SMScrollView (padding: -50, topView: {
+            SMInfoView(
+                title: "방 정보 확인",
+                description: "초대 전 상태 점검\n방 정보 췍~!"
             )
-        }
+        }, content: {
+            VStack {
+                RoomInfoView(viewModel: viewModel)
+                
+                Spacer()
+                
+                Button("방 만들기") {
+                    viewModel.send(action: .makeRoomButtonClicked)
+                }
+                .smBottomButtonStyle()
+                .padding(.top, 30)
+                
+                Spacer()
+                    .frame(height: 40)
+            }
+            .padding(.horizontal, 16)
+        })
+        .smAlertWithInviteCode(
+            isPresented: viewModel.state.isPresented,
+            title: "초대 코드를 복사해서\n친구들에게 공유해 주자!",
+            inviteCode: viewModel.inviteCode ?? "몰루?",
+            primaryButton: ("초대 코드 복사", {
+                viewModel.send(action: .copyInviteCode)
+            })
+        ) //TODO: 몰루 변경 ㅋㅋ 뻘하게 웃기네
     }
+    
 }
 
 
@@ -121,7 +121,8 @@ fileprivate struct DuedateInfoView: View {
                 .frame(height: 24)
             
             Rectangle()
-                .frame(width: .infinity, height: 1)
+                .frame(maxWidth: .infinity)
+                .frame(height: 1)
                 .foregroundColor(.smLightgray)
         }
         .frame(height: 102)

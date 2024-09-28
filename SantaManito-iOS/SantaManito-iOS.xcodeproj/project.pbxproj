@@ -19,6 +19,7 @@
 		874017B72CA2A9F30096E847 /* EditUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017B62CA2A9F30096E847 /* EditUsernameViewModel.swift */; };
 		874017B92CA2B0020096E847 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017B82CA2B0020096E847 /* User.swift */; };
 		874017BB2CA2B64E0096E847 /* SMWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017BA2CA2B64E0096E847 /* SMWebView.swift */; };
+		874017C72CA6B4CD0096E847 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017C62CA6B4CD0096E847 /* View+.swift */; };
 		877CA0712C8AB3DE00D23193 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0702C8AB3DE00D23193 /* LoadingView.swift */; };
 		877CA0732C8C4C5C00D23193 /* SMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0722C8C4C5C00D23193 /* SMView.swift */; };
 		877CA0752C8C4F4800D23193 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 877CA0742C8C4F4800D23193 /* Pretendard-Bold.otf */; };
@@ -98,6 +99,7 @@
 		874017B62CA2A9F30096E847 /* EditUsernameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUsernameViewModel.swift; sourceTree = "<group>"; };
 		874017B82CA2B0020096E847 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		874017BA2CA2B64E0096E847 /* SMWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMWebView.swift; sourceTree = "<group>"; };
+		874017C62CA6B4CD0096E847 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		877CA0702C8AB3DE00D23193 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		877CA0722C8C4C5C00D23193 /* SMView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMView.swift; sourceTree = "<group>"; };
 		877CA0742C8C4F4800D23193 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 			isa = PBXGroup;
 			children = (
 				D2BC1A8F2C8F4C6400CB32B8 /* Date+.swift */,
+				874017C62CA6B4CD0096E847 /* View+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -674,6 +677,7 @@
 				D26BFA8C2C91987200C5CF86 /* EnterRoomView.swift in Sources */,
 				877EA2392C88AA8A0073FFBD /* OnboardingView.swift in Sources */,
 				D2BC1A902C8F4C6400CB32B8 /* Date+.swift in Sources */,
+				874017C72CA6B4CD0096E847 /* View+.swift in Sources */,
 				874017AC2CA1B3040096E847 /* RoomState.swift in Sources */,
 				874017A62CA1ABBE0096E847 /* UserResponse.swift in Sources */,
 				874017AE2CA29C690096E847 /* MyPageView.swift in Sources */,
@@ -858,7 +862,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SantaManito-iOS/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = T6DNHAHXG9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "SantaManito-iOS/Info.plist";
@@ -892,7 +896,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SantaManito-iOS/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = T6DNHAHXG9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "SantaManito-iOS/Info.plist";

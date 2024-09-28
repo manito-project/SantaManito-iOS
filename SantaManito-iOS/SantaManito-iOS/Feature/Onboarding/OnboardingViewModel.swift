@@ -33,7 +33,7 @@ final class OnboardingViewModel: ObservableObject {
     enum Action {
         
         case bottomButtonDidTap // step 1, 2
-        
+        case viewDidTap
         // step 1
         
         
@@ -44,6 +44,7 @@ final class OnboardingViewModel: ObservableObject {
     
     struct State {
         var step: Step = .nickname // step
+        var nicknameTextFieldFocused = true
         var bottomButtonDisabled = true // step1, step2 모두 쓰이는 bottom Button state입니다
         var signUpCompleted = false // step 2 까지 끝나면 true로
         var agreements = AgreementModel.allCases.map { (agreement: $0, isSelected: false) }
@@ -86,6 +87,8 @@ final class OnboardingViewModel: ObservableObject {
         guard let owner else { return }
         
         switch action {
+        case .viewDidTap:
+            state.nicknameTextFieldFocused = false
         case .bottomButtonDidTap:
             switch state.step {
             case .nickname:

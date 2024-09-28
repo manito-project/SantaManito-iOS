@@ -95,6 +95,7 @@ struct OnboardingView: View {
                 )
                 
                 Spacer()
+                    
                 
                 Button(
                     viewModel.state.step == .nickname
@@ -105,11 +106,10 @@ struct OnboardingView: View {
                 }
                 .smBottomButtonStyle()
                 .disabled(viewModel.state.bottomButtonDisabled)
-                
-                
-            }.padding(.horizontal, 16)
-            
+            }
+            .padding(.horizontal, 16)
         }
+        
         
     }
     
@@ -129,6 +129,8 @@ struct OnboardingView: View {
                     .foregroundColor(.smLightgray)
             )
             .smTextFieldStyle()
+            .inputLimit($viewModel.nickname, maxLength: 10)
+            .submitLabel(.done)
             .padding(.top, 12)
             .padding(.bottom, 24)
         }
