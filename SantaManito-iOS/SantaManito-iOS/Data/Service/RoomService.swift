@@ -25,7 +25,15 @@ protocol RoomServiceType {
 struct StubRoomService: RoomServiceType {
     
     func fetch() -> AnyPublisher<[RoomInfo], Error> {
-        Just([]).setFailureType(to: Error.self).eraseToAnyPublisher()
+        
+        Future<[RoomInfo],Error> { promise in
+            DispatchQueue.global().asyncAfter(deadline: .now() + 3) {
+                // Simulate success
+                promise(.success([.init(id: "", roomName: "", invitationCode: "", createdAt: "")]))
+            }
+            
+        }
+        .eraseToAnyPublisher()
     }
     
     func fetch(with roomID: String) -> AnyPublisher<RoomDetail, Error> {

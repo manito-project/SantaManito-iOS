@@ -17,8 +17,9 @@ protocol AuthenticationServiceType {
 
 struct StubAuthenticationService: AuthenticationServiceType {
     func autoLogin() -> AnyPublisher<Void, Error> {
-        Fail(error: AuthError.autoLoginFail).eraseToAnyPublisher()
-//        Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+        Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+//        Fail(error: AuthError.autoLoginFail).eraseToAnyPublisher()
+//
         
     }
 }

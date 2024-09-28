@@ -77,33 +77,30 @@ struct HomeView: View {
                         Button {
                             viewModel.send(.refreshButtonDidTap)
                         } label: {
-                            Image(systemName: "arrow.clockwise") // TODO: 에셋 변경
-                                .foregroundStyle(.gray)
+                            Image(.icRefresh)
+                                .rotationEffect(
+                                    Angle(
+                                        degrees:  viewModel.state.isLoading ? 360 : 0
+                                    )
+                                )
+                                .animation(
+                                    viewModel.state.isLoading
+                                    ? .linear(duration: 1).repeatForever(autoreverses: false)
+                                    : .default,
+                                    value: viewModel.state.isLoading
+                                )
                         }
+                        .disabled(viewModel.state.isLoading)
                     }
                     .padding(.top, 40)
                     .padding(.horizontal, 20)
                     
-                    GeometryReader { proxy in
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack {
-                                ForEach(viewModel.state.rooms, id: \.id) { room in
-                                    Button {
-                                        
-                                    } label: {
-                                        HomeRoomCell(room, width: proxy.size.width / 2.4)
-                                    }
-                                    .buttonStyle(ScaleButtonStyle())
-                                    
-                                    
-                                    
-                                    Spacer().frame(width: 15)
-                                }
-                            }
-                            .padding(.horizontal, 20)
-                        }
+                    if viewModel.state.rooms.isEmpty {
+                        roomsEmptyView
+                    } else {
+                        roomsView
                     }
-                    .padding(.top, 20)
+                    
                     
                     Spacer()
                 }
@@ -114,9 +111,48 @@ struct HomeView: View {
             }
         }
         
+    }
+    
+    var roomsEmptyView: some View {
+        VStack(spacing: 24) {
+            
+            Image(.graphicsSnow)
+            
+            
+            Text("친구들과 산타 마니또를 시작해 볼까?")
+                .font(.medium_14)
+                .foregroundStyle(.smDarkgray)
+        }
+        .padding(.vertical, 16)
+        .frame(maxWidth: .infinity)
+        .background(.smLightbg)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .padding(.horizontal, 16)
+        .padding(.top, 20)
         
-        
-        
+    }
+    
+    var roomsView: some View {
+        GeometryReader { proxy in
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(viewModel.state.rooms, id: \.id) { room in
+                        Button {
+                            
+                        } label: {
+                            HomeRoomCell(room, width: proxy.size.width / 2.4)
+                        }
+                        .buttonStyle(ScaleButtonStyle())
+                        
+                        
+                        
+                        Spacer().frame(width: 15)
+                    }
+                }
+                .padding(.horizontal, 20)
+            }
+        }
+        .padding(.top, 20)
     }
     
 }
@@ -320,5 +356,5 @@ fileprivate struct HomeRoomStateChip: View {
                 HomeViewModel(roomService:
                                 DIContainer.stub.service.roomService,
                               navigationRouter: DIContainer.stub.navigationRouter))
-        .environmentObject(DIContainer.stub)
+    .environmentObject(DIContainer.stub)
 }
