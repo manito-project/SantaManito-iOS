@@ -139,7 +139,7 @@ struct HomeView: View {
                 HStack {
                     ForEach(viewModel.state.rooms, id: \.id) { room in
                         Button {
-                            
+                            viewModel.send(.roomCellDidTap(roomDetail: room))
                         } label: {
                             HomeRoomCell(room, width: proxy.size.width / 2.4)
                         }

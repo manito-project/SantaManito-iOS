@@ -105,7 +105,8 @@ fileprivate struct TitleView: View {
                 .frame(height: 19)
             
             Rectangle()
-                .frame(width: .infinity, height: 1)
+                .frame(maxWidth: .infinity)
+                .frame(height: 1)
                 .foregroundColor(.smLightgray)
             
             Spacer()
@@ -165,7 +166,10 @@ fileprivate struct MatchingButtonView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(viewModel.state.description)
+            Text(viewModel.state.roomDetail.isHost
+                 ? "방장 산타는 참여자가 다 모이면 마니또 매칭을 해줘!"
+                 : "방장 산타가 마니또 매칭을 할 때까지 기다려보자!"
+            )
                 .font(.medium_14)
                 .foregroundColor(.smDarkgray)
                 .padding(.top, 16)
@@ -173,7 +177,7 @@ fileprivate struct MatchingButtonView: View {
             Spacer()
                 .frame(height: 40)
             
-            if viewModel.state.isHost {
+            if viewModel.state.roomDetail.isHost {
                 HStack {
                     Spacer()
                     
@@ -229,7 +233,8 @@ fileprivate struct MatchingButtonView: View {
         viewModel: ManitoWaitingRoomViewModel(
             enterRoomService: container.service.enterRoomService,
             editRoomService: container.service.editRoomService,
-            navigationRouter: container.navigationRouter
+            navigationRouter: container.navigationRouter,
+            roomDetail: .stub
         )
     )
     .environmentObject(DIContainer.default)

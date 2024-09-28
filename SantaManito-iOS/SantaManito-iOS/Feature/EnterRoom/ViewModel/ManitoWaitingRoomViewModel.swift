@@ -42,9 +42,7 @@ class ManitoWaitingRoomViewModel: ObservableObject {
     }
     
     struct State {
-        var isEnabled: Bool = false
-        var isHost: Bool = true
-        var description: String = ""
+        var roomDetail: RoomDetail = .stub
     }
     
     //MARK: Dependency
@@ -58,11 +56,13 @@ class ManitoWaitingRoomViewModel: ObservableObject {
     init(
         enterRoomService: EnterRoomServiceType,
         editRoomService: EditRoomServiceType,
-        navigationRouter: NavigationRoutableType
+        navigationRouter: NavigationRoutableType,
+        roomDetail: RoomDetail
     ) {
         self.enterRoomService = enterRoomService
         self.editRoomService = editRoomService
         self.navigationRouter = navigationRouter
+        self.state.roomDetail = roomDetail
     }
     
     //MARK: Properties
@@ -71,6 +71,7 @@ class ManitoWaitingRoomViewModel: ObservableObject {
     @Published var inviteCode: String = ""
     @Published var participateList: [Participate] = []
     @Published var roomInfo: MakeRoomInfo = MakeRoomInfo(name: "", remainingDays: 3, dueDate: Date())
+    @Published var roomDetail: RoomDetail = .stub
     private let cancelBag = CancelBag()
     
     //MARK: Methods
@@ -97,16 +98,16 @@ class ManitoWaitingRoomViewModel: ObservableObject {
                     owner.roomInfo = roomInfo
                 }).store(in: cancelBag)
             
-            //TODO: 들어온 유저가 host인지 아닌지 서버통신
-            enterRoomService.getUser("아이디 아마?")
-                .sink(receiveCompletion: { _ in
-                    
-                }, receiveValue: { isHost in
-                    owner.state.isHost = isHost
-                    owner.state.description = isHost 
-                    ? "방장 산타는 참여자가 다 모이면 마니또 매칭을 해줘!"
-                    : "방장 산타가 마니또 매칭을 할 때까지 기다려보자!"
-                }).store(in: cancelBag)
+//            //TODO: 들어온 유저가 host인지 아닌지 서버통신
+//            enterRoomService.getUser("아이디 아마?")
+//                .sink(receiveCompletion: { _ in
+//                    
+//                }, receiveValue: { isHost in
+//                    owner.state.roomDetail.isHost = isHost
+//                    owner.state.description = isHost
+//                    ? "방장 산타는 참여자가 다 모이면 마니또 매칭을 해줘!"
+//                    : "방장 산타가 마니또 매칭을 할 때까지 기다려보자!"
+//                }).store(in: cancelBag)
             
             //TODO: 초대코드 받아오기
             enterRoomService.getInviteCode("")
