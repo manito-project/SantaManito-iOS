@@ -115,16 +115,17 @@ struct HomeView: View {
     
     var roomsEmptyView: some View {
         VStack(spacing: 24) {
-            
+            Spacer()
             Image(.graphicsSnow)
             
             
             Text("친구들과 산타 마니또를 시작해 볼까?")
                 .font(.medium_14)
                 .foregroundStyle(.smDarkgray)
+            Spacer()
         }
-        .padding(.vertical, 16)
         .frame(maxWidth: .infinity)
+        .frame(height: 240)
         .background(.smLightbg)
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .padding(.horizontal, 16)
@@ -304,6 +305,7 @@ fileprivate struct HomeRoomCell: View {
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color.smLightgray, lineWidth: 1)
         )
+        .padding(.vertical, 1)
         
         
     }
