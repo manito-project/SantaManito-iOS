@@ -47,6 +47,11 @@
 		87C06E5F2C9EADD600F03637 /* NavigationRoutingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C06E5E2C9EADD600F03637 /* NavigationRoutingView.swift */; };
 		87C06E612C9EADE700F03637 /* NavigationDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C06E602C9EADE700F03637 /* NavigationDestination.swift */; };
 		87D797A42C9454BF003BA602 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D797A32C9454BF003BA602 /* OnboardingViewModel.swift */; };
+		D229FE782CA7CEA200979421 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE772CA7CEA200979421 /* HTTPMethod.swift */; };
+		D229FE7E2CA7D0F700979421 /* URLRequestConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE7D2CA7D0F700979421 /* URLRequestConfigurable.swift */; };
+		D229FE802CA7D17600979421 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE7F2CA7D17600979421 /* ParameterEncoding.swift */; };
+		D229FE822CA7D39600979421 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE812CA7D39600979421 /* NetworkError.swift */; };
+		D229FE842CA7D70C00979421 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE832CA7D70C00979421 /* APIConstants.swift */; };
 		D22E9B592C88031A00086549 /* SantaManito_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B582C88031A00086549 /* SantaManito_iOSApp.swift */; };
 		D22E9B5B2C88031A00086549 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B5A2C88031A00086549 /* HomeView.swift */; };
 		D22E9B5D2C88031C00086549 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22E9B5C2C88031C00086549 /* Assets.xcassets */; };
@@ -127,6 +132,11 @@
 		87C06E5E2C9EADD600F03637 /* NavigationRoutingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRoutingView.swift; sourceTree = "<group>"; };
 		87C06E602C9EADE700F03637 /* NavigationDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDestination.swift; sourceTree = "<group>"; };
 		87D797A32C9454BF003BA602 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		D229FE772CA7CEA200979421 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		D229FE7D2CA7D0F700979421 /* URLRequestConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestConfigurable.swift; sourceTree = "<group>"; };
+		D229FE7F2CA7D17600979421 /* ParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
+		D229FE812CA7D39600979421 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		D229FE832CA7D70C00979421 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		D22E9B552C88031A00086549 /* SantaManito-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SantaManito-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22E9B582C88031A00086549 /* SantaManito_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantaManito_iOSApp.swift; sourceTree = "<group>"; };
 		D22E9B5A2C88031A00086549 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -312,6 +322,26 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
+		D229FE732CA7CDC000979421 /* Networks */ = {
+			isa = PBXGroup;
+			children = (
+				D229FE742CA7CDC600979421 /* Foundation */,
+			);
+			path = Networks;
+			sourceTree = "<group>";
+		};
+		D229FE742CA7CDC600979421 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				D229FE772CA7CEA200979421 /* HTTPMethod.swift */,
+				D229FE7D2CA7D0F700979421 /* URLRequestConfigurable.swift */,
+				D229FE7F2CA7D17600979421 /* ParameterEncoding.swift */,
+				D229FE812CA7D39600979421 /* NetworkError.swift */,
+				D229FE832CA7D70C00979421 /* APIConstants.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
 		D22E9B4C2C88031A00086549 = {
 			isa = PBXGroup;
 			children = (
@@ -331,6 +361,7 @@
 		D22E9B572C88031A00086549 /* SantaManito-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				D229FE732CA7CDC000979421 /* Networks */,
 				D276B5FA2C8AAB6200230FA2 /* Info.plist */,
 				D22E9B662C8803A200086549 /* App */,
 				D22E9B7A2C88042500086549 /* Feature */,
@@ -670,6 +701,7 @@
 				D22E9B5B2C88031A00086549 /* HomeView.swift in Sources */,
 				877CA0A62C94305A00D23193 /* CancelBag.swift in Sources */,
 				874017B92CA2B0020096E847 /* User.swift in Sources */,
+				D229FE842CA7D70C00979421 /* APIConstants.swift in Sources */,
 				877EA23B2C88AAC10073FFBD /* DIContainer.swift in Sources */,
 				D22E9B6B2C8803C100086549 /* ObservableObjectSettable.swift in Sources */,
 				87D797A42C9454BF003BA602 /* OnboardingViewModel.swift in Sources */,
@@ -694,6 +726,7 @@
 				877EA2322C889DCB0073FFBD /* ButtonStyles.swift in Sources */,
 				87C06E5A2C9EA5FE00F03637 /* Device.swift in Sources */,
 				874017B32CA29FEF0096E847 /* MyPageItem.swift in Sources */,
+				D229FE802CA7D17600979421 /* ParameterEncoding.swift in Sources */,
 				877CA07F2C8C50DC00D23193 /* Corner.swift in Sources */,
 				D2A8F6292CA145A100810BCF /* ShowAllResultViewModel.swift in Sources */,
 				877CA0732C8C4C5C00D23193 /* SMView.swift in Sources */,
@@ -711,6 +744,8 @@
 				D276B6082C8AB64B00230FA2 /* Font.swift in Sources */,
 				D22E9B752C8803EC00086549 /* Provider.swift in Sources */,
 				877CA0A22C94304B00D23193 /* SplashView.swift in Sources */,
+				D229FE822CA7D39600979421 /* NetworkError.swift in Sources */,
+				D229FE7E2CA7D0F700979421 /* URLRequestConfigurable.swift in Sources */,
 				D2A8F6122C9D1A4F00810BCF /* MakeRoomInfo.swift in Sources */,
 				D2A8F61F2CA1170B00810BCF /* MatchingResultView.swift in Sources */,
 				D2BC1AA52C91357F00CB32B8 /* SMInviteCodeAlertView.swift in Sources */,
@@ -726,6 +761,7 @@
 				D26BFA912C919D0000C5CF86 /* ManitoWaitingRoomView.swift in Sources */,
 				877CA0892C8CB61100D23193 /* DSKitDemoView.swift in Sources */,
 				874017A82CA1AC010096E847 /* MissionResponse.swift in Sources */,
+				D229FE782CA7CEA200979421 /* HTTPMethod.swift in Sources */,
 				D2BC1A982C90245700CB32B8 /* TextFieldStyles.swift in Sources */,
 				874017B52CA2A68A0096E847 /* EditUsernameView.swift in Sources */,
 				D2BC1A942C90102900CB32B8 /* EditMissionViewModel.swift in Sources */,
