@@ -124,7 +124,9 @@ private struct MissionCellView: View {
                 text: $mission.content,
                 prompt: Text("산타 할아버지 여기 미션 하나 추가요!")
                     .foregroundColor(.smLightgray)
-            ).smTextFieldStyle()
+            )
+            .smTextFieldStyle()
+            .submitLabel(.done)
             
             if viewModel.state.canDelete {
                 HStack {
