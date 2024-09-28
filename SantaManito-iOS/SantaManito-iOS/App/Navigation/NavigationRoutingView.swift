@@ -48,8 +48,7 @@ struct NavigationRoutingView: View {
         case let .manitoWaitingRoom(roomDetail):
             ManitoWaitingRoomView(
                 viewModel: .init(
-                    enterRoomService: container.service.enterRoomService,
-                    editRoomService: container.service.editRoomService, 
+                    roomService: container.service.roomService, 
                     navigationRouter: container.navigationRouter,
                     roomDetail: roomDetail
                 )

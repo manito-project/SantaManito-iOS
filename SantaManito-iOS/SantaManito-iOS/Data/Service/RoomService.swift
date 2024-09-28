@@ -27,7 +27,7 @@ struct StubRoomService: RoomServiceType {
     func fetch() -> AnyPublisher<[RoomInfo], Error> {
         
         Future<[RoomInfo],Error> { promise in
-            DispatchQueue.global().asyncAfter(deadline: .now() + 3) {
+            DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
                 // Simulate success
                 promise(.success([.init(id: "", roomName: "", invitationCode: "", createdAt: "")]))
             }
@@ -37,7 +37,13 @@ struct StubRoomService: RoomServiceType {
     }
     
     func fetch(with roomID: String) -> AnyPublisher<RoomDetail, Error> {
-        Just(.stub).setFailureType(to: Error.self).eraseToAnyPublisher()
+        Future<RoomDetail,Error> { promise in
+            DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
+                promise(.success(.stub))
+            }
+            
+        }
+        .eraseToAnyPublisher()
     }
     
     func edit(with roomID: String) -> AnyPublisher<Void, Error> {
