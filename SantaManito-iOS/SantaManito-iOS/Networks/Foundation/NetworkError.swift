@@ -10,15 +10,25 @@ import Foundation
 @frozen public enum NetworkError: Error {
     case invalidURL(String)
     case invalidRequest
-    case parameterEnocdingFailed(ParameterEncoding)
+    
+    
+    
+    case parameterEncodingFailed(ParameterEncoding)
     case invalidResponse(Int)
-    case unKnownError
+    case unknown
     case decodingFailed
-    case requestFailed
+    case requestFailed(RequestError)
+}
+
+extension NetworkError {
+    public enum RequestError: Error {
+        case invalidRequest
+    }
 }
 
 extension NetworkError {
     public enum ParameterEncoding: Error {
+        case emptyParameters
         case missingURL
         case invalidJSON
         case jsonEncodingFailed
