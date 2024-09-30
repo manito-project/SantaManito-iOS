@@ -21,46 +21,18 @@ protocol URLRequestConfigurable {
 
 
 extension URLRequestConfigurable {
-    func asURLRequest() throws -> AnyPublisher<URLRequest, NetworkError.RequestError> {
-        
-        return Future<URLRequest, NetworkError> { promise in
-            guard let url = URL(string: self.url) else {
-                promise(.failure(.invalidURL(self.url)))
-                return
-            }
-            
-            var request = URLRequest(url: url)
-            if let path { request.url?.append(path: path)}
-            if let header { request.allHTTPHeaderFields = header }
-            request.httpMethod = self.method.rawValue
-            
-            do {
-                
-            }
-            
-            
+    func asURLRequest() -> AnyPublisher<URLRequest, NetworkError.RequestError> {
+        guard let url = URL(string: self.url) else {
+            return Fail(error: .invalidURL(self.url)).eraseToAnyPublisher()
         }
         
-        return try encoder.encode(request, with: parameters)
-    }
-}
-
-
-import Foundation
-import Combine
-
-
-            // HTTP 메서드 설정
-            
-            
-            do {
-                // 요청 인코딩
-                let encodedRequest = try self.encoder.encode(request, with: self.parameters)
-                promise(.success(encodedRequest)) // 인코딩 성공 시 요청 반환
-            } catch {
-                promise(.failure(.encodingFailed)) // 인코딩 실패 시 에러 반환
-            }
-        }
-        .eraseToAnyPublisher() // AnyPublisher로 변환하여 반환
+        var request = URLRequest(url: url)
+        if let path { request.url?.append(path: path) }
+        if let header { request.allHTTPHeaderFields = header }
+        request.httpMethod = self.method.rawValue
+        
+        return self.encoder.encode(request, with: self.parameters)
+            .mapError { _ in NetworkError.RequestError.invalidRequest }  // NetworkError로 변환
+            .eraseToAnyPublisher()
     }
 }

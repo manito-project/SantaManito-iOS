@@ -90,7 +90,7 @@ class RequestHandler {
         return URLSession(configuration: configuration)
     }()
     
-    func executeRequest<T: URLRequestConfigurable>(for target: T) throws -> AnyPublisher<NetworkResponse, NetworkError.RequestError> {
+    func executeRequest<T: URLRequestConfigurable>(for target: T) throws -> AnyPublisher<NetworkResponse, NetworkError> {
         let request = try target.asURLRequest() // 요청 생성
         
         return session.dataTaskPublisher(for: request)
@@ -101,7 +101,7 @@ class RequestHandler {
                 return NetworkResponse(data: data, response: httpResponse, error: nil)
             }
             .mapError { error in
-                return NetworkError.requestFailed
+                return NetworkError.requestFailed(error as! NetworkError.RequestError)
             }
             .eraseToAnyPublisher() // AnyPublisher로 변환
     }
