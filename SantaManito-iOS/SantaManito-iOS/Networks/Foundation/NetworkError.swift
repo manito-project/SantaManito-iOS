@@ -9,7 +9,12 @@ import Foundation
 
 @frozen public enum NetworkError: Error {
     case invalidURL(String)
+    case invalidRequest
     case parameterEnocdingFailed(ParameterEncoding)
+    case invalidResponse(Int)
+    case unKnownError
+    case decodingFailed
+    case requestFailed
 }
 
 extension NetworkError {
@@ -17,5 +22,21 @@ extension NetworkError {
         case missingURL
         case invalidJSON
         case jsonEncodingFailed
+    }
+}
+
+extension NetworkError {
+    public enum Response: Error {
+        case cancelled
+        case unhandled(error: Error?)
+        case invalidStatusCode(code: Int)
+        
+        init(statusCode: Int, error: Error?) {
+            if statusCode == 500 {
+                self = .invalidStatusCode(code: statusCode)
+            } else {
+                self = .unhandled(error: error)
+            }
+        }
     }
 }
