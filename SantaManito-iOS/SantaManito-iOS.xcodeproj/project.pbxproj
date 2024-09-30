@@ -52,6 +52,7 @@
 		D229FE802CA7D17600979421 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE7F2CA7D17600979421 /* ParameterEncoding.swift */; };
 		D229FE822CA7D39600979421 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE812CA7D39600979421 /* NetworkError.swift */; };
 		D229FE842CA7D70C00979421 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE832CA7D70C00979421 /* APIConstants.swift */; };
+		D229FE862CA7D98400979421 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE852CA7D98400979421 /* BaseService.swift */; };
 		D22E9B592C88031A00086549 /* SantaManito_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B582C88031A00086549 /* SantaManito_iOSApp.swift */; };
 		D22E9B5B2C88031A00086549 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B5A2C88031A00086549 /* HomeView.swift */; };
 		D22E9B5D2C88031C00086549 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22E9B5C2C88031C00086549 /* Assets.xcassets */; };
@@ -137,6 +138,7 @@
 		D229FE7F2CA7D17600979421 /* ParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
 		D229FE812CA7D39600979421 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		D229FE832CA7D70C00979421 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		D229FE852CA7D98400979421 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		D22E9B552C88031A00086549 /* SantaManito-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SantaManito-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22E9B582C88031A00086549 /* SantaManito_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantaManito_iOSApp.swift; sourceTree = "<group>"; };
 		D22E9B5A2C88031A00086549 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 				D229FE7F2CA7D17600979421 /* ParameterEncoding.swift */,
 				D229FE812CA7D39600979421 /* NetworkError.swift */,
 				D229FE832CA7D70C00979421 /* APIConstants.swift */,
+				D229FE852CA7D98400979421 /* BaseService.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -702,6 +705,7 @@
 				877CA0A62C94305A00D23193 /* CancelBag.swift in Sources */,
 				874017B92CA2B0020096E847 /* User.swift in Sources */,
 				D229FE842CA7D70C00979421 /* APIConstants.swift in Sources */,
+				D229FE862CA7D98400979421 /* BaseService.swift in Sources */,
 				877EA23B2C88AAC10073FFBD /* DIContainer.swift in Sources */,
 				D22E9B6B2C8803C100086549 /* ObservableObjectSettable.swift in Sources */,
 				87D797A42C9454BF003BA602 /* OnboardingViewModel.swift in Sources */,
