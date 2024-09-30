@@ -8,11 +8,7 @@
 import Foundation
 
 @frozen public enum NetworkError: Error {
-    case invalidURL(String)
     case invalidRequest
-    
-    
-    
     case parameterEncodingFailed(ParameterEncoding)
     case invalidResponse(Int)
     case unknown
@@ -22,6 +18,8 @@ import Foundation
 
 extension NetworkError {
     public enum RequestError: Error {
+        case error(Error)
+        case invalidURL(String)
         case invalidRequest
     }
 }
