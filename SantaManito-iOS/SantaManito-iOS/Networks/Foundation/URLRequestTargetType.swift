@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol URLRequestConfigurable {
+protocol URLRequestTargetType {
     var url: String { get }
     var path: String? { get }
     var method: HTTPMethod { get }
@@ -20,7 +20,7 @@ protocol URLRequestConfigurable {
 }
 
 
-extension URLRequestConfigurable {
+extension URLRequestTargetType {
     func asURLRequest() -> AnyPublisher<URLRequest, NetworkError.RequestError> {
         guard let url = URL(string: self.url) else {
             return Fail(error: .invalidURL(self.url)).eraseToAnyPublisher()

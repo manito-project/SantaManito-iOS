@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct Mission: Identifiable, Hashable {
+public struct Mission: Identifiable, Hashable {
     var content: String
-    var id = UUID()
+    public var id = UUID()
 }
 
 extension Mission {

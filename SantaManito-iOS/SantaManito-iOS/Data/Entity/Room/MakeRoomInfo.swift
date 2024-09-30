@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MakeRoomInfo: Hashable {
+public struct MakeRoomInfo: Hashable {
     var name: String
     var remainingDays: Int
     var dueDate: Date

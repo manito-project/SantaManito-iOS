@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class BaseService<Target: URLRequestConfigurable> {
+final class BaseService<Target: URLRequestTargetType> {
     
     typealias API = Target
     
@@ -25,17 +25,21 @@ final class BaseService<Target: URLRequestConfigurable> {
                 return response.data! // 유효성 검증 통과 시, 데이터를 반환
             }
             .mapError { _ in NetworkError.invalidRequest}
-            
             .decode(type: T.self, decoder: JSONDecoder())
             .mapError { _ in  .decodingFailed } // 디코딩 에러도 NetworkError로 변환
             .eraseToAnyPublisher() // AnyPublisher로 변환하여 반환
     }
+    
+    func requestWithNoResult(_ target: API) -> AnyPublisher<Void, NetworkError> {
+        return fetchResponse(with: target)
+            .tryMap { response in
+                try self.validate(response: response)
+            }
+            .mapError { _ in NetworkError.invalidRequest}
+            .eraseToAnyPublisher() // AnyPublisher로 변환하여 반환
+    }
 }
 
-//    .mapError { error in
-//        // 일반적인 Swift 에러를 NetworkError로 변환
-//        return error as? NetworkError ?? NetworkError.invalidRequest
-//    }
 
 extension BaseService {
     /// 네트워크 응답 처리 메소드
@@ -68,17 +72,7 @@ extension HTTPURLResponse {
         return (200...299).contains(self.statusCode)
     }
 }
-public struct NetworkResponse {
-    public let data: Data?
-    public let response: URLResponse?
-    public let error: Error?
-    
-    public init(data: Data?, response: URLResponse?, error: Error?) {
-        self.data = data
-        self.response = response
-        self.error = error
-    }
-}
+
 
 class RequestHandler {
     private lazy var session: URLSession = {
@@ -90,10 +84,10 @@ class RequestHandler {
         return URLSession(configuration: configuration)
     }()
     
-    func executeRequest<T: URLRequestConfigurable>(for target: T) throws -> AnyPublisher<NetworkResponse, NetworkError> {
-        let request = try target.asURLRequest() // 요청 생성
+    func executeRequest<T: URLRequestTargetType>(for target: T) throws -> AnyPublisher<NetworkResponse, NetworkError> {
+        let endPoint = try target.asURLRequest()
         
-        return session.dataTaskPublisher(for: request)
+        return session.dataTaskPublisher(for: endPoint)
             .tryMap { data, response in
                 guard let httpResponse = response as? HTTPURLResponse else {
                     throw NetworkError.Response.unhandled(error: nil)
@@ -101,8 +95,8 @@ class RequestHandler {
                 return NetworkResponse(data: data, response: httpResponse, error: nil)
             }
             .mapError { error in
-                return NetworkError.requestFailed(error as! NetworkError.RequestError)
+                return NetworkError.requestFailed(error as! NetworkError.RequestError) // 요청값이 오지 않는 경우
             }
-            .eraseToAnyPublisher() // AnyPublisher로 변환
+            .eraseToAnyPublisher()
     }
 }

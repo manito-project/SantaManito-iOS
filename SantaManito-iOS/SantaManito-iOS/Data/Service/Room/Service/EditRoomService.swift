@@ -8,12 +8,14 @@
 import Foundation
 import Combine
 
+public typealias EditRoomService = BaseService<EditRoomAPI>
 
 protocol EditRoomServiceType {
     func getRoomInfo(with roomID: String) -> AnyPublisher<MakeRoomInfo, Error>
     func editRoomInfo(with roomID: String, roomInfo: MakeRoomInfo) -> AnyPublisher<Void, Error>
     func createRoom(roomInfo: MakeRoomInfo, missions: [Mission]) -> AnyPublisher<String, Error>
 }
+
 
 struct StubEditRoomService: EditRoomServiceType {
     func editRoomInfo(with roomID: String, roomInfo: MakeRoomInfo) -> AnyPublisher<Void, any Error> {

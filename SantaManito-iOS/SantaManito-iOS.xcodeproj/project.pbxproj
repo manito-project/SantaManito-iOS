@@ -48,7 +48,7 @@
 		87C06E612C9EADE700F03637 /* NavigationDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C06E602C9EADE700F03637 /* NavigationDestination.swift */; };
 		87D797A42C9454BF003BA602 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D797A32C9454BF003BA602 /* OnboardingViewModel.swift */; };
 		D229FE782CA7CEA200979421 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE772CA7CEA200979421 /* HTTPMethod.swift */; };
-		D229FE7E2CA7D0F700979421 /* URLRequestConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE7D2CA7D0F700979421 /* URLRequestConfigurable.swift */; };
+		D229FE7E2CA7D0F700979421 /* URLRequestTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE7D2CA7D0F700979421 /* URLRequestTargetType.swift */; };
 		D229FE802CA7D17600979421 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE7F2CA7D17600979421 /* ParameterEncoding.swift */; };
 		D229FE822CA7D39600979421 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE812CA7D39600979421 /* NetworkError.swift */; };
 		D229FE842CA7D70C00979421 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE832CA7D70C00979421 /* APIConstants.swift */; };
@@ -64,6 +64,10 @@
 		D25411A42CA4007A00B87568 /* ManitoWaitingRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA922C919D0900C5CF86 /* ManitoWaitingRoomViewModel.swift */; };
 		D25570E92C8E858A00CCC226 /* EditRoomInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570E82C8E858A00CCC226 /* EditRoomInfoView.swift */; };
 		D25570ED2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570EC2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift */; };
+		D26879382CAA7BE40025A611 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879372CAA7BE40025A611 /* NetworkResponse.swift */; };
+		D268793D2CAA7F8A0025A611 /* RoomAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D268793C2CAA7F8A0025A611 /* RoomAPI.swift */; };
+		D268793F2CAA80580025A611 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D268793E2CAA80580025A611 /* BaseAPI.swift */; };
+		D26879412CAA83500025A611 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879402CAA83500025A611 /* URLs.swift */; };
 		D26BFA802C91692700C5CF86 /* SMInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA7F2C91692700C5CF86 /* SMInfoView.swift */; };
 		D26BFA8C2C91987200C5CF86 /* EnterRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA8B2C91987200C5CF86 /* EnterRoomView.swift */; };
 		D26BFA8E2C91987900C5CF86 /* EnterRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA8D2C91987900C5CF86 /* EnterRoomViewModel.swift */; };
@@ -134,7 +138,7 @@
 		87C06E602C9EADE700F03637 /* NavigationDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDestination.swift; sourceTree = "<group>"; };
 		87D797A32C9454BF003BA602 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		D229FE772CA7CEA200979421 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
-		D229FE7D2CA7D0F700979421 /* URLRequestConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestConfigurable.swift; sourceTree = "<group>"; };
+		D229FE7D2CA7D0F700979421 /* URLRequestTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestTargetType.swift; sourceTree = "<group>"; };
 		D229FE7F2CA7D17600979421 /* ParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
 		D229FE812CA7D39600979421 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		D229FE832CA7D70C00979421 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
@@ -150,6 +154,10 @@
 		D22E9B7D2C8804B600086549 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D25570E82C8E858A00CCC226 /* EditRoomInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomInfoView.swift; sourceTree = "<group>"; };
 		D25570EC2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomInfoViewModel.swift; sourceTree = "<group>"; };
+		D26879372CAA7BE40025A611 /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
+		D268793C2CAA7F8A0025A611 /* RoomAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAPI.swift; sourceTree = "<group>"; };
+		D268793E2CAA80580025A611 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
+		D26879402CAA83500025A611 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
 		D26BFA7F2C91692700C5CF86 /* SMInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMInfoView.swift; sourceTree = "<group>"; };
 		D26BFA8B2C91987200C5CF86 /* EnterRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomView.swift; sourceTree = "<group>"; };
 		D26BFA8D2C91987900C5CF86 /* EnterRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomViewModel.swift; sourceTree = "<group>"; };
@@ -327,6 +335,7 @@
 		D229FE732CA7CDC000979421 /* Networks */ = {
 			isa = PBXGroup;
 			children = (
+				D26879392CAA7EA90025A611 /* Room */,
 				D229FE742CA7CDC600979421 /* Foundation */,
 			);
 			path = Networks;
@@ -336,11 +345,14 @@
 			isa = PBXGroup;
 			children = (
 				D229FE772CA7CEA200979421 /* HTTPMethod.swift */,
-				D229FE7D2CA7D0F700979421 /* URLRequestConfigurable.swift */,
+				D229FE7D2CA7D0F700979421 /* URLRequestTargetType.swift */,
 				D229FE7F2CA7D17600979421 /* ParameterEncoding.swift */,
 				D229FE812CA7D39600979421 /* NetworkError.swift */,
 				D229FE832CA7D70C00979421 /* APIConstants.swift */,
 				D229FE852CA7D98400979421 /* BaseService.swift */,
+				D26879372CAA7BE40025A611 /* NetworkResponse.swift */,
+				D268793E2CAA80580025A611 /* BaseAPI.swift */,
+				D26879402CAA83500025A611 /* URLs.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -530,6 +542,31 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		D26879392CAA7EA90025A611 /* Room */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Room;
+			sourceTree = "<group>";
+		};
+		D268793A2CAA7F750025A611 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D2A8F6242CA118E900810BCF /* MatchRoomService.swift */,
+				D2A8F6132C9E792100810BCF /* EnterRoomService.swift */,
+				D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		D268793B2CAA7F790025A611 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				D268793C2CAA7F8A0025A611 /* RoomAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		D26BFA7E2C91691A00C5CF86 /* Component */ = {
 			isa = PBXGroup;
 			children = (
@@ -580,9 +617,8 @@
 		D2A8F60C2C9D18E700810BCF /* Room */ = {
 			isa = PBXGroup;
 			children = (
-				D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */,
-				D2A8F6132C9E792100810BCF /* EnterRoomService.swift */,
-				D2A8F6242CA118E900810BCF /* MatchRoomService.swift */,
+				D268793B2CAA7F790025A611 /* API */,
+				D268793A2CAA7F750025A611 /* Service */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -712,6 +748,7 @@
 				877CA0712C8AB3DE00D23193 /* LoadingView.swift in Sources */,
 				D26BFA8C2C91987200C5CF86 /* EnterRoomView.swift in Sources */,
 				877EA2392C88AA8A0073FFBD /* OnboardingView.swift in Sources */,
+				D268793D2CAA7F8A0025A611 /* RoomAPI.swift in Sources */,
 				D2BC1A902C8F4C6400CB32B8 /* Date+.swift in Sources */,
 				874017C72CA6B4CD0096E847 /* View+.swift in Sources */,
 				874017AC2CA1B3040096E847 /* RoomState.swift in Sources */,
@@ -723,6 +760,7 @@
 				D2BC1A922C90101E00CB32B8 /* EditMissionView.swift in Sources */,
 				D2A8F6212CA1172100810BCF /* FinishView.swift in Sources */,
 				D22E9B592C88031A00086549 /* SantaManito_iOSApp.swift in Sources */,
+				D26879382CAA7BE40025A611 /* NetworkResponse.swift in Sources */,
 				D2A8F6192CA1168B00810BCF /* MatchingResultViewModel.swift in Sources */,
 				D25570ED2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift in Sources */,
 				874017BB2CA2B64E0096E847 /* SMWebView.swift in Sources */,
@@ -740,6 +778,7 @@
 				874017B02CA29C820096E847 /* MyPageViewModel.swift in Sources */,
 				877EA2412C88ABA00073FFBD /* PushNotificationService.swift in Sources */,
 				D2A8F6252CA118EA00810BCF /* MatchRoomService.swift in Sources */,
+				D268793F2CAA80580025A611 /* BaseAPI.swift in Sources */,
 				D25570E92C8E858A00CCC226 /* EditRoomInfoView.swift in Sources */,
 				D26BFA802C91692700C5CF86 /* SMInfoView.swift in Sources */,
 				87C06E612C9EADE700F03637 /* NavigationDestination.swift in Sources */,
@@ -749,7 +788,7 @@
 				D22E9B752C8803EC00086549 /* Provider.swift in Sources */,
 				877CA0A22C94304B00D23193 /* SplashView.swift in Sources */,
 				D229FE822CA7D39600979421 /* NetworkError.swift in Sources */,
-				D229FE7E2CA7D0F700979421 /* URLRequestConfigurable.swift in Sources */,
+				D229FE7E2CA7D0F700979421 /* URLRequestTargetType.swift in Sources */,
 				D2A8F6122C9D1A4F00810BCF /* MakeRoomInfo.swift in Sources */,
 				D2A8F61F2CA1170B00810BCF /* MatchingResultView.swift in Sources */,
 				D2BC1AA52C91357F00CB32B8 /* SMInviteCodeAlertView.swift in Sources */,
@@ -765,6 +804,7 @@
 				D26BFA912C919D0000C5CF86 /* ManitoWaitingRoomView.swift in Sources */,
 				877CA0892C8CB61100D23193 /* DSKitDemoView.swift in Sources */,
 				874017A82CA1AC010096E847 /* MissionResponse.swift in Sources */,
+				D26879412CAA83500025A611 /* URLs.swift in Sources */,
 				D229FE782CA7CEA200979421 /* HTTPMethod.swift in Sources */,
 				D2BC1A982C90245700CB32B8 /* TextFieldStyles.swift in Sources */,
 				874017B52CA2A68A0096E847 /* EditUsernameView.swift in Sources */,
