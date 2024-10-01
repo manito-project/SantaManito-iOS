@@ -17,13 +17,11 @@ protocol BaseAPI: URLRequestTargetType {
 
 extension BaseAPI {
     public var url: String {
-        let base = "Config.baseURL"
-        guard URL(string: base) != nil else {
-            fatalError("baseURL could not be configured")
-        }
+        var base = "Config.Network.baseURL"
+        
         switch Self.apiType {
         case .editRoom:
-            break
+            base += "/room"
         }
         return base
     }

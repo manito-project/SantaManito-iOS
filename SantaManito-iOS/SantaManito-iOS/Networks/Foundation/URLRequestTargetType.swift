@@ -13,7 +13,7 @@ protocol URLRequestTargetType {
     var path: String? { get }
     var method: HTTPMethod { get }
     var parameters: Parameters? { get }
-    var header : [String : String]? { get }
+    var headers : [String : String]? { get }
     var encoder: ParameterEncodable { get }
     
     func asURLRequest() -> AnyPublisher<URLRequest, NetworkError.RequestError>
@@ -31,8 +31,8 @@ extension URLRequestTargetType {
         if let path {
             request.url?.append(path: path)
         }
-        if let header {
-            request.allHTTPHeaderFields = header
+        if let headers {
+            request.allHTTPHeaderFields = headers
         }
         request.httpMethod = self.method.rawValue
 
