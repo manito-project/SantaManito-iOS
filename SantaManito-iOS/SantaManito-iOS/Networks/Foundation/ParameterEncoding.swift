@@ -12,7 +12,7 @@ protocol ParameterEncodable {
     func encode(
         _ request: URLRequest,
         with parameters: Parameters?
-    ) -> AnyPublisher<URLRequest, NetworkError>
+    ) -> AnyPublisher<URLRequest, NetworkError.ParameterEncoding>
 }
 
 extension ParameterEncodable {
@@ -21,14 +21,13 @@ extension ParameterEncodable {
         _ url: URL?,
         _ isJsonType: Bool = false
     ) -> AnyPublisher<(Parameters, URL), NetworkError.ParameterEncoding> {
-        guard let parameters else { return Fail(error: .emptyParameters).eraseToAnyPublisher() } // 인코딩할 파라미터가 없으면 에러 반환
-        guard let url else { return Fail(error: .missingURL).eraseToAnyPublisher() } // URL이 없으면 에러 반환
+        guard let parameters else { return Fail(error: .emptyParameters).eraseToAnyPublisher() }
+        guard let url else { return Fail(error: .missingURL).eraseToAnyPublisher() }
         
         if isJsonType {
             guard JSONSerialization.isValidJSONObject(parameters) else {
                 return Fail(error: .invalidJSON).eraseToAnyPublisher()
             }
-            
         }
         
         return Just((parameters, url))
@@ -38,11 +37,11 @@ extension ParameterEncodable {
 }
 
 public struct URLEncoding: ParameterEncodable {
-    func encode(_ request: URLRequest, with parameters: Parameters?) -> AnyPublisher<URLRequest, NetworkError> {
+    func encode(_ request: URLRequest, with parameters: Parameters?) -> AnyPublisher<URLRequest, NetworkError.ParameterEncoding> {
         var request = request
         
         return checkValidURLData(parameters, request.url)
-            .tryMap { parameters, url -> URLRequest in
+            .map { parameters, url -> URLRequest in
                 if var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
                     urlComponents.queryItems = parameters.compactMap { key, value in
                         URLQueryItem(name: key, value: "\(value)")
@@ -51,38 +50,26 @@ public struct URLEncoding: ParameterEncodable {
                 }
                 return request
             }
-            .mapError { error -> NetworkError in
-                if let parameterEncodingError = error as? NetworkError.ParameterEncoding {
-                    return NetworkError.parameterEncodingFailed(parameterEncodingError)
-                } else {
-                    return NetworkError.unknown
-                }
-            }
+            .mapError { $0 }
             .eraseToAnyPublisher()
     }
 }
 
 
 public struct JSONEncoding: ParameterEncodable {
-    func encode(_ request: URLRequest, with parameters: Parameters?) -> AnyPublisher<URLRequest, NetworkError> {
+    func encode(_ request: URLRequest, with parameters: Parameters?) -> AnyPublisher<URLRequest, NetworkError.ParameterEncoding> {
         var request = request
-        return checkValidURLData(parameters, request.url, true) // JSON 타입으로 설정
-            .tryMap { parameters, url -> URLRequest in
+        return checkValidURLData(parameters, request.url, true)
+            .tryMap { parameters, _ -> URLRequest in
                 do {
                     let data = try JSONSerialization.data(withJSONObject: parameters)
                     request.httpBody = data
                     return request
                 } catch {
-                    throw NetworkError.parameterEncodingFailed(.jsonEncodingFailed)
+                    throw NetworkError.invalidRequest(.parameterEncodingFailed(.jsonEncodingFailed))
                 }
             }
-            .mapError { error in
-                if let parameterEncodingError = error as? NetworkError.ParameterEncoding {
-                    return NetworkError.parameterEncodingFailed(parameterEncodingError)
-                } else {
-                    return NetworkError.unknown
-                }
-            }
+            .mapError { $0 as! NetworkError.ParameterEncoding } //TODO: 예외 상황이 없는거 같아서..
             .eraseToAnyPublisher()
     }
 }
