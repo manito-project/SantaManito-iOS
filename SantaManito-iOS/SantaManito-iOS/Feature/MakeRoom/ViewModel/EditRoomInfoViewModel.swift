@@ -9,19 +9,6 @@ import Foundation
 import Combine
 
 //TODO: 서버통신 되기 전에 description 어떻게 설정할지 고민
-enum EditRoomViewType: Hashable {
-    case createMode
-    case editMode
-    
-    var title: String {
-        switch self {
-        case .createMode:
-            return "방 정보 설정"
-        case .editMode:
-            return "방 정보 수정"
-        }
-    }
-}
 
 final class EditRoomInfoViewModel: ObservableObject {
     
@@ -50,7 +37,7 @@ final class EditRoomInfoViewModel: ObservableObject {
     
     //MARK: - Dependency
     
-    var viewType: EditRoomViewType
+    private(set) var viewType: EditRoomViewType
     private var roomService: EditRoomServiceType
     private var navigationRouter: NavigationRoutableType
     
@@ -64,17 +51,16 @@ final class EditRoomInfoViewModel: ObservableObject {
         self.viewType = viewType
         self.roomService = roomService
         self.navigationRouter = navigationRouter
+        self.roomInfo = viewType.info
+        self.roomID = viewType.roomID
         
         observe()
     }
     
     //MARK: - Properties
     
-    @Published var roomInfo: MakeRoomInfo = MakeRoomInfo(
-        name: "",
-        remainingDays: 3,
-        dueDate: Date()
-    )
+    private let roomID: String?
+    @Published var roomInfo: MakeRoomInfo
     
     @Published private(set) var state = State()
     private let cancelBag = CancelBag()
@@ -126,15 +112,7 @@ final class EditRoomInfoViewModel: ObservableObject {
         
         switch action {
         case .onAppear:
-            if case .editMode = viewType {
-                roomService.getRoomInfo(with: "1")
-                    .catch { _ in Empty() }
-                    .sink { roomInfo in
-                        owner.roomInfo = roomInfo
-                    }
-                    .store(in: cancelBag)
-            }
-            
+            return
         case .increaseDuedate:
             if state.canIncreaseDays { roomInfo.remainingDays += 1 }
             
@@ -159,7 +137,8 @@ final class EditRoomInfoViewModel: ObservableObject {
             navigationRouter.push(to: .makeMission(roomInfo: roomInfo))
             
         case .editButtonClicked:
-            roomService.editRoomInfo(with: "1", roomInfo: roomInfo)
+            guard let roomID else { return }
+            roomService.editRoomInfo(with: roomID, roomInfo: roomInfo)
                 .catch { _ in Empty() }
                 .sink { [weak self] _ in
                     self?.navigationRouter.pop()

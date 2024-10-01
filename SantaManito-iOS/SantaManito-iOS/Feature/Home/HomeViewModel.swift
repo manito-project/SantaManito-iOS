@@ -19,7 +19,7 @@ class HomeViewModel: ObservableObject {
         case myPageButtonDidTap
         case makeRoomButtonDidTap
         case enterRoomButtonDidTap
-        case roomCellDidTap(roomInfo: MakeRoomInfo, misson: [Mission])
+        case roomCellDidTap(roomDetail: RoomDetail)
     }
     
     
@@ -87,8 +87,8 @@ class HomeViewModel: ObservableObject {
         case .enterRoomButtonDidTap:
             navigationRouter.push(to: .enterRoom)
             
-        case let .roomCellDidTap(roomInfo, missions):
-            navigationRouter.push(to: .roomInfo(roomInfo: roomInfo, missionList: missions) )
+        case let .roomCellDidTap(roomDetail):
+            navigationRouter.push(to: .manitoWaitingRoom(roomDetail: roomDetail) )
         }
     }
 }
