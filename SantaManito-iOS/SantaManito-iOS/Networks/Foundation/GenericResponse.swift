@@ -26,3 +26,7 @@ struct GenericResponse<T: Decodable>: Decodable {
     }
 }
 
+struct VoidResult: Decodable {
+    
+}
+
