@@ -20,7 +20,7 @@ public enum URLs{
     
     //MARK: - Room
     
-    static let createroom = "/rooms"
+    static let createRoom = "/rooms"
     static let getRooms = "/rooms"
     static let getRoomDetail = "/rooms/{roomId}"
     static let editRoomInfo = "/rooms/{roomId}"

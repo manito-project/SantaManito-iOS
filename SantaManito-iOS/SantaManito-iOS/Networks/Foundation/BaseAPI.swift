@@ -17,12 +17,12 @@ protocol BaseAPI: URLRequestTargetType {
 
 extension BaseAPI {
     public var url: String {
-        var base = "Config.Network.baseURL"
-        
-        switch Self.apiType {
-        case .editRoom:
-            base += "/room"
-        }
+        let base = "https://www.santamanitto.com"
+//
+//        switch Self.apiType {
+//        case .editRoom:
+//            base += "/room"
+//        }
         return base
     }
     

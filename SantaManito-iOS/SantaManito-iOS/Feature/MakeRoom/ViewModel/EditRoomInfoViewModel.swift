@@ -159,7 +159,7 @@ final class EditRoomInfoViewModel: ObservableObject {
             navigationRouter.push(to: .makeMission(roomInfo: roomInfo))
             
         case .editButtonClicked:
-            roomService.editRoomInfo(with: "1", roomInfo: roomInfo)
+            roomService.editRoomInfo(with: "1", request: EditRoomRequest(roomName: "안녕", expirationDate: "2024-08-24"))
                 .catch { _ in Empty() }
                 .sink { [weak self] _ in
                     self?.navigationRouter.pop()
