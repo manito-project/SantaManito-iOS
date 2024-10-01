@@ -16,28 +16,27 @@ protocol URLRequestTargetType {
     var headers : [String : String]? { get }
     var encoder: ParameterEncodable { get }
     
-    func asURLRequest() -> AnyPublisher<URLRequest, NetworkError>
+    func asURLRequest() -> AnyPublisher<URLRequest, NetworkError.RequestError>
 }
 
 
 
 extension URLRequestTargetType {
-    func asURLRequest() -> AnyPublisher<URLRequest, NetworkError> {
+    func asURLRequest() -> AnyPublisher<URLRequest, NetworkError.RequestError> {
         guard let url = URL(string: self.url) else {
-            return Fail(error: NetworkError.invalidRequest(.invalidURL(self.url))).eraseToAnyPublisher()
+            return Fail(error: .invalidURL(self.url)).eraseToAnyPublisher()
         }
 
         var request = URLRequest(url: url)
-        if let path {
-            request.url?.append(path: path)
-        }
-        if let headers {
-            request.allHTTPHeaderFields = headers
-        }
+        
+        if let path = self.path { request.url?.append(path: path) }
+        if let headers = self.headers { request.allHTTPHeaderFields = headers }
+        
         request.httpMethod = self.method.rawValue
 
         return self.encoder.encode(request, with: self.parameters)
-            
+            .mapError { encodedErr in .parameterEncodingFailed(encodedErr) }
             .eraseToAnyPublisher()
     }
+
 }

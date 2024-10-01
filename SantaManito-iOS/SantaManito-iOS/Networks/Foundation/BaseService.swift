@@ -21,10 +21,11 @@ final class BaseService<Target: URLRequestTargetType> {
                 try self.validate(response: response)
                 return response.data!
             }
-            .mapError { _ in NetworkError.invalidRequest}
+            .mapError { $0 }
             .decode(type: GenericResponse<T>.self, decoder: JSONDecoder())
-            .map { $0.data! } //TODO: 이렇게 하면 안될거 같은데
-            .mapError { _ in  .decodingFailed }
+            .mapError { _ in  .decodingFailed(.failed) }
+            .map { $0.data! }
+            .print(loggingHandler.responseSuccess(target, result: $0))
             .eraseToAnyPublisher()
     }
     
@@ -32,8 +33,12 @@ final class BaseService<Target: URLRequestTargetType> {
         return fetchResponse(with: target)
             .tryMap { response in
                 try self.validate(response: response)
+                return response.data!
             }
-            .mapError { _ in NetworkError.invalidRequest}
+            .mapError { $0 }
+            .decode(type: GenericResponse<VoidResult>.self, decoder: JSONDecoder())
+            .mapError { _ in  .decodingFailed(.failed) }
+            .map { _ in () } //TODO: 이렇게 하면 안될거 같은데
             .eraseToAnyPublisher()
     }
 }
@@ -44,18 +49,14 @@ extension BaseService {
     private func fetchResponse(with target: API) -> AnyPublisher<NetworkResponse, NetworkError> {
         return requestHandler.executeRequest(for: target)
             .print(loggingHandler.requestLogging(target))
-            .mapError { _ in NetworkError.invalidRequest}
+            .mapError { $0 }
             .eraseToAnyPublisher()
     }
     
     /// 응답 유효성 검사 메서드
     func validate(response: NetworkResponse) throws {
-        guard let httpResponse = response.response as? HTTPURLResponse else {
-            throw NetworkError.Response.unhandled(error: response.error)
-        }
-        
-        guard httpResponse.isValidateStatus() else {
-            throw NetworkError.Response.invalidStatusCode(code: httpResponse.statusCode)
+        guard response.response.isValidateStatus() else {
+            throw NetworkError.ResponseError.invalidStatusCode(code: response.response.statusCode)
         }
     }
 }
@@ -85,34 +86,27 @@ class RequestHandler {
     
     func executeRequest<T: URLRequestTargetType>(for target: T) -> AnyPublisher<NetworkResponse, NetworkError> {
         return target.asURLRequest()
-            .tryMap { $0 }
+            .map { $0 }
+            .mapError { .invalidRequest($0) }
             .flatMap { urlRequest in
                 // URLRequest를 이용해 네트워크 요청 실행
                 self.session.dataTaskPublisher(for: urlRequest)
                     .tryMap { data, response -> NetworkResponse in
                         guard let httpResponse = response as? HTTPURLResponse else {
-                            throw NetworkError.Response.unhandled(error: nil)
+                            throw NetworkError.ResponseError.unhandled(error: nil)
                         }
                         return NetworkResponse(data: data, response: httpResponse, error: nil)
                     }
                     .mapError { error -> NetworkError in
-                        // 에러를 NetworkError로 변환
-                        if let urlError = error as? URLError {
-                            return NetworkError.requestFailed(.error(urlError))
-                        } else if let networkError = error as? NetworkError {
-                            return networkError
+                        if let requestErr = error as? NetworkError.ResponseError {
+                            return .invalidResponse(requestErr)
+                        } else {
+                            return .unknown
                         }
-                        return NetworkError.unknown
                     }
                     .eraseToAnyPublisher()
             }
-            .mapError { error -> NetworkError in
-                // asURLRequest에서 발생한 NetworkError를 처리
-                if let requestError = error as? NetworkError.RequestError {
-                    return NetworkError.requestFailed(requestError)
-                }
-                return NetworkError.unknown
-            }
+            
             .eraseToAnyPublisher()
     }
 }

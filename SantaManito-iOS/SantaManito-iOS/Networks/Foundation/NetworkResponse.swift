@@ -9,10 +9,10 @@ import Foundation
 
 public struct NetworkResponse {
     public let data: Data?
-    public let response: URLResponse?
+    public let response: HTTPURLResponse
     public let error: Error?
     
-    public init(data: Data?, response: URLResponse?, error: Error?) {
+    public init(data: Data?, response: HTTPURLResponse, error: Error?) {
         self.data = data
         self.response = response
         self.error = error
