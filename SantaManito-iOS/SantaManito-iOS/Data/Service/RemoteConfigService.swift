@@ -5,111 +5,82 @@
 //  Created by 장석우 on 10/1/24.
 //
 
-import Foundation
-//import FirebaseRemoteConfig
+import Combine
+import FirebaseRemoteConfig
 
 protocol RemoteConfigServiceType {
-    
+    func getServerCheck() -> AnyPublisher<Bool, RemoteConfigError>
+    func getServerCheckMessage() -> AnyPublisher<String, RemoteConfigError>
 }
 
-//
-//  FirebaseREmoteConfigService.swift
-//  ZOOC
-//
-//  Created by 장석우 on 11/6/23.
-//
 
-//
-//
-//
-//
-//
-//protocol FirebaseRemoteConfigService {
-//    typealias AppID = String
-//    typealias DelieveryFee = Int
-//    
-//    func getAppID() async throws -> AppID
-//    func getVersion() async throws -> FapVersions
-//    func getDeliveryFee() async throws -> DelieveryFee
-//    func getBankAccount() async throws -> BankAccount
-//    func getIsTestable() async throws -> Bool
-//}
-//
-//final class DefaultFirebaseRemoteConfigService: FirebaseRemoteConfigService {
-//    
-//    let remoteConfig = RemoteConfig.remoteConfig()
-//    let settings =  RemoteConfigSettings()
-//    
-//    init() {
-//        settings.minimumFetchInterval = 0
-//        remoteConfig.configSettings = settings
-//    }
-//
-//    
-//    func getAppID() async throws -> AppID {
-//        let _ = try await remoteConfig.fetchAndActivate()
-//        
-//        guard let appID = remoteConfig[FapFRCKey.iosZoocAppId.rawValue].stringValue,
-//              !appID.isEmpty
-//        else {
-//            throw FapFRCError.notFoundKeyValue
-//        }
-//        
-//        return appID
-//    }
-//    
-//    func getVersion() async throws -> FapVersions {
-//        let _ = try await remoteConfig.fetchAndActivate()
-//        
-//        guard let latestVersion = remoteConfig[FapFRCKey.latestVersion.rawValue].stringValue,
-//              let minVersion = remoteConfig[FapFRCKey.minVersion.rawValue].stringValue,
-//              !latestVersion.isEmpty,
-//              !minVersion.isEmpty
-//        else {
-//            throw FapFRCError.notFoundKeyValue
-//        }
-//        
-//        return FapVersions(latestVersion: latestVersion.transform(),
-//                           minVersion: minVersion.transform())
-//    }
-//    
-//    func getDeliveryFee() async throws -> DelieveryFee {
-//        let _ = try await remoteConfig.fetchAndActivate()
-//        
-//        let deliveryFee = remoteConfig[FapFRCKey.deliveryFee.rawValue].numberValue
-//        
-//        guard deliveryFee != 0 else {
-//            throw FapFRCError.notFoundKeyValue
-//        }
-//        
-//        return Int(truncating: deliveryFee)
-//    }
-//    
-//    func getBankAccount() async throws -> BankAccount {
-//        let _ = try await remoteConfig.fetchAndActivate()
-//        
-//        guard let holder = remoteConfig[FapFRCKey.accountHolder.rawValue].stringValue,
-//              let bank = remoteConfig[FapFRCKey.accountBank.rawValue].stringValue,
-//              let accountNumber = remoteConfig[FapFRCKey.accountNumber.rawValue].stringValue,
-//              let accountNumberWithHyphen = remoteConfig[FapFRCKey.accountNumberWithHyphen.rawValue].stringValue,
-//              !holder.isEmpty,
-//              !bank.isEmpty,
-//              !accountNumber.isEmpty,
-//              !accountNumberWithHyphen.isEmpty
-//        else  {
-//            throw FapFRCError.notFoundKeyValue
-//        }
-//        
-//        return BankAccount(holder: holder,
-//                           bank: bank,
-//                           accountNumber: accountNumber,
-//                           accountNumberWithHyphen: accountNumberWithHyphen)
-//    }
-//    
-//    func getIsTestable() async throws -> Bool {
-//        _ = try await remoteConfig.fetchAndActivate()
-//        let testable = remoteConfig[FapFRCKey.isIOSDemoTestable.rawValue].boolValue
-//        return testable
-//    }
-//}
-//
+enum RemoteConfigError: Error {
+    case keyValueNotFound
+    case unknown(Error)
+}
+
+enum SMFRCKey: String {
+    case server_check
+    case server_check_message
+}
+
+final class FirebaseRemoteConfigService {
+    
+    let shared = FirebaseRemoteConfigService()
+    
+    let remoteConfig = RemoteConfig.remoteConfig()
+    let settings = RemoteConfigSettings()
+    
+    
+    private init() {
+        settings.minimumFetchInterval = 0
+        remoteConfig.configSettings = settings
+    }
+}
+
+extension FirebaseRemoteConfigService: RemoteConfigServiceType {
+    
+    func getServerCheck() -> AnyPublisher<Bool, RemoteConfigError> {
+        Future<RemoteConfigValue?, Error> { [weak self] promise in
+            self?.remoteConfig.fetchAndActivate { _, error in
+                if let error { promise(.failure(error))}
+                promise(.success(self?.remoteConfig[SMFRCKey.server_check.rawValue]))
+            }
+        }
+        .tryMap {
+            guard let serverCheck = $0?.boolValue 
+            else { throw RemoteConfigError.keyValueNotFound}
+            return serverCheck
+        }
+        .mapError {
+            guard let frcError = $0 as? RemoteConfigError
+            else { return RemoteConfigError.unknown($0) }
+            return frcError
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func getServerCheckMessage() -> AnyPublisher<String, RemoteConfigError> {
+        Future<RemoteConfigValue?, Error> { [weak self] promise in
+            self?.remoteConfig.fetchAndActivate { _, error in
+                if let error { promise(.failure(error))}
+                promise(.success(self?.remoteConfig[SMFRCKey.server_check_message.rawValue]))
+            }
+        }
+        .tryMap {
+            guard let serverCheckMessage = $0?.stringValue,
+                  !serverCheckMessage.isEmpty
+            else { throw RemoteConfigError.keyValueNotFound}
+            
+            return serverCheckMessage
+        }
+        .mapError {
+            guard let frcError = $0 as? RemoteConfigError
+            else { return RemoteConfigError.unknown($0) }
+            return frcError
+        }
+        .eraseToAnyPublisher()
+    }
+    
+
+}
