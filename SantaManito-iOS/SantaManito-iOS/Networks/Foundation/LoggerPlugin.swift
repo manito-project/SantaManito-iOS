@@ -10,13 +10,17 @@ import UIKit
 
 final class NetworkLogger {
     
+    static let shared = NetworkLogger()
+    
+    private init() {}
+    
     func requestLogging(_ endpoint: URLRequestTargetType) -> String {
               """
                   ================== 📤 Request ===================>
                   📝 URL: \(endpoint.url + (endpoint.path ?? ""))
                   📝 HTTP Method: \(endpoint.method.rawValue)
-                  📝 Header: \(endpoint.headers)
-                  📝 Parameters: \(endpoint.parameters) ?? [:])
+                  📝 Header: \(endpoint.headers!)
+                  📝 Parameters: \(endpoint.parameters!) ?? [:])
                   ================================
               """
     }
@@ -26,7 +30,7 @@ final class NetworkLogger {
                   ======================== 📥 Response <========================
                   ========================= ✅ Success =========================
                   ✌🏻 URL: \(endpoint.url + (endpoint.path ?? ""))
-                  ✌🏻 Header: \(endpoint.headers)
+                  ✌🏻 Header: \(endpoint.headers!)
                   ✌🏻 Success_Data: \(String(describing: response.data))
                   ==============================================================
               """)
@@ -37,7 +41,7 @@ final class NetworkLogger {
                   ======================== 📥 Response <========================
                   ========================= ❌ Error.. =========================
                   ❗️ URL: \(endpoint.url + (endpoint.path ?? ""))
-                  ❗️ Header: \(endpoint.headers)
+                  ❗️ Header: \(endpoint.headers!)
                   ❗️ StatusCode: \(statusCode)
                   ❗️ Error_Data: \(error)
                   ==============================================================

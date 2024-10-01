@@ -12,22 +12,18 @@ final class BaseService<Target: URLRequestTargetType> {
     
     typealias API = Target
     
-    private let requestHandler: RequestHandler
-    private let loggingHandler: NetworkLogger
+    private let requestHandler = RequestHandler.shared
+    private let loggingHandler = NetworkLogger.shared
     
-    init(requestHandler: RequestHandler, loggingHandler: NetworkLogger) {
-        self.requestHandler = requestHandler
-        self.loggingHandler = loggingHandler
-    }
-    
-    func request<T: Decodable>(_ target: API) -> AnyPublisher<T, NetworkError> {
+    func requestWithResult<T: Decodable>(_ target: API) -> AnyPublisher<T, NetworkError> {
         return fetchResponse(with: target)
             .tryMap { response in
                 try self.validate(response: response)
                 return response.data!
             }
             .mapError { _ in NetworkError.invalidRequest}
-            .decode(type: T.self, decoder: JSONDecoder())
+            .decode(type: GenericResponse<T>.self, decoder: JSONDecoder())
+            .map { $0.data! } //TODO: 이렇게 하면 안될거 같은데
             .mapError { _ in  .decodingFailed }
             .eraseToAnyPublisher()
     }
@@ -73,6 +69,11 @@ extension HTTPURLResponse {
 
 
 class RequestHandler {
+    
+    static let shared = RequestHandler()
+    
+    private init() {}
+    
     private lazy var session: URLSession = {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 10

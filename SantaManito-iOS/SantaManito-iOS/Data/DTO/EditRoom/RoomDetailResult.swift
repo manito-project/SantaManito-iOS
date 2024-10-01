@@ -12,4 +12,3 @@ struct RoomDetailResult {
     var manittoUserId: String?
     var mission: String?
 }
-

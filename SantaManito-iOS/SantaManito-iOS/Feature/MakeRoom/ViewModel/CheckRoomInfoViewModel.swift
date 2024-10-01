@@ -76,7 +76,8 @@ class CheckRoomInfoViewModel: ObservableObject {
             }
             
         case .makeRoomButtonClicked:
-            roomService.createRoom(roomInfo: roomInfo, missions: missionList)
+            let request = CreateRoomRequest(roomName: "안뇽", expirationDate: "2024-08-24", missionContents: ["임시로 넣어둘게요!"])
+            roomService.createRoom(request)
                 .catch { _ in Empty() }
                 .sink { inviteCode in
                     owner.inviteCode = inviteCode

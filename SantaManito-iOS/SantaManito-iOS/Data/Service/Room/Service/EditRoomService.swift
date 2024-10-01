@@ -11,48 +11,47 @@ import Combine
 typealias EditRoomService = BaseService<EditRoomAPI>
 
 protocol EditRoomServiceType {
-    func getRoomInfo(with roomID: String) -> AnyPublisher<GetRoomResponse, NetworkError>
-    func editRoomInfo(with roomID: String, roomInfo: MakeRoomInfo) -> AnyPublisher<Void, NetworkError>
-    func createRoom(roomInfo: MakeRoomInfo, missions: [Mission]) -> AnyPublisher<String, NetworkError>
+    func getRoomInfo(with roomID: String) -> AnyPublisher<MakeRoomInfo, NetworkError>
+    func editRoomInfo(with roomID: String, request: EditRoomRequest) -> AnyPublisher<Void, NetworkError>
+    func createRoom(_ request: CreateRoomRequest) -> AnyPublisher<String, NetworkError>
 }
 
 extension EditRoomService: EditRoomServiceType {
-    func getRoomInfo(with roomID: String) -> AnyPublisher<GetRoomResponse, NetworkError> {
-        request(.getRoomInfo(roomID: roomID))
+    func getRoomInfo(with roomID: String) -> AnyPublisher<MakeRoomInfo, NetworkError> {
+        return Just(
+            MakeRoomInfo(
+                name: "마니또 방 이름",
+                remainingDays: 10,
+                dueDate: Date().adjustDays(remainingDays: 10)
+            )
+        ).setFailureType(to: NetworkError.self).eraseToAnyPublisher()
     }
     
-    func editRoomInfo(with roomID: String, roomInfo: MakeRoomInfo) -> AnyPublisher<Void, NetworkError> {
-        return Just(()).setFailureType(to: NetworkError.self).eraseToAnyPublisher()
+    func editRoomInfo(with roomID: String, request: EditRoomRequest) -> AnyPublisher<Void, NetworkError> {
+        requestWithNoResult(.editRoomInfo(roomId: roomID, request: request))
     }
     
-    func createRoom(roomInfo: MakeRoomInfo, missions: [Mission]) -> AnyPublisher<String, NetworkError> {
-        return Just("asdkf12").setFailureType(to: NetworkError.self).eraseToAnyPublisher()
+    func createRoom(_ request: CreateRoomRequest) -> AnyPublisher<String, NetworkError> {
+        requestWithResult(.createRoom(request: request))
     }
-}
-
-struct GetRoomResponse: Decodable {
-    var userId: String
-    var manittoUserId: String?
-    var mission: String?
 }
 
 struct StubEditRoomService: EditRoomServiceType {
-    func editRoomInfo(with roomID: String, roomInfo: MakeRoomInfo) -> AnyPublisher<Void, NetworkError> {
+    func editRoomInfo(with roomID: String, request: EditRoomRequest) -> AnyPublisher<Void, NetworkError> {
         return Just(()).setFailureType(to: NetworkError.self).eraseToAnyPublisher()
     }
     
-    func getRoomInfo(with roomID: String) -> AnyPublisher<GetRoomResponse, NetworkError> {
-        return Just(GetRoomResponse(userId: "1")).setFailureType(to: NetworkError.self).eraseToAnyPublisher()
-//        return Just(
-//            MakeRoomInfo(
-//                name: "마니또 방 이름",
-//                remainingDays: 10,
-//                dueDate: Date().adjustDays(remainingDays: 10)
-//            )
-//        ).setFailureType(to: Error.self).eraseToAnyPublisher()
+    func getRoomInfo(with roomID: String) -> AnyPublisher<MakeRoomInfo, NetworkError> {
+        return Just(
+            MakeRoomInfo(
+                name: "마니또 방 이름",
+                remainingDays: 10,
+                dueDate: Date().adjustDays(remainingDays: 10)
+            )
+        ).setFailureType(to: NetworkError.self).eraseToAnyPublisher()
     }
     
-    func createRoom(roomInfo: MakeRoomInfo, missions: [Mission]) -> AnyPublisher<String, NetworkError> {
+    func createRoom(_ request: CreateRoomRequest) -> AnyPublisher<String, NetworkError> {
         return Just("asdkf12").setFailureType(to: NetworkError.self).eraseToAnyPublisher()
     }
 }
