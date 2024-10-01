@@ -15,8 +15,8 @@ struct ManitoWaitingRoomView: View {
         VStack {
             SMScrollView (padding: -50, topView: {
                 SMInfoView(
-                    title: viewModel.roomInfo.name,
-                    description: "오늘부터 \(viewModel.roomInfo.remainingDays)일 후인 \(viewModel.roomInfo.dueDate.toDueDateWithoutYear)\n\(viewModel.roomInfo.dueDate.toDueDateTime)까지 진행되는 마니또"
+                    title: viewModel.state.roomDetail.name,
+                    description: "오늘부터 \(viewModel.state.roomDetail.remainingDays)일 후인 \(viewModel.state.roomDetail.expirationDate.toDueDateWithoutYear)\n\(viewModel.state.roomDetail.expirationDate.toDueDateTime)까지 진행되는 마니또"
                 )
             }, content: {
                 VStack {
@@ -75,17 +75,29 @@ fileprivate struct TitleView: View {
                     .padding(.trailing, 12)
                 
                 Button {
-                    viewModel.send(action: .refreshParticipant)
+                    viewModel.send(action: .refreshButtonDidTap)
                 } label: {
                     Image(.icRefresh)
                         .resizable()
                         .frame(width: 24, height: 24)
+                        .rotationEffect(
+                            Angle(
+                                degrees:  viewModel.state.isLoading ? 360 : 0
+                            )
+                        )
+                        .animation(
+                            viewModel.state.isLoading
+                            ? .linear(duration: 1).repeatForever(autoreverses: false)
+                            : .default,
+                            value: viewModel.state.isLoading
+                        )
                 }
+                .disabled(viewModel.state.isLoading)
                 
                 Spacer()
                 
                 Button {
-                    viewModel.send(action: .copyInviteCode)
+                    viewModel.send(action: .copyInviteCodeDidTap)
                 } label: {
                     Text("초대 코드 복사")
                         .font(.medium_14)
@@ -105,7 +117,8 @@ fileprivate struct TitleView: View {
                 .frame(height: 19)
             
             Rectangle()
-                .frame(width: .infinity, height: 1)
+                .frame(maxWidth: .infinity)
+                .frame(height: 1)
                 .foregroundColor(.smLightgray)
             
             Spacer()
@@ -126,8 +139,8 @@ fileprivate struct ParticipateListView: View {
                 .frame(height: 20)
             
             ScrollView(.vertical) {
-                ForEach($viewModel.participateList) { $participantList in
-                    ParticipateCellView(participate: $participantList)
+                ForEach(viewModel.state.roomDetail.members, id: \.self) { member in
+                    ParticipateCellView(user: member)
                         .padding(.bottom, 16)
                 }
             }
@@ -138,7 +151,7 @@ fileprivate struct ParticipateListView: View {
 }
 
 fileprivate struct ParticipateCellView: View {
-    @Binding var participate: Participate
+    var user: User
     var body: some View {
         HStack {
             Image(.graphicsRudolphCircle)
@@ -146,7 +159,7 @@ fileprivate struct ParticipateCellView: View {
                 .frame(width: 36, height: 36)
                 .padding(.leading, 16)
             
-            Text(participate.name)
+            Text(user.username)
                 .font(.medium_16)
                 .foregroundColor(.smDarkgray)
             
@@ -165,7 +178,10 @@ fileprivate struct MatchingButtonView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(viewModel.state.description)
+            Text(viewModel.state.roomDetail.isHost
+                 ? "방장 산타는 참여자가 다 모이면 마니또 매칭을 해줘!"
+                 : "방장 산타가 마니또 매칭을 할 때까지 기다려보자!"
+            )
                 .font(.medium_14)
                 .foregroundColor(.smDarkgray)
                 .padding(.top, 16)
@@ -173,12 +189,12 @@ fileprivate struct MatchingButtonView: View {
             Spacer()
                 .frame(height: 40)
             
-            if viewModel.state.isHost {
+            if viewModel.state.roomDetail.isHost {
                 HStack {
                     Spacer()
                     
                     Button {
-                        viewModel.send(action: .editRoomInfo)
+                        viewModel.send(action: .editButtonDidTap)
                     } label: {
                         HStack {
                             Spacer()
@@ -196,7 +212,7 @@ fileprivate struct MatchingButtonView: View {
                         .frame(width: 12)
                     
                     Button {
-                        viewModel.send(action: .matchingButtonClicked)
+                        viewModel.send(action: .matchingButtonDidTap)
                     } label: {
                         HStack {
                             Spacer()
@@ -214,7 +230,7 @@ fileprivate struct MatchingButtonView: View {
                 }
             } else {
                 Button("마니또 랜덤 매칭하기") {
-                    viewModel.send(action: .matchingButtonClicked)
+                    viewModel.send(action: .matchingButtonDidTap)
                 }
                 .disabled(true)
                 .smBottomButtonStyle()
@@ -227,9 +243,9 @@ fileprivate struct MatchingButtonView: View {
     let container = DIContainer.stub
     return ManitoWaitingRoomView(
         viewModel: ManitoWaitingRoomViewModel(
-            enterRoomService: container.service.enterRoomService,
-            editRoomService: container.service.editRoomService,
-            navigationRouter: container.navigationRouter
+            roomService: container.service.roomService,
+            navigationRouter: container.navigationRouter,
+            roomDetail: .stub
         )
     )
     .environmentObject(DIContainer.default)
