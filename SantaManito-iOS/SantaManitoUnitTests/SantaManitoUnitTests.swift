@@ -6,30 +6,44 @@
 //
 
 import XCTest
+@testable import SantaManito_iOS
+@testable import FirebaseCore
 
-final class SantaManitoUnitTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
-}
+//MARK: Deprecated - FirebaseRemoteConfig는 AppDelegate의 생명주기에 따라 동작하기에 테스트 코드 실행 불가했음 (2024.10.01) by melt
+//final class SantaManitoUnitTests: XCTestCase {
+//    
+//    var sut = FirebaseRemoteConfigService.shared
+//    var cancelBag: CancelBag!
+//    
+//    override func setUp() {
+//        FirebaseApp.configure()
+//        cancelBag = CancelBag()
+//    }
+//
+//    override func tearDown() {
+//        cancelBag = nil
+//    }
+//
+//    func test_서버체크가_값을_받아오는가() {
+//        
+//        let expectation = XCTestExpectation(description: "server_check_값 테스트")
+//        let expectedValue = true
+//        
+//        sut.getServerCheck()
+//            .sink { completion in
+//                if case let .failure(err) = completion {
+//                    XCTFail(err.localizedDescription)
+//                }
+//            } receiveValue: { serverCheck in
+//                expectation.fulfill()
+//                XCTAssertEqual(serverCheck, expectedValue)
+//            }
+//            .store(in: cancelBag)
+//
+//        
+//        
+//        wait(for: [expectation], timeout: 10.0)
+//    }
+//
+//
+//}
