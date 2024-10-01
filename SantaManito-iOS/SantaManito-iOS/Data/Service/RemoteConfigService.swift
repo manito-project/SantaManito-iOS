@@ -26,7 +26,7 @@ enum SMFRCKey: String {
 
 final class FirebaseRemoteConfigService {
     
-    let shared = FirebaseRemoteConfigService()
+    static let shared = FirebaseRemoteConfigService()
     
     let remoteConfig = RemoteConfig.remoteConfig()
     let settings = RemoteConfigSettings()
