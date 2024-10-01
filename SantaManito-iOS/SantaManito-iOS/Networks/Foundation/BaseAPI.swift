@@ -16,7 +16,7 @@ protocol BaseAPI: URLRequestTargetType {
 }
 
 extension BaseAPI {
-    public var baseURL: String {
+    public var url: String {
         let base = "Config.baseURL"
         guard URL(string: base) != nil else {
             fatalError("baseURL could not be configured")
