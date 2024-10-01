@@ -13,21 +13,23 @@ final class BaseService<Target: URLRequestTargetType> {
     typealias API = Target
     
     private let requestHandler: RequestHandler
+    private let loggingHandler: NetworkLogger
     
-    init(requestHandler: RequestHandler) {
+    init(requestHandler: RequestHandler, loggingHandler: NetworkLogger) {
         self.requestHandler = requestHandler
+        self.loggingHandler = loggingHandler
     }
     
     func request<T: Decodable>(_ target: API) -> AnyPublisher<T, NetworkError> {
         return fetchResponse(with: target)
             .tryMap { response in
                 try self.validate(response: response)
-                return response.data! // 유효성 검증 통과 시, 데이터를 반환
+                return response.data!
             }
             .mapError { _ in NetworkError.invalidRequest}
             .decode(type: T.self, decoder: JSONDecoder())
-            .mapError { _ in  .decodingFailed } // 디코딩 에러도 NetworkError로 변환
-            .eraseToAnyPublisher() // AnyPublisher로 변환하여 반환
+            .mapError { _ in  .decodingFailed }
+            .eraseToAnyPublisher()
     }
     
     func requestWithNoResult(_ target: API) -> AnyPublisher<Void, NetworkError> {
@@ -36,7 +38,7 @@ final class BaseService<Target: URLRequestTargetType> {
                 try self.validate(response: response)
             }
             .mapError { _ in NetworkError.invalidRequest}
-            .eraseToAnyPublisher() // AnyPublisher로 변환하여 반환
+            .eraseToAnyPublisher()
     }
 }
 
@@ -45,6 +47,7 @@ extension BaseService {
     /// 네트워크 응답 처리 메소드
     private func fetchResponse(with target: API) -> AnyPublisher<NetworkResponse, NetworkError> {
         return requestHandler.executeRequest(for: target)
+            .print(loggingHandler.requestLogging(target))
             .mapError { _ in NetworkError.invalidRequest}
             .eraseToAnyPublisher()
     }
