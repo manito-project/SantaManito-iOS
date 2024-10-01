@@ -46,6 +46,8 @@
 		87873BC72CAC1EFA00E368BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87873BC62CAC1EFA00E368BF /* GoogleService-Info.plist */; };
 		87873BD22CAC211E00E368BF /* SantaManitoUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BD12CAC211E00E368BF /* SantaManitoUnitTests.swift */; };
 		87873BDA2CAC215000E368BF /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 87873BD92CAC215000E368BF /* FirebaseRemoteConfig */; };
+		87873BDC2CAC29E900E368BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BDB2CAC29E900E368BF /* AppDelegate.swift */; };
+		87873BDF2CAC2EA200E368BF /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BDE2CAC2EA200E368BF /* TestView.swift */; };
 		879829052C9827B200A863EC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879829042C9827B200A863EC /* HomeViewModel.swift */; };
 		879829072C98284B00A863EC /* RoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879829062C98284B00A863EC /* RoomService.swift */; };
 		879829092C9EA54B00A863EC /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879829082C9EA54B00A863EC /* BaseView.swift */; };
@@ -144,6 +146,8 @@
 		87873BC62CAC1EFA00E368BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		87873BCF2CAC211E00E368BF /* SantaManitoUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SantaManitoUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		87873BD12CAC211E00E368BF /* SantaManitoUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantaManitoUnitTests.swift; sourceTree = "<group>"; };
+		87873BDB2CAC29E900E368BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		87873BDE2CAC2EA200E368BF /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		879829042C9827B200A863EC /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		879829062C98284B00A863EC /* RoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomService.swift; sourceTree = "<group>"; };
 		879829082C9EA54B00A863EC /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -353,6 +357,14 @@
 			path = SantaManitoUnitTests;
 			sourceTree = "<group>";
 		};
+		87873BDD2CAC2E9700E368BF /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				87873BDE2CAC2EA200E368BF /* TestView.swift */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
 		87C06E5B2C9EAB5E00F03637 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -411,6 +423,7 @@
 				87C06E5B2C9EAB5E00F03637 /* Navigation */,
 				D22E9B582C88031A00086549 /* SantaManito_iOSApp.swift */,
 				877EA23A2C88AAC10073FFBD /* DIContainer.swift */,
+				87873BDB2CAC29E900E368BF /* AppDelegate.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -511,6 +524,7 @@
 		D22E9B7A2C88042500086549 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				87873BDD2CAC2E9700E368BF /* Test */,
 				877CA0A02C94303200D23193 /* Splash */,
 				877EA2372C88AA780073FFBD /* Onboarding */,
 				877EA2332C88AA410073FFBD /* Home */,
@@ -824,6 +838,7 @@
 				874017B72CA2A9F30096E847 /* EditUsernameViewModel.swift in Sources */,
 				879829072C98284B00A863EC /* RoomService.swift in Sources */,
 				D2A8F6142C9E792100810BCF /* EnterRoomService.swift in Sources */,
+				87873BDC2CAC29E900E368BF /* AppDelegate.swift in Sources */,
 				D2A8F61B2CA116BD00810BCF /* MatchingViewModel.swift in Sources */,
 				D2A8F60E2C9D18FF00810BCF /* EditRoomService.swift in Sources */,
 				D2A8F61D2CA116F800810BCF /* MatchingView.swift in Sources */,
@@ -832,6 +847,7 @@
 				877CA0892C8CB61100D23193 /* DSKitDemoView.swift in Sources */,
 				874017A82CA1AC010096E847 /* MissionResponse.swift in Sources */,
 				D2BC1A982C90245700CB32B8 /* TextFieldStyles.swift in Sources */,
+				87873BDF2CAC2EA200E368BF /* TestView.swift in Sources */,
 				87873BC52CAC1C0300E368BF /* RemoteConfigService.swift in Sources */,
 				874017B52CA2A68A0096E847 /* EditUsernameView.swift in Sources */,
 				D2BC1A942C90102900CB32B8 /* EditMissionViewModel.swift in Sources */,
