@@ -5,7 +5,9 @@
 //  Created by 장석우 on 9/16/24.
 //
 
+import Foundation
 import Combine
+
 
 class HomeViewModel: ObservableObject {
     
@@ -23,6 +25,7 @@ class HomeViewModel: ObservableObject {
     
     struct State {
         var rooms: [RoomDetail] = []
+        var isLoading = false
     }
     
     //MARK: - Dependency
@@ -55,8 +58,10 @@ class HomeViewModel: ObservableObject {
         
         switch action {
             
-        case .onAppear:
+        case .onAppear, .refreshButtonDidTap:
+            state.isLoading = true
             roomService.fetch()
+                .receive(on: DispatchQueue.main)
                 .flatMap { roomInfos -> AnyPublisher<[RoomDetail], Error> in
                     // Step 2: 각 RoomInfo에서 roomID를 가져와 fetch(with:) 호출
                     let roomDetailsPublishers = roomInfos.map { roomInfo in
@@ -69,6 +74,7 @@ class HomeViewModel: ObservableObject {
                         .eraseToAnyPublisher() // AnyPublisher로 반환
                 }
                 .catch { _ in Empty() }
+                .handleEvents(receiveOutput: { [weak self] _ in self?.state.isLoading = false })
                 .assign(to: \.state.rooms, on: self)
                 .store(in: cancelBag)
             
@@ -80,9 +86,6 @@ class HomeViewModel: ObservableObject {
             
         case .enterRoomButtonDidTap:
             navigationRouter.push(to: .enterRoom)
-            
-        case .refreshButtonDidTap:
-            break
             
         case let .roomCellDidTap(roomInfo, missions):
             navigationRouter.push(to: .roomInfo(roomInfo: roomInfo, missionList: missions) )
