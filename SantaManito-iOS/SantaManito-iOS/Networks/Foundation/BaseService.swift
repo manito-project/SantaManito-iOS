@@ -44,14 +44,9 @@ final class BaseService<Target: URLRequestTargetType> {
 extension BaseService {
     /// 네트워크 응답 처리 메소드
     private func fetchResponse(with target: API) -> AnyPublisher<NetworkResponse, NetworkError> {
-        do {
-            let request = try requestHandler.executeRequest(for: target)
-            return request
-                .mapError { _ in NetworkError.invalidRequest }
-                .eraseToAnyPublisher()
-        } catch {
-            return Fail(error: .invalidRequest).eraseToAnyPublisher()
-        }
+        return requestHandler.executeRequest(for: target)
+            .mapError { _ in NetworkError.invalidRequest}
+            .eraseToAnyPublisher()
     }
     
     /// 응답 유효성 검사 메서드
@@ -84,18 +79,35 @@ class RequestHandler {
         return URLSession(configuration: configuration)
     }()
     
-    func executeRequest<T: URLRequestTargetType>(for target: T) throws -> AnyPublisher<NetworkResponse, NetworkError> {
-        let endPoint = try target.asURLRequest()
-        
-        return session.dataTaskPublisher(for: endPoint)
-            .tryMap { data, response in
-                guard let httpResponse = response as? HTTPURLResponse else {
-                    throw NetworkError.Response.unhandled(error: nil)
-                }
-                return NetworkResponse(data: data, response: httpResponse, error: nil)
+    func executeRequest<T: URLRequestTargetType>(for target: T) -> AnyPublisher<NetworkResponse, NetworkError> {
+        return target.asURLRequest()
+            .tryMap { $0 }
+            .flatMap { urlRequest in
+                // URLRequest를 이용해 네트워크 요청 실행
+                self.session.dataTaskPublisher(for: urlRequest)
+                    .tryMap { data, response -> NetworkResponse in
+                        guard let httpResponse = response as? HTTPURLResponse else {
+                            throw NetworkError.Response.unhandled(error: nil)
+                        }
+                        return NetworkResponse(data: data, response: httpResponse, error: nil)
+                    }
+                    .mapError { error -> NetworkError in
+                        // 에러를 NetworkError로 변환
+                        if let urlError = error as? URLError {
+                            return NetworkError.requestFailed(.error(urlError))
+                        } else if let networkError = error as? NetworkError {
+                            return networkError
+                        }
+                        return NetworkError.unknown
+                    }
+                    .eraseToAnyPublisher()
             }
-            .mapError { error in
-                return NetworkError.requestFailed(error as! NetworkError.RequestError) // 요청값이 오지 않는 경우
+            .mapError { error -> NetworkError in
+                // asURLRequest에서 발생한 NetworkError를 처리
+                if let requestError = error as? NetworkError.RequestError {
+                    return NetworkError.requestFailed(requestError)
+                }
+                return NetworkError.unknown
             }
             .eraseToAnyPublisher()
     }
