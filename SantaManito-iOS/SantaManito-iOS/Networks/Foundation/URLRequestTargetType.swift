@@ -16,15 +16,15 @@ protocol URLRequestTargetType {
     var headers : [String : String]? { get }
     var encoder: ParameterEncodable { get }
     
-    func asURLRequest() -> AnyPublisher<URLRequest, NetworkError.RequestError>
+    func asURLRequest() -> AnyPublisher<URLRequest, NetworkError>
 }
 
 
 
 extension URLRequestTargetType {
-    func asURLRequest() -> AnyPublisher<URLRequest, NetworkError.RequestError> {
+    func asURLRequest() -> AnyPublisher<URLRequest, NetworkError> {
         guard let url = URL(string: self.url) else {
-            return Fail(error: NetworkError.RequestError.invalidURL(self.url)).eraseToAnyPublisher()
+            return Fail(error: NetworkError.invalidRequest(.invalidURL(self.url))).eraseToAnyPublisher()
         }
 
         var request = URLRequest(url: url)
@@ -37,7 +37,7 @@ extension URLRequestTargetType {
         request.httpMethod = self.method.rawValue
 
         return self.encoder.encode(request, with: self.parameters)
-            .mapError { _ in NetworkError.RequestError.invalidRequest }
+            
             .eraseToAnyPublisher()
     }
 }

@@ -8,23 +8,18 @@
 import Foundation
 
 @frozen public enum NetworkError: Error {
-    case invalidRequest
-    case parameterEncodingFailed(ParameterEncoding)
-    case invalidResponse(Int)
-    case unknown
+    case invalidRequest(Request)
+    case invalidResponse(Response)
     case decodingFailed
-    case requestFailed(RequestError)
+    case unknown
 }
 
 extension NetworkError {
-    public enum RequestError: Error {
-        case error(Error)
+    public enum Request: Error {
+        case parameterEncodingFailed(ParameterEncoding)
         case invalidURL(String)
-        case invalidRequest
     }
-}
 
-extension NetworkError {
     public enum ParameterEncoding: Error {
         case emptyParameters
         case missingURL
@@ -46,5 +41,12 @@ extension NetworkError {
                 self = .unhandled(error: error)
             }
         }
+    }
+}
+
+extension NetworkError {
+    public enum Decode: Error {
+        case failed
+        case dataIsNil
     }
 }
