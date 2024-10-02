@@ -16,13 +16,13 @@ protocol URLRequestTargetType {
     var headers : [String : String]? { get }
     var encoder: ParameterEncodable { get }
     
-    func asURLRequest() -> AnyPublisher<URLRequest, NetworkError.RequestError>
+    func asURLRequest() -> AnyPublisher<URLRequest, SMNetworkError.RequestError>
 }
 
 
 
 extension URLRequestTargetType {
-    func asURLRequest() -> AnyPublisher<URLRequest, NetworkError.RequestError> {
+    func asURLRequest() -> AnyPublisher<URLRequest, SMNetworkError.RequestError> {
         guard let url = URL(string: self.url) else {
             return Fail(error: .invalidURL(self.url)).eraseToAnyPublisher()
         }
