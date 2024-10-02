@@ -12,7 +12,7 @@ protocol ParameterEncodable {
     func encode(
         _ request: URLRequest,
         with parameters: Parameters?
-    ) -> AnyPublisher<URLRequest, NetworkError.ParameterEncoding>
+    ) -> AnyPublisher<URLRequest, SMNetworkError.ParameterEncoding>
 }
 
 extension ParameterEncodable {
@@ -20,7 +20,7 @@ extension ParameterEncodable {
         _ parameters: Parameters?,
         _ url: URL?,
         _ isJsonType: Bool = false
-    ) -> AnyPublisher<(Parameters, URL), NetworkError.ParameterEncoding> {
+    ) -> AnyPublisher<(Parameters, URL), SMNetworkError.ParameterEncoding> {
         guard let parameters else { return Fail(error: .emptyParameters).eraseToAnyPublisher() }
         guard let url else { return Fail(error: .missingURL).eraseToAnyPublisher() }
         
@@ -31,13 +31,13 @@ extension ParameterEncodable {
         }
         
         return Just((parameters, url))
-            .setFailureType(to: NetworkError.ParameterEncoding.self)
+            .setFailureType(to: SMNetworkError.ParameterEncoding.self)
             .eraseToAnyPublisher()
     }
 }
 
 public struct URLEncoding: ParameterEncodable {
-    func encode(_ request: URLRequest, with parameters: Parameters?) -> AnyPublisher<URLRequest, NetworkError.ParameterEncoding> {
+    func encode(_ request: URLRequest, with parameters: Parameters?) -> AnyPublisher<URLRequest, SMNetworkError.ParameterEncoding> {
         var request = request
         
         return checkValidURLData(parameters, request.url)
@@ -57,7 +57,7 @@ public struct URLEncoding: ParameterEncodable {
 
 
 public struct JSONEncoding: ParameterEncodable {
-    func encode(_ request: URLRequest, with parameters: Parameters?) -> AnyPublisher<URLRequest, NetworkError.ParameterEncoding> {
+    func encode(_ request: URLRequest, with parameters: Parameters?) -> AnyPublisher<URLRequest, SMNetworkError.ParameterEncoding> {
         var request = request
         return checkValidURLData(parameters, request.url, true)
             .tryMap { parameters, _ -> URLRequest in
@@ -66,10 +66,10 @@ public struct JSONEncoding: ParameterEncodable {
                     request.httpBody = data
                     return request
                 } catch {
-                    throw NetworkError.invalidRequest(.parameterEncodingFailed(.jsonEncodingFailed))
+                    throw SMNetworkError.invalidRequest(.parameterEncodingFailed(.jsonEncodingFailed))
                 }
             }
-            .mapError { $0 as! NetworkError.ParameterEncoding } //TODO: 예외 상황이 없는거 같아서..
+            .mapError { $0 as! SMNetworkError.ParameterEncoding } //TODO: 예외 상황이 없는거 같아서..
             .eraseToAnyPublisher()
     }
 }

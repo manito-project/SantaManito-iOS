@@ -13,32 +13,38 @@ final class BaseService<Target: URLRequestTargetType> {
     typealias API = Target
     
     private let requestHandler = RequestHandler.shared
-    private let loggingHandler = NetworkLogger.shared
+    private let loggingHandler = NetworkLogHandler.shared
+    private let errorHandler = ErrorHandler.shared
     
-    func requestWithResult<T: Decodable>(_ target: API) -> AnyPublisher<T, NetworkError> {
+    func requestWithResult<T: Decodable>(_ target: API) -> AnyPublisher<T, SMNetworkError> {
         return fetchResponse(with: target)
-            .tryMap { response in
-                try self.validate(response: response)
-                return response.data!
+            .flatMap { response in
+                self.validate(response: response)
+                    .map { _ in response.data! }
+                    .mapError { [weak self] error in
+                        guard let self else { return .unknown}
+                        return self.errorHandler.handleError(target, error: error)
+                    }
             }
-            .mapError { $0 }
-            .decode(type: GenericResponse<T>.self, decoder: JSONDecoder())
-            .mapError { _ in  .decodingFailed(.failed) }
-            .map { $0.data! }
-            .print(loggingHandler.responseSuccess(target, result: $0))
+            .flatMap { self.decode(data: $0, target: target) }
             .eraseToAnyPublisher()
     }
     
-    func requestWithNoResult(_ target: API) -> AnyPublisher<Void, NetworkError> {
+    func requestWithNoResult(_ target: API) -> AnyPublisher<Void, SMNetworkError> {
         return fetchResponse(with: target)
-            .tryMap { response in
-                try self.validate(response: response)
-                return response.data!
+            .flatMap { response -> AnyPublisher<Data, SMNetworkError> in
+                self.validate(response: response) // validate 연결
+                    .map { _ in response.data! } // 성공 시 data 반환
+                    .eraseToAnyPublisher()
             }
-            .mapError { $0 }
-            .decode(type: GenericResponse<VoidResult>.self, decoder: JSONDecoder())
-            .mapError { _ in  .decodingFailed(.failed) }
-            .map { _ in () } //TODO: 이렇게 하면 안될거 같은데
+            .mapError { [weak self] error in
+                guard let self = self else { return .unknown }
+                return self.errorHandler.handleError(target, error: error)
+            }
+            .flatMap { data -> AnyPublisher<VoidResult, SMNetworkError> in
+                self.decode(data: data, target: target)
+            }
+            .map { _ in () }
             .eraseToAnyPublisher()
     }
 }
@@ -46,67 +52,46 @@ final class BaseService<Target: URLRequestTargetType> {
 
 extension BaseService {
     /// 네트워크 응답 처리 메소드
-    private func fetchResponse(with target: API) -> AnyPublisher<NetworkResponse, NetworkError> {
+    private func fetchResponse(with target: API) -> AnyPublisher<NetworkResponse, SMNetworkError> {
         return requestHandler.executeRequest(for: target)
-            .print(loggingHandler.requestLogging(target))
-            .mapError { $0 }
+            .handleEvents(receiveSubscription:  { [weak self] _ in
+                self?.loggingHandler.requestLogging(target)
+            }, receiveOutput:  { [weak self] response in
+                self?.loggingHandler.responseSuccess(target, result: response)
+            })
+            .mapError { [weak self] error in
+                self?.loggingHandler.responseError(target, result: error)
+                return error
+            }
             .eraseToAnyPublisher()
     }
     
     /// 응답 유효성 검사 메서드
-    func validate(response: NetworkResponse) throws {
+    private func validate(response: NetworkResponse) -> AnyPublisher<Void, SMNetworkError> {
         guard response.response.isValidateStatus() else {
-            throw NetworkError.ResponseError.invalidStatusCode(code: response.response.statusCode)
+            return Fail(error: SMNetworkError.invalidResponse(.invalidStatusCode(code: response.response.statusCode)))
+                .eraseToAnyPublisher()
         }
+        return Just(()).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
     }
+    
+    /// 디코딩 메소드
+    private func decode<T: Decodable>(data: Data, target: API) -> AnyPublisher<T, SMNetworkError> {
+        return Just(data)
+            .decode(type: GenericResponse<T>.self, decoder: JSONDecoder())
+            .mapError { [weak self] error in
+                guard let self else { return .unknown}
+                return self.errorHandler.handleError(target, error: .decodingFailed(.failed))
+            }
+            .map { $0.data! }
+            .eraseToAnyPublisher()
+    }
+    
 }
 
 // HTTP 상태코드 유효성 검사
 extension HTTPURLResponse {
     func isValidateStatus() -> Bool {
         return (200...299).contains(self.statusCode)
-    }
-}
-
-
-class RequestHandler {
-    
-    static let shared = RequestHandler()
-    
-    private init() {}
-    
-    private lazy var session: URLSession = {
-        let configuration = URLSessionConfiguration.default
-        configuration.timeoutIntervalForRequest = 10
-        configuration.timeoutIntervalForResource = 10
-        // TODO: Logging 추가
-        // TODO: Interceptor 추가
-        return URLSession(configuration: configuration)
-    }()
-    
-    func executeRequest<T: URLRequestTargetType>(for target: T) -> AnyPublisher<NetworkResponse, NetworkError> {
-        return target.asURLRequest()
-            .map { $0 }
-            .mapError { .invalidRequest($0) }
-            .flatMap { urlRequest in
-                // URLRequest를 이용해 네트워크 요청 실행
-                self.session.dataTaskPublisher(for: urlRequest)
-                    .tryMap { data, response -> NetworkResponse in
-                        guard let httpResponse = response as? HTTPURLResponse else {
-                            throw NetworkError.ResponseError.unhandled(error: nil)
-                        }
-                        return NetworkResponse(data: data, response: httpResponse, error: nil)
-                    }
-                    .mapError { error -> NetworkError in
-                        if let requestErr = error as? NetworkError.ResponseError {
-                            return .invalidResponse(requestErr)
-                        } else {
-                            return .unknown
-                        }
-                    }
-                    .eraseToAnyPublisher()
-            }
-            
-            .eraseToAnyPublisher()
     }
 }

@@ -50,7 +50,7 @@
 		D229FE782CA7CEA200979421 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE772CA7CEA200979421 /* HTTPMethod.swift */; };
 		D229FE7E2CA7D0F700979421 /* URLRequestTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE7D2CA7D0F700979421 /* URLRequestTargetType.swift */; };
 		D229FE802CA7D17600979421 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE7F2CA7D17600979421 /* ParameterEncoding.swift */; };
-		D229FE822CA7D39600979421 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE812CA7D39600979421 /* NetworkError.swift */; };
+		D229FE822CA7D39600979421 /* SMNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE812CA7D39600979421 /* SMNetworkError.swift */; };
 		D229FE842CA7D70C00979421 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE832CA7D70C00979421 /* APIConstants.swift */; };
 		D229FE862CA7D98400979421 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE852CA7D98400979421 /* BaseService.swift */; };
 		D22E9B592C88031A00086549 /* SantaManito_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B582C88031A00086549 /* SantaManito_iOSApp.swift */; };
@@ -68,7 +68,7 @@
 		D268793D2CAA7F8A0025A611 /* RoomAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D268793C2CAA7F8A0025A611 /* RoomAPI.swift */; };
 		D268793F2CAA80580025A611 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D268793E2CAA80580025A611 /* BaseAPI.swift */; };
 		D26879412CAA83500025A611 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879402CAA83500025A611 /* URLs.swift */; };
-		D26879432CAB8DA30025A611 /* LoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879422CAB8DA30025A611 /* LoggerPlugin.swift */; };
+		D26879432CAB8DA30025A611 /* NetworkLogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879422CAB8DA30025A611 /* NetworkLogHandler.swift */; };
 		D26879462CABB2F30025A611 /* EditRoomRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879452CABB2F30025A611 /* EditRoomRequest.swift */; };
 		D26879482CABB3A80025A611 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879472CABB3A80025A611 /* GenericResponse.swift */; };
 		D268794A2CABB51E0025A611 /* RoomDetailResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879492CABB51E0025A611 /* RoomDetailResult.swift */; };
@@ -78,6 +78,8 @@
 		D26BFA8E2C91987900C5CF86 /* EnterRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA8D2C91987900C5CF86 /* EnterRoomViewModel.swift */; };
 		D26BFA912C919D0000C5CF86 /* ManitoWaitingRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA902C919D0000C5CF86 /* ManitoWaitingRoomView.swift */; };
 		D276B6082C8AB64B00230FA2 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = D276B6072C8AB64B00230FA2 /* Font.swift */; };
+		D28568AC2CAD031C0044C231 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28568AB2CAD031C0044C231 /* RequestHandler.swift */; };
+		D28568AE2CAD033C0044C231 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28568AD2CAD033C0044C231 /* ErrorHandler.swift */; };
 		D2A8F60E2C9D18FF00810BCF /* EditRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */; };
 		D2A8F6122C9D1A4F00810BCF /* MakeRoomInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */; };
 		D2A8F6142C9E792100810BCF /* EnterRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6132C9E792100810BCF /* EnterRoomService.swift */; };
@@ -145,7 +147,7 @@
 		D229FE772CA7CEA200979421 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		D229FE7D2CA7D0F700979421 /* URLRequestTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestTargetType.swift; sourceTree = "<group>"; };
 		D229FE7F2CA7D17600979421 /* ParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
-		D229FE812CA7D39600979421 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		D229FE812CA7D39600979421 /* SMNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMNetworkError.swift; sourceTree = "<group>"; };
 		D229FE832CA7D70C00979421 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		D229FE852CA7D98400979421 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		D22E9B552C88031A00086549 /* SantaManito-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SantaManito-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,7 +165,7 @@
 		D268793C2CAA7F8A0025A611 /* RoomAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAPI.swift; sourceTree = "<group>"; };
 		D268793E2CAA80580025A611 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
 		D26879402CAA83500025A611 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
-		D26879422CAB8DA30025A611 /* LoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerPlugin.swift; sourceTree = "<group>"; };
+		D26879422CAB8DA30025A611 /* NetworkLogHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogHandler.swift; sourceTree = "<group>"; };
 		D26879452CABB2F30025A611 /* EditRoomRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomRequest.swift; sourceTree = "<group>"; };
 		D26879472CABB3A80025A611 /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
 		D26879492CABB51E0025A611 /* RoomDetailResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailResult.swift; sourceTree = "<group>"; };
@@ -175,6 +177,8 @@
 		D26BFA922C919D0900C5CF86 /* ManitoWaitingRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManitoWaitingRoomViewModel.swift; sourceTree = "<group>"; };
 		D276B5FA2C8AAB6200230FA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D276B6072C8AB64B00230FA2 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		D28568AB2CAD031C0044C231 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
+		D28568AD2CAD033C0044C231 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomService.swift; sourceTree = "<group>"; };
 		D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRoomInfo.swift; sourceTree = "<group>"; };
 		D2A8F6132C9E792100810BCF /* EnterRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomService.swift; sourceTree = "<group>"; };
@@ -354,16 +358,16 @@
 		D229FE742CA7CDC600979421 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				D28568AA2CAD02C70044C231 /* Handler */,
 				D229FE772CA7CEA200979421 /* HTTPMethod.swift */,
 				D229FE7D2CA7D0F700979421 /* URLRequestTargetType.swift */,
 				D229FE7F2CA7D17600979421 /* ParameterEncoding.swift */,
-				D229FE812CA7D39600979421 /* NetworkError.swift */,
+				D229FE812CA7D39600979421 /* SMNetworkError.swift */,
 				D229FE832CA7D70C00979421 /* APIConstants.swift */,
 				D229FE852CA7D98400979421 /* BaseService.swift */,
 				D26879372CAA7BE40025A611 /* NetworkResponse.swift */,
 				D268793E2CAA80580025A611 /* BaseAPI.swift */,
 				D26879402CAA83500025A611 /* URLs.swift */,
-				D26879422CAB8DA30025A611 /* LoggerPlugin.swift */,
 				D26879472CABB3A80025A611 /* GenericResponse.swift */,
 			);
 			path = Foundation;
@@ -629,6 +633,16 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		D28568AA2CAD02C70044C231 /* Handler */ = {
+			isa = PBXGroup;
+			children = (
+				D26879422CAB8DA30025A611 /* NetworkLogHandler.swift */,
+				D28568AB2CAD031C0044C231 /* RequestHandler.swift */,
+				D28568AD2CAD033C0044C231 /* ErrorHandler.swift */,
+			);
+			path = Handler;
+			sourceTree = "<group>";
+		};
 		D2A8F60C2C9D18E700810BCF /* Room */ = {
 			isa = PBXGroup;
 			children = (
@@ -783,7 +797,7 @@
 				877EA2322C889DCB0073FFBD /* ButtonStyles.swift in Sources */,
 				87C06E5A2C9EA5FE00F03637 /* Device.swift in Sources */,
 				D26879482CABB3A80025A611 /* GenericResponse.swift in Sources */,
-				D26879432CAB8DA30025A611 /* LoggerPlugin.swift in Sources */,
+				D26879432CAB8DA30025A611 /* NetworkLogHandler.swift in Sources */,
 				874017B32CA29FEF0096E847 /* MyPageItem.swift in Sources */,
 				D229FE802CA7D17600979421 /* ParameterEncoding.swift in Sources */,
 				D268794A2CABB51E0025A611 /* RoomDetailResult.swift in Sources */,
@@ -792,6 +806,7 @@
 				877CA0732C8C4C5C00D23193 /* SMView.swift in Sources */,
 				87C06E5F2C9EADD600F03637 /* NavigationRoutingView.swift in Sources */,
 				D2BC1AA32C90A29200CB32B8 /* CheckRoomInfoViewModel.swift in Sources */,
+				D28568AE2CAD033C0044C231 /* ErrorHandler.swift in Sources */,
 				877EA23D2C88AB8D0073FFBD /* UserService.swift in Sources */,
 				874017B02CA29C820096E847 /* MyPageViewModel.swift in Sources */,
 				877EA2412C88ABA00073FFBD /* PushNotificationService.swift in Sources */,
@@ -806,12 +821,13 @@
 				D22E9B752C8803EC00086549 /* Provider.swift in Sources */,
 				D268794C2CABB5CA0025A611 /* CreateRoomRequest.swift in Sources */,
 				877CA0A22C94304B00D23193 /* SplashView.swift in Sources */,
-				D229FE822CA7D39600979421 /* NetworkError.swift in Sources */,
+				D229FE822CA7D39600979421 /* SMNetworkError.swift in Sources */,
 				D229FE7E2CA7D0F700979421 /* URLRequestTargetType.swift in Sources */,
 				D2A8F6122C9D1A4F00810BCF /* MakeRoomInfo.swift in Sources */,
 				D2A8F61F2CA1170B00810BCF /* MatchingResultView.swift in Sources */,
 				D2BC1AA52C91357F00CB32B8 /* SMInviteCodeAlertView.swift in Sources */,
 				D26879462CABB2F30025A611 /* EditRoomRequest.swift in Sources */,
+				D28568AC2CAD031C0044C231 /* RequestHandler.swift in Sources */,
 				877CA0832C8CA75C00D23193 /* SMAlertView.swift in Sources */,
 				877CA0812C8C555D00D23193 /* SMScrollView.swift in Sources */,
 				874017B72CA2A9F30096E847 /* EditUsernameViewModel.swift in Sources */,
