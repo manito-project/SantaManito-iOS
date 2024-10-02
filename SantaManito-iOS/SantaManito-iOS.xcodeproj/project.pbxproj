@@ -80,6 +80,7 @@
 		D276B6082C8AB64B00230FA2 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = D276B6072C8AB64B00230FA2 /* Font.swift */; };
 		D28568AC2CAD031C0044C231 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28568AB2CAD031C0044C231 /* RequestHandler.swift */; };
 		D28568AE2CAD033C0044C231 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28568AD2CAD033C0044C231 /* ErrorHandler.swift */; };
+		D28568B22CAD21800044C231 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28568B12CAD21800044C231 /* Config.swift */; };
 		D2A8F60E2C9D18FF00810BCF /* EditRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */; };
 		D2A8F6122C9D1A4F00810BCF /* MakeRoomInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */; };
 		D2A8F6142C9E792100810BCF /* EnterRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6132C9E792100810BCF /* EnterRoomService.swift */; };
@@ -179,6 +180,7 @@
 		D276B6072C8AB64B00230FA2 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		D28568AB2CAD031C0044C231 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		D28568AD2CAD033C0044C231 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		D28568B12CAD21800044C231 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomService.swift; sourceTree = "<group>"; };
 		D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRoomInfo.swift; sourceTree = "<group>"; };
 		D2A8F6132C9E792100810BCF /* EnterRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomService.swift; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 				D268793E2CAA80580025A611 /* BaseAPI.swift */,
 				D26879402CAA83500025A611 /* URLs.swift */,
 				D26879472CABB3A80025A611 /* GenericResponse.swift */,
+				D28568B12CAD21800044C231 /* Config.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -795,6 +798,7 @@
 				874017BB2CA2B64E0096E847 /* SMWebView.swift in Sources */,
 				D2A8F6232CA1173600810BCF /* FinishViewModel.swift in Sources */,
 				877EA2322C889DCB0073FFBD /* ButtonStyles.swift in Sources */,
+				D28568B22CAD21800044C231 /* Config.swift in Sources */,
 				87C06E5A2C9EA5FE00F03637 /* Device.swift in Sources */,
 				D26879482CABB3A80025A611 /* GenericResponse.swift in Sources */,
 				D26879432CAB8DA30025A611 /* NetworkLogHandler.swift in Sources */,
@@ -975,6 +979,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BASE_URL = "https://www.santamanitto.com";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SantaManito-iOS/Preview Content\"";
@@ -1009,6 +1014,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BASE_URL = "https://www.santamanitto.com";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SantaManito-iOS/Preview Content\"";
