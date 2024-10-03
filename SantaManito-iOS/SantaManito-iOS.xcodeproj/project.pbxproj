@@ -20,6 +20,8 @@
 		874017B92CA2B0020096E847 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017B82CA2B0020096E847 /* User.swift */; };
 		874017BB2CA2B64E0096E847 /* SMWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017BA2CA2B64E0096E847 /* SMWebView.swift */; };
 		874017C72CA6B4CD0096E847 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017C62CA6B4CD0096E847 /* View+.swift */; };
+		874017CB2CA7E6970096E847 /* SMPasteBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017CA2CA7E6970096E847 /* SMPasteBoard.swift */; };
+		874017CD2CA7EC7A0096E847 /* EditRoomViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017CC2CA7EC7A0096E847 /* EditRoomViewType.swift */; };
 		877CA0712C8AB3DE00D23193 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0702C8AB3DE00D23193 /* LoadingView.swift */; };
 		877CA0732C8C4C5C00D23193 /* SMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0722C8C4C5C00D23193 /* SMView.swift */; };
 		877CA0752C8C4F4800D23193 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 877CA0742C8C4F4800D23193 /* Pretendard-Bold.otf */; };
@@ -118,6 +120,8 @@
 		874017B82CA2B0020096E847 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		874017BA2CA2B64E0096E847 /* SMWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMWebView.swift; sourceTree = "<group>"; };
 		874017C62CA6B4CD0096E847 /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
+		874017CA2CA7E6970096E847 /* SMPasteBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMPasteBoard.swift; sourceTree = "<group>"; };
+		874017CC2CA7EC7A0096E847 /* EditRoomViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomViewType.swift; sourceTree = "<group>"; };
 		877CA0702C8AB3DE00D23193 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		877CA0722C8C4C5C00D23193 /* SMView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMView.swift; sourceTree = "<group>"; };
 		877CA0742C8C4F4800D23193 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
@@ -257,6 +261,7 @@
 				D2BC1A9B2C90473000CB32B8 /* Mission.swift */,
 				874017AB2CA1B3040096E847 /* RoomState.swift */,
 				874017A92CA1B2FC0096E847 /* RoomDetail.swift */,
+				874017CC2CA7EC7A0096E847 /* EditRoomViewType.swift */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -449,6 +454,7 @@
 				877CA07D2C8C50D000D23193 /* View */,
 				D22E9B6A2C8803C100086549 /* ObservableObjectSettable.swift */,
 				87C06E592C9EA5FE00F03637 /* Device.swift */,
+				874017CA2CA7E6970096E847 /* SMPasteBoard.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -812,6 +818,7 @@
 				D2BC1AA32C90A29200CB32B8 /* CheckRoomInfoViewModel.swift in Sources */,
 				D28568AE2CAD033C0044C231 /* ErrorHandler.swift in Sources */,
 				877EA23D2C88AB8D0073FFBD /* UserService.swift in Sources */,
+				874017CB2CA7E6970096E847 /* SMPasteBoard.swift in Sources */,
 				874017B02CA29C820096E847 /* MyPageViewModel.swift in Sources */,
 				877EA2412C88ABA00073FFBD /* PushNotificationService.swift in Sources */,
 				D2A8F6252CA118EA00810BCF /* MatchRoomService.swift in Sources */,
@@ -820,6 +827,7 @@
 				D26BFA802C91692700C5CF86 /* SMInfoView.swift in Sources */,
 				87C06E612C9EADE700F03637 /* NavigationDestination.swift in Sources */,
 				D26BFA8E2C91987900C5CF86 /* EnterRoomViewModel.swift in Sources */,
+				874017CD2CA7EC7A0096E847 /* EditRoomViewType.swift in Sources */,
 				874017A42CA1AB610096E847 /* RoomDetailResponse.swift in Sources */,
 				D276B6082C8AB64B00230FA2 /* Font.swift in Sources */,
 				D22E9B752C8803EC00086549 /* Provider.swift in Sources */,

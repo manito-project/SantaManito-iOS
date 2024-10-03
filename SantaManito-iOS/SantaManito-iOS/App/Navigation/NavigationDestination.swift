@@ -11,7 +11,7 @@ enum NavigationDestination: Hashable {
     
     //EnterRoom
     case enterRoom
-    case manitoWaitingRoom
+    case manitoWaitingRoom(roomDetail: RoomDetail)
     
     case myPage
     case editUsername

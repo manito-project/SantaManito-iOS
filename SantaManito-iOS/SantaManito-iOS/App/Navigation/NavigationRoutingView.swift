@@ -45,12 +45,12 @@ struct NavigationRoutingView: View {
                     navigationRouter: container.navigationRouter
                 )
             )
-        case .manitoWaitingRoom:
+        case let .manitoWaitingRoom(roomDetail):
             ManitoWaitingRoomView(
                 viewModel: .init(
-                    enterRoomService: container.service.enterRoomService,
-                    editRoomService: container.service.editRoomService, 
-                    navigationRouter: container.navigationRouter
+                    roomService: container.service.roomService, 
+                    navigationRouter: container.navigationRouter,
+                    roomDetail: roomDetail
                 )
             )
 

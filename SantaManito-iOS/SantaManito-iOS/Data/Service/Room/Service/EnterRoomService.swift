@@ -17,7 +17,7 @@ enum EnterError: Error {
 
 protocol EnterRoomServiceType {
     func validateParticipationCode(inviteCode: String) -> AnyPublisher<Void, EnterError>
-    func getParticipate(_ roomID: String) -> AnyPublisher<[Participate], Error>
+//    func getParticipate(_ roomID: String) -> AnyPublisher<[Participate], Error>
     func getUser(_ userID: String) -> AnyPublisher<Bool, Error>
     func getInviteCode(_ roomID: String) -> AnyPublisher<String, Error>
 }
@@ -31,10 +31,10 @@ struct StubEnterRoomService: EnterRoomServiceType {
 //        return Fail(error: EnterError.alreadyMatchedError).eraseToAnyPublisher()
     }
     
-    func getParticipate(_ roomID: String) -> AnyPublisher<[Participate], Error> {
-        return Just(Participate.dummy()).setFailureType(to: Error.self).eraseToAnyPublisher()
-    }
-    
+//    func getParticipate(_ roomID: String) -> AnyPublisher<[Participate], Error> {
+//        return Just(Participate.dummy()).setFailureType(to: Error.self).eraseToAnyPublisher()
+//    }
+//    
     func getUser(_ userID: String) -> AnyPublisher<Bool, Error> {
         return Just(true).setFailureType(to: Error.self).eraseToAnyPublisher()
 //        return Just(false).setFailureType(to: Error.self).eraseToAnyPublisher()

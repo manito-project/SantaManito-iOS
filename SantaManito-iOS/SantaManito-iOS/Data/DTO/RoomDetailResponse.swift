@@ -12,7 +12,7 @@ struct RoomDetailResponse: Decodable {
     let roomName: String
     let invitationCode: String
     let createdAt: String
-    let expirationDate: String
+    let expirationDate: Date
     let matchingDate: String?
     let deletedByCreatorDate: String?
     let Creator: UserResponse
@@ -29,7 +29,8 @@ extension RoomDetailResponse {
                           creatorID: self.Creator.id,
                           creatorName: self.Creator.username,
                           mission: Missions.map { $0.toEntity()},
-                          expirationDate: self.expirationDate
+                          expirationDate: self.expirationDate,
+                          members: Members.map { $0.toEntity() }
         )
     }
 }
@@ -37,7 +38,7 @@ extension RoomDetailResponse {
 struct RoomStateFactory {
     static func create(_ dto: RoomDetailResponse) -> RoomState {
         guard dto.deletedByCreatorDate != nil else { return .deleted }
-        guard dto.expirationDate > "현재시간보다" else { return .completed } //TODO: 현재 시간보다 로직
+        guard dto.expirationDate.toDueDateTime > "현재시간보다" else { return .completed } //TODO: 현재 시간보다 로직
         guard dto.matchingDate != nil else { return .notStarted }
         return .inProgress
     }
