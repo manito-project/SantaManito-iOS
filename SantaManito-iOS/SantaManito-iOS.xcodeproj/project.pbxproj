@@ -69,7 +69,7 @@
 		D26879382CAA7BE40025A611 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879372CAA7BE40025A611 /* NetworkResponse.swift */; };
 		D268793D2CAA7F8A0025A611 /* RoomAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D268793C2CAA7F8A0025A611 /* RoomAPI.swift */; };
 		D268793F2CAA80580025A611 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D268793E2CAA80580025A611 /* BaseAPI.swift */; };
-		D26879412CAA83500025A611 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879402CAA83500025A611 /* URLs.swift */; };
+		D26879412CAA83500025A611 /* Paths.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879402CAA83500025A611 /* Paths.swift */; };
 		D26879432CAB8DA30025A611 /* NetworkLogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879422CAB8DA30025A611 /* NetworkLogHandler.swift */; };
 		D26879462CABB2F30025A611 /* EditRoomRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879452CABB2F30025A611 /* EditRoomRequest.swift */; };
 		D26879482CABB3A80025A611 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879472CABB3A80025A611 /* GenericResponse.swift */; };
@@ -169,7 +169,7 @@
 		D26879372CAA7BE40025A611 /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
 		D268793C2CAA7F8A0025A611 /* RoomAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAPI.swift; sourceTree = "<group>"; };
 		D268793E2CAA80580025A611 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
-		D26879402CAA83500025A611 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
+		D26879402CAA83500025A611 /* Paths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paths.swift; sourceTree = "<group>"; };
 		D26879422CAB8DA30025A611 /* NetworkLogHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogHandler.swift; sourceTree = "<group>"; };
 		D26879452CABB2F30025A611 /* EditRoomRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomRequest.swift; sourceTree = "<group>"; };
 		D26879472CABB3A80025A611 /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
@@ -374,7 +374,7 @@
 				D229FE852CA7D98400979421 /* BaseService.swift */,
 				D26879372CAA7BE40025A611 /* NetworkResponse.swift */,
 				D268793E2CAA80580025A611 /* BaseAPI.swift */,
-				D26879402CAA83500025A611 /* URLs.swift */,
+				D26879402CAA83500025A611 /* Paths.swift */,
 				D26879472CABB3A80025A611 /* GenericResponse.swift */,
 				D28568B12CAD21800044C231 /* Config.swift */,
 			);
@@ -852,7 +852,7 @@
 				D26BFA912C919D0000C5CF86 /* ManitoWaitingRoomView.swift in Sources */,
 				877CA0892C8CB61100D23193 /* DSKitDemoView.swift in Sources */,
 				874017A82CA1AC010096E847 /* MissionResponse.swift in Sources */,
-				D26879412CAA83500025A611 /* URLs.swift in Sources */,
+				D26879412CAA83500025A611 /* Paths.swift in Sources */,
 				D229FE782CA7CEA200979421 /* HTTPMethod.swift in Sources */,
 				D2BC1A982C90245700CB32B8 /* TextFieldStyles.swift in Sources */,
 				874017B52CA2A68A0096E847 /* EditUsernameView.swift in Sources */,

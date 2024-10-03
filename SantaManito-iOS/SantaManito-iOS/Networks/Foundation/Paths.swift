@@ -5,7 +5,7 @@
 //  Created by 류희재 on 9/30/24.
 //
 
-public enum URLs{
+public enum Paths {
     
     //MARK: - Auth
     

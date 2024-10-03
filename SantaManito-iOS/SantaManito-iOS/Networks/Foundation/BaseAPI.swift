@@ -7,13 +7,7 @@
 
 import Foundation
 
-public enum APIType {
-    case editRoom
-}
-
-protocol BaseAPI: URLRequestTargetType {
-    static var apiType: APIType { get set }
-}
+protocol BaseAPI: URLRequestTargetType { }
 
 extension BaseAPI {
     public var url: String {

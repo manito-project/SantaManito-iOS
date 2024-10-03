@@ -11,7 +11,7 @@ import Foundation
     case invalidRequest(RequestError)
     case invalidResponse(ResponseError)
     case decodingFailed(DecodeError)
-    case unknown
+    case unknown(Error)
     
     var description: String {
         switch self {
@@ -21,8 +21,8 @@ import Foundation
             return "응답 시 발생된" + responseError.description
         case .decodingFailed(let decodeError):
             return decodeError.description
-        case .unknown:
-            return "알 수 없는 오류입니다."
+        case .unknown(let error):
+            return "알 수 없는 오류 \(error)가 발생하였습니다!"
         }
     }
 }
