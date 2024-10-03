@@ -14,16 +14,15 @@ enum EditRoomAPI {
 }
 
 extension EditRoomAPI: BaseAPI {
-    public static var apiType: APIType = .editRoom
     
     var path: String? {
         switch self {
             //        case .getRoomInfo:
             //            return URLs.getRoomDetail
         case .editRoomInfo(let roomId, _):
-            return URLs.editRoomInfo.replacingOccurrences(of: "{roomId}", with: roomId)
+            return Paths.editRoomInfo.replacingOccurrences(of: "{roomId}", with: roomId)
         case .createRoom:
-            return URLs.createRoom
+            return Paths.createRoom
         }
     }
     var method: HTTPMethod {

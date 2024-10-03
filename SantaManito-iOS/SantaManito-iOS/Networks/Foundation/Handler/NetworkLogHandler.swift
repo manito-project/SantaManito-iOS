@@ -5,49 +5,56 @@
 //  Created by 류희재 on 10/1/24.
 //
 
+import Foundation
 
-import UIKit
-
-final class NetworkLogHandler {
+struct NetworkLogHandler {
     
-    static let shared = NetworkLogHandler()
-    
-    private init() {}
-    
-    func requestLogging(_ endpoint: URLRequestTargetType) {
-        print("""
-                  ================== 📤 Request ===================>
-                  📝 URL: \(endpoint.url + (endpoint.path ?? ""))
-                  📝 HTTP Method: \(endpoint.method.rawValue)
-                  📝 Header: \(endpoint.headers!)
-                  📝 Parameters: \(endpoint.parameters!) ?? [:])
-                  ================================
-              """)
-    }
-    
-    func responseSuccess(_ endpoint: any URLRequestTargetType, result response: NetworkResponse) {
-        print("""
-                  ======================== 📥 Response <========================
-                  ========================= ✅ Success =========================
-                  ✌🏻 URL: \(endpoint.url + (endpoint.path ?? ""))
-                  ✌🏻 Header: \(endpoint.headers!)
-                  ✌🏻 Success_Data: \(String(describing: response.data))
-                  ==============================================================
-              """)
-    }
-    
-    func responseError(_ endpoint: any URLRequestTargetType, result error: SMNetworkError) {
+    // 네트워크 요청 로깅 함수
+    static func requestLogging(_ endpoint: URLRequestTargetType) {
+        let url = endpoint.url + (endpoint.path ?? "")
+        let method = endpoint.method.rawValue
+        let headers = endpoint.headers ?? [:]
+        let parameters = endpoint.parameters ?? [:]
         
         print("""
-                  ======================== 📥 Response <========================
-                  ========================= ❌ Error.. =========================
-                  ❗️ Error Type: \(error.description)
-                  ❗️ URL: \(endpoint.url + (endpoint.path ?? ""))
-                  ❗️ Header: \(endpoint.headers!)
-                  ❗️ Error_Data: \(error.localizedDescription)
-                  ==============================================================
-              """)
+            ================== 📤 Request ===================>
+            📝 URL: \(url)
+            📝 HTTP Method: \(method)
+            📝 Header: \(headers)
+            📝 Parameters: \(parameters)
+            ================================
+            """)
+    }
+    
+    // 성공적인 응답 로깅 함수
+    static func responseSuccess(_ endpoint: any URLRequestTargetType, result response: NetworkResponse) {
+        let url = endpoint.url + (endpoint.path ?? "")
+        let headers = endpoint.headers ?? [:]
+        let responseData = String(data: response.data ?? Data(), encoding: .utf8) ?? "No data"
+        
+        print("""
+            ======================== 📥 Response <========================
+            ========================= ✅ Success =========================
+            ✌🏻 URL: \(url)
+            ✌🏻 Header: \(headers)
+            ✌🏻 Success Data: \(responseData)
+            ==============================================================
+            """)
+    }
+    
+    // 에러 응답 로깅 함수
+    static func responseError(_ endpoint: any URLRequestTargetType, result error: SMNetworkError) {
+        let url = endpoint.url + (endpoint.path ?? "")
+        let headers = endpoint.headers ?? [:]
+        
+        print("""
+            ======================== 📥 Response <========================
+            ========================= ❌ Error ==========================
+            ❗️ Error Type: \(error.description)
+            ❗️ URL: \(url)
+            ❗️ Header: \(headers)
+            ❗️ Error Data: \(error.localizedDescription)
+            ==============================================================
+            """)
     }
 }
-
-

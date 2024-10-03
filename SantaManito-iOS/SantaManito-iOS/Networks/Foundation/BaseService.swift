@@ -13,18 +13,13 @@ final class BaseService<Target: URLRequestTargetType> {
     typealias API = Target
     
     private let requestHandler = RequestHandler.shared
-    private let loggingHandler = NetworkLogHandler.shared
-    private let errorHandler = ErrorHandler.shared
     
     func requestWithResult<T: Decodable>(_ target: API) -> AnyPublisher<T, SMNetworkError> {
         return fetchResponse(with: target)
             .flatMap { response in
                 self.validate(response: response)
                     .map { _ in response.data! }
-                    .mapError { [weak self] error in
-                        guard let self else { return .unknown}
-                        return self.errorHandler.handleError(target, error: error)
-                    }
+                    .mapError { ErrorHandler.handleError(target, error: $0) }
             }
             .flatMap { self.decode(data: $0, target: target) }
             .eraseToAnyPublisher()
@@ -37,10 +32,7 @@ final class BaseService<Target: URLRequestTargetType> {
                     .map { _ in response.data! } // 성공 시 data 반환
                     .eraseToAnyPublisher()
             }
-            .mapError { [weak self] error in
-                guard let self = self else { return .unknown }
-                return self.errorHandler.handleError(target, error: error)
-            }
+            .mapError { ErrorHandler.handleError(target, error: $0) }
             .flatMap { data -> AnyPublisher<VoidResult, SMNetworkError> in
                 self.decode(data: data, target: target)
             }
@@ -54,15 +46,12 @@ extension BaseService {
     /// 네트워크 응답 처리 메소드
     private func fetchResponse(with target: API) -> AnyPublisher<NetworkResponse, SMNetworkError> {
         return requestHandler.executeRequest(for: target)
-            .handleEvents(receiveSubscription:  { [weak self] _ in
-                self?.loggingHandler.requestLogging(target)
-            }, receiveOutput:  { [weak self] response in
-                self?.loggingHandler.responseSuccess(target, result: response)
+            .handleEvents(receiveSubscription:  {  _ in
+                NetworkLogHandler.requestLogging(target)
+            }, receiveOutput:  {  response in
+                NetworkLogHandler.responseSuccess(target, result: response)
             })
-            .mapError { [weak self] error in
-                self?.loggingHandler.responseError(target, result: error)
-                return error
-            }
+            .mapError { ErrorHandler.handleError(target, error: $0) }
             .eraseToAnyPublisher()
     }
     
@@ -79,10 +68,7 @@ extension BaseService {
     private func decode<T: Decodable>(data: Data, target: API) -> AnyPublisher<T, SMNetworkError> {
         return Just(data)
             .decode(type: GenericResponse<T>.self, decoder: JSONDecoder())
-            .mapError { [weak self] error in
-                guard let self else { return .unknown}
-                return self.errorHandler.handleError(target, error: .decodingFailed(.failed))
-            }
+            .mapError { _ in ErrorHandler.handleError(target, error: .decodingFailed(.failed)) }
             .map { $0.data! }
             .eraseToAnyPublisher()
     }
