@@ -30,8 +30,10 @@ class SplashViewModel: ObservableObject {
     
     //MARK: - Dependency
     
-    var authService: AuthenticationServiceType
-    var remoteConfigService: RemoteConfigServiceType
+    private var appService: AppServiceType
+    private var remoteConfigService: RemoteConfigServiceType
+    private var authService: AuthenticationServiceType
+    
     
     //MARK: - Properties
     
@@ -41,11 +43,13 @@ class SplashViewModel: ObservableObject {
     //MARK: - Init
     
     init(
-        authService: AuthenticationServiceType,
-        remoteConfigService: RemoteConfigServiceType
+        appService: AppServiceType,
+        remoteConfigService: RemoteConfigServiceType,
+        authService: AuthenticationServiceType
     ) {
-        self.authService = authService
+        self.appService = appService
         self.remoteConfigService = remoteConfigService
+        self.authService = authService
     }
     
     //MARK: - Methods
