@@ -134,7 +134,10 @@ iOSInjectionProject/
 **/xcshareddata/WorkspaceSettings.xcsettings
 
 ### Config ### 
-## GitHub Private 이면 아래 두 파일 ignore하지 않아도 됨 (2023.8.5 Github 레포지토리 Private 으로 변경)
+## GitHub Private 이면 아래 두 파일 ignore하지 않아도 됨 
 #*.xcconfig
+SantaManito-iOS/SantaManito-iOS/Secret/*
+!SantaManito-iOS/SantaManito-iOS/Secret/Secret.md
+SantaManito-iOS/SantaManito-iOS/GoogleService-Info.plist
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,xcode,swift
