@@ -8,11 +8,19 @@
 import Foundation
 
 protocol AppServiceType {
+    func isLatestVersion() -> Bool
     func getLocalAppVersion() -> Version
     func getAppStoreVersion() -> Version
 }
 
 struct AppService: AppServiceType {
+    
+    func isLatestVersion() -> Bool {
+        let local = getLocalAppVersion()
+        let appStore = getAppStoreVersion()
+        return local >= appStore
+    }
+    
     
     func getLocalAppVersion() -> Version {
         guard let dictionary = Bundle.main.infoDictionary,
@@ -23,7 +31,7 @@ struct AppService: AppServiceType {
     
     func getAppStoreVersion() -> Version {
         guard let bundleID = Bundle.main.infoDictionary?["CFBundleIdentifier"] as? String 
-        else { return Version("\(Int.max).0.0") }
+        else { return Version("0.0.0") }
         
         let appStoreUrl = "http://itunes.apple.com/lookup?bundleId=\(bundleID)"
         guard let url = URL(string: appStoreUrl),
@@ -38,8 +46,13 @@ struct AppService: AppServiceType {
 }
 
 struct StubAppService: AppServiceType {
+    
+    func isLatestVersion() -> Bool {
+        return true
+    }
+    
     func getLocalAppVersion() -> Version {
-        return Version("2.0.0")
+        return Version("1.0.0")
     }
     
     func getAppStoreVersion() -> Version {
