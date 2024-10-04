@@ -7,15 +7,8 @@
 import Foundation
 import Combine
 
-struct RoomInfo: Hashable {
-    var id: String
-    var roomName: String
-    var invitationCode: String
-    var createdAt: String
-}
-
 protocol RoomServiceType {
-    func fetch() -> AnyPublisher<[RoomInfo], Error>
+    func fetchAll() -> AnyPublisher<[RoomDetail], Error>
     func fetch(with roomID: String) -> AnyPublisher<RoomDetail, Error>
     func edit(with roomID: String) -> AnyPublisher<Void, Error>
     func delete(with roomID: String) -> AnyPublisher<Void, Error>
@@ -24,12 +17,10 @@ protocol RoomServiceType {
 
 struct StubRoomService: RoomServiceType {
     
-    func fetch() -> AnyPublisher<[RoomInfo], Error> {
-        
-        Future<[RoomInfo],Error> { promise in
+    func fetchAll() -> AnyPublisher<[RoomDetail], Error> {
+        Future<[RoomDetail],Error> { promise in
             DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
-                // Simulate success
-                promise(.success([.init(id: "", roomName: "", invitationCode: "", createdAt: "")]))
+                promise(.success([.stub1, .stub2, .stub3, .stub4, .stub5]))
             }
             
         }
@@ -39,7 +30,7 @@ struct StubRoomService: RoomServiceType {
     func fetch(with roomID: String) -> AnyPublisher<RoomDetail, Error> {
         Future<RoomDetail,Error> { promise in
             DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
-                promise(.success(.stub))
+                promise(.success(.stub1))
             }
             
         }

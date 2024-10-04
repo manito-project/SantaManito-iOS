@@ -60,22 +60,11 @@ class HomeViewModel: ObservableObject {
             
         case .onAppear, .refreshButtonDidTap:
             state.isLoading = true
-            roomService.fetch()
+            roomService.fetchAll()
                 .receive(on: DispatchQueue.main)
-                .flatMap { roomInfos -> AnyPublisher<[RoomDetail], Error> in
-                    // Step 2: 각 RoomInfo에서 roomID를 가져와 fetch(with:) 호출
-                    let roomDetailsPublishers = roomInfos.map { roomInfo in
-                        self.roomService.fetch(with: roomInfo.id) // fetch(with:) 결과를 가져옴
-                    }
-                    
-                    // Step 3: 결과들을 배열로 묶어서 반환 (Publishers.MergeMany 사용)
-                    return Publishers.MergeMany(roomDetailsPublishers) // 여러 Publisher를 하나로 합침
-                        .collect() // RoomDetail을 하나의 배열로 묶음
-                        .eraseToAnyPublisher() // AnyPublisher로 반환
-                }
                 .catch { _ in Empty() }
-                .handleEvents(receiveOutput: { [weak self] _ in self?.state.isLoading = false })
-                .assign(to: \.state.rooms, on: self)
+                .handleEvents(receiveOutput: { _ in owner.state.isLoading = false })
+                .assign(to: \.state.rooms, on: owner)
                 .store(in: cancelBag)
             
         case .myPageButtonDidTap:

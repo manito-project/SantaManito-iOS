@@ -70,7 +70,7 @@ class EnterRoomViewModel: ObservableObject {
                         }
                     }
                 }, receiveValue: { _ in
-                    owner.navigationRouter.push(to: .manitoWaitingRoom(roomDetail: .stub)) // stub교체
+                    owner.navigationRouter.push(to: .manitoWaitingRoom(roomDetail: .stub1)) //TODO: stub교체
                 })
                 .store(in: cancelBag)
         }

@@ -245,7 +245,7 @@ fileprivate struct MatchingButtonView: View {
         viewModel: ManitoWaitingRoomViewModel(
             roomService: container.service.roomService,
             navigationRouter: container.navigationRouter,
-            roomDetail: .stub
+            roomDetail: .stub1
         )
     )
     .environmentObject(DIContainer.default)
