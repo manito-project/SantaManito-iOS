@@ -102,6 +102,14 @@ struct StubRemoteConfigService: RemoteConfigServiceType {
     }
     
     func getServerCheckMessage() -> AnyPublisher<String, RemoteConfigError> {
-        Just("익일 오전 7시까지 서버 점검이 진행돼.\n내일 다시 만나자!").setFailureType(to: RemoteConfigError.self).eraseToAnyPublisher()
+        
+        Future<String, RemoteConfigError> { promise in
+            DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
+                promise(.success("익일 오전 7시까지 서버 점검이 진행돼.\n내일 다시 만나자!"))
+            }
+        }
+        .eraseToAnyPublisher()
+
+        //        Just("익일 오전 7시까지 서버 점검이 진행돼.\n내일 다시 만나자!").setFailureType(to: RemoteConfigError.self).eraseToAnyPublisher()
     }
 }
