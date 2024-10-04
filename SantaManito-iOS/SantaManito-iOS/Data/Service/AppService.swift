@@ -11,7 +11,7 @@ protocol AppServiceType {
     func getLocalAppVersion() -> Version
 }
 
-struct AppService {
+struct AppService: AppServiceType {
     
     func getLocalAppVersion() -> Version {
         guard let dictionary = Bundle.main.infoDictionary,
@@ -21,3 +21,8 @@ struct AppService {
     }
 }
     
+struct StubAppService: AppServiceType {
+    func getLocalAppVersion() -> Version {
+        return Version("1.0.0") 
+    }
+}

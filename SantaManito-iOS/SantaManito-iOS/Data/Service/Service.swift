@@ -8,6 +8,7 @@
 import Foundation
 
 protocol ServiceType {
+    var appService: AppServiceType { get }
     var authService: AuthenticationServiceType { get set }
     var userService: UserServiceType { get set }
     var roomService: RoomServiceType { get }
@@ -38,6 +39,7 @@ class Service {
 
 class StubService: ServiceType {
     
+    var appService: AppServiceType = StubAppService()
     var authService: AuthenticationServiceType = StubAuthenticationService()
     var userService: UserServiceType = StubUserService()
     var roomService: RoomServiceType = StubRoomService()
