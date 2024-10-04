@@ -36,7 +36,7 @@ class StubService: ServiceType {
     var authService: AuthenticationServiceType = StubAuthenticationService()
     var userService: UserServiceType = StubUserService()
     var roomService: RoomServiceType = StubRoomService()
-    var editRoomService: EditRoomServiceType = StubEditRoomService()
+    var editRoomService: EditRoomServiceType = EditRoomService()
     var enterRoomService: EnterRoomServiceType = StubEnterRoomService()
     var matchRoomService: MatchRoomServiceType = StubMatchRoomService()
     var pushNotificationService: PushNotificationServiceType = StubPushNotificationService()
