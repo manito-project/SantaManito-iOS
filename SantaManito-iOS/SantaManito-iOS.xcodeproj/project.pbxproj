@@ -41,7 +41,6 @@
 		877EA23D2C88AB8D0073FFBD /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA23C2C88AB8D0073FFBD /* UserService.swift */; };
 		877EA23F2C88AB930073FFBD /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA23E2C88AB930073FFBD /* AuthService.swift */; };
 		877EA2412C88ABA00073FFBD /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA2402C88ABA00073FFBD /* PushNotificationService.swift */; };
-		87873BC12CAC1AD500E368BF /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BC02CAC1AD500E368BF /* Config.swift */; };
 		87873BC52CAC1C0300E368BF /* RemoteConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BC42CAC1C0300E368BF /* RemoteConfigService.swift */; };
 		87873BC72CAC1EFA00E368BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87873BC62CAC1EFA00E368BF /* GoogleService-Info.plist */; };
 		87873BD22CAC211E00E368BF /* SantaManitoUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BD12CAC211E00E368BF /* SantaManitoUnitTests.swift */; };
@@ -158,7 +157,6 @@
 		877EA23C2C88AB8D0073FFBD /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		877EA23E2C88AB930073FFBD /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		877EA2402C88ABA00073FFBD /* PushNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
-		87873BC02CAC1AD500E368BF /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		87873BC32CAC1B2D00E368BF /* Secret.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Secret.md; sourceTree = "<group>"; };
 		87873BC42CAC1C0300E368BF /* RemoteConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigService.swift; sourceTree = "<group>"; };
 		87873BC62CAC1EFA00E368BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -380,8 +378,8 @@
 		87873BBF2CAC1A4C00E368BF /* Secret */ = {
 			isa = PBXGroup;
 			children = (
-				87873BC02CAC1AD500E368BF /* Config.swift */,
 				87873BC32CAC1B2D00E368BF /* Secret.md */,
+				D28568B12CAD21800044C231 /* Config.swift */,
 			);
 			path = Secret;
 			sourceTree = "<group>";
@@ -434,7 +432,6 @@
 				D268793E2CAA80580025A611 /* BaseAPI.swift */,
 				D26879402CAA83500025A611 /* Paths.swift */,
 				D26879472CABB3A80025A611 /* GenericResponse.swift */,
-				D28568B12CAD21800044C231 /* Config.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -461,7 +458,6 @@
 			isa = PBXGroup;
 			children = (
 				87873BC62CAC1EFA00E368BF /* GoogleService-Info.plist */,
-				D229FE732CA7CDC000979421 /* Networks */,
 				D276B5FA2C8AAB6200230FA2 /* Info.plist */,
 				87873BBF2CAC1A4C00E368BF /* Secret */,
 				D22E9B662C8803A200086549 /* App */,
@@ -469,6 +465,7 @@
 				D22E9B782C8803F600086549 /* DSKit */,
 				D22E9B6E2C8803CC00086549 /* Data */,
 				D22E9B672C8803AE00086549 /* Core */,
+				D229FE732CA7CDC000979421 /* Networks */,
 				D22E9B5E2C88031C00086549 /* Preview Content */,
 			);
 			path = "SantaManito-iOS";
@@ -929,7 +926,6 @@
 				D28568AE2CAD033C0044C231 /* ErrorHandler.swift in Sources */,
 				877EA23D2C88AB8D0073FFBD /* UserService.swift in Sources */,
 				874017CB2CA7E6970096E847 /* SMPasteBoard.swift in Sources */,
-				87873BC12CAC1AD500E368BF /* Config.swift in Sources */,
 				874017B02CA29C820096E847 /* MyPageViewModel.swift in Sources */,
 				877EA2412C88ABA00073FFBD /* PushNotificationService.swift in Sources */,
 				D2A8F6252CA118EA00810BCF /* MatchRoomService.swift in Sources */,
