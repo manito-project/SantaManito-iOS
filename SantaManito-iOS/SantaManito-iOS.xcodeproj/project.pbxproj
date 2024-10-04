@@ -49,6 +49,12 @@
 		87C06E5F2C9EADD600F03637 /* NavigationRoutingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C06E5E2C9EADD600F03637 /* NavigationRoutingView.swift */; };
 		87C06E612C9EADE700F03637 /* NavigationDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C06E602C9EADE700F03637 /* NavigationDestination.swift */; };
 		87D797A42C9454BF003BA602 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D797A32C9454BF003BA602 /* OnboardingViewModel.swift */; };
+		D229FE782CA7CEA200979421 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE772CA7CEA200979421 /* HTTPMethod.swift */; };
+		D229FE7E2CA7D0F700979421 /* URLRequestTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE7D2CA7D0F700979421 /* URLRequestTargetType.swift */; };
+		D229FE802CA7D17600979421 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE7F2CA7D17600979421 /* ParameterEncoding.swift */; };
+		D229FE822CA7D39600979421 /* SMNetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE812CA7D39600979421 /* SMNetworkError.swift */; };
+		D229FE842CA7D70C00979421 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE832CA7D70C00979421 /* APIConstants.swift */; };
+		D229FE862CA7D98400979421 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE852CA7D98400979421 /* BaseService.swift */; };
 		D22E9B592C88031A00086549 /* SantaManito_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B582C88031A00086549 /* SantaManito_iOSApp.swift */; };
 		D22E9B5B2C88031A00086549 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B5A2C88031A00086549 /* HomeView.swift */; };
 		D22E9B5D2C88031C00086549 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22E9B5C2C88031C00086549 /* Assets.xcassets */; };
@@ -60,11 +66,23 @@
 		D25411A42CA4007A00B87568 /* ManitoWaitingRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA922C919D0900C5CF86 /* ManitoWaitingRoomViewModel.swift */; };
 		D25570E92C8E858A00CCC226 /* EditRoomInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570E82C8E858A00CCC226 /* EditRoomInfoView.swift */; };
 		D25570ED2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570EC2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift */; };
+		D26879382CAA7BE40025A611 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879372CAA7BE40025A611 /* NetworkResponse.swift */; };
+		D268793D2CAA7F8A0025A611 /* RoomAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D268793C2CAA7F8A0025A611 /* RoomAPI.swift */; };
+		D268793F2CAA80580025A611 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D268793E2CAA80580025A611 /* BaseAPI.swift */; };
+		D26879412CAA83500025A611 /* Paths.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879402CAA83500025A611 /* Paths.swift */; };
+		D26879432CAB8DA30025A611 /* NetworkLogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879422CAB8DA30025A611 /* NetworkLogHandler.swift */; };
+		D26879462CABB2F30025A611 /* EditRoomRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879452CABB2F30025A611 /* EditRoomRequest.swift */; };
+		D26879482CABB3A80025A611 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879472CABB3A80025A611 /* GenericResponse.swift */; };
+		D268794A2CABB51E0025A611 /* RoomDetailResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879492CABB51E0025A611 /* RoomDetailResult.swift */; };
+		D268794C2CABB5CA0025A611 /* CreateRoomRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D268794B2CABB5CA0025A611 /* CreateRoomRequest.swift */; };
 		D26BFA802C91692700C5CF86 /* SMInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA7F2C91692700C5CF86 /* SMInfoView.swift */; };
 		D26BFA8C2C91987200C5CF86 /* EnterRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA8B2C91987200C5CF86 /* EnterRoomView.swift */; };
 		D26BFA8E2C91987900C5CF86 /* EnterRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA8D2C91987900C5CF86 /* EnterRoomViewModel.swift */; };
 		D26BFA912C919D0000C5CF86 /* ManitoWaitingRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA902C919D0000C5CF86 /* ManitoWaitingRoomView.swift */; };
 		D276B6082C8AB64B00230FA2 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = D276B6072C8AB64B00230FA2 /* Font.swift */; };
+		D28568AC2CAD031C0044C231 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28568AB2CAD031C0044C231 /* RequestHandler.swift */; };
+		D28568AE2CAD033C0044C231 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28568AD2CAD033C0044C231 /* ErrorHandler.swift */; };
+		D28568B22CAD21800044C231 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28568B12CAD21800044C231 /* Config.swift */; };
 		D2A8F60E2C9D18FF00810BCF /* EditRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */; };
 		D2A8F6122C9D1A4F00810BCF /* MakeRoomInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */; };
 		D2A8F6142C9E792100810BCF /* EnterRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6132C9E792100810BCF /* EnterRoomService.swift */; };
@@ -131,6 +149,12 @@
 		87C06E5E2C9EADD600F03637 /* NavigationRoutingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRoutingView.swift; sourceTree = "<group>"; };
 		87C06E602C9EADE700F03637 /* NavigationDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDestination.swift; sourceTree = "<group>"; };
 		87D797A32C9454BF003BA602 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		D229FE772CA7CEA200979421 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		D229FE7D2CA7D0F700979421 /* URLRequestTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestTargetType.swift; sourceTree = "<group>"; };
+		D229FE7F2CA7D17600979421 /* ParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
+		D229FE812CA7D39600979421 /* SMNetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMNetworkError.swift; sourceTree = "<group>"; };
+		D229FE832CA7D70C00979421 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		D229FE852CA7D98400979421 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		D22E9B552C88031A00086549 /* SantaManito-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SantaManito-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22E9B582C88031A00086549 /* SantaManito_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantaManito_iOSApp.swift; sourceTree = "<group>"; };
 		D22E9B5A2C88031A00086549 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -142,6 +166,15 @@
 		D22E9B7D2C8804B600086549 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D25570E82C8E858A00CCC226 /* EditRoomInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomInfoView.swift; sourceTree = "<group>"; };
 		D25570EC2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomInfoViewModel.swift; sourceTree = "<group>"; };
+		D26879372CAA7BE40025A611 /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
+		D268793C2CAA7F8A0025A611 /* RoomAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAPI.swift; sourceTree = "<group>"; };
+		D268793E2CAA80580025A611 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
+		D26879402CAA83500025A611 /* Paths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paths.swift; sourceTree = "<group>"; };
+		D26879422CAB8DA30025A611 /* NetworkLogHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogHandler.swift; sourceTree = "<group>"; };
+		D26879452CABB2F30025A611 /* EditRoomRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomRequest.swift; sourceTree = "<group>"; };
+		D26879472CABB3A80025A611 /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
+		D26879492CABB51E0025A611 /* RoomDetailResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailResult.swift; sourceTree = "<group>"; };
+		D268794B2CABB5CA0025A611 /* CreateRoomRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomRequest.swift; sourceTree = "<group>"; };
 		D26BFA7F2C91692700C5CF86 /* SMInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMInfoView.swift; sourceTree = "<group>"; };
 		D26BFA8B2C91987200C5CF86 /* EnterRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomView.swift; sourceTree = "<group>"; };
 		D26BFA8D2C91987900C5CF86 /* EnterRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomViewModel.swift; sourceTree = "<group>"; };
@@ -149,6 +182,9 @@
 		D26BFA922C919D0900C5CF86 /* ManitoWaitingRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManitoWaitingRoomViewModel.swift; sourceTree = "<group>"; };
 		D276B5FA2C8AAB6200230FA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D276B6072C8AB64B00230FA2 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		D28568AB2CAD031C0044C231 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
+		D28568AD2CAD033C0044C231 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		D28568B12CAD21800044C231 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomService.swift; sourceTree = "<group>"; };
 		D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRoomInfo.swift; sourceTree = "<group>"; };
 		D2A8F6132C9E792100810BCF /* EnterRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomService.swift; sourceTree = "<group>"; };
@@ -300,6 +336,7 @@
 		877EA2422C88AE6B0073FFBD /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				D26879442CABB2150025A611 /* EditRoom */,
 				874017A32CA1AB610096E847 /* RoomDetailResponse.swift */,
 				874017A52CA1ABBE0096E847 /* UserResponse.swift */,
 				874017A72CA1AC010096E847 /* MissionResponse.swift */,
@@ -315,6 +352,33 @@
 				87C06E5E2C9EADD600F03637 /* NavigationRoutingView.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		D229FE732CA7CDC000979421 /* Networks */ = {
+			isa = PBXGroup;
+			children = (
+				D229FE742CA7CDC600979421 /* Foundation */,
+			);
+			path = Networks;
+			sourceTree = "<group>";
+		};
+		D229FE742CA7CDC600979421 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				D28568AA2CAD02C70044C231 /* Handler */,
+				D229FE772CA7CEA200979421 /* HTTPMethod.swift */,
+				D229FE7D2CA7D0F700979421 /* URLRequestTargetType.swift */,
+				D229FE7F2CA7D17600979421 /* ParameterEncoding.swift */,
+				D229FE812CA7D39600979421 /* SMNetworkError.swift */,
+				D229FE832CA7D70C00979421 /* APIConstants.swift */,
+				D229FE852CA7D98400979421 /* BaseService.swift */,
+				D26879372CAA7BE40025A611 /* NetworkResponse.swift */,
+				D268793E2CAA80580025A611 /* BaseAPI.swift */,
+				D26879402CAA83500025A611 /* Paths.swift */,
+				D26879472CABB3A80025A611 /* GenericResponse.swift */,
+				D28568B12CAD21800044C231 /* Config.swift */,
+			);
+			path = Foundation;
 			sourceTree = "<group>";
 		};
 		D22E9B4C2C88031A00086549 = {
@@ -336,6 +400,7 @@
 		D22E9B572C88031A00086549 /* SantaManito-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				D229FE732CA7CDC000979421 /* Networks */,
 				D276B5FA2C8AAB6200230FA2 /* Info.plist */,
 				D22E9B662C8803A200086549 /* App */,
 				D22E9B7A2C88042500086549 /* Feature */,
@@ -502,6 +567,34 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		D268793A2CAA7F750025A611 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D2A8F6242CA118E900810BCF /* MatchRoomService.swift */,
+				D2A8F6132C9E792100810BCF /* EnterRoomService.swift */,
+				D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		D268793B2CAA7F790025A611 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				D268793C2CAA7F8A0025A611 /* RoomAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		D26879442CABB2150025A611 /* EditRoom */ = {
+			isa = PBXGroup;
+			children = (
+				D26879452CABB2F30025A611 /* EditRoomRequest.swift */,
+				D26879492CABB51E0025A611 /* RoomDetailResult.swift */,
+				D268794B2CABB5CA0025A611 /* CreateRoomRequest.swift */,
+			);
+			path = EditRoom;
+			sourceTree = "<group>";
+		};
 		D26BFA7E2C91691A00C5CF86 /* Component */ = {
 			isa = PBXGroup;
 			children = (
@@ -549,12 +642,21 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		D28568AA2CAD02C70044C231 /* Handler */ = {
+			isa = PBXGroup;
+			children = (
+				D26879422CAB8DA30025A611 /* NetworkLogHandler.swift */,
+				D28568AB2CAD031C0044C231 /* RequestHandler.swift */,
+				D28568AD2CAD033C0044C231 /* ErrorHandler.swift */,
+			);
+			path = Handler;
+			sourceTree = "<group>";
+		};
 		D2A8F60C2C9D18E700810BCF /* Room */ = {
 			isa = PBXGroup;
 			children = (
-				D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */,
-				D2A8F6132C9E792100810BCF /* EnterRoomService.swift */,
-				D2A8F6242CA118E900810BCF /* MatchRoomService.swift */,
+				D268793B2CAA7F790025A611 /* API */,
+				D268793A2CAA7F750025A611 /* Service */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -676,12 +778,15 @@
 				D22E9B5B2C88031A00086549 /* HomeView.swift in Sources */,
 				877CA0A62C94305A00D23193 /* CancelBag.swift in Sources */,
 				874017B92CA2B0020096E847 /* User.swift in Sources */,
+				D229FE842CA7D70C00979421 /* APIConstants.swift in Sources */,
+				D229FE862CA7D98400979421 /* BaseService.swift in Sources */,
 				877EA23B2C88AAC10073FFBD /* DIContainer.swift in Sources */,
 				D22E9B6B2C8803C100086549 /* ObservableObjectSettable.swift in Sources */,
 				87D797A42C9454BF003BA602 /* OnboardingViewModel.swift in Sources */,
 				877CA0712C8AB3DE00D23193 /* LoadingView.swift in Sources */,
 				D26BFA8C2C91987200C5CF86 /* EnterRoomView.swift in Sources */,
 				877EA2392C88AA8A0073FFBD /* OnboardingView.swift in Sources */,
+				D268793D2CAA7F8A0025A611 /* RoomAPI.swift in Sources */,
 				D2BC1A902C8F4C6400CB32B8 /* Date+.swift in Sources */,
 				874017C72CA6B4CD0096E847 /* View+.swift in Sources */,
 				874017AC2CA1B3040096E847 /* RoomState.swift in Sources */,
@@ -693,23 +798,31 @@
 				D2BC1A922C90101E00CB32B8 /* EditMissionView.swift in Sources */,
 				D2A8F6212CA1172100810BCF /* FinishView.swift in Sources */,
 				D22E9B592C88031A00086549 /* SantaManito_iOSApp.swift in Sources */,
+				D26879382CAA7BE40025A611 /* NetworkResponse.swift in Sources */,
 				D2A8F6192CA1168B00810BCF /* MatchingResultViewModel.swift in Sources */,
 				D25570ED2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift in Sources */,
 				874017BB2CA2B64E0096E847 /* SMWebView.swift in Sources */,
 				D2A8F6232CA1173600810BCF /* FinishViewModel.swift in Sources */,
 				877EA2322C889DCB0073FFBD /* ButtonStyles.swift in Sources */,
+				D28568B22CAD21800044C231 /* Config.swift in Sources */,
 				87C06E5A2C9EA5FE00F03637 /* Device.swift in Sources */,
+				D26879482CABB3A80025A611 /* GenericResponse.swift in Sources */,
+				D26879432CAB8DA30025A611 /* NetworkLogHandler.swift in Sources */,
 				874017B32CA29FEF0096E847 /* MyPageItem.swift in Sources */,
+				D229FE802CA7D17600979421 /* ParameterEncoding.swift in Sources */,
+				D268794A2CABB51E0025A611 /* RoomDetailResult.swift in Sources */,
 				877CA07F2C8C50DC00D23193 /* Corner.swift in Sources */,
 				D2A8F6292CA145A100810BCF /* ShowAllResultViewModel.swift in Sources */,
 				877CA0732C8C4C5C00D23193 /* SMView.swift in Sources */,
 				87C06E5F2C9EADD600F03637 /* NavigationRoutingView.swift in Sources */,
 				D2BC1AA32C90A29200CB32B8 /* CheckRoomInfoViewModel.swift in Sources */,
+				D28568AE2CAD033C0044C231 /* ErrorHandler.swift in Sources */,
 				877EA23D2C88AB8D0073FFBD /* UserService.swift in Sources */,
 				874017CB2CA7E6970096E847 /* SMPasteBoard.swift in Sources */,
 				874017B02CA29C820096E847 /* MyPageViewModel.swift in Sources */,
 				877EA2412C88ABA00073FFBD /* PushNotificationService.swift in Sources */,
 				D2A8F6252CA118EA00810BCF /* MatchRoomService.swift in Sources */,
+				D268793F2CAA80580025A611 /* BaseAPI.swift in Sources */,
 				D25570E92C8E858A00CCC226 /* EditRoomInfoView.swift in Sources */,
 				D26BFA802C91692700C5CF86 /* SMInfoView.swift in Sources */,
 				87C06E612C9EADE700F03637 /* NavigationDestination.swift in Sources */,
@@ -718,10 +831,15 @@
 				874017A42CA1AB610096E847 /* RoomDetailResponse.swift in Sources */,
 				D276B6082C8AB64B00230FA2 /* Font.swift in Sources */,
 				D22E9B752C8803EC00086549 /* Provider.swift in Sources */,
+				D268794C2CABB5CA0025A611 /* CreateRoomRequest.swift in Sources */,
 				877CA0A22C94304B00D23193 /* SplashView.swift in Sources */,
+				D229FE822CA7D39600979421 /* SMNetworkError.swift in Sources */,
+				D229FE7E2CA7D0F700979421 /* URLRequestTargetType.swift in Sources */,
 				D2A8F6122C9D1A4F00810BCF /* MakeRoomInfo.swift in Sources */,
 				D2A8F61F2CA1170B00810BCF /* MatchingResultView.swift in Sources */,
 				D2BC1AA52C91357F00CB32B8 /* SMInviteCodeAlertView.swift in Sources */,
+				D26879462CABB2F30025A611 /* EditRoomRequest.swift in Sources */,
+				D28568AC2CAD031C0044C231 /* RequestHandler.swift in Sources */,
 				877CA0832C8CA75C00D23193 /* SMAlertView.swift in Sources */,
 				877CA0812C8C555D00D23193 /* SMScrollView.swift in Sources */,
 				874017B72CA2A9F30096E847 /* EditUsernameViewModel.swift in Sources */,
@@ -734,6 +852,8 @@
 				D26BFA912C919D0000C5CF86 /* ManitoWaitingRoomView.swift in Sources */,
 				877CA0892C8CB61100D23193 /* DSKitDemoView.swift in Sources */,
 				874017A82CA1AC010096E847 /* MissionResponse.swift in Sources */,
+				D26879412CAA83500025A611 /* Paths.swift in Sources */,
+				D229FE782CA7CEA200979421 /* HTTPMethod.swift in Sources */,
 				D2BC1A982C90245700CB32B8 /* TextFieldStyles.swift in Sources */,
 				874017B52CA2A68A0096E847 /* EditUsernameView.swift in Sources */,
 				D2BC1A942C90102900CB32B8 /* EditMissionViewModel.swift in Sources */,
@@ -867,6 +987,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BASE_URL = "https://www.santamanitto.com";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SantaManito-iOS/Preview Content\"";
@@ -901,6 +1022,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BASE_URL = "https://www.santamanitto.com";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SantaManito-iOS/Preview Content\"";
