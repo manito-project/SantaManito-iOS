@@ -40,12 +40,14 @@ final class VersionEntityTests: XCTestCase {
         let a = Version("2.0.1")
         let b = Version("1.10.2")
         let c = Version("1.10.0")
-        let c2 = Version("1.10.0")
         let d = Version("1.0.10")
         
-        let expected = [a,b,c,c2,d]
+        //When
+        let result = [d,a,b,c,c].sorted(by: >)
+        
         // Then
-        XCTAssertEqual([a,b,c,c2,d].sorted(by: >), expected)
+        let expected = [a,b,c,c,d]
+        XCTAssertEqual(result, expected)
     }
 
 
