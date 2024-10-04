@@ -47,6 +47,8 @@
 		87873BDA2CAC215000E368BF /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 87873BD92CAC215000E368BF /* FirebaseRemoteConfig */; };
 		87873BDC2CAC29E900E368BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BDB2CAC29E900E368BF /* AppDelegate.swift */; };
 		87873BDF2CAC2EA200E368BF /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BDE2CAC2EA200E368BF /* TestView.swift */; };
+		87873BE12CAFF29600E368BF /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BE02CAFF29600E368BF /* AppService.swift */; };
+		87873BE42CAFF2E200E368BF /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BE32CAFF2E200E368BF /* Version.swift */; };
 		879829052C9827B200A863EC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879829042C9827B200A863EC /* HomeViewModel.swift */; };
 		879829072C98284B00A863EC /* RoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879829062C98284B00A863EC /* RoomService.swift */; };
 		879829092C9EA54B00A863EC /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879829082C9EA54B00A863EC /* BaseView.swift */; };
@@ -163,6 +165,8 @@
 		87873BD12CAC211E00E368BF /* SantaManitoUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantaManitoUnitTests.swift; sourceTree = "<group>"; };
 		87873BDB2CAC29E900E368BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		87873BDE2CAC2EA200E368BF /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		87873BE02CAFF29600E368BF /* AppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppService.swift; sourceTree = "<group>"; };
+		87873BE32CAFF2E200E368BF /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		879829042C9827B200A863EC /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		879829062C98284B00A863EC /* RoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomService.swift; sourceTree = "<group>"; };
 		879829082C9EA54B00A863EC /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -397,6 +401,14 @@
 			path = Test;
 			sourceTree = "<group>";
 		};
+		87873BE22CAFF2D900E368BF /* App */ = {
+			isa = PBXGroup;
+			children = (
+				87873BE32CAFF2E200E368BF /* Version.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		87C06E5B2C9EAB5E00F03637 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -530,6 +542,7 @@
 		D22E9B6F2C8803D200086549 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				87873BE22CAFF2D900E368BF /* App */,
 				874017C02CA3EFC70096E847 /* User */,
 				874017BF2CA3EFBE0096E847 /* Room */,
 				874017B12CA29FE20096E847 /* MyPage */,
@@ -547,6 +560,7 @@
 				879829062C98284B00A863EC /* RoomService.swift */,
 				877EA2402C88ABA00073FFBD /* PushNotificationService.swift */,
 				87873BC42CAC1C0300E368BF /* RemoteConfigService.swift */,
+				87873BE02CAFF29600E368BF /* AppService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -865,6 +879,7 @@
 			files = (
 				D25411A42CA4007A00B87568 /* ManitoWaitingRoomViewModel.swift in Sources */,
 				D2BC1AA12C90A26B00CB32B8 /* CheckRoomInfoView.swift in Sources */,
+				87873BE42CAFF2E200E368BF /* Version.swift in Sources */,
 				D2BC1A9C2C90473100CB32B8 /* Mission.swift in Sources */,
 				87C06E5D2C9EAB6800F03637 /* NaivgationRouter.swift in Sources */,
 				D2BC1A8C2C8EBCF500CB32B8 /* SMColoredTextView.swift in Sources */,
@@ -912,6 +927,7 @@
 				877CA0732C8C4C5C00D23193 /* SMView.swift in Sources */,
 				87C06E5F2C9EADD600F03637 /* NavigationRoutingView.swift in Sources */,
 				D2BC1AA32C90A29200CB32B8 /* CheckRoomInfoViewModel.swift in Sources */,
+				87873BE12CAFF29600E368BF /* AppService.swift in Sources */,
 				D28568AE2CAD033C0044C231 /* ErrorHandler.swift in Sources */,
 				877EA23D2C88AB8D0073FFBD /* UserService.swift in Sources */,
 				874017CB2CA7E6970096E847 /* SMPasteBoard.swift in Sources */,
