@@ -41,6 +41,12 @@
 		877EA23D2C88AB8D0073FFBD /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA23C2C88AB8D0073FFBD /* UserService.swift */; };
 		877EA23F2C88AB930073FFBD /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA23E2C88AB930073FFBD /* AuthService.swift */; };
 		877EA2412C88ABA00073FFBD /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA2402C88ABA00073FFBD /* PushNotificationService.swift */; };
+		87873BC52CAC1C0300E368BF /* RemoteConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BC42CAC1C0300E368BF /* RemoteConfigService.swift */; };
+		87873BC72CAC1EFA00E368BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87873BC62CAC1EFA00E368BF /* GoogleService-Info.plist */; };
+		87873BD22CAC211E00E368BF /* SantaManitoUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BD12CAC211E00E368BF /* SantaManitoUnitTests.swift */; };
+		87873BDA2CAC215000E368BF /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 87873BD92CAC215000E368BF /* FirebaseRemoteConfig */; };
+		87873BDC2CAC29E900E368BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BDB2CAC29E900E368BF /* AppDelegate.swift */; };
+		87873BDF2CAC2EA200E368BF /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BDE2CAC2EA200E368BF /* TestView.swift */; };
 		879829052C9827B200A863EC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879829042C9827B200A863EC /* HomeViewModel.swift */; };
 		879829072C98284B00A863EC /* RoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879829062C98284B00A863EC /* RoomService.swift */; };
 		879829092C9EA54B00A863EC /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879829082C9EA54B00A863EC /* BaseView.swift */; };
@@ -106,6 +112,16 @@
 		D2BC1AA52C91357F00CB32B8 /* SMInviteCodeAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1AA42C91357F00CB32B8 /* SMInviteCodeAlertView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		87873BD32CAC211E00E368BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D22E9B4D2C88031A00086549 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D22E9B542C88031A00086549;
+			remoteInfo = "SantaManito-iOS";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		874017A32CA1AB610096E847 /* RoomDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailResponse.swift; sourceTree = "<group>"; };
 		874017A52CA1ABBE0096E847 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
@@ -141,6 +157,13 @@
 		877EA23C2C88AB8D0073FFBD /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		877EA23E2C88AB930073FFBD /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		877EA2402C88ABA00073FFBD /* PushNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
+		87873BC32CAC1B2D00E368BF /* Secret.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Secret.md; sourceTree = "<group>"; };
+		87873BC42CAC1C0300E368BF /* RemoteConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigService.swift; sourceTree = "<group>"; };
+		87873BC62CAC1EFA00E368BF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		87873BCF2CAC211E00E368BF /* SantaManitoUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SantaManitoUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		87873BD12CAC211E00E368BF /* SantaManitoUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SantaManitoUnitTests.swift; sourceTree = "<group>"; };
+		87873BDB2CAC29E900E368BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		87873BDE2CAC2EA200E368BF /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		879829042C9827B200A863EC /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		879829062C98284B00A863EC /* RoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomService.swift; sourceTree = "<group>"; };
 		879829082C9EA54B00A863EC /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -180,7 +203,7 @@
 		D26BFA8D2C91987900C5CF86 /* EnterRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomViewModel.swift; sourceTree = "<group>"; };
 		D26BFA902C919D0000C5CF86 /* ManitoWaitingRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManitoWaitingRoomView.swift; sourceTree = "<group>"; };
 		D26BFA922C919D0900C5CF86 /* ManitoWaitingRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManitoWaitingRoomViewModel.swift; sourceTree = "<group>"; };
-		D276B5FA2C8AAB6200230FA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D276B5FA2C8AAB6200230FA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D276B6072C8AB64B00230FA2 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		D28568AB2CAD031C0044C231 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		D28568AD2CAD033C0044C231 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
@@ -209,10 +232,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		87873BCC2CAC211E00E368BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D22E9B522C88031A00086549 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87873BDA2CAC215000E368BF /* FirebaseRemoteConfig in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +375,31 @@
 			path = DTO;
 			sourceTree = "<group>";
 		};
+		87873BBF2CAC1A4C00E368BF /* Secret */ = {
+			isa = PBXGroup;
+			children = (
+				87873BC32CAC1B2D00E368BF /* Secret.md */,
+				D28568B12CAD21800044C231 /* Config.swift */,
+			);
+			path = Secret;
+			sourceTree = "<group>";
+		};
+		87873BD02CAC211E00E368BF /* SantaManitoUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				87873BD12CAC211E00E368BF /* SantaManitoUnitTests.swift */,
+			);
+			path = SantaManitoUnitTests;
+			sourceTree = "<group>";
+		};
+		87873BDD2CAC2E9700E368BF /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				87873BDE2CAC2EA200E368BF /* TestView.swift */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
 		87C06E5B2C9EAB5E00F03637 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,7 +432,6 @@
 				D268793E2CAA80580025A611 /* BaseAPI.swift */,
 				D26879402CAA83500025A611 /* Paths.swift */,
 				D26879472CABB3A80025A611 /* GenericResponse.swift */,
-				D28568B12CAD21800044C231 /* Config.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -385,6 +440,7 @@
 			isa = PBXGroup;
 			children = (
 				D22E9B572C88031A00086549 /* SantaManito-iOS */,
+				87873BD02CAC211E00E368BF /* SantaManitoUnitTests */,
 				D22E9B562C88031A00086549 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -393,6 +449,7 @@
 			isa = PBXGroup;
 			children = (
 				D22E9B552C88031A00086549 /* SantaManito-iOS.app */,
+				87873BCF2CAC211E00E368BF /* SantaManitoUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -400,13 +457,15 @@
 		D22E9B572C88031A00086549 /* SantaManito-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				D229FE732CA7CDC000979421 /* Networks */,
+				87873BC62CAC1EFA00E368BF /* GoogleService-Info.plist */,
 				D276B5FA2C8AAB6200230FA2 /* Info.plist */,
+				87873BBF2CAC1A4C00E368BF /* Secret */,
 				D22E9B662C8803A200086549 /* App */,
 				D22E9B7A2C88042500086549 /* Feature */,
 				D22E9B782C8803F600086549 /* DSKit */,
 				D22E9B6E2C8803CC00086549 /* Data */,
 				D22E9B672C8803AE00086549 /* Core */,
+				D229FE732CA7CDC000979421 /* Networks */,
 				D22E9B5E2C88031C00086549 /* Preview Content */,
 			);
 			path = "SantaManito-iOS";
@@ -426,6 +485,7 @@
 				87C06E5B2C9EAB5E00F03637 /* Navigation */,
 				D22E9B582C88031A00086549 /* SantaManito_iOSApp.swift */,
 				877EA23A2C88AAC10073FFBD /* DIContainer.swift */,
+				87873BDB2CAC29E900E368BF /* AppDelegate.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -497,6 +557,7 @@
 				877EA23E2C88AB930073FFBD /* AuthService.swift */,
 				879829062C98284B00A863EC /* RoomService.swift */,
 				877EA2402C88ABA00073FFBD /* PushNotificationService.swift */,
+				87873BC42CAC1C0300E368BF /* RemoteConfigService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -525,6 +586,7 @@
 		D22E9B7A2C88042500086549 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				87873BDD2CAC2E9700E368BF /* Test */,
 				877CA0A02C94303200D23193 /* Splash */,
 				877EA2372C88AA780073FFBD /* Onboarding */,
 				877EA2332C88AA410073FFBD /* Home */,
@@ -695,6 +757,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		87873BCE2CAC211E00E368BF /* SantaManitoUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87873BD52CAC211E00E368BF /* Build configuration list for PBXNativeTarget "SantaManitoUnitTests" */;
+			buildPhases = (
+				87873BCB2CAC211E00E368BF /* Sources */,
+				87873BCC2CAC211E00E368BF /* Frameworks */,
+				87873BCD2CAC211E00E368BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				87873BD42CAC211E00E368BF /* PBXTargetDependency */,
+			);
+			name = SantaManitoUnitTests;
+			productName = SantaManitoUnitTests;
+			productReference = 87873BCF2CAC211E00E368BF /* SantaManitoUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		D22E9B542C88031A00086549 /* SantaManito-iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D22E9B632C88031C00086549 /* Build configuration list for PBXNativeTarget "SantaManito-iOS" */;
@@ -708,6 +788,9 @@
 			dependencies = (
 			);
 			name = "SantaManito-iOS";
+			packageProductDependencies = (
+				87873BD92CAC215000E368BF /* FirebaseRemoteConfig */,
+			);
 			productName = "SantaManito-iOS";
 			productReference = D22E9B552C88031A00086549 /* SantaManito-iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -719,9 +802,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1540;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
+					87873BCE2CAC211E00E368BF = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = D22E9B542C88031A00086549;
+					};
 					D22E9B542C88031A00086549 = {
 						CreatedOnToolsVersion = 15.4;
 					};
@@ -736,21 +823,33 @@
 				Base,
 			);
 			mainGroup = D22E9B4C2C88031A00086549;
+			packageReferences = (
+				87873BD82CAC215000E368BF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = D22E9B562C88031A00086549 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				D22E9B542C88031A00086549 /* SantaManito-iOS */,
+				87873BCE2CAC211E00E368BF /* SantaManitoUnitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		87873BCD2CAC211E00E368BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D22E9B532C88031A00086549 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D22E9B7E2C8804B600086549 /* Colors.xcassets in Resources */,
+				87873BC72CAC1EFA00E368BF /* GoogleService-Info.plist in Resources */,
 				877CA0752C8C4F4800D23193 /* Pretendard-Bold.otf in Resources */,
 				877CA07B2C8C4F6400D23193 /* Pretendard-SemiBold.otf in Resources */,
 				877CA0772C8C4F5500D23193 /* Pretendard-Medium.otf in Resources */,
@@ -763,6 +862,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		87873BCB2CAC211E00E368BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87873BD22CAC211E00E368BF /* SantaManitoUnitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D22E9B512C88031A00086549 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -845,6 +952,7 @@
 				874017B72CA2A9F30096E847 /* EditUsernameViewModel.swift in Sources */,
 				879829072C98284B00A863EC /* RoomService.swift in Sources */,
 				D2A8F6142C9E792100810BCF /* EnterRoomService.swift in Sources */,
+				87873BDC2CAC29E900E368BF /* AppDelegate.swift in Sources */,
 				D2A8F61B2CA116BD00810BCF /* MatchingViewModel.swift in Sources */,
 				D2A8F60E2C9D18FF00810BCF /* EditRoomService.swift in Sources */,
 				D2A8F61D2CA116F800810BCF /* MatchingView.swift in Sources */,
@@ -855,6 +963,8 @@
 				D26879412CAA83500025A611 /* Paths.swift in Sources */,
 				D229FE782CA7CEA200979421 /* HTTPMethod.swift in Sources */,
 				D2BC1A982C90245700CB32B8 /* TextFieldStyles.swift in Sources */,
+				87873BDF2CAC2EA200E368BF /* TestView.swift in Sources */,
+				87873BC52CAC1C0300E368BF /* RemoteConfigService.swift in Sources */,
 				874017B52CA2A68A0096E847 /* EditUsernameView.swift in Sources */,
 				D2BC1A942C90102900CB32B8 /* EditMissionViewModel.swift in Sources */,
 			);
@@ -862,7 +972,59 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		87873BD42CAC211E00E368BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D22E9B542C88031A00086549 /* SantaManito-iOS */;
+			targetProxy = 87873BD32CAC211E00E368BF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		87873BD62CAC211E00E368BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T6DNHAHXG9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.sopt.SantaManitoUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SantaManito-iOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SantaManito-iOS";
+			};
+			name = Debug;
+		};
+		87873BD72CAC211E00E368BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T6DNHAHXG9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.sopt.SantaManitoUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SantaManito-iOS.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SantaManito-iOS";
+			};
+			name = Release;
+		};
 		D22E9B612C88031C00086549 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -998,15 +1160,15 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hellohidi..SantaManito-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = org.sopt.santamanitto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1033,15 +1195,15 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hellohidi..SantaManito-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = org.sopt.santamanitto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1055,6 +1217,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		87873BD52CAC211E00E368BF /* Build configuration list for PBXNativeTarget "SantaManitoUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87873BD62CAC211E00E368BF /* Debug */,
+				87873BD72CAC211E00E368BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D22E9B502C88031A00086549 /* Build configuration list for PBXProject "SantaManito-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1074,6 +1245,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		87873BD82CAC215000E368BF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		87873BD92CAC215000E368BF /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 87873BD82CAC215000E368BF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D22E9B4D2C88031A00086549 /* Project object */;
 }

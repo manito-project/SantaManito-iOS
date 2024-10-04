@@ -10,13 +10,14 @@ import SwiftUI
 @main
 struct SantaManito_iOSApp: App {
     
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var container = DIContainer.stub
     
     var body: some Scene {
         WindowGroup {
             SplashView(viewModel: .init(authService: container.service.authService))
                 .environmentObject(container)
-//            EnterRoomView(viewModel: EnterRoomViewModel())
+            //TestView()
         }
     }
 }
