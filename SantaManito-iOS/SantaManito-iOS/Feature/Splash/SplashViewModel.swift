@@ -18,6 +18,7 @@ class SplashViewModel: ObservableObject {
     
     
     struct State {
+        var mustUpdateAlertIsPresented: Bool = false
         var serverCheckAlert: (isPresented: Bool, message: String) = (false, "서버 점검 시간입니다")
         var desination: Destination = .splash
         
@@ -59,6 +60,11 @@ class SplashViewModel: ObservableObject {
         guard let owner else { return }
         switch action {
         case .onAppear:
+            
+            guard appService.isLatestVersion() else {
+                state.mustUpdateAlertIsPresented = true
+                return
+            }
             
             authService.autoLogin()
                 .map { State.Destination.main }
