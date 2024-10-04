@@ -57,7 +57,6 @@ class SplashViewModel: ObservableObject {
         case .onAppear:
             
             authService.autoLogin()
-                .receive(on: DispatchQueue.main)
                 .map { State.Destination.main }
                 .catch { _ in Just(State.Destination.onboarding) }
                 .assign(to: \.state.desination, on: owner)
@@ -67,7 +66,6 @@ class SplashViewModel: ObservableObject {
                 .filter { $0 }
                 .map { _ in }
                 .flatMap(remoteConfigService.getServerCheckMessage)
-                .receive(on: DispatchQueue.main)
                 .catch { _ in Empty() }
                 .map { (true, $0 ) }
                 .assign(to: \.state.serverCheckAlert, on: owner)
