@@ -21,7 +21,7 @@ class ManitoWaitingRoomViewModel: ObservableObject {
     }
     
     struct State {
-        var roomDetail: RoomDetail = .stub
+        var roomDetail: RoomDetail = .stub1
         var isLoading: Bool = false
     }
     
