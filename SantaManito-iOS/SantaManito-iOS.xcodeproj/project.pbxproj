@@ -330,7 +330,6 @@
 			children = (
 				877CA0A12C94304B00D23193 /* SplashView.swift */,
 				877CA0A32C94305200D23193 /* SplashViewModel.swift */,
-				877CA0A52C94305A00D23193 /* CancelBag.swift */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
@@ -511,6 +510,7 @@
 			children = (
 				877CA07D2C8C50D000D23193 /* View */,
 				D22E9B6A2C8803C100086549 /* ObservableObjectSettable.swift */,
+				877CA0A52C94305A00D23193 /* CancelBag.swift */,
 				87C06E592C9EA5FE00F03637 /* Device.swift */,
 				874017CA2CA7E6970096E847 /* SMPasteBoard.swift */,
 			);
