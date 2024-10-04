@@ -94,3 +94,14 @@ extension FirebaseRemoteConfigService: RemoteConfigServiceType {
     
 
 }
+
+
+struct StubRemoteConfigService: RemoteConfigServiceType {
+    func getServerCheck() -> AnyPublisher<Bool, RemoteConfigError> {
+        Just(true).setFailureType(to: RemoteConfigError.self).eraseToAnyPublisher()
+    }
+    
+    func getServerCheckMessage() -> AnyPublisher<String, RemoteConfigError> {
+        Just("익일 오전 7시까지 서버 점검이 진행돼.\n내일 다시 만나자!").setFailureType(to: RemoteConfigError.self).eraseToAnyPublisher()
+    }
+}
