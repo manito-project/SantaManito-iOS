@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-typealias EditRoomService = BaseService<EditRoomAPI>
+typealias EditRoomService = BaseService<RoomAPI>
 
 protocol EditRoomServiceType {
     func getRoomInfo(with roomID: String) -> AnyPublisher<MakeRoomInfo, SMNetworkError>
@@ -17,6 +17,7 @@ protocol EditRoomServiceType {
 }
 
 extension EditRoomService: EditRoomServiceType {
+    //TODO: 참여 방 조회하기면 홈에서 넘어오기 때문에 연결을 안해도 될거 같은데
     func getRoomInfo(with roomID: String) -> AnyPublisher<MakeRoomInfo, SMNetworkError> {
         return Just(
             MakeRoomInfo(

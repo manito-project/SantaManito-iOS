@@ -58,7 +58,22 @@ extension BaseService {
     /// 응답 유효성 검사 메서드
     private func validate(response: NetworkResponse) -> AnyPublisher<Void, SMNetworkError> {
         guard response.response.isValidateStatus() else {
-            return Fail(error: SMNetworkError.invalidResponse(.invalidStatusCode(code: response.response.statusCode)))
+            guard let data = response.data else {
+                return Fail(error: SMNetworkError.invalidResponse(.invalidStatusCode(code: response.response.statusCode)))
+                    .eraseToAnyPublisher()
+            }
+            
+            return Just(data)
+                .decode(type: ErrorResponse.self, decoder: JSONDecoder())
+                .mapError { _ in SMNetworkError.invalidResponse(.invalidStatusCode(code: response.response.statusCode)) }
+                .flatMap { response in
+                    Fail(error: SMNetworkError.invalidResponse(.invalidStatusCode(
+                                code: response.statusCode,
+                                data: response.data
+                            )
+                        )
+                    ).eraseToAnyPublisher()
+                }
                 .eraseToAnyPublisher()
         }
         return Just(()).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()

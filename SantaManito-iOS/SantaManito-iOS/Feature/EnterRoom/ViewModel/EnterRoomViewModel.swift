@@ -54,23 +54,15 @@ class EnterRoomViewModel: ObservableObject {
     }
     
     func send(action: Action) {
-        weak var owner = self
-        guard let owner else { return }
-        
         switch action {
         case .enterButtonDidClicked:
-            roomService.validateParticipationCode(inviteCode: inviteCode)
-                .sink(receiveCompletion: { completion in
+            roomService.enterRoom(inviteCode: inviteCode)
+                .sink(receiveCompletion: { [weak self] completion in
                     if case .failure(let error) = completion {
-                        switch error {
-                        case .deletedRoomCode, .invalidateCode, .alreadyMatchedError:
-                            owner.state.enterFailMessage = (true, "참여가 불가능한 방이야! 혹시 초대코드에 공백이 있는지 확인해줘.")
-                        case .alreadyInRoomError:
-                            owner.state.enterFailMessage = (true, "참여가 불가능한 방이야! 혹시 초대코드에 공백이 있는지 확인해줘.")
-                        }
+                        self?.state.enterFailMessage = (true, error.description)
                     }
-                }, receiveValue: { _ in
-                    owner.navigationRouter.push(to: .manitoWaitingRoom(roomDetail: .stub)) // stub교체
+                }, receiveValue: { [weak self] _ in
+                    self?.navigationRouter.push(to: .manitoWaitingRoom(roomDetail: .stub)) // stub교체
                 })
                 .store(in: cancelBag)
         }
