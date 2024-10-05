@@ -59,11 +59,11 @@ class HomeViewModel: ObservableObject {
         switch action {
             
         case .onAppear, .refreshButtonDidTap:
-            state.isLoading = true
+            
             roomService.fetchAll()
                 .receive(on: DispatchQueue.main)
+                .assignLoading(to: \.state.isLoading, on: owner)
                 .catch { _ in Empty() }
-                .handleEvents(receiveOutput: { _ in owner.state.isLoading = false })
                 .assign(to: \.state.rooms, on: owner)
                 .store(in: cancelBag)
             
