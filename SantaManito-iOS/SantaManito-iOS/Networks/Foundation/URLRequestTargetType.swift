@@ -14,7 +14,7 @@ protocol URLRequestTargetType {
     var method: HTTPMethod { get }
     var parameters: Parameters? { get }
     var headers : [String : String]? { get }
-    var encoder: ParameterEncodable { get }
+    var encoder: ParameterEncodable? { get }
     
     func asURLRequest() -> AnyPublisher<URLRequest, SMNetworkError.RequestError>
 }
@@ -34,9 +34,15 @@ extension URLRequestTargetType {
         
         request.httpMethod = self.method.rawValue
 
-        return self.encoder.encode(request, with: self.parameters)
-            .mapError { encodedErr in .parameterEncodingFailed(encodedErr) }
-            .eraseToAnyPublisher()
+        if let encoder = self.encoder {
+            return encoder.encode(request, with: self.parameters)
+                .mapError { encodedErr in .parameterEncodingFailed(encodedErr) }
+                .eraseToAnyPublisher()
+        } else {
+            return Just(request)
+                .setFailureType(to: SMNetworkError.RequestError.self)
+                .eraseToAnyPublisher()
+        }
     }
 
 }
