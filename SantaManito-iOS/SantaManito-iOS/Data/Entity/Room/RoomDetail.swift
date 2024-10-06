@@ -42,15 +42,69 @@ extension RoomDetail {
 
 
 extension RoomDetail {
-    static var stub: Self {
+    static var stub1: Self {
         .init(id: "roomID1",
               name: "크리스마스 마니또",
-              invitationCode: "초대코드stub1",
+              invitationCode: "초대코드1",
               state: .notStarted,
               creatorID: User.stub1.id,
               creatorName: User.stub1.username,
               mission: [],
               expirationDate: Date(), 
               members: [.stub1, .stub2, .stub3, .stub4])
+    }
+    
+    static var stub2: Self {
+        .init(id: "roomID2",
+              name: "크리스마스 마니또",
+              invitationCode: "초대코드2",
+              state: .inProgress,
+              creatorID: User.stub1.id,
+              creatorName: User.stub1.username,
+              mission: [],
+              expirationDate: Date(),
+              members: [.stub1, .stub2, .stub3, .stub4])
+    }
+     
+    
+    static var stub3: Self {
+        .init(id: "roomID3",
+              name: "크리스마스 마니또",
+              invitationCode: "초대코드3",
+              state: .inProgress,
+              creatorID: User.stub2.id,
+              creatorName: User.stub2.username,
+              mission: [],
+              expirationDate: Date(),
+              members: [.stub1, .stub2, .stub3, .stub4])
+    }
+    
+    
+    static var stub4: Self {
+        .init(id: "roomID4",
+              name: "크리스마스 마니또",
+              invitationCode: "초대코드4",
+              state: .completed,
+              creatorID: User.stub1.id,
+              creatorName: User.stub1.username,
+              mission: [],
+              expirationDate: Date(),
+              members: [.stub1, .stub2])
+    }
+    
+    
+    
+    
+    
+    static var stub5: Self {
+        .init(id: "roomID5",
+              name: "크리스마스 마니또",
+              invitationCode: "초대코드5",
+              state: .deleted,
+              creatorID: User.stub1.id,
+              creatorName: User.stub1.username,
+              mission: [],
+              expirationDate: Date(),
+              members: [.stub1, .stub2])
     }
 }
