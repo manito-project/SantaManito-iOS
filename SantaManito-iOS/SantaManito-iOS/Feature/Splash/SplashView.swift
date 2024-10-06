@@ -34,6 +34,13 @@ struct SplashView: View {
         .onAppear {
             viewModel.send(.onAppear)
         }
+        .smAlert(
+            isPresented:
+                viewModel.state.serverCheckAlert.isPresented,
+            title: viewModel.state.serverCheckAlert.message,
+            primaryButton: ("확인 후 앱 닫기", {
+                exit(0)
+            }))
             
     }
         
@@ -68,6 +75,6 @@ struct SplashView: View {
 }
 
 #Preview {
-    SplashView(viewModel: SplashViewModel(authService: DIContainer.stub.service.authService))
+    SplashView(viewModel: SplashViewModel(authService: DIContainer.stub.service.authService, remoteConfigService: DIContainer.stub.service.remoteConfigService))
         .environmentObject(DIContainer.stub)
 }

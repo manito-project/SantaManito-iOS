@@ -67,7 +67,6 @@
 		D22E9B602C88031C00086549 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22E9B5F2C88031C00086549 /* Preview Assets.xcassets */; };
 		D22E9B6B2C8803C100086549 /* ObservableObjectSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B6A2C8803C100086549 /* ObservableObjectSettable.swift */; };
 		D22E9B732C8803E500086549 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B722C8803E500086549 /* Service.swift */; };
-		D22E9B752C8803EC00086549 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22E9B742C8803EC00086549 /* Provider.swift */; };
 		D22E9B7E2C8804B600086549 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22E9B7D2C8804B600086549 /* Colors.xcassets */; };
 		D25411A42CA4007A00B87568 /* ManitoWaitingRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA922C919D0900C5CF86 /* ManitoWaitingRoomViewModel.swift */; };
 		D25570E92C8E858A00CCC226 /* EditRoomInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570E82C8E858A00CCC226 /* EditRoomInfoView.swift */; };
@@ -185,7 +184,6 @@
 		D22E9B5F2C88031C00086549 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D22E9B6A2C8803C100086549 /* ObservableObjectSettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableObjectSettable.swift; sourceTree = "<group>"; };
 		D22E9B722C8803E500086549 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		D22E9B742C8803EC00086549 /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		D22E9B7D2C8804B600086549 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D25570E82C8E858A00CCC226 /* EditRoomInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomInfoView.swift; sourceTree = "<group>"; };
 		D25570EC2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomInfoViewModel.swift; sourceTree = "<group>"; };
@@ -523,7 +521,6 @@
 			isa = PBXGroup;
 			children = (
 				D22E9B712C8803DD00086549 /* Service */,
-				D22E9B702C8803D800086549 /* Provider */,
 				D22E9B6F2C8803D200086549 /* Entity */,
 				877EA2422C88AE6B0073FFBD /* DTO */,
 			);
@@ -538,14 +535,6 @@
 				874017B12CA29FE20096E847 /* MyPage */,
 			);
 			path = Entity;
-			sourceTree = "<group>";
-		};
-		D22E9B702C8803D800086549 /* Provider */ = {
-			isa = PBXGroup;
-			children = (
-				D22E9B742C8803EC00086549 /* Provider.swift */,
-			);
-			path = Provider;
 			sourceTree = "<group>";
 		};
 		D22E9B712C8803DD00086549 /* Service */ = {
@@ -937,7 +926,6 @@
 				874017CD2CA7EC7A0096E847 /* EditRoomViewType.swift in Sources */,
 				874017A42CA1AB610096E847 /* RoomDetailResponse.swift in Sources */,
 				D276B6082C8AB64B00230FA2 /* Font.swift in Sources */,
-				D22E9B752C8803EC00086549 /* Provider.swift in Sources */,
 				D268794C2CABB5CA0025A611 /* CreateRoomRequest.swift in Sources */,
 				877CA0A22C94304B00D23193 /* SplashView.swift in Sources */,
 				D229FE822CA7D39600979421 /* SMNetworkError.swift in Sources */,
