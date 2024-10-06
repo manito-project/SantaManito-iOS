@@ -18,6 +18,7 @@ class SplashViewModel: ObservableObject {
     
     
     struct State {
+        var mustUpdateAlertIsPresented: Bool = false
         var serverCheckAlert: (isPresented: Bool, message: String) = (false, "서버 점검 시간입니다")
         var desination: Destination = .splash
         
@@ -30,8 +31,10 @@ class SplashViewModel: ObservableObject {
     
     //MARK: - Dependency
     
-    var authService: AuthenticationServiceType
-    var remoteConfigService: RemoteConfigServiceType
+    private var appService: AppServiceType
+    private var remoteConfigService: RemoteConfigServiceType
+    private var authService: AuthenticationServiceType
+    
     
     //MARK: - Properties
     
@@ -41,11 +44,13 @@ class SplashViewModel: ObservableObject {
     //MARK: - Init
     
     init(
-        authService: AuthenticationServiceType,
-        remoteConfigService: RemoteConfigServiceType
+        appService: AppServiceType,
+        remoteConfigService: RemoteConfigServiceType,
+        authService: AuthenticationServiceType
     ) {
-        self.authService = authService
+        self.appService = appService
         self.remoteConfigService = remoteConfigService
+        self.authService = authService
     }
     
     //MARK: - Methods
@@ -56,8 +61,12 @@ class SplashViewModel: ObservableObject {
         switch action {
         case .onAppear:
             
+            guard appService.isLatestVersion() else {
+                state.mustUpdateAlertIsPresented = true
+                return
+            }
+            
             authService.autoLogin()
-                .receive(on: DispatchQueue.main)
                 .map { State.Destination.main }
                 .catch { _ in Just(State.Destination.onboarding) }
                 .assign(to: \.state.desination, on: owner)
@@ -67,7 +76,6 @@ class SplashViewModel: ObservableObject {
                 .filter { $0 }
                 .map { _ in }
                 .flatMap(remoteConfigService.getServerCheckMessage)
-                .receive(on: DispatchQueue.main)
                 .catch { _ in Empty() }
                 .map { (true, $0 ) }
                 .assign(to: \.state.serverCheckAlert, on: owner)
