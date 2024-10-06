@@ -21,7 +21,7 @@ class ManitoWaitingRoomViewModel: ObservableObject {
     }
     
     struct State {
-        var roomDetail: RoomDetail = .stub1
+        var roomDetail: RoomDetail = .stub1 //TODO: Stub 교체
         var isLoading: Bool = false
     }
     
@@ -58,14 +58,12 @@ class ManitoWaitingRoomViewModel: ObservableObject {
             return
             
         case .refreshButtonDidTap:
-            state.isLoading = true
+            
             roomService.fetch(with: state.roomDetail.id)
                 .receive(on: DispatchQueue.main)
+                .assignLoading(to: \.state.isLoading, on: owner)
                 .catch { _ in Empty() }
-                .handleEvents(receiveOutput: {
-                    [weak self] _ in self?.state.isLoading = false
-                })
-                .assign(to: \.state.roomDetail, on: self)
+                .assign(to: \.state.roomDetail, on: owner)
                 .store(in: cancelBag)
             
         case .copyInviteCodeDidTap:
