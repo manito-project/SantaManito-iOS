@@ -13,101 +13,110 @@ struct OnboardingView: View {
     @StateObject var viewModel: OnboardingViewModel
     
     var body: some View {
-        SMView {
-            ZStack {
-                Image(.snow)
-                    .resizable()
-                    .scaledToFit()
-                    .padding(.horizontal, 40)
+        Group {
+            SMView {
+                ZStack {
+                    Image(.snow)
+                        .resizable()
+                        .scaledToFit()
+                        .padding(.horizontal, 40)
+                    
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Text(viewModel.state.step == .nickname
+                                 ? "반가워, 이제부터\n산타 마니또에서 재미있게 놀자!"
+                                 : "필수약관에 동의하면 친구들과\n산타 마니또를 할 수 있어!")
+                            .font(.semibold_20)
+                            .foregroundStyle(.smWhite)
+                            .lineLimit(2)
+                            .lineSpacing(4)
+                            
+                            Spacer()
+                                .frame(width: 22)
+                            
+                            Image(.graphicsSantaNeck)
+                        }
+                    }
+                }
+                
+            } content: {
                 
                 VStack {
-                    Spacer()
-                    HStack {
-                        Text(viewModel.state.step == .nickname
-                             ? "반가워, 이제부터\n산타 마니또에서 재미있게 놀자!"
-                             : "필수약관에 동의하면 친구들과\n산타 마니또를 할 수 있어!")
+                    HStack { // 해당 HStack
+                        Text(
+                            viewModel.state.step == .nickname
+                            ? "이름 설정"
+                            : "필수 약관 동의"
+                        )
                         .font(.semibold_20)
-                        .foregroundStyle(.smWhite)
-                        .lineLimit(2)
-                        .lineSpacing(4)
+                        .foregroundStyle(.smBlack)
                         
                         Spacer()
-                            .frame(width: 22)
                         
-                        Image(.graphicsSantaNeck)
+                        Text("1")
+                            .foregroundStyle(.smWhite)
+                            .font(.semibold_16)
+                            .frame(width: 32, height: 32)
+                            .background(
+                                viewModel.state.step == .nickname
+                                ? .smNavy
+                                : .smLightgray
+                            )
+                            .clipShape(Circle())
+                        
+                        Spacer()
+                            .frame(width: 12)
+                        
+                        Text("2")
+                            .foregroundStyle(.smWhite)
+                            .font(.semibold_16)
+                            .frame(width: 32, height: 32)
+                            .background(
+                                viewModel.state.step == .agreement
+                                ? .smNavy
+                                : .smLightgray
+                            )
+                            .clipShape(Circle())
                     }
-                }
-            }
-            
-        } content: {
-            
-            VStack {
-                HStack { // 해당 HStack
-                    Text(
-                        viewModel.state.step == .nickname
-                        ? "이름 설정"
-                        : "필수 약관 동의"
+                    .padding(.top, 34)
+                    .padding(.bottom, 20)
+                    
+                    Group {
+                        switch viewModel.state.step {
+                        case .nickname:
+                            nicknameView
+                        case .agreement:
+                            agreementView
+                        }
+                    }
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.smLightgray, lineWidth: 1)
                     )
-                    .font(.semibold_20)
-                    .foregroundStyle(.smBlack)
                     
                     Spacer()
                     
-                    Text("1")
-                        .foregroundStyle(.smWhite)
-                        .font(.semibold_16)
-                        .frame(width: 32, height: 32)
-                        .background(
-                            viewModel.state.step == .nickname
-                            ? .smNavy
-                            : .smLightgray
-                        )
-                        .clipShape(Circle())
                     
-                    Spacer()
-                        .frame(width: 12)
-                    
-                    Text("2")
-                        .foregroundStyle(.smWhite)
-                        .font(.semibold_16)
-                        .frame(width: 32, height: 32)
-                        .background(
-                            viewModel.state.step == .agreement
-                            ? .smNavy
-                            : .smLightgray
-                        )
-                        .clipShape(Circle())
-                }
-                .padding(.top, 34)
-                .padding(.bottom, 20)
-                
-                Group {
-                    switch viewModel.state.step {
-                    case .nickname:
-                        nicknameView
-                    case .agreement:
-                        agreementView
+                    Button(
+                        viewModel.state.step == .nickname
+                        ? "이름 짓기 완료"
+                        : "산타마니또 시작하기"
+                    ) {
+                        viewModel.send(.bottomButtonDidTap)
                     }
+                    .smBottomButtonStyle()
+                    .disabled(viewModel.state.bottomButtonDisabled)
                 }
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.smLightgray, lineWidth: 1)
-                )
-                
-                Spacer()
-                    
-                
-                Button(
-                    viewModel.state.step == .nickname
-                    ? "이름 짓기 완료"
-                    : "산타마니또 시작하기"
-                ) {
-                    viewModel.send(.bottomButtonDidTap)
-                }
-                .smBottomButtonStyle()
-                .disabled(viewModel.state.bottomButtonDisabled)
+                .padding(.horizontal, 16)
             }
-            .padding(.horizontal, 16)
+            .loading(viewModel.state.isLoading)
+            .smAlert(
+                isPresented: viewModel.state.failAlert,
+                title: "회원가입에 실패했습니다.\n다시 시도해주세요",
+                primaryButton: ("확인", { 
+                    viewModel.state.failAlert.toggle()
+                }))
         }
         
         
@@ -191,6 +200,11 @@ fileprivate struct AgreementCell: View {
 }
 
 #Preview {
-    OnboardingView(viewModel: .init(userService: DIContainer.stub.service.userService, signUpCompleted: nil))
+    OnboardingView(viewModel:
+            .init(appService:
+                    DIContainer.stub.service.appService,
+                  authService: DIContainer.stub.service.authService,
+                  signUpCompleted: nil)
+    )
     
 }

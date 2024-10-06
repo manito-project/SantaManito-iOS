@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 enum AgreementModel: CaseIterable {
     case 이용약관
@@ -31,11 +32,8 @@ final class OnboardingViewModel: ObservableObject {
     //MARK: - Action, State
     
     enum Action {
-        
-        case bottomButtonDidTap // step 1, 2
-        case viewDidTap
-        // step 1
-        
+        // step 1, 2
+        case bottomButtonDidTap
         
         // step 2
         case acceptAllCellDidTap
@@ -44,8 +42,9 @@ final class OnboardingViewModel: ObservableObject {
     
     struct State {
         var step: Step = .nickname // step
-        var nicknameTextFieldFocused = true
         var bottomButtonDisabled = true // step1, step2 모두 쓰이는 bottom Button state입니다
+        var isLoading = false
+        var failAlert = false
         var signUpCompleted = false // step 2 까지 끝나면 true로
         var agreements = AgreementModel.allCases.map { (agreement: $0, isSelected: false) }
         var allAccepted: Bool { agreements.allSatisfy { $0.isSelected } }
@@ -59,21 +58,29 @@ final class OnboardingViewModel: ObservableObject {
     }
     //MARK: - Dependency
     
-    let userService: UserServiceType
+    private let appService: AppServiceType
+    private let authService: AuthenticationServiceType
+    private let userDefaultsService: UserDefaultsServiceType.Type
     
     //MARK: - Properties
     
     @Published var state = State()
     @Published var nickname = ""
-    let signUpCompleted: (() -> Void)?
     
+    private let signUpCompleted: (() -> Void)?
     private let cancelBag = CancelBag()
     
     //MARK: - Init
     
-    init(userService: UserServiceType, signUpCompleted: (() -> Void)?) {
-        
-        self.userService = userService
+    init(
+        appService: AppServiceType,
+        authService: AuthenticationServiceType,
+        userDefaultsService: UserDefaultsServiceType.Type = UserDefaultsService.self,
+        signUpCompleted: (() -> Void)?
+    ) {
+        self.appService = appService
+        self.authService = authService
+        self.userDefaultsService = userDefaultsService
         self.signUpCompleted = signUpCompleted
         
         observe()
@@ -87,8 +94,6 @@ final class OnboardingViewModel: ObservableObject {
         guard let owner else { return }
         
         switch action {
-        case .viewDidTap:
-            state.nicknameTextFieldFocused = false
         case .bottomButtonDidTap:
             switch state.step {
             case .nickname:
@@ -96,10 +101,18 @@ final class OnboardingViewModel: ObservableObject {
                 state.bottomButtonDisabled = true
                 
             case .agreement:
-                userService.signUp(nickname: nickname)
-                    .sink { completion in
-                        
-                    } receiveValue: { _ in
+                
+                Just(appService.getDeviceIdentifier() ?? "")
+                    .filter { !$0.isEmpty }
+                    .flatMap { owner.authService.signUp(nickname: owner.nickname, deviceID: $0) }
+                    .assignLoading(to: \.state.isLoading, on: owner)
+                    .catch { _ in
+                        owner.state.failAlert = true
+                        return Empty<AuthEntity, Never>()
+                    }
+                    .sink { auth in
+                        owner.userDefaultsService.userID = auth.userID
+                        owner.userDefaultsService.accessToken = auth.accessToken
                         owner.signUpCompleted?()
                     }
                     .store(in: cancelBag)
