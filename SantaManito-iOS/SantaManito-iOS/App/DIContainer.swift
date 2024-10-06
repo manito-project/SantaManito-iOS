@@ -14,7 +14,7 @@ final class DIContainer: ObservableObject {
     var service: ServiceType
     var navigationRouter: NavigationRoutableType
     
-    fileprivate init(
+    private init(
         service: ServiceType,
         navigationRouter: NavigationRoutableType = NavigationRouter()
     ) {
@@ -26,12 +26,6 @@ final class DIContainer: ObservableObject {
 }
 
 extension DIContainer {
-    
-    static var `default`: DIContainer {
-        DIContainer(service: StubService()) // TODO: 실제 service로 변경 필요
-    }
-    
-    static var stub: DIContainer {
-        return .init(service: StubService())
-    }
+    static let `default` = DIContainer(service: StubService()) // TODO: 실제 service로 변경 필요
+    static let stub = DIContainer(service: StubService())
 }
