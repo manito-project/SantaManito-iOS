@@ -34,6 +34,25 @@ struct SplashView: View {
         .onAppear {
             viewModel.send(.onAppear)
         }
+        .smAlert(
+            isPresented:
+                viewModel.state.mustUpdateAlertIsPresented,
+            title: "새로운 버전이 출시됐어요☺️\n지금 앱스토에서 업데이트 해보세요",
+            primaryButton: ("업데이트", {
+                guard let url = URL(string:"itms-apps://itunes.apple.com/app/1546583360") else { return }
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url)
+                }
+            })
+        )
+        .smAlert(
+            isPresented:
+                viewModel.state.serverCheckAlert.isPresented,
+            title: viewModel.state.serverCheckAlert.message,
+            primaryButton: ("확인 후 앱 닫기", {
+                exit(0)
+            })
+        )
             
     }
         
@@ -68,6 +87,6 @@ struct SplashView: View {
 }
 
 #Preview {
-    SplashView(viewModel: SplashViewModel(authService: DIContainer.stub.service.authService))
+    SplashView(viewModel: SplashViewModel(appService: DIContainer.stub.service.appService, remoteConfigService: DIContainer.stub.service.remoteConfigService, authService: DIContainer.stub.service.authService))
         .environmentObject(DIContainer.stub)
 }

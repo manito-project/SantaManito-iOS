@@ -8,13 +8,15 @@
 import Foundation
 
 protocol ServiceType {
+    var appService: AppServiceType { get }
     var authService: AuthenticationServiceType { get set }
     var userService: UserServiceType { get set }
     var roomService: RoomServiceType { get }
     var editRoomService: EditRoomServiceType { get }
     var enterRoomService: EnterRoomServiceType { get }
     var matchRoomService: MatchRoomServiceType { get }
-    var pushNotificationService: PushNotificationServiceType { get set }
+    var pushNotificationService: PushNotificationServiceType { get }
+    var remoteConfigService: RemoteConfigServiceType { get }
 }
 
 //class Service: ServiceType {
@@ -30,9 +32,14 @@ protocol ServiceType {
 //  }
 //}
 
+class Service {
+    
+}
+
 
 class StubService: ServiceType {
     
+    var appService: AppServiceType = StubAppService()
     var authService: AuthenticationServiceType = StubAuthenticationService()
     var userService: UserServiceType = StubUserService()
     var roomService: RoomServiceType = StubRoomService()
@@ -40,5 +47,6 @@ class StubService: ServiceType {
     var enterRoomService: EnterRoomServiceType = StubEnterRoomService()
     var matchRoomService: MatchRoomServiceType = StubMatchRoomService()
     var pushNotificationService: PushNotificationServiceType = StubPushNotificationService()
+    var remoteConfigService: RemoteConfigServiceType = StubRemoteConfigService()
     
 }
