@@ -43,16 +43,17 @@ final class EditUsernameViewModel: ObservableObject {
     //MARK: - Methods
     
     func send(_ action: Action) {
+        weak var owner = self
+        guard let owner else { return }
         
         switch action {
         case .onAppear:
-            state.isLoading = true
             userService.getUser(with: "") // TODO: KeyChain에서 가져오기
                 .receive(on: DispatchQueue.main)
+                .assignLoading(to: \.state.isLoading, on: owner)
                 .map { $0.username }
                 .catch { _ in Empty() }
                 .sink { [weak self] username in
-                    self?.state.isLoading = false
                     self?.oldUsername = username
                     self?.username = username
                 }
