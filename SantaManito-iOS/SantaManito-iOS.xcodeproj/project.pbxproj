@@ -47,11 +47,16 @@
 		87873BDA2CAC215000E368BF /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 87873BD92CAC215000E368BF /* FirebaseRemoteConfig */; };
 		87873BDC2CAC29E900E368BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BDB2CAC29E900E368BF /* AppDelegate.swift */; };
 		87873BDF2CAC2EA200E368BF /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BDE2CAC2EA200E368BF /* TestView.swift */; };
-		87873BED2CB0FA3700E368BF /* Publisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BEC2CB0FA3700E368BF /* Publisher+.swift */; };
 		87873BE12CAFF29600E368BF /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BE02CAFF29600E368BF /* AppService.swift */; };
 		87873BE42CAFF2E200E368BF /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BE32CAFF2E200E368BF /* Version.swift */; };
 		87873BE72CAFF63800E368BF /* VersionEntityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BE62CAFF63800E368BF /* VersionEntityTests.swift */; };
 		87873BE92CB00BFF00E368BF /* AppServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BE82CB00BFF00E368BF /* AppServiceTests.swift */; };
+		87873BED2CB0FA3700E368BF /* Publisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BEC2CB0FA3700E368BF /* Publisher+.swift */; };
+		87873BF12CB2DB6A00E368BF /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BF02CB2DB6A00E368BF /* SignUpRequest.swift */; };
+		87873BF32CB2E2A100E368BF /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BF22CB2E2A100E368BF /* SignUpResponse.swift */; };
+		87873BF62CB2E30800E368BF /* AuthEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BF52CB2E30800E368BF /* AuthEntity.swift */; };
+		87873BF82CB2E71800E368BF /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BF72CB2E71800E368BF /* UserDefaultsService.swift */; };
+		87873BFB2CB2EB6100E368BF /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BFA2CB2EB6100E368BF /* UserDefault.swift */; };
 		879829052C9827B200A863EC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879829042C9827B200A863EC /* HomeViewModel.swift */; };
 		879829072C98284B00A863EC /* RoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879829062C98284B00A863EC /* RoomService.swift */; };
 		879829092C9EA54B00A863EC /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879829082C9EA54B00A863EC /* BaseView.swift */; };
@@ -168,11 +173,16 @@
 		87873BD12CAC211E00E368BF /* FirebaseRemoteConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRemoteConfigTests.swift; sourceTree = "<group>"; };
 		87873BDB2CAC29E900E368BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		87873BDE2CAC2EA200E368BF /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
-		87873BEC2CB0FA3700E368BF /* Publisher+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+.swift"; sourceTree = "<group>"; };
 		87873BE02CAFF29600E368BF /* AppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppService.swift; sourceTree = "<group>"; };
 		87873BE32CAFF2E200E368BF /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		87873BE62CAFF63800E368BF /* VersionEntityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionEntityTests.swift; sourceTree = "<group>"; };
 		87873BE82CB00BFF00E368BF /* AppServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppServiceTests.swift; sourceTree = "<group>"; };
+		87873BEC2CB0FA3700E368BF /* Publisher+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+.swift"; sourceTree = "<group>"; };
+		87873BF02CB2DB6A00E368BF /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
+		87873BF22CB2E2A100E368BF /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
+		87873BF52CB2E30800E368BF /* AuthEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthEntity.swift; sourceTree = "<group>"; };
+		87873BF72CB2E71800E368BF /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		87873BFA2CB2EB6100E368BF /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		879829042C9827B200A863EC /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		879829062C98284B00A863EC /* RoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomService.swift; sourceTree = "<group>"; };
 		879829082C9EA54B00A863EC /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -374,6 +384,8 @@
 		877EA2422C88AE6B0073FFBD /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				87873BEF2CB2DB6000E368BF /* Auth */,
+				87873BEE2CB2DB5C00E368BF /* User */,
 				D26879442CABB2150025A611 /* EditRoom */,
 				874017A32CA1AB610096E847 /* RoomDetailResponse.swift */,
 				874017A52CA1ABBE0096E847 /* UserResponse.swift */,
@@ -415,6 +427,38 @@
 				87873BE32CAFF2E200E368BF /* Version.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		87873BEE2CB2DB5C00E368BF /* User */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		87873BEF2CB2DB6000E368BF /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				87873BF02CB2DB6A00E368BF /* SignUpRequest.swift */,
+				87873BF22CB2E2A100E368BF /* SignUpResponse.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		87873BF42CB2E2F100E368BF /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				87873BF52CB2E30800E368BF /* AuthEntity.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		87873BF92CB2EB5700E368BF /* PropertyWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				87873BFA2CB2EB6100E368BF /* UserDefault.swift */,
+			);
+			path = PropertyWrapper;
 			sourceTree = "<group>";
 		};
 		87C06E5B2C9EAB5E00F03637 /* Navigation */ = {
@@ -510,6 +554,7 @@
 		D22E9B672C8803AE00086549 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				87873BF92CB2EB5700E368BF /* PropertyWrapper */,
 				D22E9B692C8803BA00086549 /* Util */,
 				D22E9B682C8803B100086549 /* Extension */,
 			);
@@ -552,6 +597,7 @@
 			isa = PBXGroup;
 			children = (
 				87873BE22CAFF2D900E368BF /* App */,
+				87873BF42CB2E2F100E368BF /* Auth */,
 				874017C02CA3EFC70096E847 /* User */,
 				874017BF2CA3EFBE0096E847 /* Room */,
 				874017B12CA29FE20096E847 /* MyPage */,
@@ -564,12 +610,13 @@
 			children = (
 				D2A8F60C2C9D18E700810BCF /* Room */,
 				D22E9B722C8803E500086549 /* Service.swift */,
-				877EA23C2C88AB8D0073FFBD /* UserService.swift */,
+				87873BE02CAFF29600E368BF /* AppService.swift */,
 				877EA23E2C88AB930073FFBD /* AuthService.swift */,
+				877EA23C2C88AB8D0073FFBD /* UserService.swift */,
 				879829062C98284B00A863EC /* RoomService.swift */,
 				877EA2402C88ABA00073FFBD /* PushNotificationService.swift */,
 				87873BC42CAC1C0300E368BF /* RemoteConfigService.swift */,
-				87873BE02CAFF29600E368BF /* AppService.swift */,
+				87873BF72CB2E71800E368BF /* UserDefaultsService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -888,6 +935,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87873BF62CB2E30800E368BF /* AuthEntity.swift in Sources */,
 				D25411A42CA4007A00B87568 /* ManitoWaitingRoomViewModel.swift in Sources */,
 				D2BC1AA12C90A26B00CB32B8 /* CheckRoomInfoView.swift in Sources */,
 				87873BE42CAFF2E200E368BF /* Version.swift in Sources */,
@@ -919,7 +967,9 @@
 				877EA23F2C88AB930073FFBD /* AuthService.swift in Sources */,
 				879829092C9EA54B00A863EC /* BaseView.swift in Sources */,
 				D2BC1A922C90101E00CB32B8 /* EditMissionView.swift in Sources */,
+				87873BF32CB2E2A100E368BF /* SignUpResponse.swift in Sources */,
 				D2A8F6212CA1172100810BCF /* FinishView.swift in Sources */,
+				87873BF82CB2E71800E368BF /* UserDefaultsService.swift in Sources */,
 				D22E9B592C88031A00086549 /* SantaManito_iOSApp.swift in Sources */,
 				D26879382CAA7BE40025A611 /* NetworkResponse.swift in Sources */,
 				D2A8F6192CA1168B00810BCF /* MatchingResultViewModel.swift in Sources */,
@@ -965,6 +1015,7 @@
 				D28568AC2CAD031C0044C231 /* RequestHandler.swift in Sources */,
 				877CA0832C8CA75C00D23193 /* SMAlertView.swift in Sources */,
 				877CA0812C8C555D00D23193 /* SMScrollView.swift in Sources */,
+				87873BF12CB2DB6A00E368BF /* SignUpRequest.swift in Sources */,
 				874017B72CA2A9F30096E847 /* EditUsernameViewModel.swift in Sources */,
 				879829072C98284B00A863EC /* RoomService.swift in Sources */,
 				D2A8F6142C9E792100810BCF /* EnterRoomService.swift in Sources */,
@@ -976,6 +1027,7 @@
 				D26BFA912C919D0000C5CF86 /* ManitoWaitingRoomView.swift in Sources */,
 				877CA0892C8CB61100D23193 /* DSKitDemoView.swift in Sources */,
 				874017A82CA1AC010096E847 /* MissionResponse.swift in Sources */,
+				87873BFB2CB2EB6100E368BF /* UserDefault.swift in Sources */,
 				D26879412CAA83500025A611 /* Paths.swift in Sources */,
 				D229FE782CA7CEA200979421 /* HTTPMethod.swift in Sources */,
 				D2BC1A982C90245700CB32B8 /* TextFieldStyles.swift in Sources */,

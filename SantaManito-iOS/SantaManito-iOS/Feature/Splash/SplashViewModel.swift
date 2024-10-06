@@ -31,10 +31,10 @@ class SplashViewModel: ObservableObject {
     
     //MARK: - Dependency
     
-    private var appService: AppServiceType
-    private var remoteConfigService: RemoteConfigServiceType
-    private var authService: AuthenticationServiceType
-    
+    private let appService: AppServiceType
+    private let authService: AuthenticationServiceType
+    private let userDefaultsService: UserDefaultsServiceType.Type
+    private let remoteConfigService: RemoteConfigServiceType
     
     //MARK: - Properties
     
@@ -46,11 +46,13 @@ class SplashViewModel: ObservableObject {
     init(
         appService: AppServiceType,
         remoteConfigService: RemoteConfigServiceType,
-        authService: AuthenticationServiceType
+        authService: AuthenticationServiceType,
+        userDefaultsService: UserDefaultsServiceType.Type = UserDefaultsService.self
     ) {
         self.appService = appService
         self.remoteConfigService = remoteConfigService
         self.authService = authService
+        self.userDefaultsService = userDefaultsService
     }
     
     //MARK: - Methods
@@ -66,8 +68,14 @@ class SplashViewModel: ObservableObject {
                 return
             }
             
-            authService.autoLogin()
-                .map { State.Destination.main }
+            Just(appService.getDeviceIdentifier() ?? "" )
+                .filter { !$0.isEmpty }
+                .flatMap(authService.signIn)
+                .map {
+                    owner.userDefaultsService.userID = $0.userID
+                    owner.userDefaultsService.accessToken = $0.accessToken
+                    return State.Destination.main
+                }
                 .catch { _ in Just(State.Destination.onboarding) }
                 .assign(to: \.state.desination, on: owner)
                 .store(in: cancelBag)
