@@ -15,7 +15,6 @@ enum RoomAPI {
 }
 
 extension RoomAPI: BaseAPI {
-    
     var path: String? {
         switch self {
         case .getRoomInfo(let roomId):
@@ -41,42 +40,34 @@ extension RoomAPI: BaseAPI {
         }
     }
     
-    var parameters: Parameters? {
+    var task: Task {
         switch self {
         case .getRoomInfo:
-            return nil
-        case .editRoomInfo(_, let request): 
-            return [
-                "roomName": request.roomName,
-                "expirationDate": request.expirationDate
-            ]
-        case .createRoom(let request): 
-            return [
-                "roomName": request.roomName,
-                "expirationDate": request.expirationDate,
-                "missionContents": request.missionContents
-            ]
+            return .requestPlain
+        case .editRoomInfo(_, let request):
+            return .requestJSONEncodable(request)
+        case .createRoom(let request):
+            return .requestJSONEncodable(request)
         case .enterRoom(let request):
-            return [
-                "invitationCode" : request.inviteCode
-            ]
-        }
-    }
-    
-    var encoder: ParameterEncodable? {
-        switch self {
-        case .getRoomInfo:
-            return nil
-        case .editRoomInfo:
-            return JSONEncoding()
-        case .createRoom:
-            return JSONEncoding()
-        case .enterRoom:
-            return JSONEncoding()
+            return .requestJSONEncodable(request)
         }
     }
 }
 
 
 
-
+//
+//return [
+//    "roomName": request.roomName,
+//    "expirationDate": request.expirationDate
+//]
+//case .createRoom(let request):
+//return [
+//    "roomName": request.roomName,
+//    "expirationDate": request.expirationDate,
+//    "missionContents": request.missionContents
+//]
+//case .enterRoom(let request):
+//return [
+//    "invitationCode" : request.inviteCode
+//]
