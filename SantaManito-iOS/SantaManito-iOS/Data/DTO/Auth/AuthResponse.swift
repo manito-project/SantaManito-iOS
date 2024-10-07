@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct SignUpResponse: Decodable {
-    let userId: String
+struct AuthResponse: Decodable {
+    let id: String
     let accessToken: String
 }
 
-extension SignUpResponse {
+extension AuthResponse {
     
     func toEntity() -> AuthEntity {
-        .init(userID: userId, accessToken: accessToken)
+        .init(userID: id, accessToken: accessToken)
     }
     
 }

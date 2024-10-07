@@ -9,13 +9,12 @@ import Foundation
 
 protocol ServiceType {
     var appService: AppServiceType { get }
-    var authService: AuthenticationServiceType { get set }
+    var authService: AuthenticationServiceType { get }
     var userService: UserServiceType { get set }
     var roomService: RoomServiceType { get }
     var editRoomService: EditRoomServiceType { get }
     var enterRoomService: EnterRoomServiceType { get }
     var matchRoomService: MatchRoomServiceType { get }
-    var pushNotificationService: PushNotificationServiceType { get }
     var remoteConfigService: RemoteConfigServiceType { get }
 }
 
@@ -32,8 +31,15 @@ protocol ServiceType {
 //  }
 //}
 
-class Service {
-    
+final class Service: ServiceType {
+    var appService: AppServiceType = AppService()
+    var authService: AuthenticationServiceType = AuthenticationService()
+    var userService: UserServiceType = StubUserService() //TODO: stub교체
+    var roomService: RoomServiceType = StubRoomService() //TODO: stub교체
+    var editRoomService: EditRoomServiceType = EditRoomService() //TODO: stub교체
+    var enterRoomService: EnterRoomServiceType = StubEnterRoomService() //TODO: stub교체
+    var matchRoomService: MatchRoomServiceType = StubMatchRoomService() //TODO: stub교체
+    var remoteConfigService: RemoteConfigServiceType = FirebaseRemoteConfigService.shared
 }
 
 
@@ -46,7 +52,6 @@ class StubService: ServiceType {
     var editRoomService: EditRoomServiceType = EditRoomService()
     var enterRoomService: EnterRoomServiceType = StubEnterRoomService()
     var matchRoomService: MatchRoomServiceType = StubMatchRoomService()
-    var pushNotificationService: PushNotificationServiceType = StubPushNotificationService()
     var remoteConfigService: RemoteConfigServiceType = StubRemoteConfigService()
     
 }

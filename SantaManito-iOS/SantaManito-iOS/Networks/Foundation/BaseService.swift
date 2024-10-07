@@ -25,6 +25,17 @@ final class BaseService<Target: URLRequestTargetType> {
             .eraseToAnyPublisher()
     }
     
+    func requestWithResult<T: Decodable>(_ target: API, _ responseType: T.Type) -> AnyPublisher<T, SMNetworkError> {
+        return fetchResponse(with: target)
+            .flatMap { response in
+                self.validate(response: response)
+                    .map { _ in response.data! }
+                    .mapError { ErrorHandler.handleError(target, error: $0) }
+            }
+            .flatMap { self.decode(data: $0, target: target) }
+            .eraseToAnyPublisher()
+    }
+    
     func requestWithNoResult(_ target: API) -> AnyPublisher<Void, SMNetworkError> {
         return fetchResponse(with: target)
             .flatMap { response -> AnyPublisher<Data, SMNetworkError> in
