@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-typealias EditRoomService = BaseService<EditRoomAPI>
+typealias EditRoomService = BaseService<RoomAPI>
 
 protocol EditRoomServiceType {
     func getRoomInfo(with roomID: String) -> AnyPublisher<MakeRoomInfo, SMNetworkError>
