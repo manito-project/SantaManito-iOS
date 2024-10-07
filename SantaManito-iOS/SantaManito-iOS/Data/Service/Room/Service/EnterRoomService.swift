@@ -8,11 +8,10 @@
 import Foundation
 import Combine
 
-typealias EnterRoomService = BaseService<RoomAPI>
+typealias EnterRoomService = BaseService<EnterRoomAPI>
 
 protocol EnterRoomServiceType {
     func enterRoom(inviteCode: String) -> AnyPublisher<Void, EnterError>
-    //    func getParticipate(_ roomID: String) -> AnyPublisher<[Participate], Error>
     func getUser(_ userID: String) -> AnyPublisher<Bool, Error>
     func getInviteCode(_ roomID: String) -> AnyPublisher<String, Error>
 }
