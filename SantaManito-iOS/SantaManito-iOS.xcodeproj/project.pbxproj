@@ -75,7 +75,7 @@
 		D25570E92C8E858A00CCC226 /* EditRoomInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570E82C8E858A00CCC226 /* EditRoomInfoView.swift */; };
 		D25570ED2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570EC2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift */; };
 		D26879382CAA7BE40025A611 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879372CAA7BE40025A611 /* NetworkResponse.swift */; };
-		D268793D2CAA7F8A0025A611 /* RoomAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D268793C2CAA7F8A0025A611 /* RoomAPI.swift */; };
+		D268793D2CAA7F8A0025A611 /* EditRoomAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D268793C2CAA7F8A0025A611 /* EditRoomAPI.swift */; };
 		D268793F2CAA80580025A611 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D268793E2CAA80580025A611 /* BaseAPI.swift */; };
 		D26879412CAA83500025A611 /* Paths.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879402CAA83500025A611 /* Paths.swift */; };
 		D26879432CAB8DA30025A611 /* NetworkLogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879422CAB8DA30025A611 /* NetworkLogHandler.swift */; };
@@ -112,6 +112,7 @@
 		D2BC1AA12C90A26B00CB32B8 /* CheckRoomInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1AA02C90A26B00CB32B8 /* CheckRoomInfoView.swift */; };
 		D2BC1AA32C90A29200CB32B8 /* CheckRoomInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1AA22C90A29100CB32B8 /* CheckRoomInfoViewModel.swift */; };
 		D2BC1AA52C91357F00CB32B8 /* SMInviteCodeAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1AA42C91357F00CB32B8 /* SMInviteCodeAlertView.swift */; };
+		D2E2068B2CB38A59001250AE /* EnterRoomAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E2068A2CB38A59001250AE /* EnterRoomAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -194,7 +195,7 @@
 		D25570E82C8E858A00CCC226 /* EditRoomInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomInfoView.swift; sourceTree = "<group>"; };
 		D25570EC2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomInfoViewModel.swift; sourceTree = "<group>"; };
 		D26879372CAA7BE40025A611 /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
-		D268793C2CAA7F8A0025A611 /* RoomAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomAPI.swift; sourceTree = "<group>"; };
+		D268793C2CAA7F8A0025A611 /* EditRoomAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomAPI.swift; sourceTree = "<group>"; };
 		D268793E2CAA80580025A611 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
 		D26879402CAA83500025A611 /* Paths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paths.swift; sourceTree = "<group>"; };
 		D26879422CAB8DA30025A611 /* NetworkLogHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogHandler.swift; sourceTree = "<group>"; };
@@ -233,6 +234,7 @@
 		D2BC1AA02C90A26B00CB32B8 /* CheckRoomInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckRoomInfoView.swift; sourceTree = "<group>"; };
 		D2BC1AA22C90A29100CB32B8 /* CheckRoomInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckRoomInfoViewModel.swift; sourceTree = "<group>"; };
 		D2BC1AA42C91357F00CB32B8 /* SMInviteCodeAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMInviteCodeAlertView.swift; sourceTree = "<group>"; };
+		D2E2068A2CB38A59001250AE /* EnterRoomAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -655,7 +657,8 @@
 		D268793B2CAA7F790025A611 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				D268793C2CAA7F8A0025A611 /* RoomAPI.swift */,
+				D268793C2CAA7F8A0025A611 /* EditRoomAPI.swift */,
+				D2E2068A2CB38A59001250AE /* EnterRoomAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -890,6 +893,7 @@
 			files = (
 				D25411A42CA4007A00B87568 /* ManitoWaitingRoomViewModel.swift in Sources */,
 				D2BC1AA12C90A26B00CB32B8 /* CheckRoomInfoView.swift in Sources */,
+				D2E2068B2CB38A59001250AE /* EnterRoomAPI.swift in Sources */,
 				D2BC1A9C2C90473100CB32B8 /* Mission.swift in Sources */,
 				87C06E5D2C9EAB6800F03637 /* NaivgationRouter.swift in Sources */,
 				D2BC1A8C2C8EBCF500CB32B8 /* SMColoredTextView.swift in Sources */,
@@ -907,7 +911,7 @@
 				877CA0712C8AB3DE00D23193 /* LoadingView.swift in Sources */,
 				D26BFA8C2C91987200C5CF86 /* EnterRoomView.swift in Sources */,
 				877EA2392C88AA8A0073FFBD /* OnboardingView.swift in Sources */,
-				D268793D2CAA7F8A0025A611 /* RoomAPI.swift in Sources */,
+				D268793D2CAA7F8A0025A611 /* EditRoomAPI.swift in Sources */,
 				D2BC1A902C8F4C6400CB32B8 /* Date+.swift in Sources */,
 				874017C72CA6B4CD0096E847 /* View+.swift in Sources */,
 				874017AC2CA1B3040096E847 /* RoomState.swift in Sources */,

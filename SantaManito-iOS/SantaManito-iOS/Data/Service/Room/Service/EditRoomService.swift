@@ -8,12 +8,14 @@
 import Foundation
 import Combine
 
-typealias EditRoomService = BaseService<RoomAPI>
+typealias EditRoomService = BaseService<EditRoomAPI>
 
 protocol EditRoomServiceType {
     func getRoomInfo(with roomID: String) -> AnyPublisher<MakeRoomInfo, SMNetworkError>
     func editRoomInfo(with roomID: String, request: EditRoomRequest) -> AnyPublisher<Void, SMNetworkError>
     func createRoom(_ request: CreateRoomRequest) -> AnyPublisher<String, SMNetworkError>
+    
+    func deleteRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError>
 }
 
 extension EditRoomService: EditRoomServiceType {
@@ -29,11 +31,15 @@ extension EditRoomService: EditRoomServiceType {
     }
     
     func editRoomInfo(with roomID: String, request: EditRoomRequest) -> AnyPublisher<Void, SMNetworkError> {
-        requestWithNoResult(.editRoomInfo(roomId: roomID, request: request))
+        requestWithNoResult(.editRoomInfo(roomID: roomID, request: request))
     }
     
     func createRoom(_ request: CreateRoomRequest) -> AnyPublisher<String, SMNetworkError> {
         requestWithResult(.createRoom(request: request))
+    }
+    
+    func deleteRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError> {
+        requestWithNoResult(.deleteRoom(roomID: roomID))
     }
 }
 
@@ -54,6 +60,10 @@ struct StubEditRoomService: EditRoomServiceType {
     
     func createRoom(_ request: CreateRoomRequest) -> AnyPublisher<String, SMNetworkError> {
         return Just("asdkf12").setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
+    }
+    
+    func deleteRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError> {
+        return Just(()).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
     }
 }
 
