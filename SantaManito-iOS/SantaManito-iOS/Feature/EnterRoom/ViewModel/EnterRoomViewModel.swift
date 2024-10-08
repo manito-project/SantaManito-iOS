@@ -23,16 +23,19 @@ class EnterRoomViewModel: ObservableObject {
     
     //MARK: Dependency
     
-    private var roomService: EnterRoomServiceType
+    private var roomService: RoomServiceType // 임시의
+    private var editRoomService: EditRoomServiceType
     private var navigationRouter: NavigationRoutableType
     
     //MARK: Init
     
     init(
-        roomService: EnterRoomServiceType,
+        roomService: RoomServiceType,
+        editRoomService: EditRoomServiceType,
         navigationRouter: NavigationRoutableType
     ) {
         self.roomService = roomService
+        self.editRoomService = editRoomService
         self.navigationRouter = navigationRouter
         
         observe()
@@ -56,15 +59,22 @@ class EnterRoomViewModel: ObservableObject {
     func send(action: Action) {
         switch action {
         case .enterButtonDidClicked:
-            roomService.enterRoom(inviteCode: inviteCode)
-                .sink(receiveCompletion: { [weak self] completion in
-                    if case .failure(let error) = completion {
-                        self?.state.enterFailMessage = (true, error.description)
-                    }
-                }, receiveValue: { [weak self] _ in
-                    self?.navigationRouter.push(to: .manitoWaitingRoom(roomDetail: .stub)) // stub교체
-                })
-                .store(in: cancelBag)
+            editRoomService.enterRoom(inviteCode: inviteCode)
+                .mapError { [weak self] error in
+                    self?.state.enterFailMessage = (true, error.description)
+                    return error
+                }
+                .flatMap { [weak self] roomID -> AnyPublisher<RoomDetail, Error> in
+                    guard let self else { return Empty().eraseToAnyPublisher() }
+                    return self.roomService.fetch(with: roomID)
+                        .catch { _ in Empty() }
+                        .eraseToAnyPublisher()
+                }
+                .sink(receiveCompletion: { _ in
+                    
+                }, receiveValue: { [weak self] roomDetail in
+                    self?.navigationRouter.push(to: .manitoWaitingRoom(roomDetail: roomDetail))
+                }).store(in: cancelBag)
         }
     }
 }

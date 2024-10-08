@@ -11,24 +11,28 @@ import Combine
 typealias EditRoomService = BaseService<RoomAPI>
 
 protocol EditRoomServiceType {
-    func getRoomInfo(with roomID: String) -> AnyPublisher<MakeRoomInfo, SMNetworkError>
+//    func getRoomInfo(with roomID: String) -> AnyPublisher<RoomDetail, SMNetworkError>
     func editRoomInfo(with roomID: String, request: EditRoomRequest) -> AnyPublisher<Void, SMNetworkError>
     func createRoom(_ request: CreateRoomRequest) -> AnyPublisher<String, SMNetworkError>
     
     func deleteRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError>
+    func deleteHistoryRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError>
+    
+    func enterRoom(inviteCode: String) -> AnyPublisher<String, EnterError>
+    func exitRoom(roomID: String) -> AnyPublisher<Void, SMNetworkError>
 }
 
 extension EditRoomService: EditRoomServiceType {
     //TODO: 참여 방 조회하기면 홈에서 넘어오기 때문에 연결을 안해도 될거 같은데
-    func getRoomInfo(with roomID: String) -> AnyPublisher<MakeRoomInfo, SMNetworkError> {
-        return Just(
-            MakeRoomInfo(
-                name: "마니또 방 이름",
-                remainingDays: 10,
-                dueDate: Date().adjustDays(remainingDays: 10)
-            )
-        ).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
-    }
+//    func getRoomInfo(with roomID: String) -> AnyPublisher<RoomDetail, SMNetworkError> {
+//        return Just(
+//            MakeRoomInfo(
+//                name: "마니또 방 이름",
+//                remainingDays: 10,
+//                dueDate: Date().adjustDays(remainingDays: 10)
+//            )
+//        ).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
+//    }
     
     func editRoomInfo(with roomID: String, request: EditRoomRequest) -> AnyPublisher<Void, SMNetworkError> {
         requestWithNoResult(.editRoomInfo(roomID: roomID, request: request))
@@ -43,6 +47,35 @@ extension EditRoomService: EditRoomServiceType {
     func deleteRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError> {
         requestWithNoResult(.deleteRoom(roomID: roomID))
     }
+    
+    func deleteHistoryRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError> {
+        requestWithNoResult(.deleteHistoryRoom(roomID: roomID))
+    }
+    
+    func enterRoom(inviteCode: String) -> AnyPublisher<String, EnterError> {
+        requestWithResult(
+            .enterRoom(request: EnterRoomRequest(inviteCode: inviteCode)),
+            type: EnterRoomResult.self
+        )
+        .mapError { smError -> EnterError in
+                switch smError {
+                case .invalidResponse(let responseError):
+                    if case let .invalidStatusCode(code, _) = responseError {
+                        return EnterError.error(with: code)! //TODO: 강제 옵셔널 처리 괜찮을지..?
+                    }
+                    return .unknown(smError)
+                    
+                default:
+                    return .unknown(smError)
+                }
+            }
+        .map { result in result.roomId }
+        .eraseToAnyPublisher()
+    }
+    
+    func exitRoom(roomID: String) -> AnyPublisher<Void, SMNetworkError> {
+        requestWithNoResult(.exitRoom(roomID: roomID))
+    }
 }
 
 struct StubEditRoomService: EditRoomServiceType {
@@ -50,21 +83,33 @@ struct StubEditRoomService: EditRoomServiceType {
         return Just(()).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
     }
     
-    func getRoomInfo(with roomID: String) -> AnyPublisher<MakeRoomInfo, SMNetworkError> {
-        return Just(
-            MakeRoomInfo(
-                name: "마니또 방 이름",
-                remainingDays: 10,
-                dueDate: Date().adjustDays(remainingDays: 10)
-            )
-        ).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
-    }
+//    func getRoomInfo(with roomID: String) -> AnyPublisher<RoomDetail, SMNetworkError> {
+//        return Just(
+//            MakeRoomInfo(
+//                name: "마니또 방 이름",
+//                remainingDays: 10,
+//                dueDate: Date().adjustDays(remainingDays: 10)
+//            )
+//        ).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
+//    }
     
     func createRoom(_ request: CreateRoomRequest) -> AnyPublisher<String, SMNetworkError> {
         return Just("asdkf12").setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
     }
     
     func deleteRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError> {
+        return Just(()).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
+    }
+    
+    func deleteHistoryRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError> {
+        return Just(()).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
+    }
+    
+    func enterRoom(inviteCode: String) -> AnyPublisher<String, EnterError> {
+        return Just("roomId").setFailureType(to: EnterError.self).eraseToAnyPublisher()
+    }
+    
+    func exitRoom(roomID: String) -> AnyPublisher<Void, SMNetworkError> {
         return Just(()).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
     }
 }
