@@ -13,7 +13,7 @@ class CheckRoomInfoViewModel: ObservableObject {
     //MARK: - Action, State
     
     enum Action {
-        case makeRoomButtonClicked
+        case makeRoomButtonDidTap
         case deleteMission(Mission)
         case copyInviteCode
     }
@@ -75,7 +75,7 @@ class CheckRoomInfoViewModel: ObservableObject {
                 missionList.remove(at: index)
             }
             
-        case .makeRoomButtonClicked:
+        case .makeRoomButtonDidTap:
             let request = CreateRoomRequest(roomName: "안뇽", expirationDate: "2024-08-24", missionContents: ["임시로 넣어둘게요!"])
             roomService.createRoom(request)
                 .catch { _ in Empty() }
