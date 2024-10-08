@@ -10,6 +10,20 @@ import Foundation
 import Foundation
 import Combine
 
+enum FinishViewType {
+    case me
+    case all
+    
+    var buttonText: String {
+        switch self {
+        case .me:
+            return "전체 결과 보기"
+        case .all:
+            return "내 결과 보기"
+        }
+    }
+}
+
 class FinishViewModel: ObservableObject {
     
     //MARK: Action, State
@@ -17,10 +31,13 @@ class FinishViewModel: ObservableObject {
     enum Action {
         case onAppear
         case showAllManitoButtonClicked
-        case deleteRoomButtonClicked // 휴지통 버튼 눌럿을때?
+        case deleteHistoryRoomButtonClicked // 휴지통 버튼 눌럿을때?
+        case goHomeButtonClicked
+        case toggleViewTypeButtonClicked
     }
     
     struct State {
+        var viewType: FinishViewType = .all
         var me: String = "류희재"
         var manito: MatchingFinishData = .init(
             userID: 1, 
@@ -33,6 +50,7 @@ class FinishViewModel: ObservableObject {
         )
         var roomName: String = ""
         var description: String = ""
+        var participateList: [MatchingFinishData] = []
     }
     
     //MARK: Dependency
@@ -62,6 +80,11 @@ class FinishViewModel: ObservableObject {
                 .assign(to: \.state.manito, on: self)
                 .store(in: cancelBag)
             
+            matchRoomService.getManitoResult("")
+                .catch { _ in Empty() }
+                .assign(to: \.state.participateList, on: self)
+                .store(in: cancelBag)
+            
             editRoomService.getRoomInfo(with: "")
                 .map { [weak self] roomInfo in
                     self?.state.roomName = roomInfo.name
@@ -76,13 +99,18 @@ class FinishViewModel: ObservableObject {
         case .showAllManitoButtonClicked:
             print("화면 이동")
             
-        case .deleteRoomButtonClicked:
+        case .goHomeButtonClicked:
+            print("홈으로 이동")
+            
+        case .deleteHistoryRoomButtonClicked:
             matchRoomService.deleteRoom("")
                 .catch { _ in Empty() }
                 .sink(receiveValue: {
                     
                 })
                 .store(in: cancelBag)
+        case .toggleViewTypeButtonClicked:
+            state.viewType = state.viewType == .me ? .all : .me
         }
     }
 }
