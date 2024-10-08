@@ -49,7 +49,7 @@ struct CheckRoomInfoView: View {
 
 
 fileprivate struct RoomInfoView: View {
-    @StateObject private var viewModel: CheckRoomInfoViewModel
+    @ObservedObject private var viewModel: CheckRoomInfoViewModel
     
     fileprivate init(viewModel: CheckRoomInfoViewModel) {
         self.viewModel = viewModel
@@ -88,7 +88,7 @@ fileprivate struct RoomInfoView: View {
     }
 }
 fileprivate struct DuedateInfoView: View {
-    @StateObject private var viewModel: CheckRoomInfoViewModel
+    @ObservedObject private var viewModel: CheckRoomInfoViewModel
     
     fileprivate init(viewModel: CheckRoomInfoViewModel) {
         self.viewModel = viewModel
@@ -130,7 +130,7 @@ fileprivate struct DuedateInfoView: View {
 }
 
 private struct MissionListView: View {
-    @StateObject private var viewModel: CheckRoomInfoViewModel
+    @ObservedObject private var viewModel: CheckRoomInfoViewModel
     
     fileprivate init(viewModel: CheckRoomInfoViewModel) {
         self.viewModel = viewModel
@@ -155,7 +155,7 @@ private struct MissionListView: View {
 }
 
 private struct MissionCellView: View {
-    @StateObject private var viewModel: CheckRoomInfoViewModel
+    @ObservedObject private var viewModel: CheckRoomInfoViewModel
     @Binding var mission: Mission
     
     fileprivate init(

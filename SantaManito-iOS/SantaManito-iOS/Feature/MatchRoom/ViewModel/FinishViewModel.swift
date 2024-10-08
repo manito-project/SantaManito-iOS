@@ -30,8 +30,7 @@ class FinishViewModel: ObservableObject {
     
     enum Action {
         case onAppear
-        case showAllManitoButtonDidTap
-        case deleteHistoryRoomButtonDidTap // 휴지통 버튼 눌럿을때?
+        case deleteRoomButtonDidTap // 휴지통 버튼 눌럿을때?
         case goHomeButtonDidTap
         case toggleViewTypeButtonDidTap
     }
@@ -99,18 +98,19 @@ class FinishViewModel: ObservableObject {
                 .catch { _ in Empty() }
                 .assign(to: \.state.description, on: self)
                 .store(in: cancelBag)
+        case .toggleViewTypeButtonDidTap:
+            state.viewType = state.viewType == .me ? .all : .me
             
-        case .showAllManitoButtonDidTap:
-            print("화면 이동")
-            
+        case .deleteRoomButtonDidTap:
             editRoomService.deleteRoom(with: "roomID")
                 .catch { _ in Empty() }
                 .sink(receiveValue: { [weak self] _ in
                     self?.navigationRouter.popToRootView()
                 })
                 .store(in: cancelBag)
-        case .toggleViewTypeButtonDidTap:
-            state.viewType = state.viewType == .me ? .all : .me
+            
+        case .goHomeButtonDidTap:
+            self.navigationRouter.popToRootView()
         }
     }
 }

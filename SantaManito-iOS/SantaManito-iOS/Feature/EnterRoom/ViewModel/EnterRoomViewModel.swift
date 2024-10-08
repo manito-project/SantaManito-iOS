@@ -58,7 +58,7 @@ class EnterRoomViewModel: ObservableObject {
     
     func send(action: Action) {
         switch action {
-        case .enterButtonDidClicked:
+        case .enterButtonDidTap:
             editRoomService.enterRoom(inviteCode: inviteCode)
                 .mapError { [weak self] error in
                     self?.state.enterFailMessage = (true, error.description)

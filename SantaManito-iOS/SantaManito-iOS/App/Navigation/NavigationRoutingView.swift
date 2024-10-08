@@ -76,6 +76,7 @@ struct NavigationRoutingView: View {
         case .matchedRoom:
             MatchingResultView(
                 viewModel: MatchingResultViewModel(
+                    roomService: container.service.roomService,
                     matchRoomService: container.service.matchRoomService,
                     editRoomService: container.service.editRoomService,
                     navigationRouter: container.navigationRouter

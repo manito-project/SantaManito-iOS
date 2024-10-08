@@ -28,11 +28,12 @@ class MatchingResultViewModel: ObservableObject {
                 santaUsername: "류희재",
                 manittoUsername: "장석우"
             )
-        var room: MakeRoomInfo = MakeRoomInfo(name: "마니또 방", remainingDays: 3, dueDate: Date()) //TODO: 나중에 서버통신으로 변경해야됨
+        var room: RoomDetail = .stub1 //TODO: Stub 교체
     }
     
     //MARK: Dependency
     
+    private var roomService: RoomServiceType
     private var matchRoomService: MatchRoomServiceType
     private var editRoomService: EditRoomServiceType
     private var navigationRouter: NavigationRoutable
@@ -40,10 +41,12 @@ class MatchingResultViewModel: ObservableObject {
     //MARK: Init
     
     init(
+        roomService: RoomServiceType,
         matchRoomService: MatchRoomServiceType,
         editRoomService: EditRoomServiceType,
         navigationRouter: NavigationRoutable
     ) {
+        self.roomService = roomService
         self.matchRoomService = matchRoomService
         self.editRoomService = editRoomService
         self.navigationRouter = navigationRouter
@@ -64,7 +67,7 @@ class MatchingResultViewModel: ObservableObject {
                 .assign(to: \.state.manito, on: self)
                 .store(in: cancelBag)
                 
-            editRoomService.getRoomInfo(with: "")
+            roomService.fetch(with: "roomID")
                 .catch { _ in Empty() }
                 .assign(to: \.state.room, on: self)
                 .store(in: cancelBag)
