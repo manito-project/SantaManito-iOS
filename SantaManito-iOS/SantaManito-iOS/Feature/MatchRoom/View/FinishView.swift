@@ -39,7 +39,7 @@ struct FinishView: View {
 }
 
 fileprivate struct FinishTitleView: View {
-    @ObservedObject private var viewModel: FinishViewModel
+    @StateObject private var viewModel: FinishViewModel
     
     init(viewModel: FinishViewModel) {
         self.viewModel = viewModel
@@ -72,7 +72,7 @@ fileprivate struct FinishTitleView: View {
             
             VStack(alignment: .trailing) {
                 Button {
-                    viewModel.send(action: .deleteHistoryRoomButtonClicked)
+                    viewModel.send(action: .deleteHistoryRoomButtonDidTap)
                 } label: {
                     Image(.icTrash)
                         .resizable()
@@ -92,7 +92,7 @@ fileprivate struct FinishTitleView: View {
 }
 
 fileprivate struct FinishResultView: View {
-    @ObservedObject private var viewModel: FinishViewModel
+    @StateObject private var viewModel: FinishViewModel
     
     init(viewModel: FinishViewModel) {
         self.viewModel = viewModel
@@ -170,7 +170,7 @@ fileprivate struct FinishResultView: View {
 }
 
 fileprivate struct FinishAllResultView: View {
-    @ObservedObject private var viewModel: FinishViewModel
+    @StateObject private var viewModel: FinishViewModel
     
     init(viewModel: FinishViewModel) {
         self.viewModel = viewModel
@@ -261,7 +261,7 @@ fileprivate struct ParticipateCellView: View {
 }
 
 fileprivate struct FinishButtonView: View {
-    @ObservedObject private var viewModel: FinishViewModel
+    @StateObject private var viewModel: FinishViewModel
     
     init(viewModel: FinishViewModel) {
         self.viewModel = viewModel
@@ -270,7 +270,7 @@ fileprivate struct FinishButtonView: View {
     var body: some View {
         HStack(alignment: .center) {
             Button {
-                viewModel.send(action: .goHomeButtonClicked)
+                viewModel.send(action: .goHomeButtonDidTap)
             } label: {
                 Text("홈으로 가기")
                     .font(.semibold_18)
@@ -286,7 +286,7 @@ fileprivate struct FinishButtonView: View {
                 .frame(width: 12)
             
             Button {
-                viewModel.send(action: .toggleViewTypeButtonClicked)
+                viewModel.send(action: .toggleViewTypeButtonDidTap)
             } label: {
                 Text(viewModel.state.viewType.buttonText)
                     .font(.semibold_18)
