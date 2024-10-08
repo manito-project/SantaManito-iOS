@@ -35,8 +35,8 @@ extension MatchingFinishData {
             userID: 1,
             santaUserID: 2,
             manittoUserID: 1,
-            myMission: MissionToMe(content: "뭐시기뭐시기뭐시기뭐시기"),
-            missionToMe: MissionToMe(content: "뭐시기뭐시기뭐시기뭐시기"),
+            myMission: MissionToMe(content: "5천원 이하의 선물과 함께 카톡으로 수고했다고 말하기 카톡으로 수고했다고 말하기"),
+            missionToMe: MissionToMe(content: "5천원 이하의 선물과 함께 카톡으로 수고했다고 말하기 카톡으로 수고했다고 말하기"),
             santaUsername: "류희재",
             manittoUsername: "장석우"
         )
@@ -71,11 +71,15 @@ extension MatchingFinishData {
             userID: 1,
             santaUserID: 2,
             manittoUserID: 1,
-            myMission: MissionToMe(content: "뭐시기뭐시기뭐시기뭐시기"),
-            missionToMe: MissionToMe(content: "뭐시기뭐시기뭐시기뭐시기"),
+            myMission: MissionToMe(content: "5천원 이하의 선물과 함께 카톡으로 수고했다고 말하기"),
+            missionToMe: MissionToMe(content: "5천원 이하의 선물과 함께 카톡으로 수고했다고 말하기"),
             santaUsername: "류희재",
             manittoUsername: "장석우"
         )
+    }
+    
+    static var stubList: [MatchingFinishData] {
+        return [.stub1, .stub2, .stub3, .stub4, .stub1, .stub2, .stub3, .stub4]
     }
 }
 
@@ -99,7 +103,7 @@ struct StubMatchRoomService: MatchRoomServiceType {
     }
     
     func getManitoResult(_ roomID: String) -> AnyPublisher<[MatchingFinishData], Error> {
-        return Just([.stub1, .stub2, .stub3, .stub4]).setFailureType(to: Error.self).eraseToAnyPublisher()
+        return Just(MatchingFinishData.stubList).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
     
     func deleteRoom(_ roomID: String) -> AnyPublisher<Void, Error> {

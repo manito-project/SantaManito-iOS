@@ -10,17 +10,34 @@ import Foundation
 import Foundation
 import Combine
 
+enum FinishViewType {
+    case me
+    case all
+    
+    var buttonText: String {
+        switch self {
+        case .me:
+            return "전체 결과 보기"
+        case .all:
+            return "내 결과 보기"
+        }
+    }
+}
+
 class FinishViewModel: ObservableObject {
     
     //MARK: Action, State
     
     enum Action {
         case onAppear
-        case showAllManitoButtonClicked
-        case deleteRoomButtonClicked // 휴지통 버튼 눌럿을때?
+        case showAllManitoButtonDidTap
+        case deleteHistoryRoomButtonDidTap // 휴지통 버튼 눌럿을때?
+        case goHomeButtonDidTap
+        case toggleViewTypeButtonDidTap
     }
     
     struct State {
+        var viewType: FinishViewType = .all
         var me: String = "류희재"
         var manito: MatchingFinishData = .init(
             userID: 1, 
@@ -33,6 +50,7 @@ class FinishViewModel: ObservableObject {
         )
         var roomName: String = ""
         var description: String = ""
+        var participateList: [MatchingFinishData] = []
     }
     
     //MARK: Dependency
@@ -82,16 +100,17 @@ class FinishViewModel: ObservableObject {
                 .assign(to: \.state.description, on: self)
                 .store(in: cancelBag)
             
-        case .showAllManitoButtonClicked:
+        case .showAllManitoButtonDidTap:
             print("화면 이동")
             
-        case .deleteRoomButtonClicked:
             editRoomService.deleteRoom(with: "roomID")
                 .catch { _ in Empty() }
                 .sink(receiveValue: { [weak self] _ in
                     self?.navigationRouter.popToRootView()
                 })
                 .store(in: cancelBag)
+        case .toggleViewTypeButtonDidTap:
+            state.viewType = state.viewType == .me ? .all : .me
         }
     }
 }
