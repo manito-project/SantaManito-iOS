@@ -11,3 +11,6 @@ struct EnterRoomRequest: Encodable {
     var inviteCode: String
 }
 
+struct EnterRoomResult: Decodable {
+    var roomId: String
+}

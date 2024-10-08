@@ -17,7 +17,7 @@ class EnterRoomViewModel: ObservableObject {
         case enterButtonDidClicked
     }
     struct State {
-        var enterButtonDisabled: Bool = false //MARK: 히디의 고민: isEnabled라는 변수명이 너무 모호함 (초대코드에 텍스트가 있으면 버튼을 누를 수 있도록 하는 역할)
+        var enterButtonDisabled: Bool = false
         var enterFailMessage: (isPresented: Bool, text: String) = (false, "")
     }
     
