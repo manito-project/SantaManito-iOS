@@ -15,6 +15,7 @@ protocol EditRoomServiceType {
     func editRoomInfo(with roomID: String, request: EditRoomRequest) -> AnyPublisher<Void, SMNetworkError>
     func createRoom(_ request: CreateRoomRequest) -> AnyPublisher<String, SMNetworkError>
     
+    func getRoomMyInfo(with roomID: String) -> AnyPublisher<RoomMyInfoResult, SMNetworkError>
     func deleteRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError>
     func deleteHistoryRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError>
     
@@ -42,6 +43,10 @@ extension EditRoomService: EditRoomServiceType {
         requestWithResult(.createRoom(request: request), type: CreateRoomResult.self)
             .map { result  in result.invitationCode }
             .eraseToAnyPublisher()
+    }
+    
+    func getRoomMyInfo(with roomID: String) -> AnyPublisher<RoomMyInfoResult, SMNetworkError> {
+        requestWithResult(.getMyInfo(roomID: roomID), type: RoomMyInfoResult.self)
     }
     
     func deleteRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError> {
@@ -79,6 +84,12 @@ extension EditRoomService: EditRoomServiceType {
 }
 
 struct StubEditRoomService: EditRoomServiceType {
+    func getRoomMyInfo(with roomID: String) -> AnyPublisher<RoomMyInfoResult, SMNetworkError> {
+        return Just(RoomMyInfoResult(manitto: .stub1, mission: Mission(content: "asdf", id: UUID())))
+            .setFailureType(to: SMNetworkError.self)
+            .eraseToAnyPublisher()
+    }
+    
     func editRoomInfo(with roomID: String, request: EditRoomRequest) -> AnyPublisher<Void, SMNetworkError> {
         return Just(()).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
     }

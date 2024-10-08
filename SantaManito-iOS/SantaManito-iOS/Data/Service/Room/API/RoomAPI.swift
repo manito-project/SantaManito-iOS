@@ -13,7 +13,7 @@ enum RoomAPI {
     case getRoomInfo(roomID: String)
     case editRoomInfo(roomID: String, request: EditRoomRequest)
     case deleteRoom(roomID: String)
-    
+    case getMyInfo(roomID: String)
     case enterRoom(request: EnterRoomRequest)
     case matchRoom(roomID: String)
     case exitRoom(roomID: String)
@@ -33,7 +33,8 @@ extension RoomAPI: BaseAPI {
             return Paths.editRoomInfo.replacingOccurrences(of: "{roomId}", with: roomID)
         case .deleteRoom(let roomID):
             return Paths.deleteRoom.replacingOccurrences(of: "{roomId}", with: roomID)
-            
+        case .getMyInfo(let roomID):
+            return Paths.getRoomMyInfo.replacingOccurrences(of: "{roomId}", with: roomID)
         case .enterRoom:
             return Paths.enterRoom
         case .matchRoom(let roomID):
@@ -57,7 +58,8 @@ extension RoomAPI: BaseAPI {
             return .patch
         case .deleteRoom:
             return .delete
-            
+        case .getMyInfo:
+            return .get
         case .enterRoom:
             return .post
         case .matchRoom:
@@ -81,8 +83,8 @@ extension RoomAPI: BaseAPI {
             return .requestJSONEncodable(request)
         case .deleteRoom:
             return .requestPlain
-            
-            
+        case .getMyInfo:
+            return .requestPlain
         case .enterRoom(let request):
             return .requestJSONEncodable(request)
         case .matchRoom:

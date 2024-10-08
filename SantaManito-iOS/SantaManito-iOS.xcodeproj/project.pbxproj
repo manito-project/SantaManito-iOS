@@ -113,6 +113,7 @@
 		D2BC1AA12C90A26B00CB32B8 /* CheckRoomInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1AA02C90A26B00CB32B8 /* CheckRoomInfoView.swift */; };
 		D2BC1AA32C90A29200CB32B8 /* CheckRoomInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1AA22C90A29100CB32B8 /* CheckRoomInfoViewModel.swift */; };
 		D2BC1AA52C91357F00CB32B8 /* SMInviteCodeAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1AA42C91357F00CB32B8 /* SMInviteCodeAlertView.swift */; };
+		D2E2068D2CB5317F001250AE /* RoomMyInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E2068C2CB5317F001250AE /* RoomMyInfoDTO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -235,6 +236,7 @@
 		D2BC1AA02C90A26B00CB32B8 /* CheckRoomInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckRoomInfoView.swift; sourceTree = "<group>"; };
 		D2BC1AA22C90A29100CB32B8 /* CheckRoomInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckRoomInfoViewModel.swift; sourceTree = "<group>"; };
 		D2BC1AA42C91357F00CB32B8 /* SMInviteCodeAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMInviteCodeAlertView.swift; sourceTree = "<group>"; };
+		D2E2068C2CB5317F001250AE /* RoomMyInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomMyInfoDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -672,6 +674,7 @@
 				D26879492CABB51E0025A611 /* RoomDetailDTO.swift */,
 				D268794B2CABB5CA0025A611 /* CreateRoomDTO.swift */,
 				D23410762CB1A8920066A2F9 /* EnterRoomDTO.swift */,
+				D2E2068C2CB5317F001250AE /* RoomMyInfoDTO.swift */,
 			);
 			path = Room;
 			sourceTree = "<group>";
@@ -958,7 +961,7 @@
 				874017CD2CA7EC7A0096E847 /* EditRoomViewType.swift in Sources */,
 				874017A42CA1AB610096E847 /* RoomDetailResponse.swift in Sources */,
 				D276B6082C8AB64B00230FA2 /* Font.swift in Sources */,
-				D22E9B752C8803EC00086549 /* Provider.swift in Sources */,
+				D2E2068D2CB5317F001250AE /* RoomMyInfoDTO.swift in Sources */,
 				D268794C2CABB5CA0025A611 /* CreateRoomDTO.swift in Sources */,
 				877CA0A22C94304B00D23193 /* SplashView.swift in Sources */,
 				D229FE822CA7D39600979421 /* SMNetworkError.swift in Sources */,
