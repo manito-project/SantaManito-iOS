@@ -12,24 +12,22 @@ struct FinishView: View {
     
     var body: some View {
         ZStack {
-            // 전체 화면에 배경색을 적용
             Color.smNavy
             
-            // 콘텐츠를 VStack으로 구성
-            VStack(alignment: .leading) {
+            VStack {
                 FinishTitleView(viewModel: viewModel)
                 
-                FinishResultView(viewModel: viewModel)
+                if viewModel.state.viewType == .me {
+                    FinishResultView(viewModel: viewModel)
+                } else {
+                    FinishAllResultView(viewModel: viewModel)
+                }
+                
                 
                 Spacer()
-                    .frame(height: 28)
+                    .frame(height: 76)
                 
-                Button("전체 결과 보기") {
-                    viewModel.send(action: .showAllManitoButtonClicked)
-                }.smBottomButtonStyle()
-                
-                Spacer()
-                    .frame(height: 100)
+                FinishButtonView(viewModel: viewModel)
             }
             .padding(.horizontal, 16)
         }
@@ -53,16 +51,13 @@ fileprivate struct FinishTitleView: View {
                 Button {
                 } label: {
                     Image(.btnBack)
-                        .resizable()
-                        .frame(width: 12, height: 20)
                 }
-                .padding(.top, 50)
                 
                 Spacer()
                     .frame(height: 50)
                 
                 Text(viewModel.state.roomName)
-                    .font(.semibold_18)
+                    .font(.semibold_20)
                     .foregroundColor(.smWhite)
                 
                 Spacer()
@@ -74,34 +69,25 @@ fileprivate struct FinishTitleView: View {
             }
             
             Spacer()
-                .frame(width: 20)
             
-            VStack {
-                HStack(alignment: .top) {
-                    Image(.graphicsSocks1)
+            VStack(alignment: .trailing) {
+                Button {
+                    viewModel.send(action: .deleteHistoryRoomButtonClicked)
+                } label: {
+                    Image(.icTrash)
                         .resizable()
-                        .frame(width: 30, height: 108)
-                    
-                    Spacer()
-                        .frame(width: 30)
-                    
-                    Image(.graphicsSocks2)
-                        .resizable()
-                        .frame(width: 40, height: 141)
+                        .frame(width: 24, height: 24)
                 }
                 
                 Spacer()
-                    .frame(height: 26)
+                    .frame(height: 96)
                 
                 Image(.graphics3Friends)
                     .resizable()
                     .frame(width: 120, height: 57)
-                
-                Spacer()
-                
+                    .padding(.trailing, 14)
             }
         }
-        .frame(height: 224)
     }
 }
 
@@ -116,9 +102,9 @@ fileprivate struct FinishResultView: View {
         VStack {
             VStack(alignment: .leading) {
                 Spacer()
-                    .frame(height: 20)
+                    .frame(height: 24)
                 
-                Text("나를 챙겨준 사람") //TODO: 마니또
+                Text("나를 챙겨준 산타 마니또") //TODO: 마니또
                     .font(.semibold_18)
                     .foregroundColor(.smDarkgray)
                     .lineSpacing(2)
@@ -144,27 +130,171 @@ fileprivate struct FinishResultView: View {
                 Spacer()
                     .frame(height: 30)
                 
-                Text("\(viewModel.state.manito.manittoUsername) 산타의 미션은")
+                Text("마니또가 나에게 수행한 미션")
                     .font(.semibold_18)
                     .foregroundColor(.smDarkgray)
+                
+                Spacer()
+                    .frame(height: 15)
+                
                 
                 Text(viewModel.state.manito.missionToMe.content)
                     .font(.medium_16)
                     .foregroundColor(.smDarkgray)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 61)
-                    .padding(.vertical, 11)
-                    .frame(height: 98, alignment: .top)
+                    .padding(.horizontal, 11)
+                    .padding(.vertical, 16)
+                    .frame(maxWidth: .infinity, minHeight: 98, alignment: .top)
                     .background(.smLightbg)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                 
+                
                 Spacer()
                     .frame(height: 20)
+                
+                HStack {
+                    Image(.graphicsTree)
+                        .resizable()
+                        .frame(width: 54, height: 73)
+                    
+                    Spacer()
+                    
+                    Image(.graphicsTree)
+                        .resizable()
+                        .frame(width: 54, height: 73)
+                }
             }
-            .padding(.horizontal, 28)
-            
-            .frame(height: 324)
             .background(.smWhite)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+        }
+    }
+}
+
+fileprivate struct FinishAllResultView: View {
+    @ObservedObject private var viewModel: FinishViewModel
+    
+    init(viewModel: FinishViewModel) {
+        self.viewModel = viewModel
+    }
+    
+    var body: some View {
+        VStack {
+            VStack(alignment: .leading) {
+                Spacer()
+                    .frame(height: 24)
+                
+                Text("총 \(viewModel.state.participateList.count)명")
+                    .font(.semibold_16)
+                    .foregroundColor(.smDarkgray)
+                    .padding(.leading, 16)
+                
+                Spacer()
+                    .frame(height: 24)
+                
+                Rectangle()
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 1)
+                    .foregroundColor(.smLightgray)
+                
+                Spacer()
+                    .frame(height: 21)
+                
+                ScrollView(.vertical, showsIndicators: false) {
+                    ForEach(viewModel.state.participateList, id: \.userID) { manitoResult in
+                        ParticipateCellView(manitoResult: manitoResult)
+                            .padding(.bottom, 16)
+                    }
+                }
+                .padding(.horizontal, 16)
+                
+                Spacer()
+                
+            }
+            .frame(height: 360)
+            .background(.smWhite)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+        }
+    }
+}
+
+fileprivate struct ParticipateCellView: View {
+    var manitoResult: MatchingFinishData
+    
+    init(manitoResult: MatchingFinishData) {
+        self.manitoResult = manitoResult
+    }
+            
+    //TODO: 가운데 정렬을 맞춰야 할지 아니면 길이를 상수로 때려박지 말아야될지
+    var body: some View {
+        HStack {
+            Text(manitoResult.santaUsername)
+                .font(.semibold_12)
+                .foregroundColor(.white)
+                .padding(.vertical, 12)
+                .padding(.horizontal, 36)
+                .frame(minWidth: 133, minHeight: 36)
+                .multilineTextAlignment(.center)
+                .background(.smNavy)
+                .clipShape(RoundedRectangle(cornerRadius: 30))
+            
+            Spacer()
+                .frame(width: 14)
+            
+            Image(.icArrow)
+                .resizable()
+                .frame(width: 16, height: 16)
+            
+            Spacer()
+                .frame(width: 14)
+            
+            Text(manitoResult.manittoUsername)
+                .font(.semibold_12)
+                .foregroundColor(.white)
+                .padding(.vertical, 12)
+                .padding(.horizontal, 36)
+                .frame(minWidth: 133, minHeight: 36)
+                .multilineTextAlignment(.center)
+                .background(.smGreen)
+                .clipShape(RoundedRectangle(cornerRadius: 30))
+        }
+        .frame(height: 36)
+    }
+}
+
+fileprivate struct FinishButtonView: View {
+    @ObservedObject private var viewModel: FinishViewModel
+    
+    init(viewModel: FinishViewModel) {
+        self.viewModel = viewModel
+    }
+    
+    var body: some View {
+        HStack(alignment: .center) {
+            Button {
+                viewModel.send(action: .goHomeButtonClicked)
+            } label: {
+                Text("홈으로 가기")
+                    .font(.semibold_18)
+                    .foregroundColor(.smWhite)
+                
+            }
+            .padding(.vertical, 17)
+            .frame(width: 165)
+            .background(.smDarkgray)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            
+            Spacer()
+                .frame(width: 12)
+            
+            Button {
+                viewModel.send(action: .toggleViewTypeButtonClicked)
+            } label: {
+                Text(viewModel.state.viewType.buttonText)
+                    .font(.semibold_18)
+                    .foregroundColor(.smWhite)
+            }
+            .padding(.vertical, 17)
+            .frame(width: 165)
+            .background(.smRed)
             .clipShape(RoundedRectangle(cornerRadius: 10))
         }
     }
