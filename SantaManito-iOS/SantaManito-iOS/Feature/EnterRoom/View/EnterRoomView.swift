@@ -81,7 +81,7 @@ struct EnterRoomView: View {
                 Spacer()
                 
                 Button("입장하기") {
-                    viewModel.send(action: .enterButtonDidClicked)
+                    viewModel.send(action: .enterButtonDidTap)
                 }
                 .disabled(!viewModel.state.enterButtonDisabled)
                 .smBottomButtonStyle()

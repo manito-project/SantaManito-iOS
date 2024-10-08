@@ -14,7 +14,7 @@ class MatchingResultViewModel: ObservableObject {
     
     enum Action {
         case onAppear
-        case goHomeButtonClicked
+        case goHomeButtonDidTap
     }
     
     struct State {
@@ -69,7 +69,7 @@ class MatchingResultViewModel: ObservableObject {
                 .assign(to: \.state.room, on: self)
                 .store(in: cancelBag)
 
-        case .goHomeButtonClicked:
+        case .goHomeButtonDidTap:
             navigationRouter.popToRootView()
         }
     }
