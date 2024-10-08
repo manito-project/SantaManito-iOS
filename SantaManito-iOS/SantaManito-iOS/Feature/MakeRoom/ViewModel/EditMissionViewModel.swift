@@ -15,9 +15,9 @@ class EditMissionViewModel: ObservableObject {
     enum Action {
         case addMission
         case deleteMission(Mission)
-        case skipMissionButtonClicked
-        case makeMissionButtonClicked
-        case ignoreMissionButtonClicked
+        case skipMissionButtonDidTap
+        case makeMissionButtonDidTap
+        case ignoreMissionButtonDidTap
         case dismissAlert
     }
     
@@ -69,10 +69,10 @@ class EditMissionViewModel: ObservableObject {
                 missionList.remove(at: index)
             }
             
-        case .skipMissionButtonClicked:
+        case .skipMissionButtonDidTap:
             state.isPresented = true
             
-        case .ignoreMissionButtonClicked, .makeMissionButtonClicked:
+        case .ignoreMissionButtonDidTap, .makeMissionButtonDidTap:
             state.isPresented = false
             navigationRouter.push(to: .roomInfo(roomInfo: roomInfo, missionList: missionList)) //TODO: string.empty인 미션도 같이 넘어가는 오류 해결해야함.
 

@@ -30,10 +30,10 @@ class FinishViewModel: ObservableObject {
     
     enum Action {
         case onAppear
-        case showAllManitoButtonClicked
-        case deleteHistoryRoomButtonClicked // 휴지통 버튼 눌럿을때?
-        case goHomeButtonClicked
-        case toggleViewTypeButtonClicked
+        case showAllManitoButtonDidTap
+        case deleteHistoryRoomButtonDidTap // 휴지통 버튼 눌럿을때?
+        case goHomeButtonDidTap
+        case toggleViewTypeButtonDidTap
     }
     
     struct State {
@@ -96,20 +96,20 @@ class FinishViewModel: ObservableObject {
                 .assign(to: \.state.description, on: self)
                 .store(in: cancelBag)
             
-        case .showAllManitoButtonClicked:
+        case .showAllManitoButtonDidTap:
             print("화면 이동")
             
-        case .goHomeButtonClicked:
+        case .goHomeButtonDidTap:
             print("홈으로 이동")
             
-        case .deleteHistoryRoomButtonClicked:
+        case .deleteHistoryRoomButtonDidTap:
             matchRoomService.deleteRoom("")
                 .catch { _ in Empty() }
                 .sink(receiveValue: {
                     
                 })
                 .store(in: cancelBag)
-        case .toggleViewTypeButtonClicked:
+        case .toggleViewTypeButtonDidTap:
             state.viewType = state.viewType == .me ? .all : .me
         }
     }

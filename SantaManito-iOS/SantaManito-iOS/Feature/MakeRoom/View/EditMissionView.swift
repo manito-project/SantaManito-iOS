@@ -47,7 +47,7 @@ struct EditMissionView: View {
                 isPresented: viewModel.state.isPresented,
                 title: "아직 작성 중인 미션이 있어! \n미션이 사라져도 괜찮아?",
                 primaryButton: ("나가기", {
-                    viewModel.send(action: .ignoreMissionButtonClicked)
+                    viewModel.send(action: .ignoreMissionButtonDidTap)
                 }),
                 secondaryButton: ("미션 만들기", {
                     viewModel.send(action: .dismissAlert)
@@ -58,7 +58,7 @@ struct EditMissionView: View {
 }
 
 fileprivate struct MissionListView: View {
-    @ObservedObject private var viewModel: EditMissionViewModel
+    @StateObject private var viewModel: EditMissionViewModel
     
     fileprivate init(viewModel: EditMissionViewModel) {
         self.viewModel = viewModel
@@ -106,7 +106,7 @@ fileprivate struct MissionListView: View {
 }
 
 private struct MissionCellView: View {
-    @ObservedObject private var viewModel: EditMissionViewModel
+    @StateObject private var viewModel: EditMissionViewModel
     @Binding private var mission: Mission
     
     fileprivate init(
@@ -148,7 +148,7 @@ private struct MissionCellView: View {
 }
 
 fileprivate struct MakeMissionButtonView: View {
-    @ObservedObject private var viewModel: EditMissionViewModel
+    @StateObject private var viewModel: EditMissionViewModel
     
     fileprivate init(viewModel: EditMissionViewModel) {
         self.viewModel = viewModel
@@ -157,7 +157,7 @@ fileprivate struct MakeMissionButtonView: View {
     var body: some View {
         HStack(alignment: .center) {
             Button {
-                viewModel.send(action: .skipMissionButtonClicked)
+                viewModel.send(action: .skipMissionButtonDidTap)
             } label: {
                 Text("건너뛰기")
                     .font(.semibold_18)
@@ -173,7 +173,7 @@ fileprivate struct MakeMissionButtonView: View {
                 .frame(width: 12)
             
             Button {
-                viewModel.send(action: .makeMissionButtonClicked)
+                viewModel.send(action: .makeMissionButtonDidTap)
             } label: {
                 Text("미션 만들기 완료")
                     .font(.semibold_18)
