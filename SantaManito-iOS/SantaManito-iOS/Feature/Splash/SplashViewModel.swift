@@ -63,31 +63,38 @@ class SplashViewModel: ObservableObject {
         switch action {
         case .onAppear:
             
-            guard appService.isLatestVersion() else {
-                state.mustUpdateAlertIsPresented = true
-                return
-            }
-            
-            Just(appService.getDeviceIdentifier() ?? "" )
-                .filter { !$0.isEmpty }
-                .flatMap(authService.signIn)
-                .map {
-                    owner.userDefaultsService.userID = $0.userID
-                    owner.userDefaultsService.accessToken = $0.accessToken
-                    return State.Destination.main
+            appService.isLatestVersion()
+                .sink { isLatestVersion in
+                    
+                    guard isLatestVersion else {
+                        owner.state.mustUpdateAlertIsPresented = true
+                        return
+                    }
+                    
+                    Just(owner.appService.getDeviceIdentifier() ?? "" )
+                        .filter { !$0.isEmpty }
+                        .flatMap(owner.authService.signIn)
+                        .map {
+                            owner.userDefaultsService.userID = $0.userID
+                            owner.userDefaultsService.accessToken = $0.accessToken
+                            return State.Destination.main
+                        }
+                        .catch { _ in Just(State.Destination.onboarding) }
+                        .assign(to: \.state.desination, on: owner)
+                        .store(in: owner.cancelBag)
+                    
+                    owner.remoteConfigService.getServerCheck()
+                        .filter { $0 }
+                        .map { _ in }
+                        .flatMap(owner.remoteConfigService.getServerCheckMessage)
+                        .catch { _ in Empty() }
+                        .map { (true, $0 ) }
+                        .assign(to: \.state.serverCheckAlert, on: owner)
+                        .store(in: owner.cancelBag)
+                    
                 }
-                .catch { _ in Just(State.Destination.onboarding) }
-                .assign(to: \.state.desination, on: owner)
                 .store(in: cancelBag)
-            
-            remoteConfigService.getServerCheck()
-                .filter { $0 }
-                .map { _ in }
-                .flatMap(remoteConfigService.getServerCheckMessage)
-                .catch { _ in Empty() }
-                .map { (true, $0 ) }
-                .assign(to: \.state.serverCheckAlert, on: owner)
-                .store(in: cancelBag)
+
             
 
         }
