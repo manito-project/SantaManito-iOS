@@ -37,14 +37,23 @@ class FinishViewModel: ObservableObject {
     
     //MARK: Dependency
     
+    private var roomService: RoomServiceType
     private var matchRoomService: MatchRoomServiceType
     private var editRoomService: EditRoomServiceType
+    private var navigationRouter: NavigationRoutableType
     
     //MARK: Init
     
-    init(matchRoomService: MatchRoomServiceType, editRoomService: EditRoomServiceType) {
+    init(
+        roomService: RoomServiceType,
+        matchRoomService: MatchRoomServiceType,
+        editRoomService: EditRoomServiceType,
+        navigationRouter: NavigationRoutableType
+    ) {
+        self.roomService = roomService
         self.matchRoomService = matchRoomService
         self.editRoomService = editRoomService
+        self.navigationRouter = navigationRouter
     }
     
     //MARK: Properties
@@ -62,11 +71,11 @@ class FinishViewModel: ObservableObject {
                 .assign(to: \.state.manito, on: self)
                 .store(in: cancelBag)
             
-            editRoomService.getRoomInfo(with: "")
+            roomService.fetch(with: "roomID")
                 .map { [weak self] roomInfo in
                     self?.state.roomName = roomInfo.name
-                    let startDate = roomInfo.dueDate.adjustDays(remainingDays: -roomInfo.remainingDays).toDueDate
-                    let endDate = roomInfo.dueDate.toDueDate
+                    let startDate = roomInfo.expirationDate.adjustDays(remainingDays: -Int(roomInfo.remainingDays)!).toDueDate
+                    let endDate = roomInfo.expirationDateToString
                     return "\(startDate) ~ \(endDate)\n\(roomInfo.remainingDays)일간의 산타마니또 끝!"
                 }
                 .catch { _ in Empty() }
@@ -77,10 +86,10 @@ class FinishViewModel: ObservableObject {
             print("화면 이동")
             
         case .deleteRoomButtonClicked:
-            matchRoomService.deleteRoom("")
+            editRoomService.deleteRoom(with: "roomID")
                 .catch { _ in Empty() }
-                .sink(receiveValue: {
-                    
+                .sink(receiveValue: { [weak self] _ in
+                    self?.navigationRouter.popToRootView()
                 })
                 .store(in: cancelBag)
         }

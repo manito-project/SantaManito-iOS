@@ -93,7 +93,6 @@
 		D28568B22CAD21800044C231 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28568B12CAD21800044C231 /* Config.swift */; };
 		D2A8F60E2C9D18FF00810BCF /* EditRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */; };
 		D2A8F6122C9D1A4F00810BCF /* MakeRoomInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */; };
-		D2A8F6142C9E792100810BCF /* EnterRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6132C9E792100810BCF /* EnterRoomService.swift */; };
 		D2A8F6192CA1168B00810BCF /* MatchingResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6182CA1168B00810BCF /* MatchingResultViewModel.swift */; };
 		D2A8F61B2CA116BD00810BCF /* MatchingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F61A2CA116BD00810BCF /* MatchingViewModel.swift */; };
 		D2A8F61D2CA116F800810BCF /* MatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F61C2CA116F800810BCF /* MatchingView.swift */; };
@@ -214,7 +213,6 @@
 		D28568B12CAD21800044C231 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomService.swift; sourceTree = "<group>"; };
 		D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRoomInfo.swift; sourceTree = "<group>"; };
-		D2A8F6132C9E792100810BCF /* EnterRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomService.swift; sourceTree = "<group>"; };
 		D2A8F6182CA1168B00810BCF /* MatchingResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingResultViewModel.swift; sourceTree = "<group>"; };
 		D2A8F61A2CA116BD00810BCF /* MatchingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingViewModel.swift; sourceTree = "<group>"; };
 		D2A8F61C2CA116F800810BCF /* MatchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingView.swift; sourceTree = "<group>"; };
@@ -646,7 +644,6 @@
 			isa = PBXGroup;
 			children = (
 				D2A8F6242CA118E900810BCF /* MatchRoomService.swift */,
-				D2A8F6132C9E792100810BCF /* EnterRoomService.swift */,
 				D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */,
 			);
 			path = Service;
@@ -966,7 +963,6 @@
 				877CA0812C8C555D00D23193 /* SMScrollView.swift in Sources */,
 				874017B72CA2A9F30096E847 /* EditUsernameViewModel.swift in Sources */,
 				879829072C98284B00A863EC /* RoomService.swift in Sources */,
-				D2A8F6142C9E792100810BCF /* EnterRoomService.swift in Sources */,
 				87873BDC2CAC29E900E368BF /* AppDelegate.swift in Sources */,
 				D2A8F61B2CA116BD00810BCF /* MatchingViewModel.swift in Sources */,
 				D2A8F60E2C9D18FF00810BCF /* EditRoomService.swift in Sources */,

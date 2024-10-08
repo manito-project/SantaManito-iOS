@@ -41,7 +41,8 @@ struct NavigationRoutingView: View {
         case .enterRoom:
             EnterRoomView(
                 viewModel: .init(
-                    roomService: container.service.enterRoomService,
+                    roomService: container.service.roomService,
+                    editRoomService: container.service.editRoomService,
                     navigationRouter: container.navigationRouter
                 )
             )
