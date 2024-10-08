@@ -50,11 +50,12 @@ struct AppService: AppServiceType {
                         else {
                             throw NSError()
                         }
+                        print(output.data)
                         return output.data
                     }
             }
-            .decode(type: [AppStoreResponse].self, decoder: JSONDecoder())
-            .compactMap { $0.first?.result.version }
+            .decode(type: AppStoreResponse.self, decoder: JSONDecoder())
+            .compactMap { $0.results.first?.version }
             .map { Version($0) }
             .eraseToAnyPublisher()
     }

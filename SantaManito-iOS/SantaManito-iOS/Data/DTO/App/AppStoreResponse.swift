@@ -8,7 +8,7 @@
 import Foundation
 
 struct AppStoreResponse: Decodable {
-    let result: AppStoreResultResponse
+    let results: [AppStoreResultResponse]
 }
 
 struct AppStoreResultResponse: Decodable {
