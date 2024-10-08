@@ -47,6 +47,7 @@ struct EnterRoomView: View {
                             prompt: Text("코드를 입력하면 방에 들어갈 수 있어!")
                         )
                         .smTextFieldStyle()
+                        .inputLimit($viewModel.inviteCode, maxLength: 20)
                         .submitLabel(.done)
                         
                         Spacer()
@@ -80,7 +81,7 @@ struct EnterRoomView: View {
                 Spacer()
                 
                 Button("입장하기") {
-                    viewModel.send(action: .enterButtonDidClicked)
+                    viewModel.send(action: .enterButtonDidTap)
                 }
                 .disabled(!viewModel.state.enterButtonDisabled)
                 .smBottomButtonStyle()

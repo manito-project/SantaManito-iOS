@@ -14,7 +14,7 @@ class EnterRoomViewModel: ObservableObject {
     //MARK: Action, State
     
     enum Action {
-        case enterButtonDidClicked
+        case enterButtonDidTap
     }
     struct State {
         var enterButtonDisabled: Bool = false
