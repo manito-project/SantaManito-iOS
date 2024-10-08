@@ -35,7 +35,9 @@ extension EditRoomService: EditRoomServiceType {
     }
     
     func createRoom(_ request: CreateRoomRequest) -> AnyPublisher<String, SMNetworkError> {
-        requestWithResult(.createRoom(request: request))
+        requestWithResult(.createRoom(request: request), type: CreateRoomResult.self)
+            .map { result  in result.invitationCode }
+            .eraseToAnyPublisher()
     }
     
     func deleteRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError> {

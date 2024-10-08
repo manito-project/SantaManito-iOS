@@ -14,7 +14,7 @@ final class BaseService<Target: URLRequestTargetType> {
     
     private let requestHandler = RequestHandler.shared
     
-    func requestWithResult<T: Decodable>(_ target: API) -> AnyPublisher<T, SMNetworkError> {
+    func requestWithResult<T: Decodable>(_ target: API, type: T.Type) -> AnyPublisher<T, SMNetworkError> {
         return fetchResponse(with: target)
             .flatMap { response in
                 self.validate(response: response)
