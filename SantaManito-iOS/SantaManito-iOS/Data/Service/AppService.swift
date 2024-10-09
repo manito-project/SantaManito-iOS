@@ -6,11 +6,14 @@
 //
 
 import Foundation
+import UIKit
+
 
 protocol AppServiceType {
     func isLatestVersion() -> Bool
     func getLocalAppVersion() -> Version
     func getAppStoreVersion() -> Version
+    func getDeviceIdentifier() -> String?
 }
 
 struct AppService: AppServiceType {
@@ -20,7 +23,6 @@ struct AppService: AppServiceType {
         let appStore = getAppStoreVersion()
         return local >= appStore
     }
-    
     
     func getLocalAppVersion() -> Version {
         guard let dictionary = Bundle.main.infoDictionary,
@@ -43,6 +45,11 @@ struct AppService: AppServiceType {
         
         return Version(appStoreVersion)
     }
+    
+    // App Store에 설치되어 있지 않으면 bundleID를 반환한다.
+    func getDeviceIdentifier() -> String? {
+        return UIDevice.current.identifierForVendor?.uuidString
+    }
 }
 
 struct StubAppService: AppServiceType {
@@ -57,5 +64,9 @@ struct StubAppService: AppServiceType {
     
     func getAppStoreVersion() -> Version {
         return Version("1.2.2")
+    }
+    
+    func getDeviceIdentifier() -> String? {
+        return "디바이스ID"
     }
 }
