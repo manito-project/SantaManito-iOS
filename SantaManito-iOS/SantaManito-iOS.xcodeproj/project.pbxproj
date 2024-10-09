@@ -58,6 +58,7 @@
 		87873BF82CB2E71800E368BF /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BF72CB2E71800E368BF /* UserDefaultsService.swift */; };
 		87873BFB2CB2EB6100E368BF /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BFA2CB2EB6100E368BF /* UserDefault.swift */; };
 		87873BFE2CB2EE8900E368BF /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BFD2CB2EE8900E368BF /* AuthAPI.swift */; };
+		87873C022CB4FAE100E368BF /* AppStoreResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873C012CB4FAE100E368BF /* AppStoreResponse.swift */; };
 		879829052C9827B200A863EC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879829042C9827B200A863EC /* HomeViewModel.swift */; };
 		879829072C98284B00A863EC /* RoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879829062C98284B00A863EC /* RoomService.swift */; };
 		879829092C9EA54B00A863EC /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879829082C9EA54B00A863EC /* BaseView.swift */; };
@@ -185,7 +186,8 @@
 		87873BF72CB2E71800E368BF /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		87873BFA2CB2EB6100E368BF /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		87873BFD2CB2EE8900E368BF /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
-		87873BFF2CB3CA1000E368BF /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		87873C012CB4FAE100E368BF /* AppStoreResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreResponse.swift; sourceTree = "<group>"; };
+		878C7B612CB6D5BE007756A3 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		879829042C9827B200A863EC /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		879829062C98284B00A863EC /* RoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomService.swift; sourceTree = "<group>"; };
 		879829082C9EA54B00A863EC /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 		877EA2422C88AE6B0073FFBD /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				87873C002CB4FAD000E368BF /* App */,
 				87873BEF2CB2DB6000E368BF /* Auth */,
 				87873BEE2CB2DB5C00E368BF /* User */,
 				D26879442CABB2150025A611 /* Room */,
@@ -401,8 +404,7 @@
 			isa = PBXGroup;
 			children = (
 				87873BC32CAC1B2D00E368BF /* Secret.md */,
-				D28568B12CAD21800044C231 /* Config.swift */,
-				87873BFF2CB3CA1000E368BF /* Config.xcconfig */,
+				878C7B612CB6D5BE007756A3 /* Config.xcconfig */,
 			);
 			path = Secret;
 			sourceTree = "<group>";
@@ -472,6 +474,14 @@
 				87873BFD2CB2EE8900E368BF /* AuthAPI.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		87873C002CB4FAD000E368BF /* App */ = {
+			isa = PBXGroup;
+			children = (
+				87873C012CB4FAE100E368BF /* AppStoreResponse.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		87C06E5B2C9EAB5E00F03637 /* Navigation */ = {
@@ -560,6 +570,7 @@
 				D22E9B582C88031A00086549 /* SantaManito_iOSApp.swift */,
 				877EA23A2C88AAC10073FFBD /* DIContainer.swift */,
 				87873BDB2CAC29E900E368BF /* AppDelegate.swift */,
+				D28568B12CAD21800044C231 /* Config.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -995,6 +1006,7 @@
 				D2A8F6192CA1168B00810BCF /* MatchingResultViewModel.swift in Sources */,
 				D25570ED2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift in Sources */,
 				874017BB2CA2B64E0096E847 /* SMWebView.swift in Sources */,
+				87873C022CB4FAE100E368BF /* AppStoreResponse.swift in Sources */,
 				D2A8F6232CA1173600810BCF /* FinishViewModel.swift in Sources */,
 				877EA2322C889DCB0073FFBD /* ButtonStyles.swift in Sources */,
 				D28568B22CAD21800044C231 /* Config.swift in Sources */,
@@ -1073,6 +1085,7 @@
 /* Begin XCBuildConfiguration section */
 		87873BD62CAC211E00E368BF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 878C7B612CB6D5BE007756A3 /* Config.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1095,6 +1108,7 @@
 		};
 		87873BD72CAC211E00E368BF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 878C7B612CB6D5BE007756A3 /* Config.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1167,7 +1181,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1224,7 +1237,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -1236,10 +1248,10 @@
 		};
 		D22E9B642C88031C00086549 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 878C7B612CB6D5BE007756A3 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				BASE_URL = "https://www.santamanitto.com";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SantaManito-iOS/Preview Content\"";
@@ -1271,10 +1283,10 @@
 		};
 		D22E9B652C88031C00086549 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 878C7B612CB6D5BE007756A3 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				BASE_URL = "https://www.santamanitto.com";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SantaManito-iOS/Preview Content\"";
