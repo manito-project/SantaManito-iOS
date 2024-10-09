@@ -62,16 +62,17 @@ extension EditRoomService: EditRoomServiceType {
             .enterRoom(request: EnterRoomRequest(inviteCode: inviteCode)),
             type: EnterRoomResult.self
         )
+        //TODO: 여기 수정하기
         .mapError { smError -> EnterError in
                 switch smError {
                 case .invalidResponse(let responseError):
                     if case let .invalidStatusCode(code, _) = responseError {
-                        return EnterError.error(with: code)! //TODO: 강제 옵셔널 처리 괜찮을지..?
+                        return EnterError.error(with: code)
                     }
-                    return .unknown(smError)
+                    return .unknown
                     
                 default:
-                    return .unknown(smError)
+                    return .unknown
                 }
             }
         .map { result in result.roomId }
