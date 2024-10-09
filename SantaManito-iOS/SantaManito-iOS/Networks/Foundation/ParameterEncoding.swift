@@ -8,27 +8,33 @@
 import Foundation
 import Combine
 
-protocol ParameterEncodable {
-    func encode(
-        _ request: URLRequest,
-        with parameters: Parameters?
-    ) -> AnyPublisher<URLRequest, SMNetworkError.ParameterEncoding>
-}
+protocol ParameterEncodable {}
 
 extension ParameterEncodable {
     func checkValidURLData(
         _ parameters: Parameters?,
-        _ url: URL?,
-        _ isJsonType: Bool = false
+        _ url: URL?
     ) -> AnyPublisher<(Parameters, URL), SMNetworkError.ParameterEncoding> {
         guard let parameters else { return Fail(error: .emptyParameters).eraseToAnyPublisher() }
         guard let url else { return Fail(error: .missingURL).eraseToAnyPublisher() }
         
-        if isJsonType {
-            guard JSONSerialization.isValidJSONObject(parameters) else {
-                return Fail(error: .invalidJSON).eraseToAnyPublisher()
-            }
-        }
+        return Just((parameters, url))
+            .setFailureType(to: SMNetworkError.ParameterEncoding.self)
+            .eraseToAnyPublisher()
+    }
+    
+    func checkValidURLData(
+        _ parameters: Encodable?,
+        _ url: URL?
+    ) -> AnyPublisher<(Encodable, URL), SMNetworkError.ParameterEncoding> {
+        guard let parameters else { return Fail(error: .emptyParameters).eraseToAnyPublisher() }
+        guard let url else { return Fail(error: .missingURL).eraseToAnyPublisher() }
+        
+//        TODO: 2024.10.09 수정. 확인 했다면 주석 지워도됨. to 히디 from 석우
+//         let data = try JSONSerialization.data(withJSONObject: parameters)
+//        guard JSONSerialization.isValidJSONObject(parameters) else {
+//            return Fail(error: .invalidJSON).eraseToAnyPublisher()
+//        }
         
         return Just((parameters, url))
             .setFailureType(to: SMNetworkError.ParameterEncoding.self)
@@ -57,12 +63,14 @@ public struct URLEncoding: ParameterEncodable {
 
 
 public struct JSONEncoding: ParameterEncodable {
-    func encode(_ request: URLRequest, with parameters: Parameters?) -> AnyPublisher<URLRequest, SMNetworkError.ParameterEncoding> {
+    func encode(_ request: URLRequest, with parameters: Encodable?) -> AnyPublisher<URLRequest, SMNetworkError.ParameterEncoding> {
         var request = request
-        return checkValidURLData(parameters, request.url, true)
+        return checkValidURLData(parameters, request.url)
             .tryMap { parameters, _ -> URLRequest in
                 do {
-                    let data = try JSONSerialization.data(withJSONObject: parameters)
+//                    TODO: 2024.10.09 수정. 확인 했다면 주석 지워도됨. to 히디 from 석우
+//                     let data = try JSONSerialization.data(withJSONObject: parameters)
+                    let data = try JSONEncoder().encode(parameters)
                     request.httpBody = data
                     return request
                 } catch {

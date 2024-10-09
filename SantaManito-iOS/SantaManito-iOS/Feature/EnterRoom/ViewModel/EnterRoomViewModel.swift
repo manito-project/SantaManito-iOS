@@ -14,25 +14,28 @@ class EnterRoomViewModel: ObservableObject {
     //MARK: Action, State
     
     enum Action {
-        case enterButtonDidClicked
+        case enterButtonDidTap
     }
     struct State {
-        var enterButtonDisabled: Bool = false //MARK: 히디의 고민: isEnabled라는 변수명이 너무 모호함 (초대코드에 텍스트가 있으면 버튼을 누를 수 있도록 하는 역할)
+        var enterButtonDisabled: Bool = false
         var enterFailMessage: (isPresented: Bool, text: String) = (false, "")
     }
     
     //MARK: Dependency
     
-    private var roomService: EnterRoomServiceType
+    private var roomService: RoomServiceType // 임시의
+    private var editRoomService: EditRoomServiceType
     private var navigationRouter: NavigationRoutableType
     
     //MARK: Init
     
     init(
-        roomService: EnterRoomServiceType,
+        roomService: RoomServiceType,
+        editRoomService: EditRoomServiceType,
         navigationRouter: NavigationRoutableType
     ) {
         self.roomService = roomService
+        self.editRoomService = editRoomService
         self.navigationRouter = navigationRouter
         
         observe()
@@ -54,25 +57,24 @@ class EnterRoomViewModel: ObservableObject {
     }
     
     func send(action: Action) {
-        weak var owner = self
-        guard let owner else { return }
-        
         switch action {
-        case .enterButtonDidClicked:
-            roomService.validateParticipationCode(inviteCode: inviteCode)
-                .sink(receiveCompletion: { completion in
-                    if case .failure(let error) = completion {
-                        switch error {
-                        case .deletedRoomCode, .invalidateCode, .alreadyMatchedError:
-                            owner.state.enterFailMessage = (true, "참여가 불가능한 방이야! 혹시 초대코드에 공백이 있는지 확인해줘.")
-                        case .alreadyInRoomError:
-                            owner.state.enterFailMessage = (true, "참여가 불가능한 방이야! 혹시 초대코드에 공백이 있는지 확인해줘.")
-                        }
-                    }
-                }, receiveValue: { _ in
-                    owner.navigationRouter.push(to: .manitoWaitingRoom(roomDetail: .stub1)) //TODO: stub교체
-                })
-                .store(in: cancelBag)
+        case .enterButtonDidTap:
+            editRoomService.enterRoom(inviteCode: inviteCode)
+                .mapError { [weak self] error in
+                    self?.state.enterFailMessage = (true, error.description)
+                    return error
+                }
+                .flatMap { [weak self] roomID -> AnyPublisher<RoomDetail, Error> in
+                    guard let self else { return Empty().eraseToAnyPublisher() }
+                    return self.roomService.fetch(with: roomID)
+                        .catch { _ in Empty() }
+                        .eraseToAnyPublisher()
+                }
+                .sink(receiveCompletion: { _ in
+                    
+                }, receiveValue: { [weak self] roomDetail in
+                    self?.navigationRouter.push(to: .manitoWaitingRoom(roomDetail: roomDetail))
+                }).store(in: cancelBag)
         }
     }
 }

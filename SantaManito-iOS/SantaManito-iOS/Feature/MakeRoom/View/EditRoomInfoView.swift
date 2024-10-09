@@ -35,7 +35,7 @@ struct EditRoomInfoView: View {
                 isPresented: viewModel.state.isPresented,
                 title: "미션없는 마니또 게임은\n친구들이 심심해할 수 있어!",
                 primaryButton: ("건너뛰기", {
-                    viewModel.send(action: .ignoreMissionButtonClicked)
+                    viewModel.send(action: .ignoreMissionButtonDidTap)
                 }),
                 secondaryButton: ("미션 만들기", {
                     viewModel.send(action: .dismissAlert)
@@ -229,7 +229,7 @@ fileprivate struct MakeRoomButtonView: View {
         case .createMode:
             HStack(alignment: .center) {
                 Button {
-                    viewModel.send(action: .noMissionButtonClicked)
+                    viewModel.send(action: .noMissionButtonDidTap)
                 } label: {
                     HStack {
                         Spacer()
@@ -258,7 +258,7 @@ fileprivate struct MakeRoomButtonView: View {
                     .frame(width: 12)
                 
                 Button {
-                    viewModel.send(action: .missionButtonClicked)
+                    viewModel.send(action: .missionButtonDidTap)
                 } label: {
                     HStack {
                         Spacer()
@@ -282,7 +282,7 @@ fileprivate struct MakeRoomButtonView: View {
             }
         case .editMode:
             Button("수정 완료") {
-                viewModel.send(action: .editButtonClicked)
+                viewModel.send(action: .editButtonDidTap)
             }.smBottomButtonStyle()
         }
         

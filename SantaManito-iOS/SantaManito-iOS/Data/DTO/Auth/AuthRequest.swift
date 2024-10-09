@@ -11,3 +11,8 @@ struct SignUpRequest: Encodable {
     let serialNumber: String
     let name: String
 }
+
+
+struct SignInRequest: Encodable {
+    let serialNumber: String
+}
