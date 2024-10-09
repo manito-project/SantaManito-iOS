@@ -14,7 +14,7 @@ class EnterRoomViewModel: ObservableObject {
     //MARK: Action, State
     
     enum Action {
-        case enterButtonDidClicked
+        case enterButtonDidTap
     }
     struct State {
         var enterButtonDisabled: Bool = false //MARK: 히디의 고민: isEnabled라는 변수명이 너무 모호함 (초대코드에 텍스트가 있으면 버튼을 누를 수 있도록 하는 역할)
@@ -58,7 +58,7 @@ class EnterRoomViewModel: ObservableObject {
         guard let owner else { return }
         
         switch action {
-        case .enterButtonDidClicked:
+        case .enterButtonDidTap:
             roomService.validateParticipationCode(inviteCode: inviteCode)
                 .sink(receiveCompletion: { completion in
                     if case .failure(let error) = completion {

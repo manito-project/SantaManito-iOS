@@ -26,7 +26,7 @@ struct MatchingResultView: View {
                         .frame(height: 92)
                     
                     Button("마니또 하러 가기") {
-                        viewModel.send(action: .goHomeButtonClicked)
+                        viewModel.send(action: .goHomeButtonDidTap)
                     }.smBottomButtonStyle()
                     
                     Spacer()
@@ -42,7 +42,7 @@ struct MatchingResultView: View {
 }
 
 fileprivate struct MatchingInfoView: View {
-    @ObservedObject private var viewModel: MatchingResultViewModel
+    @StateObject private var viewModel: MatchingResultViewModel
     
     init(viewModel: MatchingResultViewModel) {
         self.viewModel = viewModel
