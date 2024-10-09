@@ -36,7 +36,6 @@ final class Service: ServiceType {
     var userService: UserServiceType = StubUserService() //TODO: stub교체
     var roomService: RoomServiceType = StubRoomService() //TODO: stub교체
     var editRoomService: EditRoomServiceType = EditRoomService() //TODO: stub교체
-    var enterRoomService: EnterRoomServiceType = StubEnterRoomService() //TODO: stub교체
     var matchRoomService: MatchRoomServiceType = StubMatchRoomService() //TODO: stub교체
     var remoteConfigService: RemoteConfigServiceType = FirebaseRemoteConfigService.shared
 }
