@@ -11,7 +11,7 @@ import SwiftUI
 struct SantaManito_iOSApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @StateObject var container = DIContainer.stub
+    @StateObject var container = DIContainer.default
     
     var body: some Scene {
         WindowGroup {
