@@ -13,7 +13,6 @@ protocol ServiceType {
     var userService: UserServiceType { get set }
     var roomService: RoomServiceType { get }
     var editRoomService: EditRoomServiceType { get }
-    var enterRoomService: EnterRoomServiceType { get }
     var matchRoomService: MatchRoomServiceType { get }
     var pushNotificationService: PushNotificationServiceType { get }
     var remoteConfigService: RemoteConfigServiceType { get }
@@ -44,7 +43,6 @@ class StubService: ServiceType {
     var userService: UserServiceType = StubUserService()
     var roomService: RoomServiceType = StubRoomService()
     var editRoomService: EditRoomServiceType = EditRoomService()
-    var enterRoomService: EnterRoomServiceType = StubEnterRoomService()
     var matchRoomService: MatchRoomServiceType = StubMatchRoomService()
     var pushNotificationService: PushNotificationServiceType = StubPushNotificationService()
     var remoteConfigService: RemoteConfigServiceType = StubRemoteConfigService()

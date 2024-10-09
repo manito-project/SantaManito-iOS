@@ -58,7 +58,6 @@ class ManitoWaitingRoomViewModel: ObservableObject {
             return
             
         case .refreshButtonDidTap:
-            
             roomService.fetch(with: state.roomDetail.id)
                 .receive(on: DispatchQueue.main)
                 .assignLoading(to: \.state.isLoading, on: owner)

@@ -14,7 +14,7 @@ final class BaseService<Target: URLRequestTargetType> {
     
     private let requestHandler = RequestHandler.shared
     
-    func requestWithResult<T: Decodable>(_ target: API) -> AnyPublisher<T, SMNetworkError> {
+    func requestWithResult<T: Decodable>(_ target: API, type: T.Type) -> AnyPublisher<T, SMNetworkError> {
         return fetchResponse(with: target)
             .flatMap { response in
                 self.validate(response: response)
@@ -58,7 +58,22 @@ extension BaseService {
     /// 응답 유효성 검사 메서드
     private func validate(response: NetworkResponse) -> AnyPublisher<Void, SMNetworkError> {
         guard response.response.isValidateStatus() else {
-            return Fail(error: SMNetworkError.invalidResponse(.invalidStatusCode(code: response.response.statusCode)))
+            guard let data = response.data else {
+                return Fail(error: SMNetworkError.invalidResponse(.invalidStatusCode(code: response.response.statusCode)))
+                    .eraseToAnyPublisher()
+            }
+            
+            return Just(data)
+                .decode(type: ErrorResponse.self, decoder: JSONDecoder())
+                .mapError { _ in SMNetworkError.invalidResponse(.invalidStatusCode(code: response.response.statusCode)) }
+                .flatMap { response in
+                    Fail(error: SMNetworkError.invalidResponse(.invalidStatusCode(
+                                code: response.statusCode,
+                                data: response.data
+                            )
+                        )
+                    ).eraseToAnyPublisher()
+                }
                 .eraseToAnyPublisher()
         }
         return Just(()).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()

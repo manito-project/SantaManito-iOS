@@ -39,7 +39,7 @@ struct FinishView: View {
 }
 
 fileprivate struct FinishTitleView: View {
-    @StateObject private var viewModel: FinishViewModel
+    @ObservedObject private var viewModel: FinishViewModel
     
     init(viewModel: FinishViewModel) {
         self.viewModel = viewModel
@@ -72,7 +72,7 @@ fileprivate struct FinishTitleView: View {
             
             VStack(alignment: .trailing) {
                 Button {
-                    viewModel.send(action: .deleteHistoryRoomButtonDidTap)
+                    viewModel.send(action: .deleteRoomButtonDidTap)
                 } label: {
                     Image(.icTrash)
                         .resizable()
@@ -92,7 +92,7 @@ fileprivate struct FinishTitleView: View {
 }
 
 fileprivate struct FinishResultView: View {
-    @StateObject private var viewModel: FinishViewModel
+    @ObservedObject private var viewModel: FinishViewModel
     
     init(viewModel: FinishViewModel) {
         self.viewModel = viewModel
@@ -170,7 +170,7 @@ fileprivate struct FinishResultView: View {
 }
 
 fileprivate struct FinishAllResultView: View {
-    @StateObject private var viewModel: FinishViewModel
+    @ObservedObject private var viewModel: FinishViewModel
     
     init(viewModel: FinishViewModel) {
         self.viewModel = viewModel
@@ -261,7 +261,7 @@ fileprivate struct ParticipateCellView: View {
 }
 
 fileprivate struct FinishButtonView: View {
-    @StateObject private var viewModel: FinishViewModel
+    @ObservedObject private var viewModel: FinishViewModel
     
     init(viewModel: FinishViewModel) {
         self.viewModel = viewModel
@@ -301,10 +301,13 @@ fileprivate struct FinishButtonView: View {
 }
 
 #Preview {
-    FinishView(
+    let container = DIContainer.stub
+    return FinishView(
         viewModel: FinishViewModel(
-            matchRoomService: StubMatchRoomService(),
-            editRoomService: StubEditRoomService()
+            roomService: container.service.roomService,
+            matchRoomService: container.service.matchRoomService,
+            editRoomService: container.service.editRoomService,
+            navigationRouter: container.navigationRouter
         )
     )
 }

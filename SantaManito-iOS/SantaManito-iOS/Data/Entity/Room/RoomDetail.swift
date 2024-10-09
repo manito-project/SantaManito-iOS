@@ -22,7 +22,7 @@ struct RoomDetail: Hashable {
         "userID1" == creatorID //TODO: 로그인시 유저디폴트에 저장로직
     }
     var remainingDays: String {
-        "expirationDate-오늘 로직" //TODO: 만료일 - 오늘 로직
+        return String(expirationDate.daysBetween(Date()))//TODO: 만료일 - 오늘 로직
     }
     
     var expirationDateToString: String {

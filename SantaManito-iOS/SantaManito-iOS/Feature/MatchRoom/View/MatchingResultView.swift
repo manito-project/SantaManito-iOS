@@ -16,7 +16,7 @@ struct MatchingResultView: View {
             SMView(padding: -40) {
                 SMInfoView(
                     title: viewModel.state.room.name,
-                    description: "오늘부터 \(viewModel.state.room.remainingDays)일 후인 \(viewModel.state.room.dueDate.toDueDateWithoutYear)\n\(viewModel.state.room.dueDate.toDueDateTime)까지 진행되는 마니또"
+                    description: "오늘부터 \(viewModel.state.room.remainingDays)일 후인 \(viewModel.state.room.expirationDate.toDueDateWithoutYear)\n\(viewModel.state.room.expirationDate.toDueDateTime)까지 진행되는 마니또"
                 )
             } content: {
                 VStack {
@@ -42,7 +42,7 @@ struct MatchingResultView: View {
 }
 
 fileprivate struct MatchingInfoView: View {
-    @StateObject private var viewModel: MatchingResultViewModel
+    @ObservedObject private var viewModel: MatchingResultViewModel
     
     init(viewModel: MatchingResultViewModel) {
         self.viewModel = viewModel
@@ -60,7 +60,7 @@ fileprivate struct MatchingInfoView: View {
                 Spacer()
                     .frame(height: 24)
                 
-                Text("\(viewModel.state.manito.santaUsername) 산타의 마니또는") //TODO: 마니또
+                Text("(여기에 유저 이름이 들어가도록) 산타의 마니또는") //TODO: 내 이름 들어가게 수정
                     .font(.semibold_18)
                     .foregroundColor(.smDarkgray)
                 
@@ -70,7 +70,7 @@ fileprivate struct MatchingInfoView: View {
                 HStack {
                     Spacer()
                     
-                    Text(viewModel.state.manito.manittoUsername)
+                    Text(viewModel.state.manito.manitto.username)
                         .font(.semibold_24)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.white)
@@ -85,11 +85,11 @@ fileprivate struct MatchingInfoView: View {
                 Spacer()
                     .frame(height: 30)
                 
-                Text("\(viewModel.state.manito.santaUsername) 산타의 미션은")
+                Text("(여기에 유저 이름이 들어가도록)  산타의 미션은")
                     .font(.semibold_18)
                     .foregroundColor(.smDarkgray)
                 
-                Text(viewModel.state.manito.missionToMe.content)
+                Text(viewModel.state.manito.mission.content)
                     .font(.medium_16)
                     .foregroundColor(.smDarkgray)
                     .multilineTextAlignment(.center)
@@ -124,7 +124,7 @@ fileprivate struct MatchingInfoView: View {
     let container = DIContainer.stub
     return MatchingResultView(
         viewModel: MatchingResultViewModel(
-            matchRoomService: container.service.matchRoomService,
+            roomService: container.service.roomService,
             editRoomService: container.service.editRoomService,
             navigationRouter: container.navigationRouter
         )
