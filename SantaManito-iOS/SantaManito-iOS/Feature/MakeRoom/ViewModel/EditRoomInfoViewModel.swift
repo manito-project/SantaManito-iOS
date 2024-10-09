@@ -19,11 +19,11 @@ final class EditRoomInfoViewModel: ObservableObject {
         case increaseDuedate // 마니또 마감 날짜 늘리기
         case decreaseDuedate // 마니또 마감 날짜 줄이기
         case configDuedateTime(Date) // 마니또 종료 시간 설정
-        case noMissionButtonClicked // 미션없이 방을 생성하려고 할때
-        case missionButtonClicked // 미션 설정 후 방을 생성하려고 할때
-        case ignoreMissionButtonClicked
+        case noMissionButtonDidTap // 미션없이 방을 생성하려고 할때
+        case missionButtonDidTap // 미션 설정 후 방을 생성하려고 할때
+        case ignoreMissionButtonDidTap
         case dismissAlert
-        case editButtonClicked // 수정 버튼을 눌렀을 때
+        case editButtonDidTap // 수정 버튼을 눌렀을 때
     }
     
     struct State {
@@ -85,7 +85,7 @@ final class EditRoomInfoViewModel: ObservableObject {
         
         $roomInfo
             .map { roomInfo in
-                let adjustedDate = roomInfo.dueDate.adjustDays(remainingDays: roomInfo.remainingDays)
+                let adjustedDate = roomInfo.dueDate.adjustDays(roomInfo.remainingDays)
                 return "\(adjustedDate.toDueDate) \(roomInfo.dueDate.toDueDateTime)"
             }
             .assign(to: \.state.dueDate, on: self)
@@ -122,13 +122,13 @@ final class EditRoomInfoViewModel: ObservableObject {
         case .configDuedateTime(let dueDateTime):
             roomInfo.dueDate = dueDateTime
             
-        case .noMissionButtonClicked:
+        case .noMissionButtonDidTap:
             state.isPresented = true
             
-        case .missionButtonClicked:
+        case .missionButtonDidTap:
             navigationRouter.push(to: .makeMission(roomInfo: roomInfo))
             
-        case .ignoreMissionButtonClicked:
+        case .ignoreMissionButtonDidTap:
             state.isPresented = false
             navigationRouter.push(to: .roomInfo(roomInfo: roomInfo, missionList: []))
                     
@@ -136,7 +136,7 @@ final class EditRoomInfoViewModel: ObservableObject {
             state.isPresented = false
             navigationRouter.push(to: .makeMission(roomInfo: roomInfo))
             
-        case .editButtonClicked:
+        case .editButtonDidTap:
             roomService.editRoomInfo(with: "1", request: EditRoomRequest(roomName: "안녕", expirationDate: "2024-08-24"))
                 .catch { _ in Empty() }
                 .sink { [weak self] _ in

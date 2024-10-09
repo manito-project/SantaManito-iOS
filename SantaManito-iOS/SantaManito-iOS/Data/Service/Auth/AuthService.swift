@@ -24,7 +24,7 @@ extension AuthenticationService: AuthenticationServiceType {
     
     
     func signIn(deviceID: String) -> AnyPublisher<AuthEntity, SMNetworkError> {
-        requestWithResult(.signIn(serialNumber: deviceID), AuthResponse.self)
+        requestWithResult(.signIn(request: .init(serialNumber: deviceID)), AuthResponse.self)
             .map { $0.toEntity() }
             .eraseToAnyPublisher()
     }

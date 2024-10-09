@@ -81,7 +81,7 @@ struct EnterRoomView: View {
                 Spacer()
                 
                 Button("입장하기") {
-                    viewModel.send(action: .enterButtonDidClicked)
+                    viewModel.send(action: .enterButtonDidTap)
                 }
                 .disabled(!viewModel.state.enterButtonDisabled)
                 .smBottomButtonStyle()
@@ -102,7 +102,8 @@ struct EnterRoomView: View {
     let container = DIContainer.stub
     return EnterRoomView(
         viewModel: EnterRoomViewModel(
-            roomService: container.service.enterRoomService,
+            roomService: container.service.roomService,
+            editRoomService: container.service.editRoomService,
             navigationRouter: container.navigationRouter
         )
     )

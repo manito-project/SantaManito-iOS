@@ -12,3 +12,7 @@ struct CreateRoomRequest: Encodable {
     var expirationDate: String
     var missionContents: [String]
 }
+
+struct CreateRoomResult: Decodable {
+    var invitationCode: String
+}

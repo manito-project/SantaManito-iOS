@@ -13,7 +13,6 @@ protocol ServiceType {
     var userService: UserServiceType { get set }
     var roomService: RoomServiceType { get }
     var editRoomService: EditRoomServiceType { get }
-    var enterRoomService: EnterRoomServiceType { get }
     var matchRoomService: MatchRoomServiceType { get }
     var remoteConfigService: RemoteConfigServiceType { get }
 }
@@ -37,7 +36,6 @@ final class Service: ServiceType {
     var userService: UserServiceType = StubUserService() //TODO: stub교체
     var roomService: RoomServiceType = StubRoomService() //TODO: stub교체
     var editRoomService: EditRoomServiceType = EditRoomService() //TODO: stub교체
-    var enterRoomService: EnterRoomServiceType = StubEnterRoomService() //TODO: stub교체
     var matchRoomService: MatchRoomServiceType = StubMatchRoomService() //TODO: stub교체
     var remoteConfigService: RemoteConfigServiceType = FirebaseRemoteConfigService.shared
 }
@@ -50,7 +48,6 @@ class StubService: ServiceType {
     var userService: UserServiceType = StubUserService()
     var roomService: RoomServiceType = StubRoomService()
     var editRoomService: EditRoomServiceType = EditRoomService()
-    var enterRoomService: EnterRoomServiceType = StubEnterRoomService()
     var matchRoomService: MatchRoomServiceType = StubMatchRoomService()
     var remoteConfigService: RemoteConfigServiceType = StubRemoteConfigService()
     

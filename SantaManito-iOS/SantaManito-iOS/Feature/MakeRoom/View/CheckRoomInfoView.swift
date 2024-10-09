@@ -25,7 +25,7 @@ struct CheckRoomInfoView: View {
                 Spacer()
                 
                 Button("방 만들기") {
-                    viewModel.send(action: .makeRoomButtonClicked)
+                    viewModel.send(action: .makeRoomButtonDidTap)
                 }
                 .smBottomButtonStyle()
                 .padding(.top, 30)
