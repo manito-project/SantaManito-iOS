@@ -404,7 +404,6 @@
 			isa = PBXGroup;
 			children = (
 				87873BC32CAC1B2D00E368BF /* Secret.md */,
-				D28568B12CAD21800044C231 /* Config.swift */,
 				87873BFF2CB3CA1000E368BF /* Config.xcconfig */,
 			);
 			path = Secret;
@@ -571,6 +570,7 @@
 				D22E9B582C88031A00086549 /* SantaManito_iOSApp.swift */,
 				877EA23A2C88AAC10073FFBD /* DIContainer.swift */,
 				87873BDB2CAC29E900E368BF /* AppDelegate.swift */,
+				D28568B12CAD21800044C231 /* Config.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
