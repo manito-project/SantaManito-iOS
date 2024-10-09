@@ -52,7 +52,7 @@
 		87873BE72CAFF63800E368BF /* VersionEntityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BE62CAFF63800E368BF /* VersionEntityTests.swift */; };
 		87873BE92CB00BFF00E368BF /* AppServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BE82CB00BFF00E368BF /* AppServiceTests.swift */; };
 		87873BED2CB0FA3700E368BF /* Publisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BEC2CB0FA3700E368BF /* Publisher+.swift */; };
-		87873BF12CB2DB6A00E368BF /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BF02CB2DB6A00E368BF /* SignUpRequest.swift */; };
+		87873BF12CB2DB6A00E368BF /* AuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BF02CB2DB6A00E368BF /* AuthRequest.swift */; };
 		87873BF32CB2E2A100E368BF /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BF22CB2E2A100E368BF /* AuthResponse.swift */; };
 		87873BF62CB2E30800E368BF /* AuthEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BF52CB2E30800E368BF /* AuthEntity.swift */; };
 		87873BF82CB2E71800E368BF /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BF72CB2E71800E368BF /* UserDefaultsService.swift */; };
@@ -179,7 +179,7 @@
 		87873BE62CAFF63800E368BF /* VersionEntityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionEntityTests.swift; sourceTree = "<group>"; };
 		87873BE82CB00BFF00E368BF /* AppServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppServiceTests.swift; sourceTree = "<group>"; };
 		87873BEC2CB0FA3700E368BF /* Publisher+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+.swift"; sourceTree = "<group>"; };
-		87873BF02CB2DB6A00E368BF /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
+		87873BF02CB2DB6A00E368BF /* AuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequest.swift; sourceTree = "<group>"; };
 		87873BF22CB2E2A100E368BF /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		87873BF52CB2E30800E368BF /* AuthEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthEntity.swift; sourceTree = "<group>"; };
 		87873BF72CB2E71800E368BF /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
@@ -387,10 +387,9 @@
 		877EA2422C88AE6B0073FFBD /* DTO */ = {
 			isa = PBXGroup;
 			children = (
-				D26879442CABB2150025A611 /* Room */,
 				87873BEF2CB2DB6000E368BF /* Auth */,
 				87873BEE2CB2DB5C00E368BF /* User */,
-				D26879442CABB2150025A611 /* EditRoom */,
+				D26879442CABB2150025A611 /* Room */,
 				874017A32CA1AB610096E847 /* RoomDetailResponse.swift */,
 				874017A52CA1ABBE0096E847 /* UserResponse.swift */,
 				874017A72CA1AC010096E847 /* MissionResponse.swift */,
@@ -444,7 +443,7 @@
 		87873BEF2CB2DB6000E368BF /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				87873BF02CB2DB6A00E368BF /* SignUpRequest.swift */,
+				87873BF02CB2DB6A00E368BF /* AuthRequest.swift */,
 				87873BF22CB2E2A100E368BF /* AuthResponse.swift */,
 			);
 			path = Auth;
@@ -1038,7 +1037,7 @@
 				D28568AC2CAD031C0044C231 /* RequestHandler.swift in Sources */,
 				877CA0832C8CA75C00D23193 /* SMAlertView.swift in Sources */,
 				877CA0812C8C555D00D23193 /* SMScrollView.swift in Sources */,
-				87873BF12CB2DB6A00E368BF /* SignUpRequest.swift in Sources */,
+				87873BF12CB2DB6A00E368BF /* AuthRequest.swift in Sources */,
 				874017B72CA2A9F30096E847 /* EditUsernameViewModel.swift in Sources */,
 				879829072C98284B00A863EC /* RoomService.swift in Sources */,
 				87873BDC2CAC29E900E368BF /* AppDelegate.swift in Sources */,

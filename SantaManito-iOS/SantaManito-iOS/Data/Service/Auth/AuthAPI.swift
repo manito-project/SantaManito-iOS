@@ -9,7 +9,7 @@ import Foundation
 
 enum AuthAPI {
     case signUp(request: SignUpRequest)
-    case signIn(serialNumber: String)
+    case signIn(request: SignInRequest)
 }
 
 extension AuthAPI: BaseAPI {
@@ -34,22 +34,20 @@ extension AuthAPI: BaseAPI {
     
     var parameters: Parameters? {
         switch self {
-        case .signUp(let request):
-            return ["serialNumber" : request.serialNumber,
-                    "name" : request.name ]
-        case .signIn(let serialNumber):
-            return ["serialNumber" : serialNumber]
-        }
-    }
-    
-    var encoder: ParameterEncodable {
-        switch self {
         case .signUp:
-            return JSONEncoding()
+            return nil
         case .signIn:
-            return JSONEncoding()
+            return nil
         }
     }
     
+    var task: Task {
+        switch self {
+        case .signUp(let request):
+            return .requestJSONEncodable(request)
+        case .signIn(let request):
+            return .requestJSONEncodable(request)
+        }
+    }
     
 }
