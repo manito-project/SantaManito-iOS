@@ -40,13 +40,13 @@ extension EditRoomService: EditRoomServiceType {
     }
     
     func createRoom(_ request: CreateRoomRequest) -> AnyPublisher<String, SMNetworkError> {
-        requestWithResult(.createRoom(request: request), type: CreateRoomResult.self)
+        requestWithResult(.createRoom(request: request), CreateRoomResult.self)
             .map { result  in result.invitationCode }
             .eraseToAnyPublisher()
     }
     
     func getRoomMyInfo(with roomID: String) -> AnyPublisher<RoomMyInfoResult, SMNetworkError> {
-        requestWithResult(.getMyInfo(roomID: roomID), type: RoomMyInfoResult.self)
+        requestWithResult(.getMyInfo(roomID: roomID), RoomMyInfoResult.self)
     }
     
     func deleteRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError> {
@@ -60,7 +60,7 @@ extension EditRoomService: EditRoomServiceType {
     func enterRoom(inviteCode: String) -> AnyPublisher<String, EnterError> {
         requestWithResult(
             .enterRoom(request: EnterRoomRequest(inviteCode: inviteCode)),
-            type: EnterRoomResult.self
+            EnterRoomResult.self
         )
         //TODO: 여기 수정하기
         .mapError { smError -> EnterError in

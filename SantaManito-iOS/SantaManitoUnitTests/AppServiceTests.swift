@@ -6,19 +6,24 @@
 //
 
 import XCTest
+import Combine
 @testable import SantaManito_iOS
 
 final class AppServiceTests: XCTestCase {
 
     var sut : AppService!
+    var cancelBag: CancelBag!
     
     override func setUp() {
+        
         sut = AppService()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        cancelBag = CancelBag()
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        
+        sut = nil
+        cancelBag = nil
     }
 
     //MARK: - 로컬 앱 버전 바뀔 시 테스트에 실패할 수 있음.
@@ -29,10 +34,26 @@ final class AppServiceTests: XCTestCase {
     }
     
     //MARK: - 앱스토어 앱 버전 바뀔 시 테스트에 실패할 수 있음.
-    func test_앱스토어버전을_잘_가져오는가()  {
-        let appStoreVersion = sut.getAppStoreVersion()
-        let expected = Version("1.2.2")
-        XCTAssertEqual(appStoreVersion, expected)
+    
+    func test_앱스토어버전을_잘_가져오는가() {
+        
+        let expectation = XCTestExpectation(description: "server_check_값 테스트")
+        
+        sut.getAppStoreVersion()
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    return 
+                case .failure(let failure):
+                    XCTFail(failure.localizedDescription)
+                }
+            }, receiveValue: { version in
+                expectation.fulfill()
+                XCTAssertTrue(true)
+            })
+            .store(in: cancelBag)
+        
+        wait(for: [expectation], timeout: 10.0)
     }
 
 

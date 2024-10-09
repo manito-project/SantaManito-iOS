@@ -17,19 +17,6 @@ protocol ServiceType {
     var remoteConfigService: RemoteConfigServiceType { get }
 }
 
-//class Service: ServiceType {
-//
-//  var authService: AuthenticationServiceType
-//  var userService: UserServiceType
-//  var pushNotificationService: PushNotificationServiceType
-//
-//  init() {
-//    self.authService = AuthenticationService()
-//    self.userService = UserService()
-//    self.pushNotificationService = PushNotificationService()
-//  }
-//}
-
 final class Service: ServiceType {
     var appService: AppServiceType = AppService()
     var authService: AuthenticationServiceType = AuthenticationService()
