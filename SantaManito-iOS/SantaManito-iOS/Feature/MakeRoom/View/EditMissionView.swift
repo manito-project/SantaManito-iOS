@@ -58,7 +58,7 @@ struct EditMissionView: View {
 }
 
 fileprivate struct MissionListView: View {
-    @StateObject private var viewModel: EditMissionViewModel
+    @ObservedObject private var viewModel: EditMissionViewModel
     
     fileprivate init(viewModel: EditMissionViewModel) {
         self.viewModel = viewModel
@@ -106,7 +106,7 @@ fileprivate struct MissionListView: View {
 }
 
 private struct MissionCellView: View {
-    @StateObject private var viewModel: EditMissionViewModel
+    @ObservedObject private var viewModel: EditMissionViewModel
     @Binding private var mission: Mission
     
     fileprivate init(
@@ -148,7 +148,7 @@ private struct MissionCellView: View {
 }
 
 fileprivate struct MakeMissionButtonView: View {
-    @StateObject private var viewModel: EditMissionViewModel
+    @ObservedObject private var viewModel: EditMissionViewModel
     
     fileprivate init(viewModel: EditMissionViewModel) {
         self.viewModel = viewModel

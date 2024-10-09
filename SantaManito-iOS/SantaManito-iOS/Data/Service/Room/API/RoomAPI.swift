@@ -7,63 +7,92 @@
 
 import Foundation
 
-enum EditRoomAPI {
-    //    case getRoomInfo(roomID: String)
-    case editRoomInfo(roomId: String, request: EditRoomRequest)
+enum RoomAPI {
     case createRoom(request: CreateRoomRequest)
+    case getEnteredAllRoom
+    case getRoomInfo(roomID: String)
+    case editRoomInfo(roomID: String, request: EditRoomRequest)
+    case deleteRoom(roomID: String)
+    case getMyInfo(roomID: String)
+    case enterRoom(request: EnterRoomRequest)
+    case matchRoom(roomID: String)
+    case exitRoom(roomID: String)
+    case deleteHistoryRoom(roomID: String)
 }
 
-extension EditRoomAPI: BaseAPI {
-    
+extension RoomAPI: BaseAPI {
     var path: String? {
         switch self {
-            //        case .getRoomInfo:
-            //            return URLs.getRoomDetail
-        case .editRoomInfo(let roomId, _):
-            return Paths.editRoomInfo.replacingOccurrences(of: "{roomId}", with: roomId)
         case .createRoom:
             return Paths.createRoom
+        case .getEnteredAllRoom:
+            return Paths.getRooms
+        case .getRoomInfo(let roomID):
+            return Paths.getRoomDetail.replacingOccurrences(of: "{roomId}", with: roomID)
+        case .editRoomInfo(let roomID, _):
+            return Paths.editRoomInfo.replacingOccurrences(of: "{roomId}", with: roomID)
+        case .deleteRoom(let roomID):
+            return Paths.deleteRoom.replacingOccurrences(of: "{roomId}", with: roomID)
+        case .getMyInfo(let roomID):
+            return Paths.getRoomMyInfo.replacingOccurrences(of: "{roomId}", with: roomID)
+        case .enterRoom:
+            return Paths.enterRoom
+        case .matchRoom(let roomID):
+            return Paths.matchRoom.replacingOccurrences(of: "{roomId}", with: roomID)
+        case .exitRoom(let roomID):
+            return Paths.exitRoom.replacingOccurrences(of: "{roomId}", with: roomID)
+        case .deleteHistoryRoom(let roomID):
+            return Paths.deleteHistoryRoom.replacingOccurrences(of: "{roomId}", with: roomID)
         }
     }
+    
     var method: HTTPMethod {
         switch self {
-            //        case .getRoomInfo:
-            //            return .get
-        case .editRoomInfo:
-            return .patch
         case .createRoom:
             return .post
-        }
-    }
-    
-    var parameters: Parameters? {
-        switch self {
-            //        case .getRoomInfo:
-            //            return nil
-        case .editRoomInfo(_, let request): [
-            "roomName": request.roomName,
-            "expirationDate": request.expirationDate
-        ]
-        case .createRoom(let request): [
-            "roomName": request.roomName,
-            "expirationDate": request.expirationDate,
-            "missionContents": request.missionContents
-        ]
-        }
-    }
-    
-    var encoder: ParameterEncodable {
-        switch self {
-            //        case .getRoomInfo:
-            //            return URLEncoding()
+        case .getEnteredAllRoom:
+            return .get
+        case .getRoomInfo:
+            return .get
         case .editRoomInfo:
-            return JSONEncoding()
-        case .createRoom:
-            return JSONEncoding()
+            return .patch
+        case .deleteRoom:
+            return .delete
+        case .getMyInfo:
+            return .get
+        case .enterRoom:
+            return .post
+        case .matchRoom:
+            return .post
+        case .exitRoom:
+            return .delete
+        case .deleteHistoryRoom:
+            return .delete
+        }
+    }
+    
+    var task: Task {
+        switch self {
+        case .createRoom(let request):
+            return .requestJSONEncodable(request)
+        case .getEnteredAllRoom:
+            return .requestPlain
+        case .getRoomInfo:
+            return .requestPlain
+        case .editRoomInfo(_, let request):
+            return .requestJSONEncodable(request)
+        case .deleteRoom:
+            return .requestPlain
+        case .getMyInfo:
+            return .requestPlain
+        case .enterRoom(let request):
+            return .requestJSONEncodable(request)
+        case .matchRoom:
+            return .requestPlain
+        case .exitRoom:
+            return .requestPlain
+        case .deleteHistoryRoom:
+            return .requestPlain
         }
     }
 }
-
-
-
-

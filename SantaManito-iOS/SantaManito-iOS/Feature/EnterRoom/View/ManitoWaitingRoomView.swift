@@ -56,7 +56,7 @@ struct ManitoWaitingRoomView: View {
 }
 
 fileprivate struct TitleView: View {
-    @StateObject private var viewModel: ManitoWaitingRoomViewModel
+    @ObservedObject private var viewModel: ManitoWaitingRoomViewModel
     
     fileprivate init(viewModel: ManitoWaitingRoomViewModel) {
         self.viewModel = viewModel
@@ -127,7 +127,7 @@ fileprivate struct TitleView: View {
 }
 
 fileprivate struct ParticipateListView: View {
-    @StateObject private var viewModel: ManitoWaitingRoomViewModel
+    @ObservedObject private var viewModel: ManitoWaitingRoomViewModel
     
     fileprivate init(viewModel: ManitoWaitingRoomViewModel) {
         self.viewModel = viewModel
@@ -170,7 +170,7 @@ fileprivate struct ParticipateCellView: View {
 }
 
 fileprivate struct MatchingButtonView: View {
-    @StateObject private var viewModel: ManitoWaitingRoomViewModel
+    @ObservedObject private var viewModel: ManitoWaitingRoomViewModel
     
     fileprivate init(viewModel: ManitoWaitingRoomViewModel) {
         self.viewModel = viewModel

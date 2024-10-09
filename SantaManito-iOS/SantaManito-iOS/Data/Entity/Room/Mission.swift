@@ -7,12 +7,16 @@
 
 import Foundation
 
-public struct Mission: Identifiable, Hashable {
+public struct Mission: Identifiable, Hashable, Decodable {
     var content: String
     public var id = UUID()
 }
 
 extension Mission {
+    static var stub: Mission {
+        .init(content: "손 잡기", id: UUID())
+    }
+    
     static func dummy() -> [Mission] {
         return [
             Mission(content: "손 잡기"),
