@@ -91,7 +91,7 @@ class FinishViewModel: ObservableObject {
             roomService.fetch(with: "roomID")
                 .map { [weak self] roomInfo in
                     self?.state.roomName = roomInfo.name
-                    let startDate = roomInfo.expirationDate.adjustDays(remainingDays: -Int(roomInfo.remainingDays)!).toDueDate
+                    let startDate = roomInfo.expirationDate.adjustDays(-Int(roomInfo.remainingDays)!).toDueDate
                     let endDate = roomInfo.expirationDateToString
                     return "\(startDate) ~ \(endDate)\n\(roomInfo.remainingDays)일간의 산타마니또 끝!"
                 }
