@@ -85,7 +85,7 @@ final class EditRoomInfoViewModel: ObservableObject {
         
         $roomInfo
             .map { roomInfo in
-                let adjustedDate = roomInfo.dueDate.adjustDays(remainingDays: roomInfo.remainingDays)
+                let adjustedDate = roomInfo.dueDate.adjustDays(roomInfo.remainingDays)
                 return "\(adjustedDate.toDueDate) \(roomInfo.dueDate.toDueDateTime)"
             }
             .assign(to: \.state.dueDate, on: self)

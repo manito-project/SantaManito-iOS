@@ -48,7 +48,7 @@ struct EditRoomInfoView: View {
 }
 
 fileprivate struct SettingRoomInfoView: View {
-    @StateObject private var viewModel: EditRoomInfoViewModel
+    @ObservedObject private var viewModel: EditRoomInfoViewModel
     
     fileprivate init(viewModel: EditRoomInfoViewModel) {
         self.viewModel = viewModel
@@ -218,7 +218,7 @@ fileprivate struct SettingRoomInfoView: View {
 }
 
 fileprivate struct MakeRoomButtonView: View {
-    @StateObject private var viewModel: EditRoomInfoViewModel
+    @ObservedObject private var viewModel: EditRoomInfoViewModel
     
     fileprivate init(viewModel: EditRoomInfoViewModel) {
         self.viewModel = viewModel

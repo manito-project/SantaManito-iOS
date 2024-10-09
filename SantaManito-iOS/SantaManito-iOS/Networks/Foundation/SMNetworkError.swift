@@ -44,7 +44,7 @@ extension SMNetworkError {
             }
         }
     }
-
+    
     public enum ParameterEncoding: Error {
         case emptyParameters // 파라미터가 비어있을 때
         case missingURL // url이 없을때
@@ -70,7 +70,7 @@ extension SMNetworkError {
     public enum ResponseError: Error {
         case cancelled
         case unhandled
-        case invalidStatusCode(code: Int)
+        case invalidStatusCode(code: Int, data: String? = nil)
         
         var description: String {
             switch self {
@@ -78,22 +78,31 @@ extension SMNetworkError {
                 return "취소되었습니다."
             case .unhandled:
                 return "응답이 올바르지 않습니다"
-            case .invalidStatusCode(let code):
+            case .invalidStatusCode(let code, let errMessage):
                 switch code {
                 case 401:
                     return "autheticationError: 인증오류입니다"
                 case 403:
-                    return "forbiddeError: 금지된 에러입니다"
+                    return errMessage ?? "forbiddeError: 금지된 에러입니다"
                 case 404:
-                    return "notFoundError: 찾을 수 없습니다"
+                    return errMessage ?? "notFoundError: 찾을 수 없습니다"
                 case 408:
                     return "timeoutError: 시간을 초과했습니다"
+                case 409:
+                    return errMessage ?? "409 -> 해당 statuscode와 관련된 오류입니다"
                 case 500:
                     return "internalServerError: 서버 내부 오류입니다"
                 default:
                     return "\(code) -> 해당 statuscode와 관련된 오류입니다"
                 }
             }
+        }
+        
+        var statusCode: Int? {
+            if case let .invalidStatusCode(code, _) = self {
+                return code
+            }
+            return nil
         }
     }
 }

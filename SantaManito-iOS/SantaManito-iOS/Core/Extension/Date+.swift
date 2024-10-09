@@ -21,6 +21,8 @@ extension Date {
         self = date
     }
     
+    
+    
     var toDueDateTime: String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
@@ -49,20 +51,28 @@ extension Date {
         return formatter.string(from: self)
     }
     
-    func adjustDays(remainingDays: Int) -> Date {
+    func adjustDays(_ days: Int) -> Date {
         let calendar = Calendar.current
-        guard let futureDate = calendar.date(byAdding: .day, value: remainingDays, to: self) else { return Date() }
+        guard let futureDate = calendar.date(byAdding: .day, value: days, to: self) else { return Date() }
         let dateComponents = calendar.dateComponents([.year, .month, .day], from: futureDate)
         return calendar.date(from: dateComponents) ?? Date()
     }
+    func daysBetween(_ date: Date) -> Int {
+            let calendar = Calendar.current
+            let start = calendar.startOfDay(for: self)
+            let end = calendar.startOfDay(for: date)
+            let components = calendar.dateComponents([.day], from: start, to: end)
+            return components.day ?? 0
+        }
+
 }
 
 extension String {
-    
-    var toChatDate: Date? {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "yyyy.MM.dd E"
-        return formatter.date(from: self)
+    func toDate(withFormat format: String = "yyyy-MM-dd") -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        dateFormatter.timeZone = TimeZone.current
+        return dateFormatter.date(from: self)
     }
 }
