@@ -34,7 +34,8 @@ struct NavigationRoutingView: View {
                 viewModel: .init(
                     roomInfo: roomInfo,
                     missionList: missionList,
-                    roomService: container.service.roomService
+                    roomService: container.service.roomService,
+                    navigationRouter: container.navigationRouter
                 )
             )
             

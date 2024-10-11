@@ -25,7 +25,9 @@ class CheckRoomInfoViewModel: ObservableObject {
     
     //MARK: - Dependency
     
-    var roomService: RoomServiceType
+    private var roomService: RoomServiceType
+    private var navigationRounter: NavigationRoutableType
+    
     @Published var roomInfo: MakeRoomInfo = MakeRoomInfo(
         name: "",
         remainingDays: 3,
@@ -37,11 +39,14 @@ class CheckRoomInfoViewModel: ObservableObject {
     
     init(roomInfo: MakeRoomInfo,
          missionList: [Mission],
-         roomService: RoomServiceType
+         roomService: RoomServiceType,
+         navigationRouter: NavigationRoutableType
     ) {
         self.roomInfo = roomInfo
         self.missionList = missionList
         self.roomService = roomService
+        self.navigationRounter = navigationRouter
+        
         observe()
     }
     
@@ -89,6 +94,8 @@ class CheckRoomInfoViewModel: ObservableObject {
             print("초대코드 복사")
             UIPasteboard.general.string = inviteCode
             state.isPresented = false
+            navigationRounter.popToRootView()
+            
             break
         }
     }
