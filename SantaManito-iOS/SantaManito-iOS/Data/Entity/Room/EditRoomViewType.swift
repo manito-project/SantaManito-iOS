@@ -20,6 +20,8 @@ enum EditRoomViewType: Hashable {
         }
     }
     
+    
+    
     var roomID: String? {
         switch self {
         case .createMode: // 생성시 roomID는 존재하지 않음

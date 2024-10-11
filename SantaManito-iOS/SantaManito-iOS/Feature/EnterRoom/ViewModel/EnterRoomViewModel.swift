@@ -24,18 +24,15 @@ class EnterRoomViewModel: ObservableObject {
     //MARK: Dependency
     
     private var roomService: RoomServiceType // 임시의
-    private var editRoomService: EditRoomServiceType
     private var navigationRouter: NavigationRoutableType
     
     //MARK: Init
     
     init(
         roomService: RoomServiceType,
-        editRoomService: EditRoomServiceType,
         navigationRouter: NavigationRoutableType
     ) {
         self.roomService = roomService
-        self.editRoomService = editRoomService
         self.navigationRouter = navigationRouter
         
         observe()
@@ -59,14 +56,14 @@ class EnterRoomViewModel: ObservableObject {
     func send(action: Action) {
         switch action {
         case .enterButtonDidTap:
-            editRoomService.enterRoom(inviteCode: inviteCode)
+            roomService.enterRoom(at: inviteCode)
                 .mapError { [weak self] error in
                     self?.state.enterFailMessage = (true, error.description)
                     return error
                 }
                 .flatMap { [weak self] roomID -> AnyPublisher<RoomDetail, Error> in
                     guard let self else { return Empty().eraseToAnyPublisher() }
-                    return self.roomService.fetch(with: roomID)
+                    return self.roomService.getRoomInfo(with: roomID)
                         .catch { _ in Empty() }
                         .eraseToAnyPublisher()
                 }

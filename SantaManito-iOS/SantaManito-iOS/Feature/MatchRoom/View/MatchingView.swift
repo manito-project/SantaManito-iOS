@@ -63,7 +63,7 @@ struct MatchingView: View {
     let container = DIContainer.stub
     return MatchingView(
         viewModel: MatchingViewModel(
-            roomService: container.service.matchRoomService, 
+            roomService: container.service.roomService, 
             navigationRouter: container.navigationRouter
         )
     )

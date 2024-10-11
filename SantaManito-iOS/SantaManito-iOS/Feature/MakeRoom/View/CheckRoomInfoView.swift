@@ -203,7 +203,7 @@ private struct MissionCellView: View {
                 name: "여기가 마니또 방", remainingDays: 3, dueDate: Date()
             ),
             missionList: Mission.dummy(),
-            roomService: EditRoomService()
+            roomService: DIContainer.stub.service.roomService
         )
     )
     .environmentObject(DIContainer.default)
