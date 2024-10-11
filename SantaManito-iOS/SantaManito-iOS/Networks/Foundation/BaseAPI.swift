@@ -15,7 +15,7 @@ extension BaseAPI {
     }
     
     public var headers: [String: String]? {
-        return APIConstants.noTokenHeader
+        return APIConstants.hasTokenHeader
     }
 }
 
