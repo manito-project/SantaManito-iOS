@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		871D873B2CB8E5440050858A /* RoomServiceServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D873A2CB8E5440050858A /* RoomServiceServerTests.swift */; };
+		871D873D2CB8F0560050858A /* MemberResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D873C2CB8F0560050858A /* MemberResponse.swift */; };
 		874017A42CA1AB610096E847 /* RoomDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017A32CA1AB610096E847 /* RoomDetailResponse.swift */; };
 		874017A62CA1ABBE0096E847 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017A52CA1ABBE0096E847 /* UserResponse.swift */; };
 		874017A82CA1AC010096E847 /* MissionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017A72CA1AC010096E847 /* MissionResponse.swift */; };
@@ -137,6 +138,7 @@
 
 /* Begin PBXFileReference section */
 		871D873A2CB8E5440050858A /* RoomServiceServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomServiceServerTests.swift; sourceTree = "<group>"; };
+		871D873C2CB8F0560050858A /* MemberResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberResponse.swift; sourceTree = "<group>"; };
 		874017A32CA1AB610096E847 /* RoomDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailResponse.swift; sourceTree = "<group>"; };
 		874017A52CA1ABBE0096E847 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		874017A72CA1AC010096E847 /* MissionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionResponse.swift; sourceTree = "<group>"; };
@@ -408,7 +410,6 @@
 				87873BEE2CB2DB5C00E368BF /* User */,
 				D26879442CABB2150025A611 /* Room */,
 				874017A32CA1AB610096E847 /* RoomDetailResponse.swift */,
-				874017A52CA1ABBE0096E847 /* UserResponse.swift */,
 				874017A72CA1AC010096E847 /* MissionResponse.swift */,
 			);
 			path = DTO;
@@ -453,6 +454,8 @@
 		87873BEE2CB2DB5C00E368BF /* User */ = {
 			isa = PBXGroup;
 			children = (
+				874017A52CA1ABBE0096E847 /* UserResponse.swift */,
+				871D873C2CB8F0560050858A /* MemberResponse.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1036,6 +1039,7 @@
 				D26BFA8E2C91987900C5CF86 /* EnterRoomViewModel.swift in Sources */,
 				874017CD2CA7EC7A0096E847 /* EditRoomViewType.swift in Sources */,
 				874017A42CA1AB610096E847 /* RoomDetailResponse.swift in Sources */,
+				871D873D2CB8F0560050858A /* MemberResponse.swift in Sources */,
 				D276B6082C8AB64B00230FA2 /* Font.swift in Sources */,
 				D2E2068D2CB5317F001250AE /* RoomMyInfoDTO.swift in Sources */,
 				D268794C2CABB5CA0025A611 /* CreateRoomDTO.swift in Sources */,

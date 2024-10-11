@@ -9,7 +9,7 @@ import Foundation
 
 struct Member {
     var santa: User
-    var manitto: User
+    var manitto: User? 
 }
 
 extension Member {
