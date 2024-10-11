@@ -64,6 +64,10 @@ extension Date {
             let components = calendar.dateComponents([.day], from: start, to: end)
             return components.day ?? 0
         }
+    
+    var startOfDay: Date {
+            return Date(timeIntervalSince1970: floor(self.timeIntervalSince1970 / 86400) * 86400)
+        }
 
 }
 

@@ -34,7 +34,10 @@ protocol RoomServiceType {
 extension RoomService: RoomServiceType {
     func getEnteredRooms() -> AnyPublisher<[RoomDetail], SMNetworkError> {
         requestWithResult(.getEnteredAllRoom, [RoomDetailResponse].self)
-            .map { $0.map { $0.toEntity() }}
+            .map {
+                $0.map { $0.toEntity() }
+                    .sorted { $0.expirationDate < $1.expirationDate }
+            }
             .eraseToAnyPublisher()
     }
     
