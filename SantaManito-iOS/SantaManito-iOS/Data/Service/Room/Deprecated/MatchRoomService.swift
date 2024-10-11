@@ -84,32 +84,32 @@ extension MatchingFinishData {
 }
 
 
-
-protocol MatchRoomServiceType {
-    func matchPlayer() -> AnyPublisher<Void, Error>
-    func getManito(_ userID: String) -> AnyPublisher<MatchingFinishData, Error>
-    func getManitoResult(_ roomID: String) -> AnyPublisher<[MatchingFinishData], Error>
-    func deleteRoom(_ roomID: String) -> AnyPublisher<Void, Error>
-}
-
-struct StubMatchRoomService: MatchRoomServiceType {
-    
-    func matchPlayer() -> AnyPublisher<Void, Error> {
-        return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
-    }
-    
-    func getManito(_ userID: String) -> AnyPublisher<MatchingFinishData, Error> {
-        return Just(.stub1).setFailureType(to: Error.self).eraseToAnyPublisher()
-    }
-    
-    func getManitoResult(_ roomID: String) -> AnyPublisher<[MatchingFinishData], Error> {
-        return Just(MatchingFinishData.stubList).setFailureType(to: Error.self).eraseToAnyPublisher()
-    }
-    
-    func deleteRoom(_ roomID: String) -> AnyPublisher<Void, Error> {
-        return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
-    }
-}
-
-
-
+//
+//protocol MatchRoomServiceType {
+//    func matchPlayer() -> AnyPublisher<Void, Error>
+//    func getManito(_ userID: String) -> AnyPublisher<MatchingFinishData, Error>
+//    func getManitoResult(_ roomID: String) -> AnyPublisher<[MatchingFinishData], Error>
+//    func deleteRoom(_ roomID: String) -> AnyPublisher<Void, Error>
+//}
+//
+//struct StubMatchRoomService: MatchRoomServiceType {
+//    
+//    func matchPlayer() -> AnyPublisher<Void, Error> {
+//        return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+//    }
+//    
+//    func getManito(_ userID: String) -> AnyPublisher<MatchingFinishData, Error> {
+//        return Just(.stub1).setFailureType(to: Error.self).eraseToAnyPublisher()
+//    }
+//    
+//    func getManitoResult(_ roomID: String) -> AnyPublisher<[MatchingFinishData], Error> {
+//        return Just(MatchingFinishData.stubList).setFailureType(to: Error.self).eraseToAnyPublisher()
+//    }
+//    
+//    func deleteRoom(_ roomID: String) -> AnyPublisher<Void, Error> {
+//        return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+//    }
+//}
+//
+//
+//

@@ -25,7 +25,7 @@ class CheckRoomInfoViewModel: ObservableObject {
     
     //MARK: - Dependency
     
-    var roomService: EditRoomServiceType
+    var roomService: RoomServiceType
     @Published var roomInfo: MakeRoomInfo = MakeRoomInfo(
         name: "",
         remainingDays: 3,
@@ -37,7 +37,7 @@ class CheckRoomInfoViewModel: ObservableObject {
     
     init(roomInfo: MakeRoomInfo,
          missionList: [Mission],
-         roomService: EditRoomServiceType
+         roomService: RoomServiceType
     ) {
         self.roomInfo = roomInfo
         self.missionList = missionList
@@ -76,8 +76,8 @@ class CheckRoomInfoViewModel: ObservableObject {
             }
             
         case .makeRoomButtonDidTap:
-            let request = CreateRoomRequest(roomName: "안뇽", expirationDate: "2024-08-24", missionContents: ["임시로 넣어둘게요!"])
-            roomService.createRoom(request)
+            let request = CreateRoomRequest(roomName: "안뇽", expirationDate: "2024-08-24", missionContents: ["임시로 넣어둘게요!"]) //TODO: asdf
+            roomService.createRoom(request: request)
                 .catch { _ in Empty() }
                 .sink { inviteCode in
                     owner.inviteCode = inviteCode

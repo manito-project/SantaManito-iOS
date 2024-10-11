@@ -60,7 +60,7 @@ class HomeViewModel: ObservableObject {
             
         case .onAppear, .refreshButtonDidTap:
             
-            roomService.fetchAll()
+            roomService.getEnteredRooms()
                 .receive(on: DispatchQueue.main)
                 .assignLoading(to: \.state.isLoading, on: owner)
                 .catch { _ in Empty() }

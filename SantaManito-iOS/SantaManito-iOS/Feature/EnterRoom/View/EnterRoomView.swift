@@ -103,7 +103,6 @@ struct EnterRoomView: View {
     return EnterRoomView(
         viewModel: EnterRoomViewModel(
             roomService: container.service.roomService,
-            editRoomService: container.service.editRoomService,
             navigationRouter: container.navigationRouter
         )
     )

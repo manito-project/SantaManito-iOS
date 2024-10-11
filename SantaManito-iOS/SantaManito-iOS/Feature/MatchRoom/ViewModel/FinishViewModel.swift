@@ -55,21 +55,15 @@ class FinishViewModel: ObservableObject {
     //MARK: Dependency
     
     private var roomService: RoomServiceType
-    private var matchRoomService: MatchRoomServiceType
-    private var editRoomService: EditRoomServiceType
     private var navigationRouter: NavigationRoutableType
     
     //MARK: Init
     
     init(
         roomService: RoomServiceType,
-        matchRoomService: MatchRoomServiceType,
-        editRoomService: EditRoomServiceType,
         navigationRouter: NavigationRoutableType
     ) {
         self.roomService = roomService
-        self.matchRoomService = matchRoomService
-        self.editRoomService = editRoomService
         self.navigationRouter = navigationRouter
     }
     
@@ -83,12 +77,12 @@ class FinishViewModel: ObservableObject {
     func send(action: Action) {
         switch action {
         case .onAppear:
-            matchRoomService.getManito("")
-                .catch { _ in Empty() }
-                .assign(to: \.state.manito, on: self)
-                .store(in: cancelBag)
-            
-            roomService.fetch(with: "roomID")
+//            roomService.getManito("") //TODO: service 변경
+//                .catch { _ in Empty() }
+//                .assign(to: \.state.manito, on: self)
+//                .store(in: cancelBag)
+//            
+            roomService.getRoomInfo(with: "roomID") //TODO: roomid
                 .map { [weak self] roomInfo in
                     self?.state.roomName = roomInfo.name
                     let startDate = roomInfo.expirationDate.adjustDays(-Int(roomInfo.remainingDays)!).toDueDate
@@ -102,7 +96,7 @@ class FinishViewModel: ObservableObject {
             state.viewType = state.viewType == .me ? .all : .me
             
         case .deleteRoomButtonDidTap:
-            editRoomService.deleteRoom(with: "roomID")
+            roomService.deleteRoom(with: "roomID") //TODO: roomid
                 .catch { _ in Empty() }
                 .sink(receiveValue: { [weak self] _ in
                     self?.navigationRouter.popToRootView()

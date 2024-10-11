@@ -25,13 +25,13 @@ class MatchingViewModel: ObservableObject {
     
     //MARK: Dependency
     
-    private var roomService: MatchRoomServiceType
+    private var roomService: RoomServiceType
     private var navigationRouter: NavigationRoutable
     
     //MARK: Init
     
     init(
-        roomService: MatchRoomServiceType,
+        roomService: RoomServiceType,
         navigationRouter: NavigationRoutable
     ) {
         self.roomService = roomService
@@ -51,7 +51,7 @@ class MatchingViewModel: ObservableObject {
             //TODO: isMatched 변수 변경
         case .onAppear:
             self.state.isAnimating = true
-            roomService.matchPlayer()
+            roomService.matchRoom(with: "roomID") //TODO: asdf
                 .catch { _ in Empty() }
                 .sink { [weak self] _ in
                     self?.state.isAnimating = false
