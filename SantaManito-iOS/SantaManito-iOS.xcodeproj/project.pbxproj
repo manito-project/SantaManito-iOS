@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		871D873B2CB8E5440050858A /* RoomServiceServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D873A2CB8E5440050858A /* RoomServiceServerTests.swift */; };
 		874017A42CA1AB610096E847 /* RoomDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017A32CA1AB610096E847 /* RoomDetailResponse.swift */; };
 		874017A62CA1ABBE0096E847 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017A52CA1ABBE0096E847 /* UserResponse.swift */; };
 		874017A82CA1AC010096E847 /* MissionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017A72CA1AC010096E847 /* MissionResponse.swift */; };
@@ -135,6 +136,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		871D873A2CB8E5440050858A /* RoomServiceServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomServiceServerTests.swift; sourceTree = "<group>"; };
 		874017A32CA1AB610096E847 /* RoomDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailResponse.swift; sourceTree = "<group>"; };
 		874017A52CA1ABBE0096E847 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		874017A72CA1AC010096E847 /* MissionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionResponse.swift; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 				87873BD12CAC211E00E368BF /* FirebaseRemoteConfigTests.swift */,
 				87873BE62CAFF63800E368BF /* VersionEntityTests.swift */,
 				87873BE82CB00BFF00E368BF /* AppServiceTests.swift */,
+				871D873A2CB8E5440050858A /* RoomServiceServerTests.swift */,
 			);
 			path = SantaManitoUnitTests;
 			sourceTree = "<group>";
@@ -955,6 +958,7 @@
 				87873BD22CAC211E00E368BF /* FirebaseRemoteConfigTests.swift in Sources */,
 				87873BE92CB00BFF00E368BF /* AppServiceTests.swift in Sources */,
 				87873BE72CAFF63800E368BF /* VersionEntityTests.swift in Sources */,
+				871D873B2CB8E5440050858A /* RoomServiceServerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

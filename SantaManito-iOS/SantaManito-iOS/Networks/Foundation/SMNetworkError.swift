@@ -16,9 +16,9 @@ import Foundation
     var description: String {
         switch self {
         case .invalidRequest(let requestError):
-            return "요청 시 발생된" + requestError.description
+            return "요청 시 발생된 " + requestError.description
         case .invalidResponse(let responseError):
-            return "응답 시 발생된" + responseError.description
+            return "응답 시 발생된 " + responseError.description
         case .decodingFailed(let decodeError):
             return decodeError.description
         case .unknown(let error):
