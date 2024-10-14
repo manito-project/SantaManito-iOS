@@ -44,7 +44,7 @@ extension RoomDetailResponse {
                           creatorName: self.creator.username,
                           members: members.map { $0.toEntity()},
                           mission: missions.map { $0.toEntity()} ,
-                          createdAt: Date().addingTimeInterval(-19400), // TODO: 위 주석 해제하면 createdAt에 연결해야함.
+                          createdAt: Date().addingTimeInterval(-3 * 24 * 60 * 60), // TODO: 위 주석 해제하면 createdAt에 연결해야함.
                           expirationDate: self.expirationDate
         )
     }

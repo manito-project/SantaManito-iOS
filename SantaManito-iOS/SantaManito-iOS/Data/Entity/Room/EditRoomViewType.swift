@@ -35,7 +35,7 @@ enum EditRoomViewType: Hashable {
         switch self {
         case .createMode: //생성 시 기본 값으로 설정
             return .init(name: "",
-                         remainingDays: 3,
+                         totalDurationDays: 3,
                          dueDate: Date())
         case let .editMode(_, roomInfo): //수정 시 이전 값으로 가져옴
             return roomInfo
