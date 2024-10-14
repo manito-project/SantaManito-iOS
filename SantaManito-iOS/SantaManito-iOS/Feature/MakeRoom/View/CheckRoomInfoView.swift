@@ -199,9 +199,7 @@ private struct MissionCellView: View {
     let container = DIContainer.stub
     return CheckRoomInfoView(
         viewModel: CheckRoomInfoViewModel(
-            roomInfo: MakeRoomInfo(
-                name: "여기가 마니또 방", remainingDays: 3, dueDate: Date()
-            ),
+            roomInfo: .stub1,
             missionList: Mission.dummy(),
             roomService: DIContainer.stub.service.roomService,
             navigationRouter: DIContainer.stub.navigationRouter

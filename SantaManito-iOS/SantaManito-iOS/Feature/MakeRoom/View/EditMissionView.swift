@@ -192,12 +192,7 @@ fileprivate struct MakeMissionButtonView: View {
     let container = DIContainer.stub
     return EditMissionView(
         viewModel: EditMissionViewModel(
-            roomInfo:
-                    .init(
-                        name: "",
-                        remainingDays: 3,
-                        dueDate: Date()
-                    ),
+            roomInfo: .stub1,
             navigationRouter: container.navigationRouter
         )
     )

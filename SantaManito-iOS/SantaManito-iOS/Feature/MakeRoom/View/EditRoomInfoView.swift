@@ -137,7 +137,7 @@ fileprivate struct SettingRoomInfoView: View {
                 .disabled(!viewModel.state.canDecreaseDays)
                 .padding(.all, 10)
                 
-                Text("\(viewModel.roomInfo.remainingDays)일 후")
+                Text("\(viewModel.roomInfo.totalDurationDays)일 후")
                     .font(.medium_16)
                     .foregroundColor(.smDarkgray)
                 

@@ -28,11 +28,7 @@ class CheckRoomInfoViewModel: ObservableObject {
     private var roomService: RoomServiceType
     private var navigationRounter: NavigationRoutableType
     
-    @Published var roomInfo: MakeRoomInfo = MakeRoomInfo(
-        name: "",
-        remainingDays: 3,
-        dueDate: Date()
-    )
+    @Published var roomInfo: MakeRoomInfo
     @Published var missionList: [Mission]
     
     //MARK: - Init

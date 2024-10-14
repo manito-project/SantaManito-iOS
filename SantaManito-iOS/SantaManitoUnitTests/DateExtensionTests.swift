@@ -61,7 +61,7 @@ final class DateParsingTests: XCTestCase {
         let end = formatter.date(from: endString)!
         
         // When
-        let remainingDays = start.daysBetween(end)
+        let remainingDays = start.daysBetweenInSeoulTimeZone(end)
         
         // Then
         XCTAssertEqual(remainingDays, 1)
@@ -78,7 +78,7 @@ final class DateParsingTests: XCTestCase {
         let end = formatter.date(from: endString)!
         
         // When
-        let remainingDays = start.daysBetween(end)
+        let remainingDays = start.daysBetweenInSeoulTimeZone(end)
         
         // Then
         XCTAssertEqual(remainingDays, 1)
@@ -98,7 +98,7 @@ final class DateParsingTests: XCTestCase {
         let end = formatter.date(from: endString)!
         
         // When
-        let remainingDays = start.daysBetween(end)
+        let remainingDays = start.daysBetweenInSeoulTimeZone(end)
         
         // Then
         XCTAssertEqual(remainingDays, 1)
@@ -115,7 +115,7 @@ final class DateParsingTests: XCTestCase {
         let end = formatter.date(from: endString)!
         
         // When
-        let remainingDays = start.daysBetween(end)
+        let remainingDays = start.daysBetweenInSeoulTimeZone(end)
         
         // Then
         XCTAssertNotEqual(remainingDays, 1)
