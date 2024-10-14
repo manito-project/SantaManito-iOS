@@ -42,9 +42,10 @@ extension RoomDetailResponse {
                           state: RoomStateFactory.create(self),
                           creatorID: self.creator.id,
                           creatorName: self.creator.username,
-                          mission: missions.map { $0.toEntity()},
-                          expirationDate: self.expirationDate,
-                          members: members.map { $0.toEntity() }
+                          members: members.map { $0.toEntity()},
+                          mission: missions.map { $0.toEntity()} ,
+                          createdAt: Date().addingTimeInterval(-19400), // TODO: 위 주석 해제하면 createdAt에 연결해야함.
+                          expirationDate: self.expirationDate
         )
     }
 }
