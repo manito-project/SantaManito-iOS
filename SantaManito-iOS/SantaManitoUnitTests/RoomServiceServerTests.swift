@@ -47,7 +47,7 @@ final class RoomServiceServerTests: XCTestCase {
         
         let expectation = XCTestExpectation()
         
-        sut.getRoomInfoTest(with: "f037c558-6589-4ad8-b056-feee994410d4")
+        sut.getRoomInfo(with: "f037c558-6589-4ad8-b056-feee994410d4")
             .sink { completion in
                 expectation.fulfill()
                 
