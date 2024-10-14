@@ -50,11 +50,4 @@ extension RoomDetailResponse {
     }
 }
 
-struct RoomStateFactory {
-    static func create(_ dto: RoomDetailResponse) -> RoomState {
-        guard dto.deletedByCreatorDate == nil else { return .deleted }
-        guard dto.expirationDate > Date() else { return .completed } 
-        guard dto.matchingDate != nil else { return .notStarted }
-        return .inProgress
-    }
-}
+

@@ -57,8 +57,10 @@ extension Date {
         let dateComponents = calendar.dateComponents([.year, .month, .day], from: futureDate)
         return calendar.date(from: dateComponents) ?? Date()
     }
+    
     func daysBetween(_ date: Date) -> Int {
-            let calendar = Calendar.current
+            var calendar = Calendar.current
+            calendar.timeZone = TimeZone(identifier: "Asia/Seoul")!
             let start = calendar.startOfDay(for: self)
             let end = calendar.startOfDay(for: date)
             let components = calendar.dateComponents([.day], from: start, to: end)
