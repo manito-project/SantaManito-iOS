@@ -19,10 +19,10 @@ struct RoomDetail: Hashable {
     let members: [Member]
     
     var isHost: Bool {
-        "userID1" == creatorID //TODO: 로그인시 유저디폴트에 저장로직
+        UserDefaultsService.userID == creatorID //TODO: 로그인시 유저디폴트에 저장로직
     }
     var remainingDays: String {
-        return String(expirationDate.daysBetween(Date()))//TODO: 만료일 - 오늘 로직
+        return String(Date().daysBetween(expirationDate))//TODO: 만료일 - 오늘 로직
     }
     
     var expirationDateToString: String {

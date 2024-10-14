@@ -12,7 +12,7 @@ struct RoomDetailResponse: Decodable {
     let id: String
     let roomName: String
     let invitationCode: String
-//    let createdAt: Date
+//    let createdAt: Date //TODO: 상수님이 dateformat 통일 작업 하면 주석 제거해야함 2024.10.14 석우가
     let expirationDate: Date
     let matchingDate: Date?
     let deletedByCreatorDate: Date?
@@ -52,7 +52,7 @@ extension RoomDetailResponse {
 struct RoomStateFactory {
     static func create(_ dto: RoomDetailResponse) -> RoomState {
         guard dto.deletedByCreatorDate == nil else { return .deleted }
-        guard dto.expirationDate > Date() else { return .completed } //TODO: 서버와 클라의 TimeZone에 대한 논의 후 결정.
+        guard dto.expirationDate > Date() else { return .completed } 
         guard dto.matchingDate != nil else { return .notStarted }
         return .inProgress
     }

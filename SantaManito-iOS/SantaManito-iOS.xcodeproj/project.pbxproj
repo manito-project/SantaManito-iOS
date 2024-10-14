@@ -96,7 +96,6 @@
 		D26879432CAB8DA30025A611 /* NetworkLogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879422CAB8DA30025A611 /* NetworkLogHandler.swift */; };
 		D26879462CABB2F30025A611 /* EditRoomDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879452CABB2F30025A611 /* EditRoomDTO.swift */; };
 		D26879482CABB3A80025A611 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879472CABB3A80025A611 /* GenericResponse.swift */; };
-		D268794A2CABB51E0025A611 /* RoomDetailDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26879492CABB51E0025A611 /* RoomDetailDTO.swift */; };
 		D268794C2CABB5CA0025A611 /* CreateRoomDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D268794B2CABB5CA0025A611 /* CreateRoomDTO.swift */; };
 		D26BFA802C91692700C5CF86 /* SMInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA7F2C91692700C5CF86 /* SMInfoView.swift */; };
 		D26BFA8C2C91987200C5CF86 /* EnterRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA8B2C91987200C5CF86 /* EnterRoomView.swift */; };
@@ -229,7 +228,6 @@
 		D26879422CAB8DA30025A611 /* NetworkLogHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogHandler.swift; sourceTree = "<group>"; };
 		D26879452CABB2F30025A611 /* EditRoomDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomDTO.swift; sourceTree = "<group>"; };
 		D26879472CABB3A80025A611 /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
-		D26879492CABB51E0025A611 /* RoomDetailDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailDTO.swift; sourceTree = "<group>"; };
 		D268794B2CABB5CA0025A611 /* CreateRoomDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoomDTO.swift; sourceTree = "<group>"; };
 		D26BFA7F2C91692700C5CF86 /* SMInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMInfoView.swift; sourceTree = "<group>"; };
 		D26BFA8B2C91987200C5CF86 /* EnterRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomView.swift; sourceTree = "<group>"; };
@@ -411,8 +409,6 @@
 				87873BEF2CB2DB6000E368BF /* Auth */,
 				87873BEE2CB2DB5C00E368BF /* User */,
 				D26879442CABB2150025A611 /* Room */,
-				874017A32CA1AB610096E847 /* RoomDetailResponse.swift */,
-				874017A72CA1AC010096E847 /* MissionResponse.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -745,7 +741,8 @@
 			isa = PBXGroup;
 			children = (
 				D26879452CABB2F30025A611 /* EditRoomDTO.swift */,
-				D26879492CABB51E0025A611 /* RoomDetailDTO.swift */,
+				874017A32CA1AB610096E847 /* RoomDetailResponse.swift */,
+				874017A72CA1AC010096E847 /* MissionResponse.swift */,
 				D268794B2CABB5CA0025A611 /* CreateRoomDTO.swift */,
 				D23410762CB1A8920066A2F9 /* EnterRoomDTO.swift */,
 				D2E2068C2CB5317F001250AE /* RoomMyInfoDTO.swift */,
@@ -1023,7 +1020,6 @@
 				874017B32CA29FEF0096E847 /* MyPageItem.swift in Sources */,
 				D229FE802CA7D17600979421 /* ParameterEncoding.swift in Sources */,
 				D23410772CB1A8920066A2F9 /* EnterRoomDTO.swift in Sources */,
-				D268794A2CABB51E0025A611 /* RoomDetailDTO.swift in Sources */,
 				877CA07F2C8C50DC00D23193 /* Corner.swift in Sources */,
 				877CA0732C8C4C5C00D23193 /* SMView.swift in Sources */,
 				87C06E5F2C9EADD600F03637 /* NavigationRoutingView.swift in Sources */,
