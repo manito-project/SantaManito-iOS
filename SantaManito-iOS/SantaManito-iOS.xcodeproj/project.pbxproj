@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		871D873B2CB8E5440050858A /* RoomServiceServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D873A2CB8E5440050858A /* RoomServiceServerTests.swift */; };
 		871D873D2CB8F0560050858A /* MemberResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D873C2CB8F0560050858A /* MemberResponse.swift */; };
-		871D87412CBCF62F0050858A /* DateParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D87402CBCF62F0050858A /* DateParsingTests.swift */; };
+		871D87412CBCF62F0050858A /* DateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D87402CBCF62F0050858A /* DateExtensionTests.swift */; };
 		871D87432CBCFE0E0050858A /* RoomDetailEntityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D87422CBCFE0E0050858A /* RoomDetailEntityTests.swift */; };
 		871D87462CBCFF7F0050858A /* RoomStateFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D87452CBCFF7F0050858A /* RoomStateFactoryTests.swift */; };
-		874017A42CA1AB610096E847 /* RoomDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017A32CA1AB610096E847 /* RoomDetailResponse.swift */; };
+		871D87482CBD05C40050858A /* RoomStateFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D87472CBD05C40050858A /* RoomStateFactory.swift */; };
+		874017A42CA1AB610096E847 /* RoomDetailDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017A32CA1AB610096E847 /* RoomDetailDTO.swift */; };
 		874017A62CA1ABBE0096E847 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017A52CA1ABBE0096E847 /* UserResponse.swift */; };
-		874017A82CA1AC010096E847 /* MissionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017A72CA1AC010096E847 /* MissionResponse.swift */; };
+		874017A82CA1AC010096E847 /* MissionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017A72CA1AC010096E847 /* MissionDTO.swift */; };
 		874017AA2CA1B2FC0096E847 /* RoomDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017A92CA1B2FC0096E847 /* RoomDetail.swift */; };
 		874017AC2CA1B3040096E847 /* RoomState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017AB2CA1B3040096E847 /* RoomState.swift */; };
 		874017AE2CA29C690096E847 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017AD2CA29C690096E847 /* MyPageView.swift */; };
@@ -141,12 +142,13 @@
 /* Begin PBXFileReference section */
 		871D873A2CB8E5440050858A /* RoomServiceServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomServiceServerTests.swift; sourceTree = "<group>"; };
 		871D873C2CB8F0560050858A /* MemberResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberResponse.swift; sourceTree = "<group>"; };
-		871D87402CBCF62F0050858A /* DateParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateParsingTests.swift; sourceTree = "<group>"; };
+		871D87402CBCF62F0050858A /* DateExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionTests.swift; sourceTree = "<group>"; };
 		871D87422CBCFE0E0050858A /* RoomDetailEntityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailEntityTests.swift; sourceTree = "<group>"; };
 		871D87452CBCFF7F0050858A /* RoomStateFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomStateFactoryTests.swift; sourceTree = "<group>"; };
-		874017A32CA1AB610096E847 /* RoomDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailResponse.swift; sourceTree = "<group>"; };
+		871D87472CBD05C40050858A /* RoomStateFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomStateFactory.swift; sourceTree = "<group>"; };
+		874017A32CA1AB610096E847 /* RoomDetailDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailDTO.swift; sourceTree = "<group>"; };
 		874017A52CA1ABBE0096E847 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
-		874017A72CA1AC010096E847 /* MissionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionResponse.swift; sourceTree = "<group>"; };
+		874017A72CA1AC010096E847 /* MissionDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDTO.swift; sourceTree = "<group>"; };
 		874017A92CA1B2FC0096E847 /* RoomDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetail.swift; sourceTree = "<group>"; };
 		874017AB2CA1B3040096E847 /* RoomState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomState.swift; sourceTree = "<group>"; };
 		874017AD2CA29C690096E847 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
@@ -443,7 +445,7 @@
 				87873BE62CAFF63800E368BF /* VersionEntityTests.swift */,
 				87873BE82CB00BFF00E368BF /* AppServiceTests.swift */,
 				871D873A2CB8E5440050858A /* RoomServiceServerTests.swift */,
-				871D87402CBCF62F0050858A /* DateParsingTests.swift */,
+				871D87402CBCF62F0050858A /* DateExtensionTests.swift */,
 			);
 			path = SantaManitoUnitTests;
 			sourceTree = "<group>";
@@ -754,9 +756,10 @@
 		D26879442CABB2150025A611 /* Room */ = {
 			isa = PBXGroup;
 			children = (
+				871D87472CBD05C40050858A /* RoomStateFactory.swift */,
 				D26879452CABB2F30025A611 /* EditRoomDTO.swift */,
-				874017A32CA1AB610096E847 /* RoomDetailResponse.swift */,
-				874017A72CA1AC010096E847 /* MissionResponse.swift */,
+				874017A32CA1AB610096E847 /* RoomDetailDTO.swift */,
+				874017A72CA1AC010096E847 /* MissionDTO.swift */,
 				D268794B2CABB5CA0025A611 /* CreateRoomDTO.swift */,
 				D23410762CB1A8920066A2F9 /* EnterRoomDTO.swift */,
 				D2E2068C2CB5317F001250AE /* RoomMyInfoDTO.swift */,
@@ -974,7 +977,7 @@
 			files = (
 				87873BD22CAC211E00E368BF /* FirebaseRemoteConfigTests.swift in Sources */,
 				87873BE92CB00BFF00E368BF /* AppServiceTests.swift in Sources */,
-				871D87412CBCF62F0050858A /* DateParsingTests.swift in Sources */,
+				871D87412CBCF62F0050858A /* DateExtensionTests.swift in Sources */,
 				87873BE72CAFF63800E368BF /* VersionEntityTests.swift in Sources */,
 				871D87432CBCFE0E0050858A /* RoomDetailEntityTests.swift in Sources */,
 				871D873B2CB8E5440050858A /* RoomServiceServerTests.swift in Sources */,
@@ -1033,6 +1036,7 @@
 				87C06E5A2C9EA5FE00F03637 /* Device.swift in Sources */,
 				D26879482CABB3A80025A611 /* GenericResponse.swift in Sources */,
 				D26879432CAB8DA30025A611 /* NetworkLogHandler.swift in Sources */,
+				871D87482CBD05C40050858A /* RoomStateFactory.swift in Sources */,
 				874017B32CA29FEF0096E847 /* MyPageItem.swift in Sources */,
 				D229FE802CA7D17600979421 /* ParameterEncoding.swift in Sources */,
 				D23410772CB1A8920066A2F9 /* EnterRoomDTO.swift in Sources */,
@@ -1054,7 +1058,7 @@
 				87C06E612C9EADE700F03637 /* NavigationDestination.swift in Sources */,
 				D26BFA8E2C91987900C5CF86 /* EnterRoomViewModel.swift in Sources */,
 				874017CD2CA7EC7A0096E847 /* EditRoomViewType.swift in Sources */,
-				874017A42CA1AB610096E847 /* RoomDetailResponse.swift in Sources */,
+				874017A42CA1AB610096E847 /* RoomDetailDTO.swift in Sources */,
 				871D873D2CB8F0560050858A /* MemberResponse.swift in Sources */,
 				D276B6082C8AB64B00230FA2 /* Font.swift in Sources */,
 				D2E2068D2CB5317F001250AE /* RoomMyInfoDTO.swift in Sources */,
@@ -1079,7 +1083,7 @@
 				879829052C9827B200A863EC /* HomeViewModel.swift in Sources */,
 				D26BFA912C919D0000C5CF86 /* ManitoWaitingRoomView.swift in Sources */,
 				877CA0892C8CB61100D23193 /* DSKitDemoView.swift in Sources */,
-				874017A82CA1AC010096E847 /* MissionResponse.swift in Sources */,
+				874017A82CA1AC010096E847 /* MissionDTO.swift in Sources */,
 				87873BFB2CB2EB6100E368BF /* UserDefault.swift in Sources */,
 				D26879412CAA83500025A611 /* Paths.swift in Sources */,
 				D229FE782CA7CEA200979421 /* HTTPMethod.swift in Sources */,

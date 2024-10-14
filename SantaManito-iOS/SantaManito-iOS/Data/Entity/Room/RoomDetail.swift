@@ -23,8 +23,9 @@ struct RoomDetail: Hashable {
     var isHost: Bool {
         UserDefaultsService.userID == creatorID
     }
-    var remainingDays: String {
-        return String(Date().daysBetween(expirationDate))//TODO: 0일 및 24시간이 제대로 동작하는지 확인 필요
+    
+    var remainingDays: Int {
+        return Date().daysBetween(expirationDate) //TODO: 0일 및 24시간이 제대로 동작하는지 확인 필요
     }
     
     var expirationDateToString: String {
@@ -33,14 +34,18 @@ struct RoomDetail: Hashable {
 }
 
 extension RoomDetail {
+    
+    //TODO: remainingDays: 0일 및 24시간이 제대로 동작하는지 확인 필요
+    
     func toMakeRoomInfo() -> MakeRoomInfo {
-        //TODO: remainingDays = (self.expirationDate - Date()) 로직
-        
-        .init(name: self.name,
-              remainingDays: Date().daysBetween(expirationDate),
-              dueDate: self.expirationDate)
+        .init(
+            name: self.name,
+            remainingDays: self.createdAt.daysBetween(expirationDate),
+            dueDate: self.expirationDate
+        )
     }
 }
+
 
 
 extension RoomDetail {
@@ -101,9 +106,6 @@ extension RoomDetail {
               expirationDate: Date()
               )
     }
-    
-    
-    
     
     
     static var stub5: Self {
