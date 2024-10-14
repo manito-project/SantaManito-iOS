@@ -7,9 +7,6 @@
 
 import Foundation
 
-struct RoomDetailTestReseponse: Decodable {
-    let createdAt: Date
-}
 
 struct RoomDetailResponse: Decodable {
     let id: String
