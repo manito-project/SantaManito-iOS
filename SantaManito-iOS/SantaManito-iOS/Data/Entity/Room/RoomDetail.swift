@@ -16,7 +16,7 @@ struct RoomDetail: Hashable {
     var creatorName: String
     var mission: [Mission]
     let expirationDate: Date
-    let members: [User]
+    let members: [Member]
     
     var isHost: Bool {
         "userID1" == creatorID //TODO: 로그인시 유저디폴트에 저장로직
@@ -51,7 +51,8 @@ extension RoomDetail {
               creatorName: User.stub1.username,
               mission: [],
               expirationDate: Date(), 
-              members: [.stub1, .stub2, .stub3, .stub4])
+              members: .stub1
+        )
     }
     
     static var stub2: Self {
@@ -63,7 +64,7 @@ extension RoomDetail {
               creatorName: User.stub1.username,
               mission: [],
               expirationDate: Date(),
-              members: [.stub1, .stub2, .stub3, .stub4])
+              members: .stub2)
     }
      
     
@@ -76,7 +77,7 @@ extension RoomDetail {
               creatorName: User.stub2.username,
               mission: [],
               expirationDate: Date(),
-              members: [.stub1, .stub2, .stub3, .stub4])
+              members: .stub2)
     }
     
     
@@ -89,7 +90,7 @@ extension RoomDetail {
               creatorName: User.stub1.username,
               mission: [],
               expirationDate: Date(),
-              members: [.stub1, .stub2])
+              members: .stub3)
     }
     
     
@@ -105,6 +106,6 @@ extension RoomDetail {
               creatorName: User.stub1.username,
               mission: [],
               expirationDate: Date(),
-              members: [.stub1, .stub2])
+              members: .stub3)
     }
 }

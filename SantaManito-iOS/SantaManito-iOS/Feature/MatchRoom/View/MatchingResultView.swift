@@ -70,7 +70,7 @@ fileprivate struct MatchingInfoView: View {
                 HStack {
                     Spacer()
                     
-                    Text(viewModel.state.manito.manitto.username)
+                    Text(viewModel.state.mySanta.username)
                         .font(.semibold_24)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.white)
@@ -89,7 +89,7 @@ fileprivate struct MatchingInfoView: View {
                     .font(.semibold_18)
                     .foregroundColor(.smDarkgray)
                 
-                Text(viewModel.state.manito.mission.content)
+                Text(viewModel.state.mission) // TODO: 미션 로직 수정 필요
                     .font(.medium_16)
                     .foregroundColor(.smDarkgray)
                     .multilineTextAlignment(.center)

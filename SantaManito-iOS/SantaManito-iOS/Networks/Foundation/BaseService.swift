@@ -83,7 +83,7 @@ extension BaseService {
     private func decode<T: Decodable>(data: Data, target: API) -> AnyPublisher<T, SMNetworkError> {
         let decoder = JSONDecoder()
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm"
         formatter.timeZone = TimeZone(secondsFromGMT: -1 * 9 * 60 * 60) // 한국 시간 (KST) UTC+9로 설정
         decoder.dateDecodingStrategy = .formatted(formatter)
         

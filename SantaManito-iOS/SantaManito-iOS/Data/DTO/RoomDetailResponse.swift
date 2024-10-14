@@ -12,13 +12,26 @@ struct RoomDetailResponse: Decodable {
     let id: String
     let roomName: String
     let invitationCode: String
-    let createdAt: Date
+//    let createdAt: Date
     let expirationDate: Date
     let matchingDate: Date?
     let deletedByCreatorDate: Date?
-    let Creator: UserResponse
-    let Missions: [MissionResponse]
-    let Members: [UserResponse]
+    let creator: UserResponse
+    let missions: [MissionResponse]
+    let members: [MemberResponse]
+    
+    enum CodingKeys: String, CodingKey {
+            case id
+            case roomName
+            case invitationCode
+//            case createdAt
+            case expirationDate
+            case matchingDate
+            case deletedByCreatorDate
+            case creator = "Creator"
+            case missions = "Missions"
+            case members = "Members"
+        }
 }
 
 extension RoomDetailResponse {
@@ -27,11 +40,11 @@ extension RoomDetailResponse {
                           name: self.roomName,
                           invitationCode: self.invitationCode,
                           state: RoomStateFactory.create(self),
-                          creatorID: self.Creator.id,
-                          creatorName: self.Creator.username,
-                          mission: Missions.map { $0.toEntity()},
+                          creatorID: self.creator.id,
+                          creatorName: self.creator.username,
+                          mission: missions.map { $0.toEntity()},
                           expirationDate: self.expirationDate,
-                          members: Members.map { $0.toEntity() }
+                          members: members.map { $0.toEntity() }
         )
     }
 }
