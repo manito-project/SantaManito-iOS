@@ -51,7 +51,7 @@ extension RoomDetailResponse {
 
 struct RoomStateFactory {
     static func create(_ dto: RoomDetailResponse) -> RoomState {
-        guard dto.deletedByCreatorDate != nil else { return .deleted }
+        guard dto.deletedByCreatorDate == nil else { return .deleted }
         guard dto.expirationDate > Date() else { return .completed } //TODO: 서버와 클라의 TimeZone에 대한 논의 후 결정.
         guard dto.matchingDate != nil else { return .notStarted }
         return .inProgress
