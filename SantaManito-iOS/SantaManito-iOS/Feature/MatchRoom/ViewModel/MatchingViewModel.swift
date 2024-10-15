@@ -27,15 +27,18 @@ class MatchingViewModel: ObservableObject {
     
     private var roomService: RoomServiceType
     private var navigationRouter: NavigationRoutable
+    private let roomID: String
     
     //MARK: Init
     
     init(
         roomService: RoomServiceType,
-        navigationRouter: NavigationRoutable
+        navigationRouter: NavigationRoutable,
+        roomID: String
     ) {
         self.roomService = roomService
         self.navigationRouter = navigationRouter
+        self.roomID = roomID
     }
     
     //MARK: Properties
@@ -46,16 +49,22 @@ class MatchingViewModel: ObservableObject {
     //MARK: Methods
     
     func send(action: Action) {
-        switch action {
-            //TODO: 마니또 서버 통신
-            //TODO: isMatched 변수 변경
+        weak var owner = self
+        guard let owner else { return }
+        
+        switch action { //TODO: isMatched 변수 변경
         case .onAppear:
             self.state.isAnimating = true
-            roomService.matchRoom(with: "roomID") //TODO: asdf
+            
+            Just(roomID)
+                .flatMap(roomService.matchRoom)
+                .map { owner.roomID}
+                .flatMap(roomService.getRoomInfo)
+                .assignLoading(to: \.state.isAnimating, on: owner)
                 .catch { _ in Empty() }
-                .sink { [weak self] _ in
-                    self?.state.isAnimating = false
-                    self?.navigationRouter.push(to: .matchedRoom)
+                .sink { roomDetail in
+                    owner.state.isAnimating = false
+                    owner.navigationRouter.push(to: .matchedRoom(roomInfo: roomDetail))
                 }
                 .store(in: cancelBag)
         }

@@ -70,7 +70,7 @@ class ManitoWaitingRoomViewModel: ObservableObject {
             
         case .matchingButtonDidTap:
 //            navigationRouter.push(to: .matchRoom) -> 원래는 이거
-            navigationRouter.push(to: .matchedRoom)
+            navigationRouter.push(to: .matchedRoom(roomInfo: state.roomDetail))
             
         case .editButtonDidTap:
             navigationRouter.push(to: .editRoom(viewType: .editMode(roomID: state.roomDetail.id, info: state.roomDetail.toMakeRoomInfo())))

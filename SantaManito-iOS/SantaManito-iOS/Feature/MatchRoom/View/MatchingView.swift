@@ -64,7 +64,8 @@ struct MatchingView: View {
     return MatchingView(
         viewModel: MatchingViewModel(
             roomService: container.service.roomService, 
-            navigationRouter: container.navigationRouter
+            navigationRouter: container.navigationRouter,
+            roomID: "roomID1"
         )
     )
     .environmentObject(DIContainer.default)
