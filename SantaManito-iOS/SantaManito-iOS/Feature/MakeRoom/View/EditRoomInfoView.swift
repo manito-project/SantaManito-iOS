@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EditRoomInfoView: View {
-    @EnvironmentObject var container: DIContainer
+
     @StateObject var viewModel: EditRoomInfoViewModel
 
     var body: some View {
@@ -292,13 +292,12 @@ fileprivate struct MakeRoomButtonView: View {
 
 
 #Preview {
-    let container = DIContainer.stub
     return EditRoomInfoView(
         viewModel: EditRoomInfoViewModel(
             viewType: .createMode,
-            roomService: container.service.editRoomService,
-            navigationRouter: container.navigationRouter
+            roomService: DIContainer.stub.service.roomService,
+            navigationRouter: DIContainer.stub.navigationRouter
         )
     )
-    .environmentObject(container)
+    .environmentObject(DIContainer.stub)
 }

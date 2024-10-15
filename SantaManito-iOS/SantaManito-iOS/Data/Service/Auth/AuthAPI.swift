@@ -50,4 +50,8 @@ extension AuthAPI: BaseAPI {
         }
     }
     
+    var headers: [String : String]? {
+        return APIConstants.noTokenHeader
+    }
+    
 }

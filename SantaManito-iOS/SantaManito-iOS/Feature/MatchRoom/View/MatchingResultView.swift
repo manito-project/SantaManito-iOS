@@ -125,7 +125,6 @@ fileprivate struct MatchingInfoView: View {
     return MatchingResultView(
         viewModel: MatchingResultViewModel(
             roomService: container.service.roomService,
-            editRoomService: container.service.editRoomService,
             navigationRouter: container.navigationRouter
         )
     )

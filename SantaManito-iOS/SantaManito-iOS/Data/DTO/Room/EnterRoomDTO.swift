@@ -8,7 +8,7 @@
 import Foundation
 
 struct EnterRoomRequest: Encodable {
-    var inviteCode: String
+    var invitationCode: String
 }
 
 struct EnterRoomResult: Decodable {

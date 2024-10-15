@@ -38,14 +38,14 @@ final class EditRoomInfoViewModel: ObservableObject {
     //MARK: - Dependency
     
     private(set) var viewType: EditRoomViewType
-    private var roomService: EditRoomServiceType
+    private var roomService: RoomServiceType
     private var navigationRouter: NavigationRoutableType
     
     //MARK: - Init
     
     init(
         viewType: EditRoomViewType,
-        roomService: EditRoomServiceType,
+        roomService: RoomServiceType,
         navigationRouter: NavigationRoutableType
     ) {
         self.viewType = viewType
@@ -137,7 +137,7 @@ final class EditRoomInfoViewModel: ObservableObject {
             navigationRouter.push(to: .makeMission(roomInfo: roomInfo))
             
         case .editButtonDidTap:
-            roomService.editRoomInfo(with: "1", request: EditRoomRequest(roomName: "안녕", expirationDate: "2024-08-24"))
+            roomService.editRoomInfo(with: "1", info: roomInfo) //TODO: 
                 .catch { _ in Empty() }
                 .sink { [weak self] _ in
                     self?.navigationRouter.pop()

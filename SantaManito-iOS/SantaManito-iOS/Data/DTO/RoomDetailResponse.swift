@@ -7,14 +7,18 @@
 
 import Foundation
 
+struct RoomDetailTestReseponse: Decodable {
+    let createdAt: Date
+}
+
 struct RoomDetailResponse: Decodable {
     let id: String
     let roomName: String
     let invitationCode: String
-    let createdAt: String
+    let createdAt: Date
     let expirationDate: Date
-    let matchingDate: String?
-    let deletedByCreatorDate: String?
+    let matchingDate: Date?
+    let deletedByCreatorDate: Date?
     let Creator: UserResponse
     let Missions: [MissionResponse]
     let Members: [UserResponse]
@@ -38,7 +42,7 @@ extension RoomDetailResponse {
 struct RoomStateFactory {
     static func create(_ dto: RoomDetailResponse) -> RoomState {
         guard dto.deletedByCreatorDate != nil else { return .deleted }
-        guard dto.expirationDate.toDueDateTime > "현재시간보다" else { return .completed } //TODO: 현재 시간보다 로직
+        guard dto.expirationDate > Date() else { return .completed } //TODO: 서버와 클라의 TimeZone에 대한 논의 후 결정.
         guard dto.matchingDate != nil else { return .notStarted }
         return .inProgress
     }
