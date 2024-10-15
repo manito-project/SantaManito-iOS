@@ -80,7 +80,10 @@ struct NavigationRoutingView: View {
                     navigationRouter: container.navigationRouter
                 )
             )
+        case .finish(let roomDetail):
+            FinishView(viewModel: FinishViewModel(roomService: container.service.roomService, navigationRouter: container.navigationRouter, roomInfo: roomDetail))
         }
+    
     }
 }
 

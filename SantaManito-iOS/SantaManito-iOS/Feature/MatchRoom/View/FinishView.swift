@@ -104,7 +104,7 @@ fileprivate struct FinishResultView: View {
                 Spacer()
                     .frame(height: 24)
                 
-                Text("나를 챙겨준 산타 마니또") //TODO: 마니또
+                Text("나를 챙겨준 산타 마니또")
                     .font(.semibold_18)
                     .foregroundColor(.smDarkgray)
                     .lineSpacing(2)
@@ -115,7 +115,7 @@ fileprivate struct FinishResultView: View {
                 HStack {
                     Spacer()
                     
-                    Text(viewModel.state.manito.santaUsername)
+                    Text(viewModel.state.member.santa.username)
                         .font(.semibold_24)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.white)
@@ -138,7 +138,7 @@ fileprivate struct FinishResultView: View {
                     .frame(height: 15)
                 
                 
-                Text(viewModel.state.manito.missionToMe.content)
+                Text(viewModel.state.mission) // TODO: 미션 결정해야함.
                     .font(.medium_16)
                     .foregroundColor(.smDarkgray)
                     .padding(.horizontal, 11)
@@ -182,7 +182,7 @@ fileprivate struct FinishAllResultView: View {
                 Spacer()
                     .frame(height: 24)
                 
-                Text("총 \(viewModel.state.participateList.count)명")
+                Text("총 \(viewModel.state.members.count)명")
                     .font(.semibold_16)
                     .foregroundColor(.smDarkgray)
                     .padding(.leading, 16)
@@ -199,8 +199,8 @@ fileprivate struct FinishAllResultView: View {
                     .frame(height: 21)
                 
                 ScrollView(.vertical, showsIndicators: false) {
-                    ForEach(viewModel.state.participateList, id: \.userID) { manitoResult in
-                        ParticipateCellView(manitoResult: manitoResult)
+                    ForEach(viewModel.state.members, id: \.self) { member in
+                        ParticipateCellView(member: member)
                             .padding(.bottom, 16)
                     }
                 }
@@ -217,16 +217,16 @@ fileprivate struct FinishAllResultView: View {
 }
 
 fileprivate struct ParticipateCellView: View {
-    var manitoResult: MatchingFinishData
+    private let member: Member
     
-    init(manitoResult: MatchingFinishData) {
-        self.manitoResult = manitoResult
+    init(member: Member) {
+        self.member = member
     }
             
     //TODO: 가운데 정렬을 맞춰야 할지 아니면 길이를 상수로 때려박지 말아야될지
     var body: some View {
         HStack {
-            Text(manitoResult.santaUsername)
+            Text(member.santa.username)
                 .font(.semibold_12)
                 .foregroundColor(.white)
                 .padding(.vertical, 12)
@@ -246,7 +246,7 @@ fileprivate struct ParticipateCellView: View {
             Spacer()
                 .frame(width: 14)
             
-            Text(manitoResult.manittoUsername)
+            Text(member.manitto?.username ?? "")
                 .font(.semibold_12)
                 .foregroundColor(.white)
                 .padding(.vertical, 12)
@@ -305,7 +305,8 @@ fileprivate struct FinishButtonView: View {
     return FinishView(
         viewModel: FinishViewModel(
             roomService: container.service.roomService,
-            navigationRouter: container.navigationRouter
+            navigationRouter: container.navigationRouter,
+            roomInfo: .stub1
         )
     )
 }
