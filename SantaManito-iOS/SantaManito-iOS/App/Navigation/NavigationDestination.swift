@@ -22,8 +22,8 @@ enum NavigationDestination: Hashable {
     case roomInfo(roomInfo: MakeRoomInfo, missionList: [Mission])
     
     //Match
-    case matchRoom
-    case matchedRoom
+    case matchRoom(roomID: String)
+    case matchedRoom(roomInfo: RoomDetail)
     
     // Finish
     case finish(roomDetail: RoomDetail)

@@ -37,7 +37,7 @@ class FinishViewModel: ObservableObject {
     
     struct State {
         
-        var viewType: FinishViewType = .all
+        var viewType: FinishViewType = .me
         
         fileprivate var roomInfo: RoomDetail = .stub1
         

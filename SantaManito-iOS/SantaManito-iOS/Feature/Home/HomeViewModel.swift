@@ -83,7 +83,7 @@ class HomeViewModel: ObservableObject {
             case .notStarted:
                 navigationRouter.push(to: .manitoWaitingRoom(roomDetail: roomDetail) )
             case .inProgress:
-                navigationRouter.push(to: .matchedRoom(roomDetail: roomDetail) )
+                navigationRouter.push(to: .matchedRoom(roomInfo: roomDetail))
             case .completed:
                 navigationRouter.push(to: .finish(roomDetail: roomDetail))
             case .deleted: return

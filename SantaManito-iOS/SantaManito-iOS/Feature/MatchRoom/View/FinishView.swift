@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FinishView: View {
     @StateObject var viewModel: FinishViewModel
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         ZStack {
@@ -32,6 +33,7 @@ struct FinishView: View {
             .padding(.horizontal, 16)
         }
         .ignoresSafeArea()
+        .navigationBarBackButtonHidden()
         .onAppear {
             viewModel.send(action: .onAppear)
         }
@@ -40,6 +42,7 @@ struct FinishView: View {
 
 fileprivate struct FinishTitleView: View {
     @ObservedObject private var viewModel: FinishViewModel
+    @Environment(\.dismiss) var dismiss
     
     init(viewModel: FinishViewModel) {
         self.viewModel = viewModel
@@ -49,6 +52,7 @@ fileprivate struct FinishTitleView: View {
         HStack(alignment: .top) {
             VStack(alignment: .leading) {
                 Button {
+                    dismiss()
                 } label: {
                     Image(.btnBack)
                 }
@@ -262,7 +266,7 @@ fileprivate struct ParticipateCellView: View {
 
 fileprivate struct FinishButtonView: View {
     @ObservedObject private var viewModel: FinishViewModel
-    
+    @Environment(\.dismiss) var dismiss
     init(viewModel: FinishViewModel) {
         self.viewModel = viewModel
     }
@@ -270,7 +274,7 @@ fileprivate struct FinishButtonView: View {
     var body: some View {
         HStack(alignment: .center) {
             Button {
-                viewModel.send(action: .goHomeButtonDidTap)
+                dismiss()
             } label: {
                 Text("홈으로 가기")
                     .font(.semibold_18)
