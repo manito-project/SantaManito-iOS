@@ -79,7 +79,16 @@ class HomeViewModel: ObservableObject {
             navigationRouter.push(to: .enterRoom)
             
         case let .roomCellDidTap(roomDetail):
-            navigationRouter.push(to: .manitoWaitingRoom(roomDetail: roomDetail) )
+            switch roomDetail.state {
+            case .notStarted:
+                navigationRouter.push(to: .manitoWaitingRoom(roomDetail: roomDetail) )
+            case .inProgress:
+                navigationRouter.push(to: .matchedRoom(roomDetail: roomDetail) )
+            case .completed:
+                navigationRouter.push(to: .finish(roomDetail: roomDetail))
+            case .deleted: return
+            }
+            
             
         case let .exitButtonDidTap(roomID):
             roomService.exitRoom(with: roomID)

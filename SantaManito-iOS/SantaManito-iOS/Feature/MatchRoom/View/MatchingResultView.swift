@@ -121,12 +121,11 @@ fileprivate struct MatchingInfoView: View {
 }
 
 #Preview {
-    let container = DIContainer.stub
     return MatchingResultView(
         viewModel: MatchingResultViewModel(
-            roomService: container.service.roomService,
-            navigationRouter: container.navigationRouter
+            roomService: DIContainer.stub.service.roomService,
+            navigationRouter: DIContainer.stub.navigationRouter
         )
     )
-    .environmentObject(DIContainer.default)
+    .environmentObject(DIContainer.stub)
 }

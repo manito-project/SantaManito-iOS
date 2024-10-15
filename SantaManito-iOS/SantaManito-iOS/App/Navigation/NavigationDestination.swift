@@ -24,4 +24,7 @@ enum NavigationDestination: Hashable {
     //Match
     case matchRoom
     case matchedRoom
+    
+    // Finish
+    case finish(roomDetail: RoomDetail)
 }
