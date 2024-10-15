@@ -81,8 +81,14 @@ extension BaseService {
     
     /// 디코딩 메소드
     private func decode<T: Decodable>(data: Data, target: API) -> AnyPublisher<T, SMNetworkError> {
+        let decoder = JSONDecoder()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+        formatter.timeZone = TimeZone(secondsFromGMT: -1 * 9 * 60 * 60) // 한국 시간 (KST) UTC+9로 설정
+        decoder.dateDecodingStrategy = .formatted(formatter)
+        
         return Just(data)
-            .decode(type: GenericResponse<T>.self, decoder: JSONDecoder())
+            .decode(type: GenericResponse<T>.self, decoder: decoder)
             .mapError { _ in ErrorHandler.handleError(target, error: .decodingFailed(.failed)) }
             .map { $0.data! }
             .eraseToAnyPublisher()

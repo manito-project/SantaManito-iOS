@@ -19,7 +19,7 @@ struct NavigationRoutingView: View {
             EditRoomInfoView(
                 viewModel: .init(
                     viewType: viewType,
-                    roomService: container.service.editRoomService,
+                    roomService: container.service.roomService,
                     navigationRouter: container.navigationRouter
                 ))
         case let .makeMission(roomInfo):
@@ -34,7 +34,7 @@ struct NavigationRoutingView: View {
                 viewModel: .init(
                     roomInfo: roomInfo,
                     missionList: missionList,
-                    roomService: container.service.editRoomService
+                    roomService: container.service.roomService
                 )
             )
             
@@ -42,7 +42,6 @@ struct NavigationRoutingView: View {
             EnterRoomView(
                 viewModel: .init(
                     roomService: container.service.roomService,
-                    editRoomService: container.service.editRoomService,
                     navigationRouter: container.navigationRouter
                 )
             )
@@ -69,7 +68,7 @@ struct NavigationRoutingView: View {
         case .matchRoom:
             MatchingView(
                 viewModel: MatchingViewModel(
-                    roomService: container.service.matchRoomService,
+                    roomService: container.service.roomService,
                     navigationRouter: container.navigationRouter
                 )
             )
@@ -77,7 +76,6 @@ struct NavigationRoutingView: View {
             MatchingResultView(
                 viewModel: MatchingResultViewModel(
                     roomService: container.service.roomService,
-                    editRoomService: container.service.editRoomService,
                     navigationRouter: container.navigationRouter
                 )
             )

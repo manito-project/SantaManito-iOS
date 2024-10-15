@@ -25,18 +25,15 @@ class MatchingResultViewModel: ObservableObject {
     //MARK: Dependency
     
     private var roomService: RoomServiceType
-    private var editRoomService: EditRoomServiceType
     private var navigationRouter: NavigationRoutable
     
     //MARK: Init
     
     init(
         roomService: RoomServiceType,
-        editRoomService: EditRoomServiceType,
         navigationRouter: NavigationRoutable
     ) {
         self.roomService = roomService
-        self.editRoomService = editRoomService
         self.navigationRouter = navigationRouter
     }
     
@@ -50,12 +47,13 @@ class MatchingResultViewModel: ObservableObject {
     func send(action: Action) {
         switch action {
         case .onAppear:
-            editRoomService.getRoomMyInfo(with: "roomID")
-                .catch { _ in Empty() }
-                .assign(to: \.state.manito, on: self)
-                .store(in: cancelBag)
+            //TODO: 아마 룸디테일 멤버 파싱 로직
+//            roomService.getRoomMyInfo(with: "roomID1") // TODO: roomID 교체
+//                .catch { _ in Empty() }
+//                .assign(to: \.state.manito, on: self)
+//                .store(in: cancelBag)
 
-            roomService.fetch(with: "roomID")
+            roomService.getRoomInfo(with: "roomID1") // TODO: roomID 교체
                 .catch { _ in Empty() }
                 .assign(to: \.state.room, on: self)
                 .store(in: cancelBag)
