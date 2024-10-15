@@ -20,7 +20,6 @@ class CheckRoomInfoViewModel: ObservableObject {
     
     struct State {
         var isPresented: Bool = false
-        var dueDate: String = Date().toDueDateAndTime
     }
     
     //MARK: - Dependency
@@ -42,8 +41,6 @@ class CheckRoomInfoViewModel: ObservableObject {
         self.missionList = missionList
         self.roomService = roomService
         self.navigationRounter = navigationRouter
-        
-        observe()
     }
     
     //MARK: - Properties
@@ -54,17 +51,6 @@ class CheckRoomInfoViewModel: ObservableObject {
     @Published var inviteCode: String?
     
     //MARK: - Methods
-    
-    func observe() {
-        $roomInfo
-            .map { roomInfo in
-                let adjustDay = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: roomInfo.dueDate))!
-                print(adjustDay)
-                return adjustDay.toDueDateAndTime
-            }
-            .assign(to: \.state.dueDate, on: self)
-            .store(in: cancelBag)
-    }
     
     func send(action: Action) {
         weak var owner = self
@@ -77,7 +63,7 @@ class CheckRoomInfoViewModel: ObservableObject {
             }
             
         case .makeRoomButtonDidTap:
-            let request = CreateRoomRequest(roomName: "안뇽", expirationDate: "2024-08-24", missionContents: ["임시로 넣어둘게요!"]) //TODO: asdf
+            let request = CreateRoomRequest(roomInfo, missionList) // TODO: 미션 로직 수정
             roomService.createRoom(request: request)
                 .catch { _ in Empty() }
                 .sink { inviteCode in
