@@ -13,6 +13,7 @@ final class EditUsernameViewModel: ObservableObject {
     enum Action {
         case onAppear
         case doneButtonDidTap
+        case deleteAccountButtonDidTap
     }
     
     struct State {
@@ -23,7 +24,9 @@ final class EditUsernameViewModel: ObservableObject {
     //MARK: - Dependency
     
     private let navigationRouter: NavigationRoutableType
+    private let windowRouter: WindowRoutableType
     private let userService: UserServiceType
+    private let userDefaultsService: UserDefaultsServiceType.Type
     
     @Published private(set) var state = State()
     @Published var username: String = ""
@@ -33,9 +36,15 @@ final class EditUsernameViewModel: ObservableObject {
     
     //MARK: - Init
     
-    init(userService: UserServiceType, navigationRouter: NavigationRoutableType) {
+    init(userService: UserServiceType,
+         userDefaultsService: UserDefaultsServiceType.Type = UserDefaultsService.self,
+         navigationRouter: NavigationRoutableType,
+         windowRouter: WindowRoutableType
+    ) {
         self.userService = userService
         self.navigationRouter = navigationRouter
+        self.userDefaultsService = userDefaultsService
+        self.windowRouter = windowRouter
         
         observe()
     }
@@ -48,7 +57,7 @@ final class EditUsernameViewModel: ObservableObject {
         
         switch action {
         case .onAppear:
-            userService.getUser(with: "") // TODO: KeyChain에서 가져오기
+            userService.getUser(with: userDefaultsService.userID)
                 .receive(on: DispatchQueue.main)
                 .assignLoading(to: \.state.isLoading, on: owner)
                 .map { $0.username }
@@ -60,18 +69,27 @@ final class EditUsernameViewModel: ObservableObject {
                 .store(in: cancelBag)
             
         case .doneButtonDidTap:
-            state.isLoading = true
             userService.editUsername(with: username)
                 .receive(on: DispatchQueue.main)
+                .assignLoading(to: \.state.isLoading, on: owner)
                 .catch { _ in Empty() }
                 .sink { [weak self] username in
-                    self?.state.isLoading = false
                     self?.navigationRouter.popToRootView()
                 }
                 .store(in: cancelBag)
                 
-                
-            return
+        case .deleteAccountButtonDidTap:
+            userService.deleteAccount()
+                .receive(on: DispatchQueue.main)
+                .assignLoading(to: \.state.isLoading, on: owner)
+                .catch { _ in Empty() }
+                .receive(on: DispatchQueue.main)
+                .sink { _ in
+                    owner.userDefaultsService.reset()
+                    owner.windowRouter.switch(to: .splash)
+                    owner.navigationRouter.popToRootView()
+                }
+                .store(in: cancelBag)
         }
     }
     

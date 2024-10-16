@@ -95,6 +95,21 @@ struct EditUsernameView: View {
                         .stroke(Color.smLightgray, lineWidth: 1)
                 )
                 
+                
+                HStack {
+                    
+                    Spacer()
+                    Button {
+                        viewModel.send(.deleteAccountButtonDidTap)
+                    } label: {
+                        Text("회원탈퇴")
+                            .foregroundStyle(.smLightgray)
+                            .underline()
+                    }
+                }
+                .padding(.top, 16)
+                .padding(.horizontal)
+                
                 Spacer()
                 
                 Button("이름 수정 완료") {
@@ -119,6 +134,6 @@ struct EditUsernameView: View {
 }
 
 #Preview {
-    EditUsernameView(viewModel: EditUsernameViewModel(userService: DIContainer.stub.service.userService, navigationRouter: DIContainer.stub.navigationRouter))
+    EditUsernameView(viewModel: EditUsernameViewModel(userService: DIContainer.stub.service.userService, navigationRouter: DIContainer.stub.navigationRouter, windowRouter: DIContainer.stub.windowRouter))
         .environmentObject(DIContainer.stub)
 }

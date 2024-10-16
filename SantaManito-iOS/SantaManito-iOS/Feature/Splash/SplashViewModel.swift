@@ -20,13 +20,6 @@ class SplashViewModel: ObservableObject {
     struct State {
         var mustUpdateAlertIsPresented: Bool = false
         var serverCheckAlert: (isPresented: Bool, message: String) = (false, "서버 점검 시간입니다")
-        var desination: Destination = .splash
-        
-        enum Destination {
-            case splash
-            case onboarding
-            case main
-        }
     }
     
     //MARK: - Dependency
@@ -35,6 +28,7 @@ class SplashViewModel: ObservableObject {
     private let authService: AuthenticationServiceType
     private let userDefaultsService: UserDefaultsServiceType.Type
     private let remoteConfigService: RemoteConfigServiceType
+    private(set) var windowRouter: WindowRoutableType
     
     //MARK: - Properties
     
@@ -47,12 +41,14 @@ class SplashViewModel: ObservableObject {
         appService: AppServiceType,
         remoteConfigService: RemoteConfigServiceType,
         authService: AuthenticationServiceType,
-        userDefaultsService: UserDefaultsServiceType.Type = UserDefaultsService.self
+        userDefaultsService: UserDefaultsServiceType.Type = UserDefaultsService.self,
+        windowRouter: WindowRoutableType
     ) {
         self.appService = appService
         self.remoteConfigService = remoteConfigService
         self.authService = authService
         self.userDefaultsService = userDefaultsService
+        self.windowRouter = windowRouter
     }
     
     //MARK: - Methods
@@ -73,15 +69,19 @@ class SplashViewModel: ObservableObject {
                     }
                     
                     Just(owner.appService.getDeviceIdentifier() ?? "" )
+                        .receive(on: DispatchQueue.main)
                         .filter { !$0.isEmpty }
                         .flatMap(owner.authService.signIn)
+                        .receive(on: DispatchQueue.main)
                         .map {
                             owner.userDefaultsService.userID = $0.userID
                             owner.userDefaultsService.accessToken = $0.accessToken
-                            return State.Destination.main
+                            return WindowDestination.main
                         }
-                        .catch { _ in Just(State.Destination.onboarding) }
-                        .assign(to: \.state.desination, on: owner)
+                        .catch { _ in Just(WindowDestination.onboarding) }
+                        .sink {
+                            owner.windowRouter.switch(to: $0)
+                        }
                         .store(in: owner.cancelBag)
                     
                     owner.remoteConfigService.getServerCheck()

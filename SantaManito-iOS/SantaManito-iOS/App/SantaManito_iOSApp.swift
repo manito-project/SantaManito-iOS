@@ -18,7 +18,7 @@ struct SantaManito_iOSApp: App {
             SplashView(viewModel: .init(
                 appService: container.service.appService,
                 remoteConfigService: container.service.remoteConfigService,
-                authService: container.service.authService)
+                authService: container.service.authService,windowRouter: container.windowRouter)
             )
             .environmentObject(container)
             //TestView()

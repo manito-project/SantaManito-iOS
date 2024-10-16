@@ -25,20 +25,47 @@ extension SMButtonColorStyle {
     static let darkgray = SMButtonColorStyle(background: .smDarkgray, foreground: .smWhite, disabledBackground: .smLightgray)
 }
 
+enum SMButtonSizeStyle {
+    case large
+    case medium
+    
+    var height: CGFloat {
+        switch self {
+        case .large:
+            52
+        case .medium:
+            52
+        }
+    }
+    
+    var font: Font {
+        switch self {
+        case .large:
+            return .semibold_20
+        case .medium:
+            return .semibold_16
+        }
+    }
+}
+
 
 struct SMBottomButtonStyle: ButtonStyle {
     
     @Environment(\.isEnabled) private var isEnabled: Bool
+    
     private let colorStyle: SMButtonColorStyle
-    init(_ colorStyle: SMButtonColorStyle) {
+    private let sizeStyle: SMButtonSizeStyle
+    
+    init(_ colorStyle: SMButtonColorStyle, _ sizeStyle : SMButtonSizeStyle) {
         self.colorStyle = colorStyle
+        self.sizeStyle = sizeStyle
     }
 
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .frame(height: 52)
+            .frame(height: sizeStyle.height)
             .frame(maxWidth: .infinity)
-            .font(.semibold_20)
+            .font(sizeStyle.font)
             .background(isEnabled ? colorStyle.background : colorStyle.disabledBackground)
             .foregroundStyle(colorStyle.foreground)
             .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -47,7 +74,7 @@ struct SMBottomButtonStyle: ButtonStyle {
 }
 
 extension View {
-    func smBottomButtonStyle(_ colorStyle: SMButtonColorStyle = .red) -> some View {
-        self.buttonStyle(SMBottomButtonStyle(colorStyle))
+    func smBottomButtonStyle(_ colorStyle: SMButtonColorStyle = .red, _ sizeStyle: SMButtonSizeStyle = .large) -> some View {
+        self.buttonStyle(SMBottomButtonStyle(colorStyle, sizeStyle))
     }
 }

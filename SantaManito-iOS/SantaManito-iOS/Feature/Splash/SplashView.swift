@@ -15,12 +15,11 @@ struct SplashView: View {
     var body: some View {
         
         Group {
-            switch viewModel.state.desination {
-            case .splash: splashView
+            switch viewModel.windowRouter.destination {
+            case .splash:
+                splashView
             case .onboarding: OnboardingView(
-                viewModel: .init(appService: container.service.appService, authService: container.service.authService, signUpCompleted: {
-                    viewModel.state.desination = .main
-                })
+                viewModel: .init(appService: container.service.appService, authService: container.service.authService, windowRouter: container.windowRouter)
             )
             case .main:
                 HomeView(
@@ -31,9 +30,7 @@ struct SplashView: View {
             )
             }
         }
-        .onAppear {
-            viewModel.send(.onAppear)
-        }
+
         .smAlert(
             isPresented:
                 viewModel.state.mustUpdateAlertIsPresented,
@@ -82,11 +79,14 @@ struct SplashView: View {
             }
         }
         .ignoresSafeArea()
+        .onAppear {
+            viewModel.send(.onAppear)
+        }
         
     }
 }
 
 #Preview {
-    SplashView(viewModel: SplashViewModel(appService: DIContainer.stub.service.appService, remoteConfigService: DIContainer.stub.service.remoteConfigService, authService: DIContainer.stub.service.authService))
+    SplashView(viewModel: SplashViewModel(appService: DIContainer.stub.service.appService, remoteConfigService: DIContainer.stub.service.remoteConfigService, authService: DIContainer.stub.service.authService,windowRouter: DIContainer.stub.windowRouter))
         .environmentObject(DIContainer.stub)
 }

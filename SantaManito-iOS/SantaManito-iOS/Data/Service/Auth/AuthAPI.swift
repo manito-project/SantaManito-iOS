@@ -32,15 +32,6 @@ extension AuthAPI: BaseAPI {
         }
     }
     
-    var parameters: Parameters? {
-        switch self {
-        case .signUp:
-            return nil
-        case .signIn:
-            return nil
-        }
-    }
-    
     var task: Task {
         switch self {
         case .signUp(let request):
