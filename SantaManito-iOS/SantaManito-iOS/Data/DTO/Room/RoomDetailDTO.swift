@@ -12,10 +12,10 @@ struct RoomDetailResponse: Decodable {
     let id: String
     let roomName: String
     let invitationCode: String
-//    let createdAt: Date //TODO: 상수님이 dateformat 통일 작업 하면 주석 제거해야함 2024.10.14 석우가
-//    let expirationDate: Date
-    let matchingDate: Date?
-    let deletedByCreatorDate: Date?
+    let createdAt: String //TODO: 서버 확정 후 Date로 변경
+    let expirationDate: String //TODO: 서버 확정 후 Date로 변경
+    let matchingDate: String? //TODO: 서버 확정 후 Date로 변경
+    let deletedByCreatorDate: String? //TODO: 서버 확정 후 Date로 변경
     let creator: UserResponse
     let missions: [MissionResponse]
     let members: [MemberResponse]
@@ -24,8 +24,8 @@ struct RoomDetailResponse: Decodable {
             case id
             case roomName
             case invitationCode
-//            case createdAt
-//            case expirationDate
+            case createdAt
+            case expirationDate
             case matchingDate
             case deletedByCreatorDate
             case creator = "Creator"
@@ -44,8 +44,8 @@ extension RoomDetailResponse {
                           creatorName: self.creator.username,
                           members: members.map { $0.toEntity()},
                           mission: missions.map { $0.toEntity()} ,
-                          createdAt: Date().addingTimeInterval(-3 * 24 * 60 * 60), // TODO: 위 주석 해제하면 createdAt에 연결해야함.
-                          expirationDate: Date().addingTimeInterval((3 * 12 * 60 * 60) - (200 * 62))
+                          createdAt: Date().addingTimeInterval(-5 * 24 * 60 * 60), // TODO: 위 주석 해제하면 createdAt에 연결해야함.
+                          expirationDate: Date().addingTimeInterval(-3 * 12 * 60 * 60)
         )
     }
 }

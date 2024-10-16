@@ -64,6 +64,7 @@ class SplashViewModel: ObservableObject {
         case .onAppear:
             
             appService.isLatestVersion()
+                .receive(on: DispatchQueue.main)
                 .sink { isLatestVersion in
                     
                     guard isLatestVersion else {
@@ -84,9 +85,11 @@ class SplashViewModel: ObservableObject {
                         .store(in: owner.cancelBag)
                     
                     owner.remoteConfigService.getServerCheck()
+                        .receive(on: DispatchQueue.main)
                         .filter { $0 }
                         .map { _ in }
                         .flatMap(owner.remoteConfigService.getServerCheckMessage)
+                        .receive(on: DispatchQueue.main)
                         .catch { _ in Empty() }
                         .map { (true, $0 ) }
                         .assign(to: \.state.serverCheckAlert, on: owner)

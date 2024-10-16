@@ -66,21 +66,26 @@ struct NavigationRoutingView: View {
                 )
             )
 
-        case .matchRoom:
+        case .matchRoom(let roomID):
             MatchingView(
                 viewModel: MatchingViewModel(
                     roomService: container.service.roomService,
-                    navigationRouter: container.navigationRouter
+                    navigationRouter: container.navigationRouter,
+                    roomID: roomID
                 )
             )
-        case .matchedRoom:
+        case .matchedRoom(let roomDetail):
             MatchingResultView(
                 viewModel: MatchingResultViewModel(
                     roomService: container.service.roomService,
-                    navigationRouter: container.navigationRouter
+                    navigationRouter: container.navigationRouter,
+                    roomInfo: roomDetail
                 )
             )
+        case .finish(let roomDetail):
+            FinishView(viewModel: FinishViewModel(roomService: container.service.roomService, navigationRouter: container.navigationRouter, roomInfo: roomDetail))
         }
+    
     }
 }
 

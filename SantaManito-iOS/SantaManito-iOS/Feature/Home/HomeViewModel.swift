@@ -20,6 +20,8 @@ class HomeViewModel: ObservableObject {
         case makeRoomButtonDidTap
         case enterRoomButtonDidTap
         case roomCellDidTap(roomDetail: RoomDetail)
+        case exitButtonDidTap(roomID: String)
+        case deleteHistoryButtonDidTap(roomID: String)
     }
     
     
@@ -77,7 +79,40 @@ class HomeViewModel: ObservableObject {
             navigationRouter.push(to: .enterRoom)
             
         case let .roomCellDidTap(roomDetail):
-            navigationRouter.push(to: .manitoWaitingRoom(roomDetail: roomDetail) )
+            switch roomDetail.state {
+            case .notStarted:
+                navigationRouter.push(to: .manitoWaitingRoom(roomDetail: roomDetail) )
+            case .inProgress:
+                navigationRouter.push(to: .matchedRoom(roomInfo: roomDetail))
+            case .completed:
+                navigationRouter.push(to: .finish(roomDetail: roomDetail))
+            case .deleted: return
+            }
+            
+            
+        case let .exitButtonDidTap(roomID):
+            roomService.exitRoom(with: roomID)
+                .receive(on: DispatchQueue.main)
+                .assignLoading(to: \.state.isLoading, on: owner)
+                .catch { _ in Empty()}
+                .sink {
+                    guard let removedIndex = owner.state.rooms.firstIndex(where: { $0.id == roomID })
+                    else { return }
+                    owner.state.rooms.remove(at: removedIndex)
+                }
+                .store(in: cancelBag)
+                
+        case let .deleteHistoryButtonDidTap(roomID):
+            roomService.deleteHistoryRoom(with: roomID)
+                .receive(on: DispatchQueue.main)
+                .assignLoading(to: \.state.isLoading, on: owner)
+                .catch { _ in Empty()}
+                .sink {
+                    guard let removedIndex = owner.state.rooms.firstIndex(where: { $0.id == roomID })
+                    else { return }
+                    owner.state.rooms.remove(at: removedIndex)
+                }
+                .store(in: cancelBag)
         }
     }
 }
