@@ -15,12 +15,10 @@ struct SplashView: View {
     var body: some View {
         
         Group {
-            switch viewModel.state.desination {
+            switch viewModel.windowRouter.destination {
             case .splash: splashView
             case .onboarding: OnboardingView(
-                viewModel: .init(appService: container.service.appService, authService: container.service.authService, signUpCompleted: {
-                    viewModel.state.desination = .main
-                })
+                viewModel: .init(appService: container.service.appService, authService: container.service.authService, windowRouter: container.windowRouter)
             )
             case .main:
                 HomeView(
@@ -87,6 +85,6 @@ struct SplashView: View {
 }
 
 #Preview {
-    SplashView(viewModel: SplashViewModel(appService: DIContainer.stub.service.appService, remoteConfigService: DIContainer.stub.service.remoteConfigService, authService: DIContainer.stub.service.authService))
+    SplashView(viewModel: SplashViewModel(appService: DIContainer.stub.service.appService, remoteConfigService: DIContainer.stub.service.remoteConfigService, authService: DIContainer.stub.service.authService,windowRouter: DIContainer.stub.windowRouter))
         .environmentObject(DIContainer.stub)
 }
