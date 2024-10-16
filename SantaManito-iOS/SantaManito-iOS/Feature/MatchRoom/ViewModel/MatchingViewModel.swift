@@ -52,10 +52,8 @@ class MatchingViewModel: ObservableObject {
         weak var owner = self
         guard let owner else { return }
         
-        switch action { //TODO: isMatched 변수 변경
+        switch action {
         case .onAppear:
-            self.state.isAnimating = true
-            
             Just(roomID)
                 .flatMap(roomService.matchRoom)
                 .map { owner.roomID}
@@ -63,7 +61,6 @@ class MatchingViewModel: ObservableObject {
                 .assignLoading(to: \.state.isAnimating, on: owner)
                 .catch { _ in Empty() }
                 .sink { roomDetail in
-                    owner.state.isAnimating = false
                     owner.navigationRouter.push(to: .matchedRoom(roomInfo: roomDetail))
                 }
                 .store(in: cancelBag)

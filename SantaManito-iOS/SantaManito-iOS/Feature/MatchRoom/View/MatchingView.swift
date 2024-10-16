@@ -48,12 +48,16 @@ struct MatchingView: View {
             
             
         }
+        .onAppear(perform: {
+            viewModel.send(action: .onAppear)
+        })
         .ignoresSafeArea()
+        .navigationBarBackButtonHidden()
         
     }
     
     func rotateContinuously() {
-        withAnimation(.linear(duration: 1.0).repeatForever(autoreverses: false)) {
+        withAnimation(.linear(duration: 1.5).repeatForever(autoreverses: false)) {
             rotation = 360 // 한 번 360도 회전
         }
     }

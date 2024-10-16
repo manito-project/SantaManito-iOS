@@ -14,8 +14,8 @@ struct RoomDetailResponse: Decodable {
     let invitationCode: String
     let createdAt: String //TODO: 서버 확정 후 Date로 변경
     let expirationDate: String //TODO: 서버 확정 후 Date로 변경
-    let matchingDate: Date?
-    let deletedByCreatorDate: Date?
+    let matchingDate: String? //TODO: 서버 확정 후 Date로 변경
+    let deletedByCreatorDate: String? //TODO: 서버 확정 후 Date로 변경
     let creator: UserResponse
     let missions: [MissionResponse]
     let members: [MemberResponse]

@@ -198,15 +198,16 @@ fileprivate struct MatchingButtonView: View {
                     } label: {
                         HStack {
                             Spacer()
-                            Text("방 정보 수정하기")
+                            Text("수정하기")
                                 .font(.semibold_16)
                                 .foregroundColor(.smWhite)
                             Spacer()
                         }
                     }
-                    .padding(.vertical, 17)
-                    .background(.smDarkgray)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .smBottomButtonStyle(.darkgray)
+                    .disabled(!viewModel.state.roomDetail.isHost)
+                    
+                    
                     
                     Spacer()
                         .frame(width: 12)
@@ -222,9 +223,9 @@ fileprivate struct MatchingButtonView: View {
                             Spacer()
                         }
                     }
-                    .padding(.vertical, 17)
-                    .background(.smRed)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .smBottomButtonStyle()
+                    .disabled(viewModel.state.roomDetail.members.count < 2)
+                    .disabled(!viewModel.state.roomDetail.isHost)
                     
                     Spacer()
                 }
