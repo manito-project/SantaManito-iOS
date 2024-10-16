@@ -77,6 +77,7 @@
 		87E514352CBF877000FFF2E1 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E514342CBF876F00FFF2E1 /* UserAPI.swift */; };
 		87E514372CBF88A700FFF2E1 /* EditNicknameReqeust.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E514362CBF88A700FFF2E1 /* EditNicknameReqeust.swift */; };
 		87E514392CBF930B00FFF2E1 /* WindowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E514382CBF930B00FFF2E1 /* WindowRouter.swift */; };
+		87E5143C2CBFABF000FFF2E1 /* WindowDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E5143B2CBFABF000FFF2E1 /* WindowDestination.swift */; };
 		D229FE782CA7CEA200979421 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE772CA7CEA200979421 /* HTTPMethod.swift */; };
 		D229FE7E2CA7D0F700979421 /* URLRequestTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE7D2CA7D0F700979421 /* URLRequestTargetType.swift */; };
 		D229FE802CA7D17600979421 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE7F2CA7D17600979421 /* ParameterEncoding.swift */; };
@@ -215,6 +216,7 @@
 		87E514342CBF876F00FFF2E1 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		87E514362CBF88A700FFF2E1 /* EditNicknameReqeust.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameReqeust.swift; sourceTree = "<group>"; };
 		87E514382CBF930B00FFF2E1 /* WindowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowRouter.swift; sourceTree = "<group>"; };
+		87E5143B2CBFABF000FFF2E1 /* WindowDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowDestination.swift; sourceTree = "<group>"; };
 		D229FE772CA7CEA200979421 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		D229FE7D2CA7D0F700979421 /* URLRequestTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestTargetType.swift; sourceTree = "<group>"; };
 		D229FE7F2CA7D17600979421 /* ParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
@@ -543,6 +545,15 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		87E5143A2CBFABD500FFF2E1 /* Window */ = {
+			isa = PBXGroup;
+			children = (
+				87E514382CBF930B00FFF2E1 /* WindowRouter.swift */,
+				87E5143B2CBFABF000FFF2E1 /* WindowDestination.swift */,
+			);
+			path = Window;
+			sourceTree = "<group>";
+		};
 		D229FE732CA7CDC000979421 /* Networks */ = {
 			isa = PBXGroup;
 			children = (
@@ -615,12 +626,12 @@
 		D22E9B662C8803A200086549 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				87E5143A2CBFABD500FFF2E1 /* Window */,
 				87C06E5B2C9EAB5E00F03637 /* Navigation */,
 				D22E9B582C88031A00086549 /* SantaManito_iOSApp.swift */,
 				877EA23A2C88AAC10073FFBD /* DIContainer.swift */,
 				87873BDB2CAC29E900E368BF /* AppDelegate.swift */,
 				D28568B12CAD21800044C231 /* Config.swift */,
-				87E514382CBF930B00FFF2E1 /* WindowRouter.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -1026,6 +1037,7 @@
 				D22E9B6B2C8803C100086549 /* ObservableObjectSettable.swift in Sources */,
 				87D797A42C9454BF003BA602 /* OnboardingViewModel.swift in Sources */,
 				877CA0712C8AB3DE00D23193 /* LoadingView.swift in Sources */,
+				87E5143C2CBFABF000FFF2E1 /* WindowDestination.swift in Sources */,
 				D26BFA8C2C91987200C5CF86 /* EnterRoomView.swift in Sources */,
 				877EA2392C88AA8A0073FFBD /* OnboardingView.swift in Sources */,
 				D268793D2CAA7F8A0025A611 /* RoomAPI.swift in Sources */,

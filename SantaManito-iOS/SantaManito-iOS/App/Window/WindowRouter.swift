@@ -8,12 +8,6 @@
 import Foundation
 import Combine
 
-enum WindowDestination {
-    case splash
-    case onboarding
-    case main
-}
-
 protocol WindowRoutable {
     var destination: WindowDestination { get }
     func `switch`(to destination: WindowDestination)
