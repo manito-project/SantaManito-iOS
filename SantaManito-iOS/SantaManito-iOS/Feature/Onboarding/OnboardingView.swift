@@ -204,7 +204,7 @@ fileprivate struct AgreementCell: View {
             .init(appService:
                     DIContainer.stub.service.appService,
                   authService: DIContainer.stub.service.authService,
-                  signUpCompleted: nil)
+                  windowRouter: DIContainer.stub.windowRouter)
     )
     
 }

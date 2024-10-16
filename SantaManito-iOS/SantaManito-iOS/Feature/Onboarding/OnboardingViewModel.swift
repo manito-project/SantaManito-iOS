@@ -61,13 +61,13 @@ final class OnboardingViewModel: ObservableObject {
     private let appService: AppServiceType
     private let authService: AuthenticationServiceType
     private let userDefaultsService: UserDefaultsServiceType.Type
+    private var windowRouter: WindowRoutableType
     
     //MARK: - Properties
     
     @Published var state = State()
     @Published var nickname = ""
     
-    private let signUpCompleted: (() -> Void)?
     private let cancelBag = CancelBag()
     
     //MARK: - Init
@@ -76,12 +76,12 @@ final class OnboardingViewModel: ObservableObject {
         appService: AppServiceType,
         authService: AuthenticationServiceType,
         userDefaultsService: UserDefaultsServiceType.Type = UserDefaultsService.self,
-        signUpCompleted: (() -> Void)?
+        windowRouter: WindowRoutableType
     ) {
         self.appService = appService
         self.authService = authService
         self.userDefaultsService = userDefaultsService
-        self.signUpCompleted = signUpCompleted
+        self.windowRouter = windowRouter
         
         observe()
     }
@@ -113,7 +113,7 @@ final class OnboardingViewModel: ObservableObject {
                     .sink { auth in
                         owner.userDefaultsService.userID = auth.userID
                         owner.userDefaultsService.accessToken = auth.accessToken
-                        owner.signUpCompleted?()
+                        owner.windowRouter.switch(to: .main) 
                     }
                     .store(in: cancelBag)
             }

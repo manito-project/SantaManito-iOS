@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum UserDefaultKey: String {
+enum UserDefaultKey: String, CaseIterable {
     case userID
     case accessToken
 }
@@ -26,4 +26,13 @@ struct UserDefaultsService: UserDefaultsServiceType {
 struct StubUserDefaultsService: UserDefaultsServiceType {
     static var userID: String = ""
     static var accessToken: String = ""
+}
+
+extension UserDefaultsServiceType {
+    static func reset() {
+        UserDefaultKey.allCases
+            .forEach {
+                UserDefaults.standard.removeObject(forKey: $0.rawValue)
+            }
+    }
 }

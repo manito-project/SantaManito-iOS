@@ -68,8 +68,6 @@ public struct JSONEncoding: ParameterEncodable {
         return checkValidURLData(parameters, request.url)
             .tryMap { parameters, _ -> URLRequest in
                 do {
-//                    TODO: 2024.10.09 수정. 확인 했다면 주석 지워도됨. to 히디 from 석우
-//                     let data = try JSONSerialization.data(withJSONObject: parameters)
                     let data = try JSONEncoder().encode(parameters)
                     request.httpBody = data
                     return request

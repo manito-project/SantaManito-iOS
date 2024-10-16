@@ -62,7 +62,8 @@ struct NavigationRoutingView: View {
             EditUsernameView(
                 viewModel: EditUsernameViewModel(
                     userService: container.service.userService,
-                    navigationRouter: container.navigationRouter
+                    navigationRouter: container.navigationRouter,
+                    windowRouter: container.windowRouter
                 )
             )
 

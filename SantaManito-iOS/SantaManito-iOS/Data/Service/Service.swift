@@ -18,8 +18,8 @@ protocol ServiceType {
 final class Service: ServiceType {
     var appService: AppServiceType = AppService()
     var authService: AuthenticationServiceType = AuthenticationService()
-    var userService: UserServiceType = StubUserService() //TODO: stub교체
-    var roomService: RoomServiceType = RoomService() //TODO: stub교체
+    var userService: UserServiceType = UserService()
+    var roomService: RoomServiceType = RoomService()
     var remoteConfigService: RemoteConfigServiceType = FirebaseRemoteConfigService.shared
 }
 
