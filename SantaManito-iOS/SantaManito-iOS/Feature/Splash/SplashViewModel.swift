@@ -28,7 +28,7 @@ class SplashViewModel: ObservableObject {
     private let authService: AuthenticationServiceType
     private let userDefaultsService: UserDefaultsServiceType.Type
     private let remoteConfigService: RemoteConfigServiceType
-    let windowRouter: WindowRoutableType
+    private(set) var windowRouter: WindowRoutableType
     
     //MARK: - Properties
     
@@ -69,6 +69,7 @@ class SplashViewModel: ObservableObject {
                     }
                     
                     Just(owner.appService.getDeviceIdentifier() ?? "" )
+                        .receive(on: DispatchQueue.main)
                         .filter { !$0.isEmpty }
                         .flatMap(owner.authService.signIn)
                         .receive(on: DispatchQueue.main)

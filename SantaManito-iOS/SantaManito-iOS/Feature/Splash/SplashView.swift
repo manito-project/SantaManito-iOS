@@ -16,7 +16,8 @@ struct SplashView: View {
         
         Group {
             switch viewModel.windowRouter.destination {
-            case .splash: splashView
+            case .splash:
+                splashView
             case .onboarding: OnboardingView(
                 viewModel: .init(appService: container.service.appService, authService: container.service.authService, windowRouter: container.windowRouter)
             )
@@ -29,9 +30,7 @@ struct SplashView: View {
             )
             }
         }
-        .onAppear {
-            viewModel.send(.onAppear)
-        }
+
         .smAlert(
             isPresented:
                 viewModel.state.mustUpdateAlertIsPresented,
@@ -80,6 +79,9 @@ struct SplashView: View {
             }
         }
         .ignoresSafeArea()
+        .onAppear {
+            viewModel.send(.onAppear)
+        }
         
     }
 }

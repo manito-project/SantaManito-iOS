@@ -83,8 +83,11 @@ final class EditUsernameViewModel: ObservableObject {
                 .receive(on: DispatchQueue.main)
                 .assignLoading(to: \.state.isLoading, on: owner)
                 .catch { _ in Empty() }
+                .receive(on: DispatchQueue.main)
                 .sink { _ in
-                    owner.windowRouter.switch(to: .onboarding)
+                    owner.userDefaultsService.reset()
+                    owner.windowRouter.switch(to: .splash)
+                    owner.navigationRouter.popToRootView()
                 }
                 .store(in: cancelBag)
         }
