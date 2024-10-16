@@ -18,9 +18,32 @@ class MatchingResultViewModel: ObservableObject {
     }
     
     struct State {
-        var mySanta: User = .stub1 //TODO: Stub 교체
-        var mission: String = "" // TODO: 미션 로직 수정 필요
-        var room: RoomDetail = .stub1 //TODO: Stub 교체
+        fileprivate var roomInfo: RoomDetail = .stub1
+        
+        var roomName: String { roomInfo.name }
+        var description: String {
+            if roomInfo.remainingDays > 0 {
+                "오늘부터 \(roomInfo.remainingDays)일 후인 \(roomInfo.expirationDate.toDueDateWithoutYear)\n\(roomInfo.expirationDate.toDueDateTime)까지 진행되는 마니또"
+            } else {
+                "\(roomInfo.expirationDate.toDueDateTime)까지 진행되는 마니또"
+            }
+        }
+        fileprivate var member: Member {
+            guard let 내가마니또인멤버Index = roomInfo.members.firstIndex(where: { $0.manitto?.id == UserDefaultsService.userID})
+            else { return .init(santa: .stub1) }
+            return roomInfo.members[내가마니또인멤버Index]
+        }
+        
+        var me: User {
+            member.santa
+        }
+        var mannito: User {
+            member.manitto ?? .stub1
+        }
+        
+        var mission: String {
+            roomInfo.mission.first?.content ?? "" //TODO: 내 미션 찾는 로직 필요
+        }
     }
     
     //MARK: Dependency
@@ -28,14 +51,18 @@ class MatchingResultViewModel: ObservableObject {
     private var roomService: RoomServiceType
     private var navigationRouter: NavigationRoutable
     
+    private let roomDetail: RoomDetail
+    
     //MARK: Init
     
     init(
         roomService: RoomServiceType,
-        navigationRouter: NavigationRoutable
+        navigationRouter: NavigationRoutable,
+        roomInfo: RoomDetail
     ) {
         self.roomService = roomService
         self.navigationRouter = navigationRouter
+        self.roomDetail = roomInfo
     }
     
     //MARK: Properties
@@ -48,16 +75,7 @@ class MatchingResultViewModel: ObservableObject {
     func send(action: Action) {
         switch action {
         case .onAppear:
-            //TODO: 아마 룸디테일 멤버 파싱 로직
-//            roomService.getRoomMyInfo(with: "roomID1") // TODO: roomID 교체
-//                .catch { _ in Empty() }
-//                .assign(to: \.state.manito, on: self)
-//                .store(in: cancelBag)
-
-            roomService.getRoomInfo(with: "roomID1") // TODO: roomID 교체
-                .catch { _ in Empty() }
-                .assign(to: \.state.room, on: self)
-                .store(in: cancelBag)
+            return
 
         case .goHomeButtonDidTap:
             navigationRouter.popToRootView()

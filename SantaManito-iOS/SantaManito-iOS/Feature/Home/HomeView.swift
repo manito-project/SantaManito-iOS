@@ -36,7 +36,7 @@ struct HomeView: View {
                                 Button {
                                     viewModel.send(.myPageButtonDidTap)
                                 } label: {
-                                    Image(.btnPerson) //TODO: 사람 에셋으로 변경
+                                    Image(.btnPerson)
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width: 24, height: 24)
@@ -141,10 +141,11 @@ struct HomeView: View {
                         Button {
                             viewModel.send(.roomCellDidTap(roomDetail: room))
                         } label: {
-                            HomeRoomCell(room, width: proxy.size.width / 2.4)
+                            HomeRoomCell(viewModel, room, width: proxy.size.width / 2.4)
                         }
-                        .buttonStyle(ScaleButtonStyle())
-                        
+                        .buttonStyle(.plain)
+                        .contentShape(Rectangle())
+                        .simultaneousGesture(TapGesture().onEnded({})) // 부모의 터치 이벤트 막기
                         
                         
                         Spacer().frame(width: 15)
@@ -207,12 +208,15 @@ fileprivate struct HomeButton : View {
 
 fileprivate struct HomeRoomCell: View {
     
+    @ObservedObject var viewModel: HomeViewModel
     var roomInfo: RoomDetail
     let width: CGFloat
     
-    init(_ roomInfo: RoomDetail, width: CGFloat) {
+    fileprivate init(_ viewModel: HomeViewModel, _ roomInfo: RoomDetail, width: CGFloat) {
         self.roomInfo = roomInfo
         self.width = width
+        self.viewModel = viewModel
+       
     }
     
     fileprivate var body: some View {
@@ -238,7 +242,7 @@ fileprivate struct HomeRoomCell: View {
                         .frame(height: 14)
                         .padding(.top, 22)
                     
-                    HomeRoomStateChip(state: roomInfo.state)
+                    HomeRoomStateChip(state: roomInfo.state, remainingDays: roomInfo.remainingDays)
                         .padding(.top, 10)
                 } else {
                     Text("해당 방은 방장에 의해 삭제된 방이야")
@@ -261,7 +265,7 @@ fileprivate struct HomeRoomCell: View {
                         VStack {
                             Spacer()
                             Button {
-                                
+                                viewModel.send(.exitButtonDidTap(roomID: roomInfo.id))
                             } label : {
                                 Text("방 나가기")
                                     .font(.medium_14)
@@ -270,12 +274,13 @@ fileprivate struct HomeRoomCell: View {
                                     .padding(.horizontal, 16)
                                     .background(.smLightbg)
                             }
+                            .contentShape(Rectangle())
                         }
                     case .deleted:
                         VStack {
                             Spacer()
                             Button {
-                                
+                                viewModel.send(.deleteHistoryButtonDidTap(roomID: roomInfo.id))
                             } label : {
                                 Text("삭제하기")
                                     .font(.medium_14)
@@ -287,6 +292,7 @@ fileprivate struct HomeRoomCell: View {
                                             .stroke(Color.smDarkgray, lineWidth: 1)
                                     )
                             }
+                            .contentShape(Rectangle())
                         }
                     }
                 }
@@ -314,12 +320,14 @@ fileprivate struct HomeRoomCell: View {
 fileprivate struct HomeRoomStateChip: View {
     
     let state: RoomState
+    let remainingDays: Int
+    
     var title: String {
         switch state {
         case .notStarted:
             "매칭 대기 중"
         case .inProgress:
-            "공개 몇일 전" //TODO: asdf
+            "공개 \(remainingDays)일 전"
         case .completed:
             "결과 발표 완료"
         case .deleted:

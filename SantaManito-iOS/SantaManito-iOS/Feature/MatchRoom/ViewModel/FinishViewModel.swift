@@ -36,20 +36,32 @@ class FinishViewModel: ObservableObject {
     }
     
     struct State {
-        var viewType: FinishViewType = .all
-        var me: String = "류희재"
-        var manito: MatchingFinishData = .init(
-            userID: 1, 
-            santaUserID: 2,
-            manittoUserID: 3,
-            myMission: MissionToMe(content: ""), 
-            missionToMe: MissionToMe(content: ""),
-            santaUsername: "", 
-            manittoUsername: ""
-        )
-        var roomName: String = ""
-        var description: String = ""
-        var participateList: [MatchingFinishData] = []
+        
+        var viewType: FinishViewType = .me
+        
+        fileprivate var roomInfo: RoomDetail = .stub1
+        
+        var roomName: String {
+            roomInfo.name
+        }
+        
+        var description: String {
+            roomInfo.createdAt.toDueDate + " - " +
+            roomInfo.expirationDate.toDueDate + "\n" +
+            String(roomInfo.totalDurationDays) + "일간의 산타 마니또 끝"
+        }
+        
+        var members: [Member] { roomInfo.members }
+            
+        var member: Member {
+            guard let 내가마니또인멤버Index = roomInfo.members.firstIndex(where: { $0.manitto?.id == UserDefaultsService.userID})
+            else { return .init(santa: .stub1) }
+            return roomInfo.members[내가마니또인멤버Index]
+        }
+        
+        var mission: String {
+            return "미션" // TODO: 미션 고르는 로직 구현해야함.
+        }
     }
     
     //MARK: Dependency
@@ -61,10 +73,12 @@ class FinishViewModel: ObservableObject {
     
     init(
         roomService: RoomServiceType,
-        navigationRouter: NavigationRoutableType
+        navigationRouter: NavigationRoutableType,
+        roomInfo: RoomDetail
     ) {
         self.roomService = roomService
         self.navigationRouter = navigationRouter
+        self.state.roomInfo = roomInfo
     }
     
     //MARK: Properties
@@ -77,26 +91,13 @@ class FinishViewModel: ObservableObject {
     func send(action: Action) {
         switch action {
         case .onAppear:
-//            roomService.getManito("") //TODO: service 변경
-//                .catch { _ in Empty() }
-//                .assign(to: \.state.manito, on: self)
-//                .store(in: cancelBag)
-//            
-            roomService.getRoomInfo(with: "roomID") //TODO: roomid
-                .map { [weak self] roomInfo in
-                    self?.state.roomName = roomInfo.name
-                    let startDate = roomInfo.createdAt.toDueDate
-                    let endDate = roomInfo.expirationDateToString
-                    return "\(startDate) ~ \(endDate)\n\(roomInfo.remainingDays)일간의 산타마니또 끝!"
-                }
-                .catch { _ in Empty() }
-                .assign(to: \.state.description, on: self)
-                .store(in: cancelBag)
+            return
+
         case .toggleViewTypeButtonDidTap:
             state.viewType = state.viewType == .me ? .all : .me
             
         case .deleteRoomButtonDidTap:
-            roomService.deleteRoom(with: "roomID") //TODO: roomid
+            roomService.exitRoom(with: state.roomInfo.id)
                 .catch { _ in Empty() }
                 .sink(receiveValue: { [weak self] _ in
                     self?.navigationRouter.popToRootView()

@@ -15,8 +15,8 @@ struct MatchingResultView: View {
         VStack {
             SMView(padding: -40) {
                 SMInfoView(
-                    title: viewModel.state.room.name,
-                    description: "오늘부터 \(viewModel.state.room.remainingDays)일 후인 \(viewModel.state.room.expirationDate.toDueDateWithoutYear)\n\(viewModel.state.room.expirationDate.toDueDateTime)까지 진행되는 마니또"
+                    title: viewModel.state.roomName,
+                    description: viewModel.state.description
                 )
             } content: {
                 VStack {
@@ -60,7 +60,7 @@ fileprivate struct MatchingInfoView: View {
                 Spacer()
                     .frame(height: 24)
                 
-                Text("(여기에 유저 이름이 들어가도록) 산타의 마니또는") //TODO: 내 이름 들어가게 수정
+                Text("\(viewModel.state.me.username) 산타의 마니또는")
                     .font(.semibold_18)
                     .foregroundColor(.smDarkgray)
                 
@@ -70,7 +70,7 @@ fileprivate struct MatchingInfoView: View {
                 HStack {
                     Spacer()
                     
-                    Text(viewModel.state.mySanta.username)
+                    Text(viewModel.state.mannito.username)
                         .font(.semibold_24)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.white)
@@ -85,11 +85,11 @@ fileprivate struct MatchingInfoView: View {
                 Spacer()
                     .frame(height: 30)
                 
-                Text("(여기에 유저 이름이 들어가도록)  산타의 미션은")
+                Text("\(viewModel.state.me.username) 산타의 미션은")
                     .font(.semibold_18)
                     .foregroundColor(.smDarkgray)
                 
-                Text(viewModel.state.mission) // TODO: 미션 로직 수정 필요
+                Text(viewModel.state.mission) 
                     .font(.medium_16)
                     .foregroundColor(.smDarkgray)
                     .multilineTextAlignment(.center)
@@ -121,12 +121,12 @@ fileprivate struct MatchingInfoView: View {
 }
 
 #Preview {
-    let container = DIContainer.stub
     return MatchingResultView(
         viewModel: MatchingResultViewModel(
-            roomService: container.service.roomService,
-            navigationRouter: container.navigationRouter
+            roomService: DIContainer.stub.service.roomService,
+            navigationRouter: DIContainer.stub.navigationRouter,
+            roomInfo: .stub1
         )
     )
-    .environmentObject(DIContainer.default)
+    .environmentObject(DIContainer.stub)
 }
