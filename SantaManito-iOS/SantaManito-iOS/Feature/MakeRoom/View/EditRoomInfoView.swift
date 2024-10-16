@@ -228,56 +228,22 @@ fileprivate struct MakeRoomButtonView: View {
         switch viewModel.viewType {
         case .createMode:
             HStack(alignment: .center) {
-                Button {
-                    viewModel.send(action: .noMissionButtonDidTap)
-                } label: {
-                    HStack {
-                        Spacer()
-                        Text("미션없이 방 만들기")
-                            .font(.semibold_18)
-                            .foregroundColor(.smWhite)
-                            .lineLimit(1)
-                            .multilineTextAlignment(.center)
-                        Spacer()
-                    }
-                    .padding(.vertical, 17)
-                    .frame(maxWidth: .infinity)
-                    .background(
-                        viewModel.state.isBottomButtonsDisabled
-                        ? .smLightgray
-                        : .smDarkgray
-                    )
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    
-                }
-                .buttonStyle(ScaleButtonStyle())
-                .disabled(viewModel.state.isBottomButtonsDisabled)
                 
+                Button("미션없이 방 만들기") {
+                    viewModel.send(action: .noMissionButtonDidTap)
+                }
+                .smBottomButtonStyle(.darkgray, .medium)
+                .disabled(viewModel.state.isBottomButtonsDisabled)
                 
                 Spacer()
                     .frame(width: 12)
                 
-                Button {
+                Button("미션 만들기") {
                     viewModel.send(action: .missionButtonDidTap)
-                } label: {
-                    HStack {
-                        Spacer()
-                        Text("미션 만들기")
-                            .font(.semibold_18)
-                            .foregroundColor(.smWhite)
-                            .lineLimit(1)
-                            .multilineTextAlignment(.center)
-                        Spacer()
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 17)
-                    .background(viewModel.state.isBottomButtonsDisabled
-                                ? .smLightgray
-                                :.smRed)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
-                .buttonStyle(ScaleButtonStyle())
+                .smBottomButtonStyle(.red, .medium)
                 .disabled(viewModel.state.isBottomButtonsDisabled)
+                
                 
             }
         case .editMode:

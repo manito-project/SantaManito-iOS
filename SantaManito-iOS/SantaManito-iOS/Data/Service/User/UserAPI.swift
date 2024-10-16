@@ -38,23 +38,12 @@ extension UserAPI: BaseAPI {
         }
     }
     
-    var parameters: Parameters? {
-        switch self {
-        case .editNickname:
-            return nil
-        case .getUserInfo(let userID):
-            return ["userIds": userID]
-        case .deleteAccount:
-            return nil
-        }
-    }
-    
     var task: Task {
         switch self {
         case .editNickname(let reqeust):
             return .requestJSONEncodable(reqeust)
-        case .getUserInfo:
-            return .requestPlain
+        case .getUserInfo(let userID):
+            return .requestParameters(["userIds": userID])
         case .deleteAccount:
             return .requestPlain
         }
