@@ -13,7 +13,7 @@ protocol EditRoomServiceType {
     func editRoomInfo(with roomID: String, request: EditRoomRequest) -> AnyPublisher<Void, SMNetworkError>
     func createRoom(_ request: CreateRoomRequest) -> AnyPublisher<String, SMNetworkError>
     
-    func getRoomMyInfo(with roomID: String) -> AnyPublisher<RoomMyInfoResult, SMNetworkError>
+//    func getRoomMyInfo(with roomID: String) -> AnyPublisher<RoomMyInfoResult, SMNetworkError>
     func deleteRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError>
     func deleteHistoryRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError>
     

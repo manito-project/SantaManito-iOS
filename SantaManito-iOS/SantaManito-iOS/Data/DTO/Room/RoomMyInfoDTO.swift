@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct RoomMyInfoResult: Decodable {
-    var manitto: User
-    var mission: Mission
-}
-
-extension RoomMyInfoResult {
-    static let stub: RoomMyInfoResult  = .init(manitto: .stub1, mission: .stub)
-}
+//struct RoomMyInfoResult: Decodable {
+//    var manitto: User
+//    var mission: Mission
+//}
+//
+//extension RoomMyInfoResult {
+//    static let stub: RoomMyInfoResult  = .init(manitto: .stub1, mission: .stub)
+//}

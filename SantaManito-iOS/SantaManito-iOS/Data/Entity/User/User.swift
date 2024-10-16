@@ -7,10 +7,9 @@
 
 import Foundation
 
-struct User: Hashable, Decodable {
+struct User: Hashable {
     let id: String
     let username: String
-    //let manittoUserId: String? // TODO: manittoUserId 사용되는 값인지 확인 필요. 사용된다면 추가해야됨
 }
 
 

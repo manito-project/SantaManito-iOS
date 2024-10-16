@@ -140,7 +140,7 @@ fileprivate struct ParticipateListView: View {
             
             ScrollView(.vertical) {
                 ForEach(viewModel.state.roomDetail.members, id: \.self) { member in
-                    ParticipateCellView(user: member)
+                    ParticipateCellView(user: member.santa)
                         .padding(.bottom, 16)
                 }
             }

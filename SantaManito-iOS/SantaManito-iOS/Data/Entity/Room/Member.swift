@@ -7,20 +7,36 @@
 
 import Foundation
 
-struct Member {
+struct Member: Hashable {
     var santa: User
     var manitto: User? 
 }
 
-extension Member {
-    static var stub: [Member] {
+extension [Member] {
+    
+    static var stub1: [Member] {
         return [
-            Member(santa: .stub1, manitto: .stub2),
-            Member(santa: .stub1, manitto: .stub2),
-            Member(santa: .stub1, manitto: .stub2),
-            Member(santa: .stub1, manitto: .stub2),
-            Member(santa: .stub1, manitto: .stub2),
-            Member(santa: .stub1, manitto: .stub2)
+            Member(santa: .stub1, manitto: nil),
+            Member(santa: .stub2, manitto: nil),
+            Member(santa: .stub3, manitto: nil),
+            
         ]
     }
+    
+    static var stub2: [Member] {
+        return [
+            Member(santa: .stub1, manitto: .stub2),
+            Member(santa: .stub2, manitto: .stub3),
+            Member(santa: .stub3, manitto: .stub4),
+            Member(santa: .stub4, manitto: .stub1)
+        ]
+    }
+    
+    static var stub3: [Member] {
+        return [
+            Member(santa: .stub1, manitto: .stub2),
+            Member(santa: .stub2, manitto: .stub1)
+        ]
+    }
+
 }
