@@ -21,7 +21,7 @@ class ManitoWaitingRoomViewModel: ObservableObject {
     }
     
     struct State {
-        var roomDetail: RoomDetail = .stub1 //TODO: Stub 교체
+        var roomDetail: RoomDetail = .stub1
         var isLoading: Bool = false
     }
     
@@ -69,8 +69,7 @@ class ManitoWaitingRoomViewModel: ObservableObject {
             SMPasteBoard.paste(with: state.roomDetail.invitationCode)
             
         case .matchingButtonDidTap:
-//            navigationRouter.push(to: .matchRoom) -> 원래는 이거
-            navigationRouter.push(to: .matchedRoom(roomInfo: state.roomDetail))
+            navigationRouter.push(to: .matchRoom(roomID: state.roomDetail.id))
             
         case .editButtonDidTap:
             navigationRouter.push(to: .editRoom(viewType: .editMode(roomID: state.roomDetail.id, info: state.roomDetail.toMakeRoomInfo())))
