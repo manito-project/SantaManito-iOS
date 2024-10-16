@@ -15,11 +15,11 @@ struct User: Hashable {
 
 extension User {
     static var stub1: User {
-        return .init(id: "userID1", username: "류희둥")
+        return .init(id: "userID1", username: "류희재")
     }
     
     static var stub2: User {
-        return .init(id: "userID2", username: "장석쿵")
+        return .init(id: "userID2", username: "장석우")
     }
     
     static var stub3: User {

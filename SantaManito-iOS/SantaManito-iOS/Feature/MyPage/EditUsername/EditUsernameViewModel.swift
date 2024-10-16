@@ -13,6 +13,7 @@ final class EditUsernameViewModel: ObservableObject {
     enum Action {
         case onAppear
         case doneButtonDidTap
+        case deleteAccountButtonDidTap
     }
     
     struct State {
@@ -23,6 +24,7 @@ final class EditUsernameViewModel: ObservableObject {
     //MARK: - Dependency
     
     private let navigationRouter: NavigationRoutableType
+    private let windowRouter: WindowRoutableType
     private let userService: UserServiceType
     private let userDefaultsService: UserDefaultsServiceType.Type
     
@@ -36,10 +38,13 @@ final class EditUsernameViewModel: ObservableObject {
     
     init(userService: UserServiceType,
          userDefaultsService: UserDefaultsServiceType.Type = UserDefaultsService.self,
-         navigationRouter: NavigationRoutableType) {
+         navigationRouter: NavigationRoutableType,
+         windowRouter: WindowRoutableType
+    ) {
         self.userService = userService
         self.navigationRouter = navigationRouter
         self.userDefaultsService = userDefaultsService
+        self.windowRouter = windowRouter
         
         observe()
     }
@@ -73,8 +78,15 @@ final class EditUsernameViewModel: ObservableObject {
                 }
                 .store(in: cancelBag)
                 
-                
-            return
+        case .deleteAccountButtonDidTap:
+            userService.deleteAccount()
+                .receive(on: DispatchQueue.main)
+                .assignLoading(to: \.state.isLoading, on: owner)
+                .catch { _ in Empty() }
+                .sink { _ in
+                    owner.windowRouter.switch(to: .onboarding)
+                }
+                .store(in: cancelBag)
         }
     }
     
