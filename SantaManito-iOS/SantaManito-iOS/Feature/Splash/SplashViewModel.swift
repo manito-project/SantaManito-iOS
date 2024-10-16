@@ -75,6 +75,7 @@ class SplashViewModel: ObservableObject {
                     Just(owner.appService.getDeviceIdentifier() ?? "" )
                         .filter { !$0.isEmpty }
                         .flatMap(owner.authService.signIn)
+                        .receive(on: DispatchQueue.main)
                         .map {
                             owner.userDefaultsService.userID = $0.userID
                             owner.userDefaultsService.accessToken = $0.accessToken

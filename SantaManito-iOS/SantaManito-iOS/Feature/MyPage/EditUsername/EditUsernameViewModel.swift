@@ -24,6 +24,7 @@ final class EditUsernameViewModel: ObservableObject {
     
     private let navigationRouter: NavigationRoutableType
     private let userService: UserServiceType
+    private let userDefaultsService: UserDefaultsServiceType.Type
     
     @Published private(set) var state = State()
     @Published var username: String = ""
@@ -33,9 +34,12 @@ final class EditUsernameViewModel: ObservableObject {
     
     //MARK: - Init
     
-    init(userService: UserServiceType, navigationRouter: NavigationRoutableType) {
+    init(userService: UserServiceType,
+         userDefaultsService: UserDefaultsServiceType.Type = UserDefaultsService.self,
+         navigationRouter: NavigationRoutableType) {
         self.userService = userService
         self.navigationRouter = navigationRouter
+        self.userDefaultsService = userDefaultsService
         
         observe()
     }
@@ -48,7 +52,7 @@ final class EditUsernameViewModel: ObservableObject {
         
         switch action {
         case .onAppear:
-            userService.getUser(with: "") // TODO: KeyChain에서 가져오기
+            userService.getUser(with: userDefaultsService.userID)
                 .receive(on: DispatchQueue.main)
                 .assignLoading(to: \.state.isLoading, on: owner)
                 .map { $0.username }
@@ -60,12 +64,11 @@ final class EditUsernameViewModel: ObservableObject {
                 .store(in: cancelBag)
             
         case .doneButtonDidTap:
-            state.isLoading = true
             userService.editUsername(with: username)
                 .receive(on: DispatchQueue.main)
+                .assignLoading(to: \.state.isLoading, on: owner)
                 .catch { _ in Empty() }
                 .sink { [weak self] username in
-                    self?.state.isLoading = false
                     self?.navigationRouter.popToRootView()
                 }
                 .store(in: cancelBag)
