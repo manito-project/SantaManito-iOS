@@ -74,6 +74,8 @@
 		87C06E5F2C9EADD600F03637 /* NavigationRoutingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C06E5E2C9EADD600F03637 /* NavigationRoutingView.swift */; };
 		87C06E612C9EADE700F03637 /* NavigationDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C06E602C9EADE700F03637 /* NavigationDestination.swift */; };
 		87D797A42C9454BF003BA602 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D797A32C9454BF003BA602 /* OnboardingViewModel.swift */; };
+		87E514352CBF877000FFF2E1 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E514342CBF876F00FFF2E1 /* UserAPI.swift */; };
+		87E514372CBF88A700FFF2E1 /* EditNicknameReqeust.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E514362CBF88A700FFF2E1 /* EditNicknameReqeust.swift */; };
 		D229FE782CA7CEA200979421 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE772CA7CEA200979421 /* HTTPMethod.swift */; };
 		D229FE7E2CA7D0F700979421 /* URLRequestTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE7D2CA7D0F700979421 /* URLRequestTargetType.swift */; };
 		D229FE802CA7D17600979421 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE7F2CA7D17600979421 /* ParameterEncoding.swift */; };
@@ -209,6 +211,8 @@
 		87C06E5E2C9EADD600F03637 /* NavigationRoutingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRoutingView.swift; sourceTree = "<group>"; };
 		87C06E602C9EADE700F03637 /* NavigationDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDestination.swift; sourceTree = "<group>"; };
 		87D797A32C9454BF003BA602 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		87E514342CBF876F00FFF2E1 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
+		87E514362CBF88A700FFF2E1 /* EditNicknameReqeust.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameReqeust.swift; sourceTree = "<group>"; };
 		D229FE772CA7CEA200979421 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		D229FE7D2CA7D0F700979421 /* URLRequestTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestTargetType.swift; sourceTree = "<group>"; };
 		D229FE7F2CA7D17600979421 /* ParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
@@ -471,6 +475,7 @@
 			children = (
 				874017A52CA1ABBE0096E847 /* UserResponse.swift */,
 				871D873C2CB8F0560050858A /* MemberResponse.swift */,
+				87E514362CBF88A700FFF2E1 /* EditNicknameReqeust.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -525,6 +530,15 @@
 				87C06E5E2C9EADD600F03637 /* NavigationRoutingView.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		87E514332CBF876000FFF2E1 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				877EA23C2C88AB8D0073FFBD /* UserService.swift */,
+				87E514342CBF876F00FFF2E1 /* UserAPI.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		D229FE732CA7CDC000979421 /* Networks */ = {
@@ -667,10 +681,10 @@
 			isa = PBXGroup;
 			children = (
 				87873BFC2CB2EE7F00E368BF /* Auth */,
+				87E514332CBF876000FFF2E1 /* User */,
 				D2A8F60C2C9D18E700810BCF /* Room */,
 				D22E9B722C8803E500086549 /* Service.swift */,
 				87873BE02CAFF29600E368BF /* AppService.swift */,
-				877EA23C2C88AB8D0073FFBD /* UserService.swift */,
 				877EA2402C88ABA00073FFBD /* PushNotificationService.swift */,
 				87873BC42CAC1C0300E368BF /* RemoteConfigService.swift */,
 				87873BF72CB2E71800E368BF /* UserDefaultsService.swift */,
@@ -1066,12 +1080,14 @@
 				877CA0A22C94304B00D23193 /* SplashView.swift in Sources */,
 				D229FE822CA7D39600979421 /* SMNetworkError.swift in Sources */,
 				D229FE7E2CA7D0F700979421 /* URLRequestTargetType.swift in Sources */,
+				87E514372CBF88A700FFF2E1 /* EditNicknameReqeust.swift in Sources */,
 				D2A8F6122C9D1A4F00810BCF /* MakeRoomInfo.swift in Sources */,
 				D2A8F61F2CA1170B00810BCF /* MatchingResultView.swift in Sources */,
 				D2BC1AA52C91357F00CB32B8 /* SMInviteCodeAlertView.swift in Sources */,
 				D26879462CABB2F30025A611 /* EditRoomDTO.swift in Sources */,
 				D28568AC2CAD031C0044C231 /* RequestHandler.swift in Sources */,
 				877CA0832C8CA75C00D23193 /* SMAlertView.swift in Sources */,
+				87E514352CBF877000FFF2E1 /* UserAPI.swift in Sources */,
 				877CA0812C8C555D00D23193 /* SMScrollView.swift in Sources */,
 				87873BF12CB2DB6A00E368BF /* AuthRequest.swift in Sources */,
 				874017B72CA2A9F30096E847 /* EditUsernameViewModel.swift in Sources */,
