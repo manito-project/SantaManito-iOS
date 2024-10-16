@@ -20,29 +20,27 @@ class CheckRoomInfoViewModel: ObservableObject {
     
     struct State {
         var isPresented: Bool = false
-        var dueDate: String = Date().toDueDateAndTime
     }
     
     //MARK: - Dependency
     
-    var roomService: RoomServiceType
-    @Published var roomInfo: MakeRoomInfo = MakeRoomInfo(
-        name: "",
-        remainingDays: 3,
-        dueDate: Date()
-    )
+    private var roomService: RoomServiceType
+    private var navigationRounter: NavigationRoutableType
+    
+    @Published var roomInfo: MakeRoomInfo
     @Published var missionList: [Mission]
     
     //MARK: - Init
     
     init(roomInfo: MakeRoomInfo,
          missionList: [Mission],
-         roomService: RoomServiceType
+         roomService: RoomServiceType,
+         navigationRouter: NavigationRoutableType
     ) {
         self.roomInfo = roomInfo
         self.missionList = missionList
         self.roomService = roomService
-        observe()
+        self.navigationRounter = navigationRouter
     }
     
     //MARK: - Properties
@@ -53,17 +51,6 @@ class CheckRoomInfoViewModel: ObservableObject {
     @Published var inviteCode: String?
     
     //MARK: - Methods
-    
-    func observe() {
-        $roomInfo
-            .map { roomInfo in
-                let adjustDay = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: roomInfo.dueDate))!
-                print(adjustDay)
-                return adjustDay.toDueDateAndTime
-            }
-            .assign(to: \.state.dueDate, on: self)
-            .store(in: cancelBag)
-    }
     
     func send(action: Action) {
         weak var owner = self
@@ -76,7 +63,7 @@ class CheckRoomInfoViewModel: ObservableObject {
             }
             
         case .makeRoomButtonDidTap:
-            let request = CreateRoomRequest(roomName: "안뇽", expirationDate: "2024-08-24", missionContents: ["임시로 넣어둘게요!"]) //TODO: asdf
+            let request = CreateRoomRequest(roomInfo, missionList) // TODO: 미션 로직 수정
             roomService.createRoom(request: request)
                 .catch { _ in Empty() }
                 .sink { inviteCode in
@@ -89,6 +76,8 @@ class CheckRoomInfoViewModel: ObservableObject {
             print("초대코드 복사")
             UIPasteboard.general.string = inviteCode
             state.isPresented = false
+            navigationRounter.popToRootView()
+            
             break
         }
     }

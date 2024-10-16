@@ -14,15 +14,24 @@ struct RoomDetail: Hashable {
     var state: RoomState
     var creatorID: String
     var creatorName: String
+    let members: [Member]
     var mission: [Mission]
+    let createdAt: Date
     let expirationDate: Date
-    let members: [User]
+    
     
     var isHost: Bool {
-        "userID1" == creatorID //TODO: 로그인시 유저디폴트에 저장로직
+        UserDefaultsService.userID == creatorID
     }
-    var remainingDays: String {
-        return String(expirationDate.daysBetween(Date()))//TODO: 만료일 - 오늘 로직
+    
+    // 오늘부터 만료일까지 (한국 날짜 기준)
+    var remainingDays: Int {
+        return Date().daysBetweenInSeoulTimeZone(expirationDate)
+    }
+    
+    // 생성일부터 만료일까지 (한국 날짜 기준)
+    var totalDurationDays: Int {
+        return createdAt.daysBetweenInSeoulTimeZone(expirationDate)
     }
     
     var expirationDateToString: String {
@@ -31,14 +40,17 @@ struct RoomDetail: Hashable {
 }
 
 extension RoomDetail {
+    
     func toMakeRoomInfo() -> MakeRoomInfo {
-        //TODO: remainingDays = (self.expirationDate - Date()) 로직
-        
-        .init(name: self.name,
-              remainingDays: 3,
-              dueDate: self.expirationDate)
+        .init(
+            createdAt: createdAt,
+            name: self.name,
+            totalDurationDays: self.totalDurationDays,
+            dueDate: self.expirationDate
+        )
     }
 }
+
 
 
 extension RoomDetail {
@@ -49,9 +61,11 @@ extension RoomDetail {
               state: .notStarted,
               creatorID: User.stub1.id,
               creatorName: User.stub1.username,
+              members: .stub1,
               mission: [],
-              expirationDate: Date(), 
-              members: [.stub1, .stub2, .stub3, .stub4])
+              createdAt: Date(),
+              expirationDate: Date()
+        )
     }
     
     static var stub2: Self {
@@ -61,9 +75,11 @@ extension RoomDetail {
               state: .inProgress,
               creatorID: User.stub1.id,
               creatorName: User.stub1.username,
+              members: .stub2,
               mission: [],
-              expirationDate: Date(),
-              members: [.stub1, .stub2, .stub3, .stub4])
+              createdAt: Date(),
+              expirationDate: Date()
+              )
     }
      
     
@@ -74,9 +90,11 @@ extension RoomDetail {
               state: .inProgress,
               creatorID: User.stub2.id,
               creatorName: User.stub2.username,
+              members: .stub2,
               mission: [],
-              expirationDate: Date(),
-              members: [.stub1, .stub2, .stub3, .stub4])
+              createdAt: Date(),
+              expirationDate: Date()
+              )
     }
     
     
@@ -87,13 +105,12 @@ extension RoomDetail {
               state: .completed,
               creatorID: User.stub1.id,
               creatorName: User.stub1.username,
+              members: .stub3,
               mission: [],
-              expirationDate: Date(),
-              members: [.stub1, .stub2])
+              createdAt: Date(),
+              expirationDate: Date()
+              )
     }
-    
-    
-    
     
     
     static var stub5: Self {
@@ -103,8 +120,10 @@ extension RoomDetail {
               state: .deleted,
               creatorID: User.stub1.id,
               creatorName: User.stub1.username,
+              members: .stub3,
               mission: [],
-              expirationDate: Date(),
-              members: [.stub1, .stub2])
+              createdAt: Date(),
+              expirationDate: Date()
+              )
     }
 }

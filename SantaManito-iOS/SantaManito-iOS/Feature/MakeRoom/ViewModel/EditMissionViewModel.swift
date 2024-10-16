@@ -49,7 +49,7 @@ class EditMissionViewModel: ObservableObject {
     
     func observe() {
       $missionList
-          .map { $0.allSatisfy { $0.content.count >= 1 } }
+          .map { $0.allSatisfy { !$0.content.isEmpty } }
           .assign(to: \.state.isEnabled, on: self)
           .store(in: cancelBag)
 

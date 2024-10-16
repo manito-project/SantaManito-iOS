@@ -51,20 +51,23 @@ extension Date {
         return formatter.string(from: self)
     }
     
-    func adjustDays(_ days: Int) -> Date {
-        let calendar = Calendar.current
-        guard let futureDate = calendar.date(byAdding: .day, value: days, to: self) else { return Date() }
-        let dateComponents = calendar.dateComponents([.year, .month, .day], from: futureDate)
-        return calendar.date(from: dateComponents) ?? Date()
+    func addingDays(_ days: Int) -> Date {
+       return self.addingTimeInterval(Double(days * 24 * 60 * 60))
     }
-    func daysBetween(_ date: Date) -> Int {
-            let calendar = Calendar.current
-            let start = calendar.startOfDay(for: self)
-            let end = calendar.startOfDay(for: date)
-            let components = calendar.dateComponents([.day], from: start, to: end)
-            return components.day ?? 0
-        }
-
+    
+    func daysBetweenInSeoulTimeZone(_ date: Date) -> Int {
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(identifier: "Asia/Seoul")!
+        let start = calendar.startOfDay(for: self)
+        let end = calendar.startOfDay(for: date)
+        let components = calendar.dateComponents([.day], from: start, to: end)
+        return components.day ?? 0
+    }
+    
+    var startOfDay: Date {
+        return Date(timeIntervalSince1970: floor(self.timeIntervalSince1970 / 86400) * 86400)
+    }
+    
 }
 
 extension String {

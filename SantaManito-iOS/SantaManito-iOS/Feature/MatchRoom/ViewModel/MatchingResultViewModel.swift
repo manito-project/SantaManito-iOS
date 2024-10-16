@@ -18,7 +18,8 @@ class MatchingResultViewModel: ObservableObject {
     }
     
     struct State {
-        var manito: RoomMyInfoResult = .stub
+        var mySanta: User = .stub1 //TODO: Stub 교체
+        var mission: String = "" // TODO: 미션 로직 수정 필요
         var room: RoomDetail = .stub1 //TODO: Stub 교체
     }
     

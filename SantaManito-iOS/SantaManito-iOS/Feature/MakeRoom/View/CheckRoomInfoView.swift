@@ -109,8 +109,8 @@ fileprivate struct DuedateInfoView: View {
             
             //TODO: 기기에 따라서 레이아웃이 어색함
             SMColoredTextView(
-                fullText: "\(viewModel.roomInfo.remainingDays)일 후인 \(viewModel.state.dueDate)에 결과 공개!",
-                coloredWord: viewModel.state.dueDate,
+                fullText: "\(viewModel.roomInfo.remainingDays)일 후인 \(viewModel.roomInfo.expirationDate.toDueDateAndTime)에 결과 공개!",
+                coloredWord: viewModel.roomInfo.expirationDate.toDueDateAndTime,
                 color: .smRed
             )
             .font(.semibold_16)
@@ -199,11 +199,10 @@ private struct MissionCellView: View {
     let container = DIContainer.stub
     return CheckRoomInfoView(
         viewModel: CheckRoomInfoViewModel(
-            roomInfo: MakeRoomInfo(
-                name: "여기가 마니또 방", remainingDays: 3, dueDate: Date()
-            ),
+            roomInfo: .stub1,
             missionList: Mission.dummy(),
-            roomService: DIContainer.stub.service.roomService
+            roomService: DIContainer.stub.service.roomService,
+            navigationRouter: DIContainer.stub.navigationRouter
         )
     )
     .environmentObject(DIContainer.default)

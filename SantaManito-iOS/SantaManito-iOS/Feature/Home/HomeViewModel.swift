@@ -30,7 +30,7 @@ class HomeViewModel: ObservableObject {
     
     //MARK: - Dependency
     
-    var roomService: RoomServiceType
+    private var roomService: RoomServiceType
     private var navigationRouter: NavigationRoutableType
     
     

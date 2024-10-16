@@ -26,15 +26,16 @@ protocol RoomServiceType {
     // For Guset
     func enterRoom(at: String) -> AnyPublisher<String, SMNetworkError>
     func exitRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError>
-    
-    func getRoomInfoTest(with roomID: String) -> AnyPublisher<RoomDetailTestReseponse, SMNetworkError> 
 //    func getMyInfo(roomID: String) -> AnyPublisher<Void, SMNetworkError>
 }
 
 extension RoomService: RoomServiceType {
     func getEnteredRooms() -> AnyPublisher<[RoomDetail], SMNetworkError> {
         requestWithResult(.getEnteredAllRoom, [RoomDetailResponse].self)
-            .map { $0.map { $0.toEntity() }}
+            .map {
+                $0.map { $0.toEntity() }
+                    .sorted { $0.expirationDate < $1.expirationDate }
+            }
             .eraseToAnyPublisher()
     }
     
@@ -44,9 +45,6 @@ extension RoomService: RoomServiceType {
             .eraseToAnyPublisher()
     }
     
-    func getRoomInfoTest(with roomID: String) -> AnyPublisher<RoomDetailTestReseponse, SMNetworkError> {
-        requestWithResult(.getRoomInfo(roomID: roomID), RoomDetailTestReseponse.self)
-    }
     
     func deleteHistoryRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError> {
         requestWithNoResult(.deleteHistoryRoom(roomID: roomID))
@@ -84,9 +82,6 @@ extension RoomService: RoomServiceType {
 }
 
 struct StubRoomService: RoomServiceType {
-    func getRoomInfoTest(with roomID: String) -> AnyPublisher<RoomDetailTestReseponse, SMNetworkError> {
-        Fail(error: SMNetworkError.unknown(NSError())).eraseToAnyPublisher()
-    }
     
     func getEnteredRooms() -> AnyPublisher<[RoomDetail], SMNetworkError> {
         Just([.stub1, .stub2, .stub3, .stub4, .stub5]).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()

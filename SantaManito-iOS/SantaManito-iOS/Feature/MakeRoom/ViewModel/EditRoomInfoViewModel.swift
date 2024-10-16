@@ -74,18 +74,18 @@ final class EditRoomInfoViewModel: ObservableObject {
             .store(in: cancelBag)
         
         $roomInfo
-            .map { $0.remainingDays < 14 }
+            .map { $0.totalDurationDays < 14 }
             .assign(to: \.state.canIncreaseDays, on: self)
             .store(in: cancelBag)
         
         $roomInfo
-            .map { $0.remainingDays > 3 }
+            .map { $0.totalDurationDays > 3 }
             .assign(to: \.state.canDecreaseDays, on: self)
             .store(in: cancelBag)
         
         $roomInfo
             .map { roomInfo in
-                let adjustedDate = roomInfo.dueDate.adjustDays(roomInfo.remainingDays)
+                let adjustedDate = roomInfo.expirationDate
                 return "\(adjustedDate.toDueDate) \(roomInfo.dueDate.toDueDateTime)"
             }
             .assign(to: \.state.dueDate, on: self)
@@ -107,17 +107,15 @@ final class EditRoomInfoViewModel: ObservableObject {
     }
     
     func send(action: Action) {
-        weak var owner = self
-        guard let owner else { return }
         
         switch action {
         case .onAppear:
             return
         case .increaseDuedate:
-            if state.canIncreaseDays { roomInfo.remainingDays += 1 }
+            if state.canIncreaseDays { roomInfo.totalDurationDays += 1 }
             
         case .decreaseDuedate:
-            if state.canDecreaseDays { roomInfo.remainingDays -= 1 }
+            if state.canDecreaseDays { roomInfo.totalDurationDays -= 1 }
             
         case .configDuedateTime(let dueDateTime):
             roomInfo.dueDate = dueDateTime
@@ -137,7 +135,8 @@ final class EditRoomInfoViewModel: ObservableObject {
             navigationRouter.push(to: .makeMission(roomInfo: roomInfo))
             
         case .editButtonDidTap:
-            roomService.editRoomInfo(with: "1", info: roomInfo) //TODO: 
+            guard let roomID = viewType.roomID else { return }
+            roomService.editRoomInfo(with: roomID, info: roomInfo) //TODO:
                 .catch { _ in Empty() }
                 .sink { [weak self] _ in
                     self?.navigationRouter.pop()
