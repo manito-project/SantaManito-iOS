@@ -29,7 +29,7 @@ class MatchingResultViewModel: ObservableObject {
             }
         }
         fileprivate var member: Member {
-            guard let 내가마니또인멤버Index = roomInfo.members.firstIndex(where: { $0.manitto?.id == UserDefaultsService.userID})
+            guard let 내가마니또인멤버Index = roomInfo.members.firstIndex(where: { $0.manitto?.id == UserDefaultsService.shared.userID})
             else { return .init(santa: .stub1) }
             return roomInfo.members[내가마니또인멤버Index]
         }
