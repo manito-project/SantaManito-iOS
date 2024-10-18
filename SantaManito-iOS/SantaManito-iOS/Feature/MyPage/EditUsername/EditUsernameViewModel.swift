@@ -26,7 +26,7 @@ final class EditUsernameViewModel: ObservableObject {
     private let navigationRouter: NavigationRoutableType
     private let windowRouter: WindowRoutableType
     private let userService: UserServiceType
-    private let userDefaultsService: UserDefaultsServiceType.Type
+    private let userDefaultsService: UserDefaultsServiceType
     
     @Published private(set) var state = State()
     @Published var username: String = ""
@@ -37,7 +37,7 @@ final class EditUsernameViewModel: ObservableObject {
     //MARK: - Init
     
     init(userService: UserServiceType,
-         userDefaultsService: UserDefaultsServiceType.Type = UserDefaultsService.self,
+         userDefaultsService: UserDefaultsServiceType = UserDefaultsService.shared,
          navigationRouter: NavigationRoutableType,
          windowRouter: WindowRoutableType
     ) {
@@ -85,7 +85,7 @@ final class EditUsernameViewModel: ObservableObject {
                 .catch { _ in Empty() }
                 .receive(on: DispatchQueue.main)
                 .sink { _ in
-                    owner.userDefaultsService.reset()
+                    owner.userDefaultsService.removeAll()
                     owner.windowRouter.switch(to: .splash)
                     owner.navigationRouter.popToRootView()
                 }
