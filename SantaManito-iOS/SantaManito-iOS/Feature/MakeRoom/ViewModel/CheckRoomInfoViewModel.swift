@@ -77,8 +77,6 @@ class CheckRoomInfoViewModel: ObservableObject {
             UIPasteboard.general.string = inviteCode
             state.isPresented = false
             navigationRounter.popToRootView()
-            
-            break
         }
     }
 }
