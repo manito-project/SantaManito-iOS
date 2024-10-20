@@ -26,7 +26,7 @@ class SplashViewModel: ObservableObject {
     
     private let appService: AppServiceType
     private let authService: AuthenticationServiceType
-    private let userDefaultsService: UserDefaultsServiceType.Type
+    private var userDefaultsService: UserDefaultsServiceType
     private let remoteConfigService: RemoteConfigServiceType
     private(set) var windowRouter: WindowRoutableType
     
@@ -41,7 +41,7 @@ class SplashViewModel: ObservableObject {
         appService: AppServiceType,
         remoteConfigService: RemoteConfigServiceType,
         authService: AuthenticationServiceType,
-        userDefaultsService: UserDefaultsServiceType.Type = UserDefaultsService.self,
+        userDefaultsService: UserDefaultsServiceType = UserDefaultsService.shared,
         windowRouter: WindowRoutableType
     ) {
         self.appService = appService
