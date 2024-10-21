@@ -18,7 +18,7 @@ final class RoomServiceServerTests: XCTestCase {
         cancelBag = CancelBag()
         sut = RoomService()
         
-        UserDefaultsService.accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFlYjg0Yzg3LWNkZmEtNDBhMS1hNGY3LTI1YTQwOTNjMDcyMCIsImlhdCI6MTcyODYyMTcxMywiZXhwIjoxNzM2Mzk3NzEzfQ.7kdOdP5YxtkIzXa2TMYgifcUWjoQI7it71u8KM-Paok"
+        UserDefaultsService.shared.accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFlYjg0Yzg3LWNkZmEtNDBhMS1hNGY3LTI1YTQwOTNjMDcyMCIsImlhdCI6MTcyODYyMTcxMywiZXhwIjoxNzM2Mzk3NzEzfQ.7kdOdP5YxtkIzXa2TMYgifcUWjoQI7it71u8KM-Paok"
     }
     
     override func tearDown() {
