@@ -68,10 +68,10 @@ extension BaseService {
                 .mapError { _ in SMNetworkError.invalidResponse(.invalidStatusCode(code: response.response.statusCode)) }
                 .flatMap { response in
                     Fail(error: SMNetworkError.invalidResponse(.invalidStatusCode(
-                                code: response.statusCode,
-                                data: response.data
-                            )
-                        )
+                        code: response.statusCode,
+                        data: response.data
+                    )
+                    )
                     ).eraseToAnyPublisher()
                 }
                 .eraseToAnyPublisher()
@@ -83,13 +83,8 @@ extension BaseService {
     private func decode<T: Decodable>(data: Data, target: API) -> AnyPublisher<T, SMNetworkError> {
         let decoder = JSONDecoder()
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        formatter.timeZone = TimeZone(secondsFromGMT: -1 * 9 * 60 * 60) // 한국 시간 (KST) UTC+9로 설정
-        // - 를 한 이유는 서버엔 UTC+9기준으로 저장되지만
-        // iOS에서 Date는 UTC 기준으로 설정되기에
-        // 서버의 UTC + 9 를 UTC 기준으로 변환 후
-        // iOS 내 모든 Date는 UTC 타임을 기준으로 설정하게 한다.
-        // 단, Date의 timeZone은 Asia/Seoul로 설정하여 유저에겐 UTC +9 시간을 보여준다.
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSz"
+        formatter.timeZone = TimeZone(secondsFromGMT: 0) // UTC기준으로 디코딩
         decoder.dateDecodingStrategy = .formatted(formatter)
         
         return Just(data)

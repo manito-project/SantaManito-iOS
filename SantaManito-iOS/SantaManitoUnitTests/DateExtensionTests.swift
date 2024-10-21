@@ -21,10 +21,9 @@ final class DateParsingTests: XCTestCase {
     
     func test_iso형식이_맞는가() {
         // Given
-        let dateString = "2000-04-15T11:13:00Z"
+        let dateString = "2000-04-15T11:13:00.111Z"
         let formatter = ISO8601DateFormatter()
-        
-        
+        formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
         
         // When
         let date = formatter.date(from: dateString)
@@ -33,20 +32,53 @@ final class DateParsingTests: XCTestCase {
         XCTAssertTrue(date != nil)
     }
     
-    func test_custom형식으로_iso형식을_파싱이_가능한가() {
-        
+    func test_서버Response의_dateformat을_정상적으로_파싱이_가능한가() {
         // Given
-        let dateString = "2000-04-15T11:13:00Z"
+        let stringFromServer = "2000-04-15T11:13:00.111Z"
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssz"
-        
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSz"
         
         // When
-        let date = formatter.date(from: dateString)
+        let date = formatter.date(from: stringFromServer)
         
         //Then
         XCTAssertTrue(date != nil)
     }
+    
+    func test_서버Request로_보낼_Date를_정상적으로_인코딩하는가() throws {
+        // Given
+        struct Request: Codable {
+            let date: Date
+        }
+        let currentDate = Date()
+        let request = Request(date: Date())
+        
+        let encoder = JSONEncoder()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        encoder.dateEncodingStrategy = .formatted(formatter)
+        
+        // When
+        guard let data = try? encoder.encode(request) else {
+            XCTFail("Encoding failed")
+            return
+        }
+        
+        // Then
+        // data를 JSON 형식의 String으로 변환하여 확인
+        if let jsonString = String(data: data, encoding: .utf8) {
+            print("Encoded JSON:", jsonString)
+            
+            // date를 포맷에 맞게 String으로 변환
+            let expectedDateString = formatter.string(from: currentDate)
+            
+            // 실제 JSON에 포함된 date 값이 예상하는 포맷과 일치하는지 확인
+            XCTAssertTrue(jsonString.contains(expectedDateString), "Encoded date does not match the expected format")
+        } else {
+            XCTFail("Failed to convert data to string")
+        }
+    }
+    
     
     //MARK: - UTC +9 기준
     

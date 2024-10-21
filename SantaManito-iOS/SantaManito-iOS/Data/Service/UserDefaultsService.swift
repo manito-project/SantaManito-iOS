@@ -29,7 +29,7 @@ extension UserDefaultsServiceType {
 
 
 struct UserDefaultsService: UserDefaultsServiceType {
-    static let shared = UserDefaultsService()
+    static var shared = UserDefaultsService()
     private init() { }
     
     @UserDefault<String>(key: .userID, defaultValue: "") var userID: String

@@ -12,10 +12,10 @@ struct RoomDetailResponse: Decodable {
     let id: String
     let roomName: String
     let invitationCode: String
-    let createdAt: String //TODO: 서버 확정 후 Date로 변경
-    let expirationDate: String //TODO: 서버 확정 후 Date로 변경
-    let matchingDate: String? //TODO: 서버 확정 후 Date로 변경
-    let deletedByCreatorDate: String? //TODO: 서버 확정 후 Date로 변경
+    let createdAt: Date
+    let expirationDate: Date
+    let matchingDate: Date?
+    let deletedByCreatorDate: Date?
     let creator: UserResponse
     let missions: [MissionResponse]
     let members: [MemberResponse]
@@ -44,8 +44,8 @@ extension RoomDetailResponse {
                           creatorName: self.creator.username,
                           members: members.map { $0.toEntity()},
                           mission: missions.map { $0.toEntity()} ,
-                          createdAt: Date().addingTimeInterval(-5 * 24 * 60 * 60), // TODO: 위 주석 해제하면 createdAt에 연결해야함.
-                          expirationDate: Date().addingTimeInterval(-3 * 12 * 60 * 60)
+                          createdAt: self.createdAt, 
+                          expirationDate: self.expirationDate
         )
     }
 }
