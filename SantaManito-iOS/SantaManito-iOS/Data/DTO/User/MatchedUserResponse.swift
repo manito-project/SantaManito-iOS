@@ -13,7 +13,7 @@ struct MatchedUserResult: Decodable {
 }
 
 extension MatchedUserResult {
-    func toEntity() -> (String, String) {
-        return (manitto.username, mission.content)
+    func toEntity() -> (User, Mission) {
+        return (manitto.toEntity(), mission.toEntity())
     }
 }

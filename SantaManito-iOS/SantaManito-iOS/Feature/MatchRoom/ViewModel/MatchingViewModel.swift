@@ -56,7 +56,7 @@ class MatchingViewModel: ObservableObject {
         case .onAppear:
             Just(roomID)
                 .flatMap(roomService.matchRoom)
-                .map { owner.roomID}
+                .map { owner.roomID }
                 .flatMap(roomService.getRoomInfo)
                 .assignLoading(to: \.state.isAnimating, on: owner)
                 .catch { _ in Empty() }

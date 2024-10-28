@@ -26,7 +26,7 @@ protocol RoomServiceType {
     // For Guset
     func enterRoom(at: String) -> AnyPublisher<String, SMNetworkError>
     func exitRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError>
-    func getMyInfo(roomID: String) -> AnyPublisher<(String, String), SMNetworkError>
+    func getMyInfo(with roomID: String) -> AnyPublisher<(User, Mission) , SMNetworkError>
 }
 
 extension RoomService: RoomServiceType {
@@ -81,7 +81,7 @@ extension RoomService: RoomServiceType {
         requestWithNoResult(.exitRoom(roomID: roomID))
     }
     
-    func getMyInfo(roomID: String) -> AnyPublisher<(String, String), SMNetworkError> {
+    func getMyInfo(with roomID: String) -> AnyPublisher<(User, Mission), SMNetworkError> {
         requestWithResult(.getMyInfo(roomID: roomID), MatchedUserResult.self)
             .map { $0.toEntity() }
             .eraseToAnyPublisher()
@@ -128,7 +128,7 @@ struct StubRoomService: RoomServiceType {
         Just(()).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
     }
     
-    func getMyInfo(roomID: String) -> AnyPublisher<(String, String), SMNetworkError> {
-        Just(("마니또이름", "미션내용")).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
+    func getMyInfo(with roomID: String) -> AnyPublisher<(User, Mission), SMNetworkError> {
+        Just((.stub1, .stub)).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
     }
 }
