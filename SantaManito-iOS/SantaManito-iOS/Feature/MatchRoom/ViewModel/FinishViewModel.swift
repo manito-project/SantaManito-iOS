@@ -91,7 +91,7 @@ class FinishViewModel: ObservableObject {
     func send(action: Action) {
         switch action {
         case .onAppear:
-            return
+            return 
 
         case .toggleViewTypeButtonDidTap:
             state.viewType = state.viewType == .me ? .all : .me
