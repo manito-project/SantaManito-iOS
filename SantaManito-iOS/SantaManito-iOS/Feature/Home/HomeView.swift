@@ -109,6 +109,28 @@ struct HomeView: View {
             .onAppear {
                 viewModel.send(.onAppear)
             }
+            .smAlert(
+                isPresented: viewModel.state.guestExitAlert.isPresented,
+                title: viewModel.state.guestExitAlert.detail.name + "\n이 방을 나가는 거 맞지?",
+                primaryButton: (
+                    "방 나가기",
+                    { 
+                        viewModel.send(.dismissAlert)
+                        viewModel.send(.guestExitButtonDidTap(roomDetail: viewModel.state.guestExitAlert.detail))}
+                ),
+                secondaryButton: ("방에 머물기", { viewModel.send(.dismissAlert) })
+            )
+            .smAlert(
+                isPresented: viewModel.state.creatorExitAlert.isPresented,
+                title: "방장이 나가면 재입장할 수 없고,\n친구들도 더 이상 방에 접속할 수 없어!",
+                primaryButton: (
+                    "방 나가기",
+                    { 
+                        viewModel.send(.dismissAlert)
+                        viewModel.send(.creatorExitButtonDidTap(roomDetail: viewModel.state.creatorExitAlert.detail))}
+                ),
+                secondaryButton: ("방에 머물기", { viewModel.send(.dismissAlert) })
+            )
         }
         
     }
@@ -155,6 +177,8 @@ struct HomeView: View {
             }
         }
         .padding(.top, 20)
+        
+                
     }
     
 }
@@ -265,7 +289,7 @@ fileprivate struct HomeRoomCell: View {
                         VStack {
                             Spacer()
                             Button {
-                                viewModel.send(.exitButtonDidTap(roomID: roomInfo.id))
+                                viewModel.send(.exitButtonDidTap(roomDetail: roomInfo))
                             } label : {
                                 Text("방 나가기")
                                     .font(.medium_14)
@@ -312,6 +336,7 @@ fileprivate struct HomeRoomCell: View {
                 .stroke(Color.smLightgray, lineWidth: 1)
         )
         .padding(.vertical, 1)
+        
         
         
     }

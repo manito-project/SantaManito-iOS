@@ -59,7 +59,7 @@ class ManitoWaitingRoomViewModel: ObservableObject {
             
         case .refreshButtonDidTap:
             roomService.getRoomInfo(with: state.roomDetail.id)
-                .receive(on: DispatchQueue.main)
+                .receive(on: RunLoop.main)
                 .assignLoading(to: \.state.isLoading, on: owner)
                 .catch { _ in Empty() }
                 .assign(to: \.state.roomDetail, on: owner)
