@@ -57,6 +57,7 @@ class EnterRoomViewModel: ObservableObject {
         switch action {
         case .enterButtonDidTap:
             roomService.enterRoom(at: inviteCode)
+                .receive(on: RunLoop.main)
                 .mapError { [weak self] error in
                     self?.state.enterFailMessage = (true, error.description)
                     return error
@@ -67,6 +68,7 @@ class EnterRoomViewModel: ObservableObject {
                         .catch { _ in Empty() }
                         .eraseToAnyPublisher()
                 }
+                .receive(on: RunLoop.main)
                 .sink(receiveCompletion: { _ in
                     
                 }, receiveValue: { [weak self] roomDetail in

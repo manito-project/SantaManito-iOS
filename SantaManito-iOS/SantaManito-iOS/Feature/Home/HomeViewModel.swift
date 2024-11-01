@@ -92,7 +92,7 @@ class HomeViewModel: ObservableObject {
             
         case let .exitButtonDidTap(roomID):
             roomService.exitRoom(with: roomID)
-                .receive(on: DispatchQueue.main)
+                .receive(on: RunLoop.main)
                 .assignLoading(to: \.state.isLoading, on: owner)
                 .catch { _ in Empty()}
                 .sink {
@@ -104,7 +104,7 @@ class HomeViewModel: ObservableObject {
                 
         case let .deleteHistoryButtonDidTap(roomID):
             roomService.deleteHistoryRoom(with: roomID)
-                .receive(on: DispatchQueue.main)
+                .receive(on: RunLoop.main)
                 .assignLoading(to: \.state.isLoading, on: owner)
                 .catch { _ in Empty()}
                 .sink {

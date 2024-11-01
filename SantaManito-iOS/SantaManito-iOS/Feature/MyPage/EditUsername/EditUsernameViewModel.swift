@@ -70,7 +70,7 @@ final class EditUsernameViewModel: ObservableObject {
             
         case .doneButtonDidTap:
             userService.editUsername(with: username)
-                .receive(on: DispatchQueue.main)
+                .receive(on: RunLoop.main)
                 .assignLoading(to: \.state.isLoading, on: owner)
                 .catch { _ in Empty() }
                 .sink { [weak self] username in
@@ -80,10 +80,10 @@ final class EditUsernameViewModel: ObservableObject {
                 
         case .deleteAccountButtonDidTap:
             userService.deleteAccount()
-                .receive(on: DispatchQueue.main)
+                .receive(on: RunLoop.main)
                 .assignLoading(to: \.state.isLoading, on: owner)
                 .catch { _ in Empty() }
-                .receive(on: DispatchQueue.main)
+                .receive(on: RunLoop.main)
                 .sink { _ in
                     owner.userDefaultsService.removeAll()
                     owner.windowRouter.switch(to: .splash)

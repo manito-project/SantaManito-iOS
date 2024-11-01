@@ -99,6 +99,7 @@ class FinishViewModel: ObservableObject {
         case .deleteRoomButtonDidTap:
             roomService.exitRoom(with: state.roomInfo.id)
                 .catch { _ in Empty() }
+                .receive(on: RunLoop.main)
                 .sink(receiveValue: { [weak self] _ in
                     self?.navigationRouter.popToRootView()
                 })
