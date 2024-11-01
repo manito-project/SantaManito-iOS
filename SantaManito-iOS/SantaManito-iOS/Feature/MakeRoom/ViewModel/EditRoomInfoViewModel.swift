@@ -135,6 +135,7 @@ final class EditRoomInfoViewModel: ObservableObject {
         case .editButtonDidTap:
             guard let roomID = viewType.roomID else { return }
             roomService.editRoomInfo(with: roomID, info: roomInfo)
+                .receive(on: RunLoop.main)
                 .catch { _ in Empty() }
                 .sink { [weak self] _ in
                     self?.navigationRouter.pop()

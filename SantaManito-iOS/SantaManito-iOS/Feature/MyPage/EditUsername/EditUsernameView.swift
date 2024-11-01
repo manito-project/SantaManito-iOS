@@ -103,6 +103,7 @@ struct EditUsernameView: View {
                         viewModel.send(.deleteAccountButtonDidTap)
                     } label: {
                         Text("회원탈퇴")
+                            .font(.medium_16)
                             .foregroundStyle(.smLightgray)
                             .underline()
                     }
@@ -126,6 +127,10 @@ struct EditUsernameView: View {
             viewModel.send(.onAppear)
         }
         .loading(viewModel.state.isLoading)
+        .smAlert(isPresented: viewModel.state.isDeleteAccountAlertPresented,
+                 title: "탈퇴하면 소중한 추억이 담긴 마니또 내역을\n다시 확인할 수 없어. 그래도 괜찮아?",
+                 primaryButton: ("탈퇴하기", {viewModel.send(.alertDeleteButtonDidTap)}),
+                 secondaryButton: ("머무르기", { viewModel.send(.alertDismissDidTap)}))
         
         
     }

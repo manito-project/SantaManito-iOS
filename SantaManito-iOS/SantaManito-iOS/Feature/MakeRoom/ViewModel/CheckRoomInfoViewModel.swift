@@ -20,6 +20,7 @@ class CheckRoomInfoViewModel: ObservableObject {
     
     struct State {
         var isPresented: Bool = false
+        var isLoading: Bool = false
     }
     
     //MARK: - Dependency
@@ -66,6 +67,8 @@ class CheckRoomInfoViewModel: ObservableObject {
             let request = CreateRoomRequest(roomInfo, missionList) // TODO: 미션 로직 수정
             roomService.createRoom(request: request)
                 .catch { _ in Empty() }
+                .receive(on: RunLoop.main)
+                .assignLoading(to: \.state.isLoading, on: self)
                 .sink { inviteCode in
                     owner.inviteCode = inviteCode
                     owner.state.isPresented = true

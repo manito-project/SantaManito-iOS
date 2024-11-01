@@ -58,6 +58,7 @@ class MatchingViewModel: ObservableObject {
                 .flatMap(roomService.matchRoom)
                 .map { owner.roomID}
                 .flatMap(roomService.getRoomInfo)
+                .receive(on: RunLoop.main)
                 .assignLoading(to: \.state.isAnimating, on: owner)
                 .catch { _ in Empty() }
                 .sink { roomDetail in
