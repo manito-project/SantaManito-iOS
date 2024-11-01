@@ -60,7 +60,7 @@ class SplashViewModel: ObservableObject {
         case .onAppear:
             
             appService.isLatestVersion()
-                .receive(on: DispatchQueue.main)
+                .receive(on: RunLoop.main)
                 .sink { isLatestVersion in
                     
                     guard isLatestVersion else {
