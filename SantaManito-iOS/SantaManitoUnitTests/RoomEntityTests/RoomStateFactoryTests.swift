@@ -22,7 +22,7 @@ final class RoomStateFactoryTests: XCTestCase {
     
     func test_매칭_전_방장이_삭제한_경우_상태가_삭제됨으로_변경되는지() {
         // Given
-        let dto = RoomDetailResponse(id: "", roomName: "", invitationCode: "",
+        let dto = RoomDetailResponse(id: "", roomName: "", invitationCode: "", createdAt: Date().addingTimeInterval(-4),
                                       expirationDate: Date().addingTimeInterval(-3),
                                       matchingDate: nil,
                                       deletedByCreatorDate: Date().addingTimeInterval(-1),
@@ -37,7 +37,7 @@ final class RoomStateFactoryTests: XCTestCase {
     
     func test_매칭_이후_방장이_삭제한_경우_상태가_삭제됨으로_변경되는지() {
         // Given
-        let dto = RoomDetailResponse(id: "", roomName: "", invitationCode: "",
+        let dto = RoomDetailResponse(id: "", roomName: "", invitationCode: "",createdAt: Date().addingTimeInterval(-4),
                                       expirationDate: Date().addingTimeInterval(-3),
                                       matchingDate: Date().addingTimeInterval(-2),
                                       deletedByCreatorDate: Date().addingTimeInterval(-1),
@@ -52,7 +52,7 @@ final class RoomStateFactoryTests: XCTestCase {
     
     func test_매칭_잔_만료일이_지난_경우_상태가_완료됨으로_변경되는지() {
         // Given
-        let dto = RoomDetailResponse(id: "", roomName: "", invitationCode: "",
+        let dto = RoomDetailResponse(id: "", roomName: "", invitationCode: "", createdAt: Date().addingTimeInterval(-4),
                                       expirationDate: Date().addingTimeInterval(-3),
                                       matchingDate: nil,
                                       deletedByCreatorDate: nil,
@@ -67,7 +67,7 @@ final class RoomStateFactoryTests: XCTestCase {
     
     func test_매칭_후_만료일이_지난_경우_상태가_완료됨으로_변경되는지() {
         // Given
-        let dto = RoomDetailResponse(id: "", roomName: "", invitationCode: "",
+        let dto = RoomDetailResponse(id: "", roomName: "", invitationCode: "", createdAt: Date().addingTimeInterval(-4),
                                       expirationDate: Date().addingTimeInterval(-3),
                                       matchingDate: Date().addingTimeInterval(-2),
                                       deletedByCreatorDate: nil,
@@ -83,7 +83,7 @@ final class RoomStateFactoryTests: XCTestCase {
     
     func test_매칭_전_만료일이_지난_경우_상태가_완료됨으로_변경되는지() {
         // Given
-        let dto = RoomDetailResponse(id: "", roomName: "", invitationCode: "",
+        let dto = RoomDetailResponse(id: "", roomName: "", invitationCode: "", createdAt: Date().addingTimeInterval(-4),
                                       expirationDate: Date().addingTimeInterval(-3),
                                       matchingDate: nil,
                                       deletedByCreatorDate: nil,
@@ -98,7 +98,7 @@ final class RoomStateFactoryTests: XCTestCase {
     
     func test_만료일이_남은_경우_매칭_전이면_상태가_시작전으로_변경되는지() {
         // Given
-        let dto = RoomDetailResponse(id: "", roomName: "", invitationCode: "",
+        let dto = RoomDetailResponse(id: "", roomName: "", invitationCode: "", createdAt: Date().addingTimeInterval(-4),
                                       expirationDate: Date().addingTimeInterval(+3),
                                       matchingDate: nil,
                                       deletedByCreatorDate: nil,
@@ -114,7 +114,7 @@ final class RoomStateFactoryTests: XCTestCase {
     
     func test_만료일이_남은_경우_매칭_후면_상태가_진행_중으로_변경되는지() {
         // Given
-        let dto = RoomDetailResponse(id: "", roomName: "", invitationCode: "",
+        let dto = RoomDetailResponse(id: "", roomName: "", invitationCode: "", createdAt: Date().addingTimeInterval(-4),
                                       expirationDate: Date().addingTimeInterval(+3),
                                      matchingDate: Date().addingTimeInterval(-1),
                                       deletedByCreatorDate: nil,
