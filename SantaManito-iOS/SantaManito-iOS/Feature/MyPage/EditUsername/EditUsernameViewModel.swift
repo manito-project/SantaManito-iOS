@@ -14,11 +14,14 @@ final class EditUsernameViewModel: ObservableObject {
         case onAppear
         case doneButtonDidTap
         case deleteAccountButtonDidTap
+        case alertDeleteButtonDidTap
+        case alertDismissDidTap
     }
     
     struct State {
         var isLoading = false
         var doneButtonDisabled = true
+        var isDeleteAccountAlertPresented = false
     }
     
     //MARK: - Dependency
@@ -77,8 +80,12 @@ final class EditUsernameViewModel: ObservableObject {
                     self?.navigationRouter.popToRootView()
                 }
                 .store(in: cancelBag)
-                
         case .deleteAccountButtonDidTap:
+            state.isDeleteAccountAlertPresented = true
+        case .alertDismissDidTap:
+            state.isDeleteAccountAlertPresented = false
+        case .alertDeleteButtonDidTap:
+            state.isDeleteAccountAlertPresented = false
             userService.deleteAccount()
                 .receive(on: RunLoop.main)
                 .assignLoading(to: \.state.isLoading, on: owner)
