@@ -34,13 +34,13 @@ class MatchingResultViewModel: ObservableObject {
             return roomInfo.members[내가마니또인멤버Index]
         }
         
-        var me: User {
+        var me: SantaUser {
             member.santa
         }
         
         var isAnimating: Bool = false
         
-        fileprivate var matchedInfo: (User, Mission) = (.stub1, .stub)
+        fileprivate var matchedInfo: (User, Mission) = (.stub1, .stub1)
         
         var mannito: User { matchedInfo.0 }
         var mission: String { matchedInfo.1.content }

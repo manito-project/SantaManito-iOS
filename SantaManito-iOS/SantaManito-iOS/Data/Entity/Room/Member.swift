@@ -8,7 +8,7 @@
 import Foundation
 
 struct Member: Hashable {
-    var santa: User
+    var santa: SantaUser
     var manitto: User? 
 }
 

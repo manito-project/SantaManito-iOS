@@ -9,12 +9,29 @@ import Foundation
 
 public struct Mission: Identifiable, Hashable, Decodable {
     var content: String
-    public var id = UUID() // TODO: 추후 서버로 부터 DTO어떻게 올지에 따라 달라짐
+//    public var id = UUID() // TODO: 추후 서버로 부터 DTO어떻게 올지에 따라 달라짐
+    public var id = String()
 }
 
 extension Mission {
-    static var stub: Mission {
-        .init(content: "손 잡기", id: UUID())
+    static var stub1: Mission {
+//        .init(content: "손 잡기", id: UUID())
+        .init(content: "손 잡기", id: "1")
+    }
+    
+    static var stub2: Mission {
+//        .init(content: "손 잡기", id: UUID())
+        .init(content: "손 잡기", id: "2")
+    }
+    
+    static var stub3: Mission {
+//        .init(content: "손 잡기", id: UUID())
+        .init(content: "손 잡기", id: "3")
+    }
+    
+    static var stub4: Mission {
+//        .init(content: "손 잡기", id: UUID())
+        .init(content: "손 잡기", id: "4")
     }
     
     static func dummy() -> [Mission] {

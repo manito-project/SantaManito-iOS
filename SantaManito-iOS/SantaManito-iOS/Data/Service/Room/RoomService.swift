@@ -129,6 +129,6 @@ struct StubRoomService: RoomServiceType {
     }
     
     func getMyInfo(with roomID: String) -> AnyPublisher<(User, Mission), SMNetworkError> {
-        Just((.stub1, .stub)).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
+        Just((.stub1, .stub1)).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
     }
 }

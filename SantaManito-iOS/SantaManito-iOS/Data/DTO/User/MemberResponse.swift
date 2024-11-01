@@ -8,7 +8,7 @@
 import Foundation
 
 struct MemberResponse: Decodable {
-    let santa: UserResponse
+    let santa: SantaUserResponse
     let manitto: UserResponse?
 }
 
