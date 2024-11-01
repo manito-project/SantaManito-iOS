@@ -58,7 +58,7 @@ final class EditUsernameViewModel: ObservableObject {
         switch action {
         case .onAppear:
             userService.getUser(with: userDefaultsService.userID)
-                .receive(on: DispatchQueue.main)
+                .receive(on: RunLoop.main)
                 .assignLoading(to: \.state.isLoading, on: owner)
                 .map { $0.username }
                 .catch { _ in Empty() }
