@@ -62,7 +62,12 @@ extension RoomDetail {
               creatorID: User.stub1.id,
               creatorName: User.stub1.username,
               members: .stub1,
-              mission: [],
+              mission: [
+                .stub1,
+                .stub2,
+                .stub3,
+                .stub4
+              ],
               createdAt: Date(),
               expirationDate: Date()
         )

@@ -60,7 +60,11 @@ class FinishViewModel: ObservableObject {
         }
         
         var mission: String {
-            return "미션" // TODO: 미션 고르는 로직 구현해야함.
+            let missionId = member.santa.missionId
+            guard let mission = roomInfo.mission.first(where: {$0.id == missionId}) else {
+                return "미션이 없습니다."
+            }
+            return mission.content
         }
     }
     
@@ -91,7 +95,7 @@ class FinishViewModel: ObservableObject {
     func send(action: Action) {
         switch action {
         case .onAppear:
-            return 
+            return
 
         case .toggleViewTypeButtonDidTap:
             state.viewType = state.viewType == .me ? .all : .me
