@@ -32,6 +32,9 @@ struct HomeView: View {
                                 .frame(height: 36)
                             
                             HStack {
+                                Button(viewModel.state.isQaOn ? "현재 qa" : "현재 서버 DB") {
+                                    viewModel.send(.qaButtonTapped)
+                                }
                                 Spacer()
                                 Button {
                                     viewModel.send(.myPageButtonDidTap)

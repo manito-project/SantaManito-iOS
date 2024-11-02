@@ -98,7 +98,7 @@ extension RoomDetail {
               state: .notStarted,
               creatorID: User.stub1.id,
               creatorName: User.stub1.username,
-              members: .stub1,
+              members: .stub_notStarted_4members,
               mission: [
                 .stub1,
                 .stub2,
@@ -117,7 +117,7 @@ extension RoomDetail {
               state: .inProgress,
               creatorID: User.stub1.id,
               creatorName: User.stub1.username,
-              members: .stub2,
+              members: .stub_matched_4members,
               mission: [.stub1,
                         .stub2,
                         .stub3,
@@ -135,7 +135,7 @@ extension RoomDetail {
               state: .expired,
               creatorID: User.stub2.id,
               creatorName: User.stub2.username,
-              members: .stub2,
+              members: .stub_notStarted_4members,
               mission: [.stub1,
                         .stub2,
                         .stub3,
@@ -153,7 +153,7 @@ extension RoomDetail {
               state: .completed,
               creatorID: User.stub1.id,
               creatorName: User.stub1.username,
-              members: .stub3,
+              members: .stub_matched_17members,
               mission: [.stub1,
                         .stub2,
                         .stub3,
@@ -171,7 +171,7 @@ extension RoomDetail {
               state: .deleted,
               creatorID: User.stub1.id,
               creatorName: User.stub1.username,
-              members: .stub3,
+              members: .stub_notStarted_17members,
               mission: [.stub1,
                         .stub2,
                         .stub3,
@@ -179,5 +179,36 @@ extension RoomDetail {
               createdAt: Date(),
               expirationDate: Date()
               )
+    }
+}
+
+extension [RoomDetail] {
+    static var stub: Self {
+        var result: Self = []
+        for (state, expirationDate) in zip(
+        [RoomState.completed, .deleted, .expired, .inProgress, .notStarted],
+        [Date().addingTimeInterval(-24 * 60 * 60), Date().addingTimeInterval(-24 * 60 * 60), Date().addingTimeInterval(-24 * 60 * 60), Date().addingTimeInterval(24 * 60 * 60), Date().addingTimeInterval(24 * 60 * 60)]
+        )
+        {
+            for name in ["네글자요", "일이삼사오육칠팔구십", "일이삼사오육칠팔구십일이삼사오육칠"] {
+                for creator in [User.stub1, User.stub2] {
+                    if state == .notStarted {
+                        for members in [[Member].stub_notStarted_4members, .stub_notStarted_17members] {
+                            let roomDetail = RoomDetail(id: UUID().uuidString, name: name, invitationCode: "초대코드", state: state, creatorID: creator.id, creatorName: creator.username, members: members, mission: [], createdAt: Date().addingTimeInterval(-24 * 60 * 60), expirationDate: expirationDate)
+                            
+                            result.append(roomDetail)
+                        }
+                    } else {
+                        for (members, missions) in zip([[Member].stub_matched_4members, .stub_matched_17members], [[Mission].stub_4mission, .stub_17mission]) {
+                            let roomDetail = RoomDetail(id: UUID().uuidString, name: name, invitationCode: "초대코드", state: state, creatorID: creator.id, creatorName: creator.username, members: members, mission: missions, createdAt: Date().addingTimeInterval(-24 * 60 * 60), expirationDate: expirationDate)
+                            
+                            result.append(roomDetail)
+                        }
+                    }
+                    
+                }
+            }
+        }
+        return result.sorted()
     }
 }
