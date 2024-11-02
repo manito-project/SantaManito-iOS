@@ -113,7 +113,6 @@
 		D28568AC2CAD031C0044C231 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28568AB2CAD031C0044C231 /* RequestHandler.swift */; };
 		D28568AE2CAD033C0044C231 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28568AD2CAD033C0044C231 /* ErrorHandler.swift */; };
 		D28568B22CAD21800044C231 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28568B12CAD21800044C231 /* Config.swift */; };
-		D2A8F60E2C9D18FF00810BCF /* EditRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */; };
 		D2A8F6122C9D1A4F00810BCF /* MakeRoomInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */; };
 		D2A8F6192CA1168B00810BCF /* MatchingResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6182CA1168B00810BCF /* MatchingResultViewModel.swift */; };
 		D2A8F61B2CA116BD00810BCF /* MatchingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F61A2CA116BD00810BCF /* MatchingViewModel.swift */; };
@@ -121,7 +120,6 @@
 		D2A8F61F2CA1170B00810BCF /* MatchingResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F61E2CA1170B00810BCF /* MatchingResultView.swift */; };
 		D2A8F6212CA1172100810BCF /* FinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6202CA1172100810BCF /* FinishView.swift */; };
 		D2A8F6232CA1173600810BCF /* FinishViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6222CA1173600810BCF /* FinishViewModel.swift */; };
-		D2A8F6252CA118EA00810BCF /* MatchRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6242CA118E900810BCF /* MatchRoomService.swift */; };
 		D2BC1A8C2C8EBCF500CB32B8 /* SMColoredTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A8B2C8EBCF500CB32B8 /* SMColoredTextView.swift */; };
 		D2BC1A902C8F4C6400CB32B8 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A8F2C8F4C6400CB32B8 /* Date+.swift */; };
 		D2BC1A922C90101E00CB32B8 /* EditMissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A912C90101E00CB32B8 /* EditMissionView.swift */; };
@@ -255,7 +253,6 @@
 		D28568AB2CAD031C0044C231 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		D28568AD2CAD033C0044C231 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		D28568B12CAD21800044C231 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomService.swift; sourceTree = "<group>"; };
 		D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRoomInfo.swift; sourceTree = "<group>"; };
 		D2A8F6182CA1168B00810BCF /* MatchingResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingResultViewModel.swift; sourceTree = "<group>"; };
 		D2A8F61A2CA116BD00810BCF /* MatchingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingViewModel.swift; sourceTree = "<group>"; };
@@ -263,7 +260,6 @@
 		D2A8F61E2CA1170B00810BCF /* MatchingResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingResultView.swift; sourceTree = "<group>"; };
 		D2A8F6202CA1172100810BCF /* FinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishView.swift; sourceTree = "<group>"; };
 		D2A8F6222CA1173600810BCF /* FinishViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishViewModel.swift; sourceTree = "<group>"; };
-		D2A8F6242CA118E900810BCF /* MatchRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchRoomService.swift; sourceTree = "<group>"; };
 		D2BC1A8B2C8EBCF500CB32B8 /* SMColoredTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMColoredTextView.swift; sourceTree = "<group>"; };
 		D2BC1A8F2C8F4C6400CB32B8 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		D2BC1A912C90101E00CB32B8 /* EditMissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMissionView.swift; sourceTree = "<group>"; };
@@ -358,15 +354,6 @@
 				874017B82CA2B0020096E847 /* User.swift */,
 			);
 			path = User;
-			sourceTree = "<group>";
-		};
-		8779D81B2CB8DD8B00B61DEA /* Deprecated */ = {
-			isa = PBXGroup;
-			children = (
-				D2A8F6242CA118E900810BCF /* MatchRoomService.swift */,
-				D2A8F60D2C9D18FF00810BCF /* EditRoomService.swift */,
-			);
-			path = Deprecated;
 			sourceTree = "<group>";
 		};
 		877CA06B2C8AA1AD00D23193 /* Component */ = {
@@ -858,7 +845,6 @@
 		D2A8F60C2C9D18E700810BCF /* Room */ = {
 			isa = PBXGroup;
 			children = (
-				8779D81B2CB8DD8B00B61DEA /* Deprecated */,
 				D268793C2CAA7F8A0025A611 /* RoomAPI.swift */,
 				879829062C98284B00A863EC /* RoomService.swift */,
 			);
@@ -1084,7 +1070,6 @@
 				874017CB2CA7E6970096E847 /* SMPasteBoard.swift in Sources */,
 				874017B02CA29C820096E847 /* MyPageViewModel.swift in Sources */,
 				877EA2412C88ABA00073FFBD /* PushNotificationService.swift in Sources */,
-				D2A8F6252CA118EA00810BCF /* MatchRoomService.swift in Sources */,
 				D268793F2CAA80580025A611 /* BaseAPI.swift in Sources */,
 				D25570E92C8E858A00CCC226 /* EditRoomInfoView.swift in Sources */,
 				D26BFA802C91692700C5CF86 /* SMInfoView.swift in Sources */,
@@ -1114,7 +1099,6 @@
 				879829072C98284B00A863EC /* RoomService.swift in Sources */,
 				87873BDC2CAC29E900E368BF /* AppDelegate.swift in Sources */,
 				D2A8F61B2CA116BD00810BCF /* MatchingViewModel.swift in Sources */,
-				D2A8F60E2C9D18FF00810BCF /* EditRoomService.swift in Sources */,
 				D2A8F61D2CA116F800810BCF /* MatchingView.swift in Sources */,
 				879829052C9827B200A863EC /* HomeViewModel.swift in Sources */,
 				D26BFA912C919D0000C5CF86 /* ManitoWaitingRoomView.swift in Sources */,

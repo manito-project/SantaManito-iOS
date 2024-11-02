@@ -26,7 +26,7 @@ class SplashViewModel: ObservableObject {
     
     private let appService: AppServiceType
     private let authService: AuthenticationServiceType
-    private let userDefaultsService: UserDefaultsServiceType.Type
+    private var userDefaultsService: UserDefaultsServiceType
     private let remoteConfigService: RemoteConfigServiceType
     private(set) var windowRouter: WindowRoutableType
     
@@ -41,7 +41,7 @@ class SplashViewModel: ObservableObject {
         appService: AppServiceType,
         remoteConfigService: RemoteConfigServiceType,
         authService: AuthenticationServiceType,
-        userDefaultsService: UserDefaultsServiceType.Type = UserDefaultsService.self,
+        userDefaultsService: UserDefaultsServiceType = UserDefaultsService.shared,
         windowRouter: WindowRoutableType
     ) {
         self.appService = appService
@@ -60,7 +60,7 @@ class SplashViewModel: ObservableObject {
         case .onAppear:
             
             appService.isLatestVersion()
-                .receive(on: DispatchQueue.main)
+                .receive(on: RunLoop.main)
                 .sink { isLatestVersion in
                     
                     guard isLatestVersion else {
@@ -69,10 +69,9 @@ class SplashViewModel: ObservableObject {
                     }
                     
                     Just(owner.appService.getDeviceIdentifier() ?? "" )
-                        .receive(on: DispatchQueue.main)
                         .filter { !$0.isEmpty }
                         .flatMap(owner.authService.signIn)
-                        .receive(on: DispatchQueue.main)
+                        .receive(on: RunLoop.main)
                         .map {
                             owner.userDefaultsService.userID = $0.userID
                             owner.userDefaultsService.accessToken = $0.accessToken
@@ -85,11 +84,10 @@ class SplashViewModel: ObservableObject {
                         .store(in: owner.cancelBag)
                     
                     owner.remoteConfigService.getServerCheck()
-                        .receive(on: DispatchQueue.main)
                         .filter { $0 }
                         .map { _ in }
                         .flatMap(owner.remoteConfigService.getServerCheckMessage)
-                        .receive(on: DispatchQueue.main)
+                        .receive(on: RunLoop.main)
                         .catch { _ in Empty() }
                         .map { (true, $0 ) }
                         .assign(to: \.state.serverCheckAlert, on: owner)

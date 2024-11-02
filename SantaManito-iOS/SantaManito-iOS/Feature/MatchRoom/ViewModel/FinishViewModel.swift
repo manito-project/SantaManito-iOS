@@ -54,7 +54,7 @@ class FinishViewModel: ObservableObject {
         var members: [Member] { roomInfo.members }
             
         var member: Member {
-            guard let 내가마니또인멤버Index = roomInfo.members.firstIndex(where: { $0.manitto?.id == UserDefaultsService.userID})
+            guard let 내가마니또인멤버Index = roomInfo.members.firstIndex(where: { $0.manitto?.id == UserDefaultsService.shared.userID})
             else { return .init(santa: .stub1) }
             return roomInfo.members[내가마니또인멤버Index]
         }
@@ -70,8 +70,8 @@ class FinishViewModel: ObservableObject {
     
     //MARK: Dependency
     
-    private var roomService: RoomServiceType
-    private var navigationRouter: NavigationRoutableType
+    private let roomService: RoomServiceType
+    private let navigationRouter: NavigationRoutableType
     
     //MARK: Init
     
@@ -103,6 +103,7 @@ class FinishViewModel: ObservableObject {
         case .deleteRoomButtonDidTap:
             roomService.exitRoom(with: state.roomInfo.id)
                 .catch { _ in Empty() }
+                .receive(on: RunLoop.main)
                 .sink(receiveValue: { [weak self] _ in
                     self?.navigationRouter.popToRootView()
                 })

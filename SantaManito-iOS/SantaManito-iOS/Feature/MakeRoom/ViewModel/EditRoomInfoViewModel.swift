@@ -8,8 +8,6 @@
 import Foundation
 import Combine
 
-//TODO: 서버통신 되기 전에 description 어떻게 설정할지 고민
-
 final class EditRoomInfoViewModel: ObservableObject {
     
     //MARK: Action, State
@@ -136,7 +134,8 @@ final class EditRoomInfoViewModel: ObservableObject {
             
         case .editButtonDidTap:
             guard let roomID = viewType.roomID else { return }
-            roomService.editRoomInfo(with: roomID, info: roomInfo) //TODO:
+            roomService.editRoomInfo(with: roomID, info: roomInfo)
+                .receive(on: RunLoop.main)
                 .catch { _ in Empty() }
                 .sink { [weak self] _ in
                     self?.navigationRouter.pop()

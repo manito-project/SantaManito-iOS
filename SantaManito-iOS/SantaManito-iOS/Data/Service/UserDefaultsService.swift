@@ -13,26 +13,32 @@ enum UserDefaultKey: String, CaseIterable {
 }
 
 protocol UserDefaultsServiceType {
-    static var userID: String { get set }
-    static var accessToken: String { get set }
-}
-
-struct UserDefaultsService: UserDefaultsServiceType {
-    @UserDefault<String>(key: .userID, defaultValue: "") static var userID: String
-    @UserDefault<String>(key: .accessToken, defaultValue: "") static var accessToken: String
-}
-
-
-struct StubUserDefaultsService: UserDefaultsServiceType {
-    static var userID: String = ""
-    static var accessToken: String = ""
+    var userID: String { get set }
+    var accessToken: String { get set }
+    func removeAll()
 }
 
 extension UserDefaultsServiceType {
-    static func reset() {
+    func removeAll() {
         UserDefaultKey.allCases
             .forEach {
                 UserDefaults.standard.removeObject(forKey: $0.rawValue)
             }
     }
 }
+
+
+struct UserDefaultsService: UserDefaultsServiceType {
+    static var shared = UserDefaultsService()
+    private init() { }
+    
+    @UserDefault<String>(key: .userID, defaultValue: "") var userID: String
+    @UserDefault<String>(key: .accessToken, defaultValue: "") var accessToken: String
+}
+
+
+struct StubUserDefaultsService: UserDefaultsServiceType {
+    var userID: String = ""
+    var accessToken: String = ""
+}
+

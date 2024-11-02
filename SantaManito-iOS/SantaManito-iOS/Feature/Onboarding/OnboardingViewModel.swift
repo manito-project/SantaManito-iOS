@@ -60,7 +60,7 @@ final class OnboardingViewModel: ObservableObject {
     
     private let appService: AppServiceType
     private let authService: AuthenticationServiceType
-    private let userDefaultsService: UserDefaultsServiceType.Type
+    private var userDefaultsService: UserDefaultsServiceType
     private var windowRouter: WindowRoutableType
     
     //MARK: - Properties
@@ -75,7 +75,7 @@ final class OnboardingViewModel: ObservableObject {
     init(
         appService: AppServiceType,
         authService: AuthenticationServiceType,
-        userDefaultsService: UserDefaultsServiceType.Type = UserDefaultsService.self,
+        userDefaultsService: UserDefaultsServiceType = UserDefaultsService.shared,
         windowRouter: WindowRoutableType
     ) {
         self.appService = appService
@@ -113,7 +113,7 @@ final class OnboardingViewModel: ObservableObject {
                     .sink { auth in
                         owner.userDefaultsService.userID = auth.userID
                         owner.userDefaultsService.accessToken = auth.accessToken
-                        owner.windowRouter.switch(to: .main) 
+                        owner.windowRouter.switch(to: .main)
                     }
                     .store(in: cancelBag)
             }
