@@ -15,7 +15,7 @@ struct UserResponse: Decodable {
 struct SantaUserResponse: Decodable {
     let id: String
     let username: String
-    let missionId: String
+    let missionId: String?
 }
 
 extension UserResponse {
