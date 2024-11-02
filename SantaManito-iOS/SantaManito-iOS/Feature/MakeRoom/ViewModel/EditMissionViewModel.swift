@@ -74,7 +74,7 @@ class EditMissionViewModel: ObservableObject {
             
         case .ignoreMissionButtonDidTap, .makeMissionButtonDidTap:
             state.isPresented = false
-            navigationRouter.push(to: .roomInfo(roomInfo: roomInfo, missionList: missionList)) //TODO: string.empty인 미션도 같이 넘어가는 오류 해결해야함.
+            navigationRouter.push(to: .roomInfo(roomInfo: roomInfo, missionList: []))
 
         case .dismissAlert:
             state.isPresented = false

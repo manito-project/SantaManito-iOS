@@ -1,8 +1,16 @@
+////
+////  RoomStateFactoryTests.swift
+////  SantaManitoUnitTests
+////
+////  Created by 장석우 on 10/14/24.
+////
 //
-//  RoomStateFactoryTests.swift
-//  SantaManitoUnitTests
+//import XCTest
+//@testable import SantaManito_iOS
 //
-//  Created by 장석우 on 10/14/24.
+//final class RoomStateFactoryTests: XCTestCase {
+//    
+//    let sut = RoomStateFactory.self
 //
 
 import XCTest

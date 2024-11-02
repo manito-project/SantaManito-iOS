@@ -114,7 +114,7 @@ fileprivate struct FinishResultView: View {
                     .lineSpacing(2)
                 
                 Spacer()
-                    .frame(height: 30)
+                    .frame(height: 16)
                 
                 HStack {
                     Spacer()
@@ -167,6 +167,7 @@ fileprivate struct FinishResultView: View {
                         .frame(width: 54, height: 73)
                 }
             }
+            .padding(.horizontal, 16)
             .background(.smWhite)
             .clipShape(RoundedRectangle(cornerRadius: 10))
         }
