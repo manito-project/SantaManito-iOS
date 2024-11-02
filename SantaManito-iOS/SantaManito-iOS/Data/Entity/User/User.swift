@@ -15,7 +15,7 @@ struct User: Hashable {
 struct SantaUser: Hashable {
     let id: String
     let username: String
-    let missionId: String
+    let missionId: String?
 }
 
 
