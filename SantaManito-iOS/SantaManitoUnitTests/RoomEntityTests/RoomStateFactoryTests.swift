@@ -58,7 +58,7 @@ final class RoomStateFactoryTests: XCTestCase {
         XCTAssertEqual(state, .deleted)
     }
     
-    func test_매칭_잔_만료일이_지난_경우_상태가_완료됨으로_변경되는지() {
+    func test_매칭_전_만료일이_지난_경우_상태가_만료됨으로_변경되는지() {
         // Given
         let dto = RoomDetailResponse(id: "", roomName: "", invitationCode: "", createdAt: Date().addingTimeInterval(-4),
                                       expirationDate: Date().addingTimeInterval(-3),
@@ -70,7 +70,7 @@ final class RoomStateFactoryTests: XCTestCase {
         let state = sut.create(dto)
         
         // Then
-        XCTAssertEqual(state, .completed)
+        XCTAssertEqual(state, .expired)
     }
     
     func test_매칭_후_만료일이_지난_경우_상태가_완료됨으로_변경되는지() {
@@ -88,21 +88,6 @@ final class RoomStateFactoryTests: XCTestCase {
         XCTAssertEqual(state, .completed)
     }
     
-    
-    func test_매칭_전_만료일이_지난_경우_상태가_완료됨으로_변경되는지() {
-        // Given
-        let dto = RoomDetailResponse(id: "", roomName: "", invitationCode: "", createdAt: Date().addingTimeInterval(-4),
-                                      expirationDate: Date().addingTimeInterval(-3),
-                                      matchingDate: nil,
-                                      deletedByCreatorDate: nil,
-                                      creator: .init(id: "", username: ""), missions: [], members: [])
-        
-        // When
-        let state = sut.create(dto)
-        
-        // Then
-        XCTAssertEqual(state, .completed)
-    }
     
     func test_만료일이_남은_경우_매칭_전이면_상태가_시작전으로_변경되는지() {
         // Given
