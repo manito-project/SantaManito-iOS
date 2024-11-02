@@ -37,6 +37,14 @@ struct RoomDetail: Hashable {
     var expirationDateToString: String {
         expirationDate.toDueDateWithoutYear
     }
+    
+    var me: Member {
+        members.filter { $0.santa.id == UserDefaultsService.shared.userID}.first ?? .init(santa: .stub1, manitto: .stub1)
+    }
+    
+    var myMission: Mission? {
+        mission.filter { $0.id == me.santa.missionId }.first
+    }
 }
 
 extension RoomDetail {
@@ -81,7 +89,10 @@ extension RoomDetail {
               creatorID: User.stub1.id,
               creatorName: User.stub1.username,
               members: .stub2,
-              mission: [],
+              mission: [.stub1,
+                        .stub2,
+                        .stub3,
+                        .stub4],
               createdAt: Date(),
               expirationDate: Date()
               )
@@ -96,7 +107,10 @@ extension RoomDetail {
               creatorID: User.stub2.id,
               creatorName: User.stub2.username,
               members: .stub2,
-              mission: [],
+              mission: [.stub1,
+                        .stub2,
+                        .stub3,
+                        .stub4],
               createdAt: Date(),
               expirationDate: Date()
               )
@@ -111,7 +125,10 @@ extension RoomDetail {
               creatorID: User.stub1.id,
               creatorName: User.stub1.username,
               members: .stub3,
-              mission: [],
+              mission: [.stub1,
+                        .stub2,
+                        .stub3,
+                        .stub4],
               createdAt: Date(),
               expirationDate: Date()
               )
@@ -126,7 +143,10 @@ extension RoomDetail {
               creatorID: User.stub1.id,
               creatorName: User.stub1.username,
               members: .stub3,
-              mission: [],
+              mission: [.stub1,
+                        .stub2,
+                        .stub3,
+                        .stub4],
               createdAt: Date(),
               expirationDate: Date()
               )
