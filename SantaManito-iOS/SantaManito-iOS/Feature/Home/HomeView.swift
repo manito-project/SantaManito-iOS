@@ -259,7 +259,7 @@ fileprivate struct HomeRoomCell: View {
                 
                 
                 if roomInfo.state != .deleted {
-                    Text(roomInfo.creatorName + "의 산타")
+                    Text((roomInfo.me.manitto?.username ?? "-") + "의 산타")
                         .font(.medium_14)
                         .foregroundStyle(.smBlack)
                         .lineLimit(1)
@@ -279,7 +279,7 @@ fileprivate struct HomeRoomCell: View {
                 Group { // 칩 하단
                     switch roomInfo.state {
                     case .inProgress, .completed:
-                        Text(roomInfo.mission.first?.content ?? "")
+                        Text(roomInfo.myMission?.content ?? "")
                             .font(.medium_14)
                             .foregroundStyle(.smDarkgray)
                             .lineLimit(2)
