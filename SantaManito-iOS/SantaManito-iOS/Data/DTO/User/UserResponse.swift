@@ -12,8 +12,21 @@ struct UserResponse: Decodable {
     let username: String
 }
 
+struct SantaUserResponse: Decodable {
+    let id: String
+    let username: String
+    let missionId: String
+}
+
 extension UserResponse {
     func toEntity() -> User {
         .init(id: id, username: username) 
     }
 }
+
+extension SantaUserResponse {
+    func toEntity() -> SantaUser {
+        .init(id: id, username: username, missionId: missionId)
+    }
+}
+

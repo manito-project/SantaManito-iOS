@@ -34,16 +34,16 @@ class MatchingResultViewModel: ObservableObject {
             return roomInfo.members[내가마니또인멤버Index]
         }
         
-        var me: User {
+        var me: SantaUser {
             member.santa
         }
-        var mannito: User {
-            member.manitto ?? .stub1
-        }
         
-        var mission: String {
-            roomInfo.mission.first?.content ?? "" //TODO: 내 미션 찾는 로직 필요
-        }
+        var isAnimating: Bool = false
+        
+        fileprivate var matchedInfo: (User, Mission) = (.stub1, .stub1)
+        
+        var mannito: User { matchedInfo.0 }
+        var mission: String { matchedInfo.1.content }
     }
     
     //MARK: Dependency
@@ -73,9 +73,17 @@ class MatchingResultViewModel: ObservableObject {
     //MARK: Methods
     
     func send(action: Action) {
+        weak var owner = self
+        guard let owner else { return }
+        
         switch action {
         case .onAppear:
-            return
+            Just(roomDetail.id)
+                .flatMap(roomService.getMyInfo)
+                .assignLoading(to: \.state.isAnimating, on: owner)
+                .catch { _ in Empty() }
+                .assign(to: \.state.matchedInfo, on: owner)
+                .store(in: cancelBag)
 
         case .goHomeButtonDidTap:
             navigationRouter.popToRootView()

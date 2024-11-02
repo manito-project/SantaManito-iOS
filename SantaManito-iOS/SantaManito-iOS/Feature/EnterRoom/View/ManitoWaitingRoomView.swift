@@ -151,7 +151,7 @@ fileprivate struct ParticipateListView: View {
 }
 
 fileprivate struct ParticipateCellView: View {
-    var user: User
+    var user: SantaUser
     var body: some View {
         HStack {
             Image(.graphicsRudolphCircle)

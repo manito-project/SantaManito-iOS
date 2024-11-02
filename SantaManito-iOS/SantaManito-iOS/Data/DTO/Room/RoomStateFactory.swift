@@ -14,6 +14,4 @@ struct RoomStateFactory {
         guard dto.matchingDate != nil else { return .notStarted }
         return .inProgress
     }
-    
-    
 }
