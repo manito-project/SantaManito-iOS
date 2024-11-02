@@ -257,15 +257,19 @@ fileprivate struct HomeRoomCell: View {
                 HStack { Spacer() }
                 Spacer()
                 
-                
-                if roomInfo.state != .deleted {
-                    Text((roomInfo.me.manitto?.username ?? "-") + "의 산타")
+                if roomInfo.state == .completed || roomInfo.state == .inProgress {
+                    Text(roomInfo.state == .notStarted
+                         ? ""
+                         : (roomInfo.me.manitto?.username ?? "-") + "의 산타")
                         .font(.medium_14)
                         .foregroundStyle(.smBlack)
                         .lineLimit(1)
                         .frame(height: 14)
                         .padding(.top, 22)
                     
+                }
+                
+                if roomInfo.state != .deleted {
                     HomeRoomStateChip(state: roomInfo.state, remainingDays: roomInfo.remainingDays)
                         .padding(.top, 10)
                 } else {
