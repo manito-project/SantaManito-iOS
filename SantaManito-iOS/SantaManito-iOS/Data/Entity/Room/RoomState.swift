@@ -10,6 +10,7 @@ import Foundation
 enum RoomState: Hashable {
     case notStarted
     case inProgress
+    case expired
     case completed
     case deleted
 }

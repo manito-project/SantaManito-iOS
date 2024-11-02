@@ -269,7 +269,7 @@ fileprivate struct HomeRoomCell: View {
                     HomeRoomStateChip(state: roomInfo.state, remainingDays: roomInfo.remainingDays)
                         .padding(.top, 10)
                 } else {
-                    Text("해당 방은 방장에 의해 삭제된 방이야")
+                    Text("방장에 의해 삭제되어 더는 참여할 수 없는 방이야")
                         .font(.medium_14)
                         .foregroundStyle(.smDarkgray)
                     Spacer()
@@ -300,6 +300,24 @@ fileprivate struct HomeRoomCell: View {
                             }
                             .contentShape(Rectangle())
                         }
+                    case .expired:
+                        VStack {
+                            Spacer()
+                            Button {
+                                viewModel.send(.exitButtonDidTap(roomDetail: roomInfo))
+                            } label : {
+                                Text("방 나가기")
+                                    .font(.medium_14)
+                                    .foregroundStyle(.smDarkgray)
+                                    .padding(.vertical, 6)
+                                    .padding(.horizontal, 16)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 4)
+                                            .stroke(Color.smDarkgray, lineWidth: 1)
+                                    )
+                            }
+                            .contentShape(Rectangle())
+                        }
                     case .deleted:
                         VStack {
                             Spacer()
@@ -327,7 +345,7 @@ fileprivate struct HomeRoomCell: View {
         }
         .frame(width: width)
         .frame(height: 240)
-        .background(roomInfo.state == .deleted
+        .background(roomInfo.state == .deleted || roomInfo.state == .expired
                     ? .smLightbg
                     : .smWhite)
         .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -354,7 +372,9 @@ fileprivate struct HomeRoomStateChip: View {
         case .inProgress:
             "공개 \(remainingDays)일 전"
         case .completed:
-            "결과 발표 완료"
+            "결과 공개"
+        case .expired:
+            "기한 만료"
         case .deleted:
             "삭제"
         }
@@ -367,6 +387,8 @@ fileprivate struct HomeRoomStateChip: View {
         case .inProgress:
             return .smRed
         case .completed:
+            return .smLightgray
+        case .expired:
             return .smLightgray
         case .deleted:
             return .clear
