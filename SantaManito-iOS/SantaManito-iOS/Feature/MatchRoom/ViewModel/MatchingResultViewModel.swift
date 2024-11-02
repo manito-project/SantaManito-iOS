@@ -18,7 +18,7 @@ class MatchingResultViewModel: ObservableObject {
     }
     
     struct State {
-        fileprivate var roomInfo: RoomDetail = .stub1
+        fileprivate var roomInfo: RoomDetail
         
         var roomName: String { roomInfo.name }
         var description: String {
@@ -28,30 +28,17 @@ class MatchingResultViewModel: ObservableObject {
                 "\(roomInfo.expirationDate.toDueDateTime)까지 진행되는 마니또"
             }
         }
-        fileprivate var member: Member {
-            guard let 내가마니또인멤버Index = roomInfo.members.firstIndex(where: { $0.manitto?.id == UserDefaultsService.shared.userID})
-            else { return .init(santa: .stub1) }
-            return roomInfo.members[내가마니또인멤버Index]
-        }
-        
-        var me: SantaUser {
-            member.santa
-        }
         
         var isAnimating: Bool = false
-        
-        fileprivate var matchedInfo: (User, Mission) = (.stub1, .stub1)
-        
-        var mannito: User { matchedInfo.0 }
-        var mission: String { matchedInfo.1.content }
+        var me: SantaUser { roomInfo.me.santa }
+        var mannito: User { roomInfo.me.manitto ?? .stub1 }
+        var mission: String { roomInfo.myMission?.content ?? "미션이 없습니다." }
     }
     
     //MARK: Dependency
     
     private var roomService: RoomServiceType
     private var navigationRouter: NavigationRoutable
-    
-    private let roomDetail: RoomDetail
     
     //MARK: Init
     
@@ -62,12 +49,12 @@ class MatchingResultViewModel: ObservableObject {
     ) {
         self.roomService = roomService
         self.navigationRouter = navigationRouter
-        self.roomDetail = roomInfo
+        self.state = State(roomInfo: roomInfo)
     }
     
     //MARK: Properties
     
-    @Published private(set) var state = State()
+    @Published private(set) var state: State
     private let cancelBag = CancelBag()
     
     //MARK: Methods
@@ -78,12 +65,13 @@ class MatchingResultViewModel: ObservableObject {
         
         switch action {
         case .onAppear:
-            Just(roomDetail.id)
-                .flatMap(roomService.getMyInfo)
-                .assignLoading(to: \.state.isAnimating, on: owner)
-                .catch { _ in Empty() }
-                .assign(to: \.state.matchedInfo, on: owner)
-                .store(in: cancelBag)
+            return 
+//            Just(state.roomInfo.id)
+//                .flatMap(roomService.getMyInfo)
+//                .assignLoading(to: \.state.isAnimating, on: owner)
+//                .catch { _ in Empty() }
+//                .assign(to: \.state.matchedInfo, on: owner)
+//                .store(in: cancelBag)
 
         case .goHomeButtonDidTap:
             navigationRouter.popToRootView()
