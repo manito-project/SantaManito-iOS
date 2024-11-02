@@ -21,7 +21,7 @@ struct RoomDetail: Hashable {
     
     
     var isHost: Bool {
-        UserDefaultsService.userID == creatorID
+        UserDefaultsService.shared.userID == creatorID
     }
     
     // 오늘부터 만료일까지 (한국 날짜 기준)

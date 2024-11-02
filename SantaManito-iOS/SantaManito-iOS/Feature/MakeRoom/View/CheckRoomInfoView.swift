@@ -35,6 +35,7 @@ struct CheckRoomInfoView: View {
             }
             .padding(.horizontal, 16)
         })
+        .loading(viewModel.state.isLoading)
         .smAlertWithInviteCode(
             isPresented: viewModel.state.isPresented,
             title: "초대 코드를 복사해서\n친구들에게 공유해 주자!",

@@ -20,13 +20,19 @@ class HomeViewModel: ObservableObject {
         case makeRoomButtonDidTap
         case enterRoomButtonDidTap
         case roomCellDidTap(roomDetail: RoomDetail)
-        case exitButtonDidTap(roomID: String)
+        case exitButtonDidTap(roomDetail: RoomDetail) // 확인용 이벤트
+        case creatorExitButtonDidTap(roomDetail: RoomDetail) // 실제 나가기
+        case guestExitButtonDidTap(roomDetail: RoomDetail) // 실제 나가기
+        case dismissAlert
         case deleteHistoryButtonDidTap(roomID: String)
+        
     }
     
     
     struct State {
         var rooms: [RoomDetail] = []
+        var creatorExitAlert = (isPresented: false, detail: RoomDetail.stub1)
+        var guestExitAlert = (isPresented: false, detail: RoomDetail.stub1)
         var isLoading = false
     }
     
@@ -63,7 +69,7 @@ class HomeViewModel: ObservableObject {
         case .onAppear, .refreshButtonDidTap:
             
             roomService.getEnteredRooms()
-                .receive(on: DispatchQueue.main)
+                .receive(on: RunLoop.main)
                 .assignLoading(to: \.state.isLoading, on: owner)
                 .catch { _ in Empty() }
                 .assign(to: \.state.rooms, on: owner)
@@ -89,14 +95,35 @@ class HomeViewModel: ObservableObject {
             case .deleted: return
             }
             
+        case .dismissAlert:
+            state.creatorExitAlert.isPresented = false
+            state.guestExitAlert.isPresented = false
             
-        case let .exitButtonDidTap(roomID):
-            roomService.exitRoom(with: roomID)
-                .receive(on: DispatchQueue.main)
+        case let .exitButtonDidTap(roomDetail):
+            if roomDetail.isHost {
+                state.creatorExitAlert = (true,roomDetail)
+            } else {
+                state.guestExitAlert = (true, roomDetail)
+            }
+        case let .creatorExitButtonDidTap(roomDetail):
+            roomService.deleteRoom(with: roomDetail.id)
+                .receive(on: RunLoop.main)
                 .assignLoading(to: \.state.isLoading, on: owner)
                 .catch { _ in Empty()}
                 .sink {
-                    guard let removedIndex = owner.state.rooms.firstIndex(where: { $0.id == roomID })
+                    guard let removedIndex = owner.state.rooms.firstIndex(where: { $0.id == roomDetail.id })
+                    else { return }
+                    owner.state.rooms.remove(at: removedIndex)
+                }
+                .store(in: cancelBag)
+            
+        case let .guestExitButtonDidTap(roomDetail):
+            roomService.exitRoom(with: roomDetail.id)
+                .receive(on: RunLoop.main)
+                .assignLoading(to: \.state.isLoading, on: owner)
+                .catch { _ in Empty()}
+                .sink {
+                    guard let removedIndex = owner.state.rooms.firstIndex(where: { $0.id == roomDetail.id })
                     else { return }
                     owner.state.rooms.remove(at: removedIndex)
                 }
@@ -104,7 +131,7 @@ class HomeViewModel: ObservableObject {
                 
         case let .deleteHistoryButtonDidTap(roomID):
             roomService.deleteHistoryRoom(with: roomID)
-                .receive(on: DispatchQueue.main)
+                .receive(on: RunLoop.main)
                 .assignLoading(to: \.state.isLoading, on: owner)
                 .catch { _ in Empty()}
                 .sink {

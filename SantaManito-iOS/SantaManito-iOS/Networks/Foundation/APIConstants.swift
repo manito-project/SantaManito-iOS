@@ -30,7 +30,7 @@ extension APIConstants{
     static var hasTokenHeader: Dictionary<String,String> {
         return [
             contentType: applicationJSON,
-            auth : "Bearer " + UserDefaultsService.accessToken
+            auth : "Bearer " + UserDefaultsService.shared.accessToken
         ]
     }
 }

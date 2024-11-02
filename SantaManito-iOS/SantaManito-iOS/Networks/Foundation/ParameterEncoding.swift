@@ -30,11 +30,11 @@ extension ParameterEncodable {
         guard let parameters else { return Fail(error: .emptyParameters).eraseToAnyPublisher() }
         guard let url else { return Fail(error: .missingURL).eraseToAnyPublisher() }
         
-//        TODO: 2024.10.09 수정. 확인 했다면 주석 지워도됨. to 히디 from 석우
-//         let data = try JSONSerialization.data(withJSONObject: parameters)
-//        guard JSONSerialization.isValidJSONObject(parameters) else {
-//            return Fail(error: .invalidJSON).eraseToAnyPublisher()
-//        }
+        //        TODO: 2024.10.09 수정. 확인 했다면 주석 지워도됨. to 히디 from 석우
+        //         let data = try JSONSerialization.data(withJSONObject: parameters)
+        //        guard JSONSerialization.isValidJSONObject(parameters) else {
+        //            return Fail(error: .invalidJSON).eraseToAnyPublisher()
+        //        }
         
         return Just((parameters, url))
             .setFailureType(to: SMNetworkError.ParameterEncoding.self)
@@ -65,11 +65,19 @@ public struct URLEncoding: ParameterEncodable {
 public struct JSONEncoding: ParameterEncodable {
     func encode(_ request: URLRequest, with parameters: Encodable?) -> AnyPublisher<URLRequest, SMNetworkError.ParameterEncoding> {
         var request = request
+        let encoder = JSONEncoder()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.timeZone = TimeZone(secondsFromGMT: 0) // UTC 기준으로 인코딩
+        encoder.dateEncodingStrategy = .formatted(formatter)
+        
         return checkValidURLData(parameters, request.url)
             .tryMap { parameters, _ -> URLRequest in
                 do {
-                    let data = try JSONEncoder().encode(parameters)
+                    let data = try encoder.encode(parameters)
                     request.httpBody = data
+//                    let s = try JSONSerialization.jsonObject(with: data)
+//                    print(s)
                     return request
                 } catch {
                     throw SMNetworkError.invalidRequest(.parameterEncodingFailed(.jsonEncodingFailed))
