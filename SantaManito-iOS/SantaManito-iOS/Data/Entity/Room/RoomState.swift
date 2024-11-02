@@ -7,9 +7,14 @@
 
 import Foundation
 
-enum RoomState: Hashable {
-    case notStarted
+enum RoomState: Hashable, Comparable {
+    
+    // 순서대로
     case inProgress
+    case notStarted
     case completed
+    case expired
     case deleted
+    
+    
 }

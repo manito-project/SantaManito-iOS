@@ -92,7 +92,9 @@ class HomeViewModel: ObservableObject {
                 navigationRouter.push(to: .matchedRoom(roomInfo: roomDetail))
             case .completed:
                 navigationRouter.push(to: .finish(roomDetail: roomDetail))
+            case .expired: return
             case .deleted: return
+           
             }
             
         case .dismissAlert:
