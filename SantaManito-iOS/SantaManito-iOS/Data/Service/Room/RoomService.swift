@@ -34,8 +34,7 @@ extension RoomService: RoomServiceType {
     func getEnteredRooms() -> AnyPublisher<[RoomDetail], SMNetworkError> {
         requestWithResult(.getEnteredAllRoom, [RoomDetailResponse].self)
             .map {
-                $0.map { $0.toEntity() }
-                    .sorted { $0.expirationDate < $1.expirationDate }
+                $0.map { $0.toEntity() }.sorted()
             }
             .eraseToAnyPublisher()
     }
@@ -91,7 +90,7 @@ extension RoomService: RoomServiceType {
 struct StubRoomService: RoomServiceType {
     // For All
     func getEnteredRooms() -> AnyPublisher<[RoomDetail], SMNetworkError> {
-        Just([.stub1, .stub2, .stub3, .stub4, .stub5]).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
+        Just([.stub1, .stub2, .stub3, .stub4, .stub5].sorted()).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
     }
     
     func getRoomInfo(with roomID: String) -> AnyPublisher<RoomDetail, SMNetworkError> {

@@ -45,7 +45,36 @@ struct RoomDetail: Hashable {
     var myMission: Mission? {
         mission.filter { $0.id == me.santa.missionId }.first
     }
+
 }
+
+extension RoomDetail: Comparable {
+    
+/// 1. 방 상태별 정렬 로직
+/// 게임 참여중(진행중 > 매칭 대기중) > 게임 참여 불가(종료 > 만료) > 삭제 및 나가기(방장에 의해 삭제된 방)
+///
+/// 2. 방 상태가 동일한 경우 우선 순위
+/// i. 진행중: ’결과 공개 예정일’ 기준 오름차순(’공개 n일 전’의 n이 작을 수록 상위 노출)
+/// ii. 매칭 대기중:방장의 방 생성 일자 내림차순(최신 생성 방 상위 노출)
+/// iii. 종료(결과 공개): 방 종료 일자 내림차순(최근 종료된 방이 상위 노출) 
+/// iv. 기한 만료: 방장의 방 생성 일자 내림차순(최신 생성 방 상위 노출) 
+/// v. 방장에 의해 삭제된 방:방 생성 일자 내림차순(최신 생성 방 상위 노출)
+/// vi. 나가기 처리: 비노출
+///
+/// 결론: 진행중 > 매칭 대기중 > 종료(결과 공개) > 기한 만료 > 방장에 의한 삭제
+    public static func < (lhs: Self, rhs: Self) -> Bool {
+        guard lhs.state == rhs.state else { return lhs.state < rhs.state }
+        switch lhs.state {
+        case .inProgress: return lhs.expirationDate < rhs.expirationDate
+        case .notStarted: return lhs.createdAt > rhs.createdAt
+        case .completed: return lhs.expirationDate < rhs.expirationDate
+        case .expired: return lhs.createdAt > rhs.createdAt
+        case .deleted: return lhs.createdAt > rhs.createdAt
+        }
+        
+    }
+}
+
 
 extension RoomDetail {
     
