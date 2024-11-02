@@ -25,7 +25,7 @@ class HomeViewModel: ObservableObject {
         case guestExitButtonDidTap(roomDetail: RoomDetail) // 실제 나가기
         case dismissAlert
         case deleteHistoryButtonDidTap(roomID: String)
-        
+        case qaButtonTapped
     }
     
     
@@ -34,6 +34,7 @@ class HomeViewModel: ObservableObject {
         var creatorExitAlert = (isPresented: false, detail: RoomDetail.stub1)
         var guestExitAlert = (isPresented: false, detail: RoomDetail.stub1)
         var isLoading = false
+        var isQaOn = false
     }
     
     //MARK: - Dependency
@@ -46,6 +47,7 @@ class HomeViewModel: ObservableObject {
     
     @Published var state = State()
     private let cancelBag = CancelBag()
+    private let userID: String
     
     //MARK: - Init
     
@@ -55,6 +57,7 @@ class HomeViewModel: ObservableObject {
     ) {
         self.roomService = roomService
         self.navigationRouter = navigationRouter
+        self.userID = UserDefaultsService.shared.userID
     }
     
     //MARK: - Methods
@@ -65,8 +68,21 @@ class HomeViewModel: ObservableObject {
         guard let owner else { return }
         
         switch action {
-            
-        case .onAppear, .refreshButtonDidTap:
+        case .onAppear:
+            if !state.isQaOn {
+                send(.refreshButtonDidTap)
+            }
+        case .qaButtonTapped:
+            state.isQaOn.toggle()
+            if state.isQaOn {
+                UserDefaultsService.shared.userID = User.stub1.id
+                state.rooms = .stub
+                
+            } else {
+                UserDefaultsService.shared.userID = self.userID
+                send(.refreshButtonDidTap)
+            }
+        case .refreshButtonDidTap:
             
             roomService.getEnteredRooms()
                 .receive(on: RunLoop.main)
