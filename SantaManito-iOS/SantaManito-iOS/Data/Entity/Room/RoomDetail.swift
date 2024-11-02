@@ -56,7 +56,7 @@ extension RoomDetail {
 extension RoomDetail {
     static var stub1: Self {
         .init(id: "roomID1",
-              name: "크리스마스 마니또",
+              name: "한",
               invitationCode: "초대코드1",
               state: .notStarted,
               creatorID: User.stub1.id,
@@ -75,7 +75,7 @@ extension RoomDetail {
     
     static var stub2: Self {
         .init(id: "roomID2",
-              name: "크리스마스 마니또",
+              name: "두글",
               invitationCode: "초대코드2",
               state: .inProgress,
               creatorID: User.stub1.id,
@@ -90,9 +90,9 @@ extension RoomDetail {
     
     static var stub3: Self {
         .init(id: "roomID3",
-              name: "크리스마스 마니또",
+              name: "12345678901234567",
               invitationCode: "초대코드3",
-              state: .inProgress,
+              state: .expired,
               creatorID: User.stub2.id,
               creatorName: User.stub2.username,
               members: .stub2,
@@ -105,7 +105,7 @@ extension RoomDetail {
     
     static var stub4: Self {
         .init(id: "roomID4",
-              name: "크리스마스 마니또",
+              name: "크리스마스 마니또크리스마스 마니또",
               invitationCode: "초대코드4",
               state: .completed,
               creatorID: User.stub1.id,
