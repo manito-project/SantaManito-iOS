@@ -16,7 +16,8 @@ struct EditMissionView: View {
             SMScrollView (padding: -50, topView: {
                 SMInfoView(
                     title: "미션 만들기",
-                    description: "어떤 미션이 괜찮을까\n천 번쯤 고민 중"
+                    description: "어떤 미션이 괜찮을까\n천 번쯤 고민 중",
+                    backButtonDidTap: { viewModel.send(action: .backButtonDidTap)}
                 )
             }, content: {
                 VStack {

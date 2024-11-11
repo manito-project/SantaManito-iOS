@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class EditMissionViewModel: ObservableObject {
-
+    
     //MARK: - Action, State
     
     enum Action {
@@ -18,10 +18,12 @@ class EditMissionViewModel: ObservableObject {
         case skipMissionButtonDidTap
         case makeMissionButtonDidTap
         case ignoreMissionButtonDidTap
+        case backButtonDidTap
         case dismissAlert
     }
     
-    struct State { 
+    struct State {
+        var isDismiss: Bool = false
         var isEnabled: Bool = false
         var isPresented: Bool = false
         var canDelete: Bool = false
@@ -44,19 +46,19 @@ class EditMissionViewModel: ObservableObject {
     @Published private(set) var state = State()
     private let cancelBag = CancelBag()
     @Published var missionList: [Mission] = [Mission(content: "")]
-
+    
     //MARK: - Methods
     
     func observe() {
-      $missionList
-          .map { $0.allSatisfy { !$0.content.isEmpty } }
-          .assign(to: \.state.isEnabled, on: self)
-          .store(in: cancelBag)
-
-      $missionList
-          .map { $0.count > 1 }
-          .assign(to: \.state.canDelete, on: self)
-          .store(in: cancelBag)
+        $missionList
+            .map { $0.allSatisfy { !$0.content.isEmpty } }
+            .assign(to: \.state.isEnabled, on: self)
+            .store(in: cancelBag)
+        
+        $missionList
+            .map { $0.count > 1 }
+            .assign(to: \.state.canDelete, on: self)
+            .store(in: cancelBag)
     }
     
     func send(action: Action) {
@@ -74,13 +76,22 @@ class EditMissionViewModel: ObservableObject {
             
         case .ignoreMissionButtonDidTap:
             state.isPresented = false
-            navigationRouter.push(to: .roomInfo(roomInfo: roomInfo, missionList: []))
+            if state.isDismiss {
+                navigationRouter.pop()
+            } else {
+                navigationRouter.push(to: .roomInfo(roomInfo: roomInfo, missionList: []))
+            }
+            
             
         case .makeMissionButtonDidTap:
             navigationRouter.push(to: .roomInfo(roomInfo: roomInfo, missionList: missionList))
-
+            
         case .dismissAlert:
             state.isPresented = false
+            
+        case .backButtonDidTap:
+            state.isDismiss = true
+            state.isPresented = true
         }
     }
 }
