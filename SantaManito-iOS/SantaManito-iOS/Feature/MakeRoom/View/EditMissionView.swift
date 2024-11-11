@@ -118,19 +118,19 @@ private struct MissionCellView: View {
     }
 
     fileprivate var body: some View {
-        ZStack {
+        HStack {
             TextField(
                 "",
                 text: $mission.content,
                 prompt: Text("산타 할아버지 여기 미션 하나 추가요!")
                     .foregroundColor(.smLightgray)
             )
-            .smTextFieldStyle()
             .submitLabel(.done)
             
             if viewModel.state.canDelete {
                 HStack {
                     Spacer()
+                        .frame(width: 10)
                     
                     Button{
                         viewModel.send(action: .deleteMission(mission))
@@ -143,7 +143,13 @@ private struct MissionCellView: View {
                 }
             }
         }
+        .padding(.vertical, 16)
+        .padding(.leading, 12)
         .frame(height: 48)
+        .overlay {
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(.smLightgray, lineWidth: 1)
+        }
     }
 }
 
