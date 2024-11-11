@@ -72,9 +72,12 @@ class EditMissionViewModel: ObservableObject {
         case .skipMissionButtonDidTap:
             state.isPresented = true
             
-        case .ignoreMissionButtonDidTap, .makeMissionButtonDidTap:
+        case .ignoreMissionButtonDidTap:
             state.isPresented = false
             navigationRouter.push(to: .roomInfo(roomInfo: roomInfo, missionList: []))
+            
+        case .makeMissionButtonDidTap:
+            navigationRouter.push(to: .roomInfo(roomInfo: roomInfo, missionList: missionList))
 
         case .dismissAlert:
             state.isPresented = false
