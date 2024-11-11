@@ -16,7 +16,8 @@ struct ManitoWaitingRoomView: View {
             SMScrollView (padding: -50, topView: {
                 SMInfoView(
                     title: viewModel.state.roomDetail.name,
-                    description: "오늘부터 \(viewModel.state.roomDetail.remainingDays)일 후인 \(viewModel.state.roomDetail.expirationDate.toDueDateWithoutYear)\n\(viewModel.state.roomDetail.expirationDate.toDueDateTime)까지 진행되는 마니또"
+                    description: "오늘부터 \(viewModel.state.roomDetail.remainingDays)일 후인 \(viewModel.state.roomDetail.expirationDate.toDueDateWithoutYear)\n\(viewModel.state.roomDetail.expirationDate.toDueDateTime)까지 진행되는 마니또",
+                    backButtonDidTap: { viewModel.send(action: .backButtonDidTap) }
                 )
             }, content: {
                 VStack {
