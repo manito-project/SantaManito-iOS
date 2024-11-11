@@ -9,8 +9,7 @@ import Foundation
 
 public struct Mission: Identifiable, Hashable, Decodable {
     var content: String
-//    public var id = UUID() // TODO: 추후 서버로 부터 DTO어떻게 올지에 따라 달라짐
-    public var id = String()
+    public var id: String?
 }
 
 extension Mission {
