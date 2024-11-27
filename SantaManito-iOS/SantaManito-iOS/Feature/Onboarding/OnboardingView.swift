@@ -180,7 +180,7 @@ struct OnboardingView: View {
             ForEach(viewModel.state.agreements, id: \.self.agreement) { (agreement, isSelected) in
                 AgreementCell(
                     isSelected: isSelected,
-                    title: agreement.title,
+                    title: "\(agreement.required ? "(필수)" : "(선택)") \(agreement.title)",
                     detailButtonAction: {
                         viewModel.send(.agreementDetailButtonDidTap(agreement))
                     }
