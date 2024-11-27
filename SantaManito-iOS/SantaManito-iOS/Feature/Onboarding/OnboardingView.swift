@@ -22,8 +22,16 @@ struct OnboardingView: View {
                         .padding(.horizontal, 40)
                     
                     VStack {
+                        Image(.logo)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 36)
+                            .padding(.top, 70)
+                        
                         Spacer()
-                        HStack {
+                            .frame(maxWidth: .infinity)
+                        
+                        HStack(alignment: .bottom) {
                             Text(viewModel.state.step == .nickname
                                  ? "반가워, 이제부터\n산타 마니또에서 재미있게 놀자!"
                                  : "필수약관에 동의하면 친구들과\n산타 마니또를 할 수 있어!")
@@ -31,13 +39,19 @@ struct OnboardingView: View {
                             .foregroundStyle(.smWhite)
                             .lineLimit(2)
                             .lineSpacing(4)
+                            .padding(.bottom, 24)
                             
                             Spacer()
-                                .frame(width: 22)
                             
-                            Image(.graphicsSantaNeck)
+                            Image(.graphicsSanta1)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 110)
                         }
+                        .padding(.horizontal, 16)
                     }
+                    .frame(maxWidth: .infinity)
+                    
                 }
                 
             } content: {
