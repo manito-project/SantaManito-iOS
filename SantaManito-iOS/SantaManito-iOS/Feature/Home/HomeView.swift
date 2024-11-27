@@ -52,22 +52,22 @@ struct HomeView: View {
                 }
             } content: {
                 VStack {
-                    HStack(spacing: 20) {
+                    HStack(spacing: 15) {
                         HomeButton(imageResource: .graphicsSantaNeck,
                                    title: "방 만들기",
-                                   description: "새로운 산타\n 마니또 시작하기")
+                                   description: "새로운 산타\n마니또 시작하기")
                         {
                             viewModel.send(.makeRoomButtonDidTap)
                         }
                         
                         HomeButton(imageResource: .graphicsRudolphNeck,
                                    title: "방 입장하기",
-                                   description: "새로운 산타\n 입장코드 입력하기")
+                                   description: "새로운 산타\n입장코드 입력하기")
                         {
                             viewModel.send(.enterRoomButtonDidTap)
                         }
                     }
-                    .padding(.horizontal, 40)
+                    .padding(.horizontal, 30)
                     
                     HStack {
                         Text("나의 산타 마니또")
@@ -208,19 +208,21 @@ fileprivate struct HomeButton : View {
                     Text(title)
                         .font(.semibold_18)
                         .foregroundStyle(.smBlack)
+                        .lineLimit(1)
                         .padding(.top, 30)
                     
                     Text(description)
                         .font(.medium_14)
                         .foregroundStyle(.smDarkgray)
+                        .lineLimit(2)
                         .padding(.bottom, 30)
                 }
                 .frame(maxWidth: .infinity)
-                .padding(.horizontal, 20)
-                .foregroundStyle(.black)
-                .background(.white)
+                .padding(.horizontal, 4)
+                .background(.smWhite)
                 .multilineTextAlignment(.center)
-                .clipShape(RoundedRectangle(cornerRadius: 4))
+                
+                .clipShape(RoundedRectangle(cornerRadius: 10))
                 .shadow(radius: 2)
             }
         }
