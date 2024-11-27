@@ -130,7 +130,11 @@ struct OnboardingView: View {
                 title: "회원가입에 실패했습니다.\n다시 시도해주세요",
                 primaryButton: ("확인", { 
                     viewModel.state.failAlert.toggle()
-                }))
+                })
+            )
+            .sheet(isPresented: $viewModel.state.agreementWebView.isPresented)  {
+                SMWebView(url: viewModel.state.agreementWebView.url)
+            }
         }
         
         
@@ -174,10 +178,16 @@ struct OnboardingView: View {
                 .background(Color.smLightgray)
             
             ForEach(viewModel.state.agreements, id: \.self.agreement) { (agreement, isSelected) in
-                AgreementCell(isSelected: isSelected, title: agreement.title)
-                    .onTapGesture {
-                        viewModel.send(.agreementCellDidTap(agreement))
+                AgreementCell(
+                    isSelected: isSelected,
+                    title: agreement.title,
+                    detailButtonAction: {
+                        viewModel.send(.agreementDetailButtonDidTap(agreement))
                     }
+                )
+                .onTapGesture {
+                    viewModel.send(.agreementCellDidTap(agreement))
+                }
             }
             
             Spacer().frame(height: 0) // 하단 spacing 20을 위해
@@ -189,11 +199,7 @@ fileprivate struct AgreementCell: View {
     
     var isSelected: Bool
     var title: String
-    
-    init(isSelected: Bool, title: String) {
-        self.isSelected = isSelected
-        self.title = title
-    }
+    var detailButtonAction: (() -> Void)?
     
     var body: some View {
         HStack {
@@ -208,6 +214,19 @@ fileprivate struct AgreementCell: View {
                 .padding(.leading, 12)
             
             Spacer()
+            
+            if let detailButtonAction {
+                Button {
+                    detailButtonAction()
+                } label: {
+                    Image(.btnNext)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
+                }
+            }
+ 
+            
         }
         .padding(.horizontal, 16)
     }

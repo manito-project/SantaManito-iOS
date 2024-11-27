@@ -25,6 +25,13 @@ enum AgreementModel: CaseIterable {
         case .개인정보: "개인정보 수집 및 이용 동의"
         }
     }
+    
+    var url: String {
+        switch self {
+        case .이용약관: "https://www.notion.so/am2pm/c292b4973da6420ab63de1571feae786?pvs=4"
+        case .개인정보: "https://www.notion.so/52ba45cda67c4c8c83ea67aab1c042fe?pvs=4"
+        }
+    }
 }
 
 final class OnboardingViewModel: ObservableObject {
@@ -38,6 +45,7 @@ final class OnboardingViewModel: ObservableObject {
         // step 2
         case acceptAllCellDidTap
         case agreementCellDidTap(AgreementModel)
+        case agreementDetailButtonDidTap(AgreementModel)
     }
     
     struct State {
@@ -48,6 +56,7 @@ final class OnboardingViewModel: ObservableObject {
         var signUpCompleted = false // step 2 까지 끝나면 true로
         var agreements = AgreementModel.allCases.map { (agreement: $0, isSelected: false) }
         var allAccepted: Bool { agreements.allSatisfy { $0.isSelected } }
+        var agreementWebView = (isPresented: false, url: "")
         
         fileprivate var requiredAccepted: Bool {agreements.filter { $0.agreement.required }.allSatisfy { $0.isSelected }  } // 뷰에선 사용하지 않는 프로퍼티
         
@@ -135,6 +144,8 @@ final class OnboardingViewModel: ObservableObject {
             }
             
             state.bottomButtonDisabled = !state.requiredAccepted
+        case let .agreementDetailButtonDidTap(agreement):
+            state.agreementWebView = (true, agreement.url)
         }
     }
     
