@@ -55,14 +55,14 @@ struct HomeView: View {
                     HStack(spacing: 15) {
                         HomeButton(imageResource: .graphicsSantaNeck,
                                    title: "방 만들기",
-                                   description: "새로운 산타\n마니또 시작하기")
+                                   description: "새로운 산타 마니또\n시작하기")
                         {
                             viewModel.send(.makeRoomButtonDidTap)
                         }
                         
                         HomeButton(imageResource: .graphicsRudolphNeck,
                                    title: "방 입장하기",
-                                   description: "새로운 산타\n입장코드 입력하기")
+                                   description: "초대코드 입력 후\n마니또 방 들어가기")
                         {
                             viewModel.send(.enterRoomButtonDidTap)
                         }
@@ -245,7 +245,7 @@ fileprivate struct HomeRoomCell: View {
        
     }
     
-    fileprivate var body: some View {
+    var body: some View {
         
         Group {
             VStack(alignment: .leading) {
