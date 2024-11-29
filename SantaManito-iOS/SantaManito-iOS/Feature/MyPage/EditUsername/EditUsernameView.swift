@@ -86,6 +86,7 @@ struct EditUsernameView: View {
                             .foregroundColor(.smLightgray)
                     )
                     .smTextFieldStyle()
+                    .inputLimit($viewModel.username, maxLength: 10)
                     .padding(.top, 12)
                     .padding(.bottom, 24)
                 }
