@@ -60,7 +60,10 @@ class MatchingViewModel: ObservableObject {
                 .flatMap(roomService.getRoomInfo)
                 .receive(on: RunLoop.main)
                 .assignLoading(to: \.state.isAnimating, on: owner)
-                .catch { _ in Empty() }
+                .catch { [weak self]_  in
+                    self?.navigationRouter.popToRootView()
+                    return Empty<RoomDetail, Never>()
+                }
                 .sink { roomDetail in
                     owner.navigationRouter.push(to: .matchedRoom(roomInfo: roomDetail))
                 }

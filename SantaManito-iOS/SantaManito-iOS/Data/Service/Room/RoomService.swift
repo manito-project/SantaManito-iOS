@@ -111,7 +111,9 @@ struct StubRoomService: RoomServiceType {
     }
     
     func matchRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError> {
-        Just(()).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
+        Fail<Void, SMNetworkError>(error: SMNetworkError.invalidResponse(.invalidStatusCode(code: 400, data: "")))
+            .delay(for: .seconds(3), scheduler: RunLoop.current)
+            .eraseToAnyPublisher()
     }
     
     func deleteRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError> {
