@@ -96,7 +96,7 @@ extension RoomDetail {
               name: "한",
               invitationCode: "초대코드1",
               state: .notStarted,
-              creatorID: User.stub1.id,
+              creatorID: UserDefaultsService.shared.userID,
               creatorName: User.stub1.username,
               members: .stub1,
               mission: [

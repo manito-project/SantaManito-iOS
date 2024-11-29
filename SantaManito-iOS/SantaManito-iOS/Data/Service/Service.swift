@@ -17,7 +17,7 @@ protocol ServiceType {
 
 final class Service: ServiceType {
     var appService: AppServiceType = AppService()
-    var authService: AuthenticationServiceType = StubAuthenticationService()
+    var authService: AuthenticationServiceType = AuthenticationService()
     var userService: UserServiceType = UserService()
     var roomService: RoomServiceType = RoomService()
     var remoteConfigService: RemoteConfigServiceType = FirebaseRemoteConfigService.shared
