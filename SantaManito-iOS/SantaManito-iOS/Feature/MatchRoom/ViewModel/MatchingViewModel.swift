@@ -17,10 +17,18 @@ class MatchingViewModel: ObservableObject {
     
     enum Action {
         case onAppear
+        case alert(AlertAction)
     }
+    
+    
+    enum AlertAction {
+        case confirm
+    }
+    
     
     struct State {
         var isAnimating: Bool = false
+        var alert = (isPresented: false, title: "")
     }
     
     //MARK: Dependency
@@ -61,13 +69,18 @@ class MatchingViewModel: ObservableObject {
                 .receive(on: RunLoop.main)
                 .assignLoading(to: \.state.isAnimating, on: owner)
                 .catch { [weak self]_  in
-                    self?.navigationRouter.popToRootView()
+                    self?.state.alert = (true, "방 매칭에 실패했습니다.\n잠시 후 다시 시도해주세요.")
+                    self?.state.isAnimating = false
                     return Empty<RoomDetail, Never>()
                 }
                 .sink { roomDetail in
                     owner.navigationRouter.push(to: .matchedRoom(roomInfo: roomDetail))
                 }
                 .store(in: cancelBag)
+        case .alert(.confirm):
+            self.state.alert = (false, "")
+            navigationRouter.popToRootView()
+
         }
     }
 }
