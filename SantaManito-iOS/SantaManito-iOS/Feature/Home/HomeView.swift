@@ -78,6 +78,9 @@ struct HomeView: View {
                             viewModel.send(.refreshButtonDidTap)
                         } label: {
                             Image(.icRefresh)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 24, height: 24)
                                 .rotationEffect(
                                     Angle(
                                         degrees:  viewModel.state.isLoading ? 360 : 0
@@ -94,6 +97,7 @@ struct HomeView: View {
                     }
                     .padding(.top, 40)
                     .padding(.horizontal, 20)
+                    .padding(.bottom, 18)
                     
                     if viewModel.state.rooms.isEmpty {
                         roomsEmptyView
@@ -151,8 +155,6 @@ struct HomeView: View {
         .background(.smLightbg)
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .padding(.horizontal, 16)
-        .padding(.top, 20)
-        
     }
     
     var roomsView: some View {
@@ -176,9 +178,6 @@ struct HomeView: View {
                 .padding(.horizontal, 20)
             }
         }
-        .padding(.top, 20)
-        
-                
     }
     
 }
