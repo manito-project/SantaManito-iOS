@@ -16,7 +16,6 @@ enum EnterError: Error {
     
     var description: String {
         switch self {
-            
         case .deletedRoomCode:
             return "이미 삭제된 방입니다"
         case .invalidateCode:
@@ -40,7 +39,7 @@ extension EnterError {
             return .deletedRoomCode  // 예시: 방 코드가 삭제되었을 때
         case 409:
             return .alreadyInRoomError  // 예시: 이미 방에 참가된 경우
-        case 412:
+        case 403:
             return .alreadyMatchedError // 예시: 이미 매칭이 완료된 경우
         default:
             return .unknown
