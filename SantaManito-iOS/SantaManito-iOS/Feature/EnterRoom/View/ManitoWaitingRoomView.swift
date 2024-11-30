@@ -16,7 +16,8 @@ struct ManitoWaitingRoomView: View {
             SMScrollView (padding: -50, topView: {
                 SMInfoView(
                     title: viewModel.state.roomDetail.name,
-                    description: "오늘부터 \(viewModel.state.roomDetail.remainingDays)일 후인 \(viewModel.state.roomDetail.expirationDate.toDueDateWithoutYear)\n\(viewModel.state.roomDetail.expirationDate.toDueDateTime)까지 진행되는 마니또"
+                    description: "오늘부터 \(viewModel.state.roomDetail.remainingDays)일 후인 \(viewModel.state.roomDetail.expirationDate.toDueDateWithoutYear)\n\(viewModel.state.roomDetail.expirationDate.toDueDateTime)까지 진행되는 마니또",
+                    backButtonDidTap: { viewModel.send(action: .backButtonDidTap) }
                 )
             }, content: {
                 VStack {
@@ -152,9 +153,10 @@ fileprivate struct ParticipateListView: View {
 
 fileprivate struct ParticipateCellView: View {
     var user: SantaUser
+    private let imageNames: [ImageResource] = [.graphicsRudolphCircle, .graphicsSnowCircle, .graphicsSantaCircle]
     var body: some View {
         HStack {
-            Image(.graphicsRudolphCircle)
+            Image(imageNames.randomElement()!)
                 .resizable()
                 .frame(width: 36, height: 36)
                 .padding(.leading, 16)
@@ -230,7 +232,7 @@ fileprivate struct MatchingButtonView: View {
                     Spacer()
                 }
             } else {
-                Button("마니또 랜덤 매칭하기") {
+                Button("바로 매칭 시작하기") {
                     viewModel.send(action: .matchingButtonDidTap)
                 }
                 .disabled(true)
