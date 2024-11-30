@@ -100,7 +100,7 @@ fileprivate struct DuedateInfoView: View {
             Spacer()
                 .frame(height: 24)
             
-            Text("마니또 방 이름 최대")
+            Text("\(viewModel.roomInfo.name)")
                 .font(.semibold_16)
                 .foregroundColor(.smDarkgray)
                 .padding(.leading, 16)

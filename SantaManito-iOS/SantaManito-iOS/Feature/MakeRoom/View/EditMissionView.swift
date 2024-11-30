@@ -16,7 +16,8 @@ struct EditMissionView: View {
             SMScrollView (padding: -50, topView: {
                 SMInfoView(
                     title: "미션 만들기",
-                    description: "어떤 미션이 괜찮을까\n천 번쯤 고민 중"
+                    description: "어떤 미션이 괜찮을까\n천 번쯤 고민 중",
+                    backButtonDidTap: { viewModel.send(action: .backButtonDidTap)}
                 )
             }, content: {
                 VStack {
@@ -118,19 +119,19 @@ private struct MissionCellView: View {
     }
 
     fileprivate var body: some View {
-        ZStack {
+        HStack {
             TextField(
                 "",
                 text: $mission.content,
                 prompt: Text("산타 할아버지 여기 미션 하나 추가요!")
                     .foregroundColor(.smLightgray)
             )
-            .smTextFieldStyle()
             .submitLabel(.done)
             
             if viewModel.state.canDelete {
                 HStack {
                     Spacer()
+                        .frame(width: 10)
                     
                     Button{
                         viewModel.send(action: .deleteMission(mission))
@@ -143,7 +144,13 @@ private struct MissionCellView: View {
                 }
             }
         }
+        .padding(.vertical, 16)
+        .padding(.leading, 12)
         .frame(height: 48)
+        .overlay {
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(.smLightgray, lineWidth: 1)
+        }
     }
 }
 

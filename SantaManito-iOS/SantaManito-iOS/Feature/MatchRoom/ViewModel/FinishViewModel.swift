@@ -62,7 +62,7 @@ class FinishViewModel: ObservableObject {
         var mission: String {
             let missionId = member.santa.missionId
             guard let mission = roomInfo.mission.first(where: {$0.id == missionId}) else {
-                return "미션이 없습니다."
+                return "이번에는 미션 없이 마니또만 매칭됐어!"
             }
             return mission.content
         }

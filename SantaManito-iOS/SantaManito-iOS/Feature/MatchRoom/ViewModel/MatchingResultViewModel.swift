@@ -32,7 +32,7 @@ class MatchingResultViewModel: ObservableObject {
         var isAnimating: Bool = false
         var me: SantaUser { roomInfo.me.santa }
         var mannito: User { roomInfo.me.manitto ?? .stub1 }
-        var mission: String { roomInfo.myMission?.content ?? "미션이 없습니다." }
+        var mission: String { roomInfo.myMission?.content ?? "이번에는 미션 없이 마니또만 매칭됐어!" }
     }
     
     //MARK: Dependency
