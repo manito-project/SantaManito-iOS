@@ -119,7 +119,7 @@ fileprivate struct FinishResultView: View {
                 HStack {
                     Spacer()
                     
-                    Text(viewModel.state.member.santa.username)
+                    Text(viewModel.state.mySanta.santa.username)
                         .font(.semibold_24)
                         .multilineTextAlignment(.center)
                         .foregroundColor(.white)
@@ -142,7 +142,7 @@ fileprivate struct FinishResultView: View {
                     .frame(height: 15)
                 
                 
-                Text(viewModel.state.mission) // TODO: 미션 결정해야함.
+                Text(viewModel.state.mySantaMission) // TODO: 미션 결정해야함.
                     .font(.medium_16)
                     .foregroundColor(.smDarkgray)
                     .padding(.horizontal, 11)
