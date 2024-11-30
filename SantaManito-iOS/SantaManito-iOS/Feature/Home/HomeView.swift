@@ -52,22 +52,22 @@ struct HomeView: View {
                 }
             } content: {
                 VStack {
-                    HStack(spacing: 20) {
+                    HStack(spacing: 15) {
                         HomeButton(imageResource: .graphicsSantaNeck,
                                    title: "방 만들기",
-                                   description: "새로운 산타\n 마니또 시작하기")
+                                   description: "새로운 산타 마니또\n시작하기")
                         {
                             viewModel.send(.makeRoomButtonDidTap)
                         }
                         
                         HomeButton(imageResource: .graphicsRudolphNeck,
                                    title: "방 입장하기",
-                                   description: "새로운 산타\n 입장코드 입력하기")
+                                   description: "초대코드 입력 후\n마니또 방 들어가기")
                         {
                             viewModel.send(.enterRoomButtonDidTap)
                         }
                     }
-                    .padding(.horizontal, 40)
+                    .padding(.horizontal, 30)
                     
                     HStack {
                         Text("나의 산타 마니또")
@@ -78,6 +78,9 @@ struct HomeView: View {
                             viewModel.send(.refreshButtonDidTap)
                         } label: {
                             Image(.icRefresh)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 24, height: 24)
                                 .rotationEffect(
                                     Angle(
                                         degrees:  viewModel.state.isLoading ? 360 : 0
@@ -94,6 +97,7 @@ struct HomeView: View {
                     }
                     .padding(.top, 40)
                     .padding(.horizontal, 20)
+                    .padding(.bottom, 18)
                     
                     if viewModel.state.rooms.isEmpty {
                         roomsEmptyView
@@ -151,8 +155,6 @@ struct HomeView: View {
         .background(.smLightbg)
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .padding(.horizontal, 16)
-        .padding(.top, 20)
-        
     }
     
     var roomsView: some View {
@@ -176,9 +178,6 @@ struct HomeView: View {
                 .padding(.horizontal, 20)
             }
         }
-        .padding(.top, 20)
-        
-                
     }
     
 }
@@ -208,19 +207,21 @@ fileprivate struct HomeButton : View {
                     Text(title)
                         .font(.semibold_18)
                         .foregroundStyle(.smBlack)
+                        .lineLimit(1)
                         .padding(.top, 30)
                     
                     Text(description)
                         .font(.medium_14)
                         .foregroundStyle(.smDarkgray)
+                        .lineLimit(2)
                         .padding(.bottom, 30)
                 }
                 .frame(maxWidth: .infinity)
-                .padding(.horizontal, 20)
-                .foregroundStyle(.black)
-                .background(.white)
+                .padding(.horizontal, 4)
+                .background(.smWhite)
                 .multilineTextAlignment(.center)
-                .clipShape(RoundedRectangle(cornerRadius: 4))
+                
+                .clipShape(RoundedRectangle(cornerRadius: 10))
                 .shadow(radius: 2)
             }
         }
@@ -243,7 +244,7 @@ fileprivate struct HomeRoomCell: View {
        
     }
     
-    fileprivate var body: some View {
+    var body: some View {
         
         Group {
             VStack(alignment: .leading) {

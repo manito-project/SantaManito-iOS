@@ -29,6 +29,7 @@ struct SMView<TopView: View, Content: View>: View {
                 Color.smNavy
                 
                 topView
+                
             }
             .frame(height: 300)
             .cornerRadius(20, corners: [.bottomLeft, .bottomRight])

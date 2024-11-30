@@ -22,8 +22,16 @@ struct OnboardingView: View {
                         .padding(.horizontal, 40)
                     
                     VStack {
+                        Image(.logo)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 36)
+                            .padding(.top, 70)
+                        
                         Spacer()
-                        HStack {
+                            .frame(maxWidth: .infinity)
+                        
+                        HStack(alignment: .bottom) {
                             Text(viewModel.state.step == .nickname
                                  ? "반가워, 이제부터\n산타 마니또에서 재미있게 놀자!"
                                  : "필수약관에 동의하면 친구들과\n산타 마니또를 할 수 있어!")
@@ -31,13 +39,19 @@ struct OnboardingView: View {
                             .foregroundStyle(.smWhite)
                             .lineLimit(2)
                             .lineSpacing(4)
+                            .padding(.bottom, 24)
                             
                             Spacer()
-                                .frame(width: 22)
                             
-                            Image(.graphicsSantaNeck)
+                            Image(.graphicsSanta1)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 110)
                         }
+                        .padding(.horizontal, 16)
                     }
+                    .frame(maxWidth: .infinity)
+                    
                 }
                 
             } content: {
@@ -116,7 +130,11 @@ struct OnboardingView: View {
                 title: "회원가입에 실패했습니다.\n다시 시도해주세요",
                 primaryButton: ("확인", { 
                     viewModel.state.failAlert.toggle()
-                }))
+                })
+            )
+            .sheet(isPresented: $viewModel.state.agreementWebView.isPresented)  {
+                SMWebView(url: viewModel.state.agreementWebView.url)
+            }
         }
         
         
@@ -160,10 +178,16 @@ struct OnboardingView: View {
                 .background(Color.smLightgray)
             
             ForEach(viewModel.state.agreements, id: \.self.agreement) { (agreement, isSelected) in
-                AgreementCell(isSelected: isSelected, title: agreement.title)
-                    .onTapGesture {
-                        viewModel.send(.agreementCellDidTap(agreement))
+                AgreementCell(
+                    isSelected: isSelected,
+                    title: "\(agreement.required ? "(필수)" : "(선택)") \(agreement.title)",
+                    detailButtonAction: {
+                        viewModel.send(.agreementDetailButtonDidTap(agreement))
                     }
+                )
+                .onTapGesture {
+                    viewModel.send(.agreementCellDidTap(agreement))
+                }
             }
             
             Spacer().frame(height: 0) // 하단 spacing 20을 위해
@@ -175,11 +199,7 @@ fileprivate struct AgreementCell: View {
     
     var isSelected: Bool
     var title: String
-    
-    init(isSelected: Bool, title: String) {
-        self.isSelected = isSelected
-        self.title = title
-    }
+    var detailButtonAction: (() -> Void)?
     
     var body: some View {
         HStack {
@@ -194,6 +214,19 @@ fileprivate struct AgreementCell: View {
                 .padding(.leading, 12)
             
             Spacer()
+            
+            if let detailButtonAction {
+                Button {
+                    detailButtonAction()
+                } label: {
+                    Image(.btnNext)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
+                }
+            }
+ 
+            
         }
         .padding(.horizontal, 16)
     }
