@@ -18,6 +18,7 @@ class ManitoWaitingRoomViewModel: ObservableObject {
         case copyInviteCodeDidTap
         case matchingButtonDidTap //매칭하는 화면으로 넘어가서 서버통신하는게 맞겠지?
         case editButtonDidTap // 방 수정하기 뷰로 넘어감
+        case backButtonDidTap
     }
     
     struct State {
@@ -56,7 +57,6 @@ class ManitoWaitingRoomViewModel: ObservableObject {
         switch action {
         case .onAppear:
             return
-            
         case .refreshButtonDidTap:
             roomService.getRoomInfo(with: state.roomDetail.id)
                 .receive(on: RunLoop.main)
@@ -73,6 +73,8 @@ class ManitoWaitingRoomViewModel: ObservableObject {
             
         case .editButtonDidTap:
             navigationRouter.push(to: .editRoom(viewType: .editMode(roomID: state.roomDetail.id, info: state.roomDetail.toMakeRoomInfo())))
+        case .backButtonDidTap:
+            navigationRouter.popToRootView()
         }
     }
 }
