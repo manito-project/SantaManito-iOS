@@ -53,6 +53,14 @@ struct MatchingView: View {
         })
         .ignoresSafeArea()
         .navigationBarBackButtonHidden()
+        .smAlert(
+            isPresented: viewModel.state.alert.isPresented,
+            title: viewModel.state.alert.title,
+            primaryButton: ("확인", {
+                viewModel.send(action: .alert(.confirm))
+            })
+        )
+        
         
     }
     
