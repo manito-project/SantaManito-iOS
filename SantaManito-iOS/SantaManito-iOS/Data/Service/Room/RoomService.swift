@@ -131,7 +131,7 @@ struct StubRoomService: RoomServiceType {
         Just(()).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
     }
     
-    // For Guset
+    // For Guest
     func enterRoom(at invitationCode: String) -> AnyPublisher<String, EnterError> {
         Just("roomID1").setFailureType(to: EnterError.self).eraseToAnyPublisher()
     }
