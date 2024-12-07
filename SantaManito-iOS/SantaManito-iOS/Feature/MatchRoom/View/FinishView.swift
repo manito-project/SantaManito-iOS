@@ -34,6 +34,12 @@ struct FinishView: View {
         }
         .ignoresSafeArea()
         .navigationBarBackButtonHidden()
+        .smAlert(
+            isPresented: viewModel.state.exitRoomAlertIsPresented,
+            title: "한 번 나가면 마니또 방에 다시\n들어올 수 없어. 그래도 괜찮아?",
+            primaryButton: ("방 나가기", {viewModel.send(action: .alert(.exitRoom) )}),
+            secondaryButton: ("방에 머물기", { viewModel.send(action: .alert(.cancel)) })
+        )
         .onAppear {
             viewModel.send(action: .onAppear)
         }
@@ -142,7 +148,7 @@ fileprivate struct FinishResultView: View {
                     .frame(height: 15)
                 
                 
-                Text(viewModel.state.mySantaMission) // TODO: 미션 결정해야함.
+                Text(viewModel.state.mySantaMission) 
                     .font(.medium_16)
                     .foregroundColor(.smDarkgray)
                     .padding(.horizontal, 11)
