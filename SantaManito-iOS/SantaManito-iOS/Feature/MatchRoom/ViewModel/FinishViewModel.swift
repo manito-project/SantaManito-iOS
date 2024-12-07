@@ -53,18 +53,13 @@ class FinishViewModel: ObservableObject {
         
         var members: [Member] { roomInfo.members }
             
-        var member: Member {
-            guard let 내가마니또인멤버Index = roomInfo.members.firstIndex(where: { $0.manitto?.id == UserDefaultsService.shared.userID})
-            else { return .init(santa: .stub1) }
-            return roomInfo.members[내가마니또인멤버Index]
+        var mySanta: Member {
+            roomInfo.members.filter { $0.manitto?.id == UserDefaultsService.shared.userID }.first
+            ?? .init(santa: .stub1)
         }
         
-        var mission: String {
-            let missionId = member.santa.missionId
-            guard let mission = roomInfo.mission.first(where: {$0.id == missionId}) else {
-                return "이번에는 미션 없이 마니또만 매칭됐어!"
-            }
-            return mission.content
+        var mySantaMission: String {
+            roomInfo.mission.filter { $0.id == mySanta.santa.missionId }.first?.content ?? "이번에는 미션 없이 마니또만 매칭됐어!"
         }
     }
     
