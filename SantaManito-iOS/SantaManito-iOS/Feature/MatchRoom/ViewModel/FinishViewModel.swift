@@ -30,9 +30,14 @@ class FinishViewModel: ObservableObject {
     
     enum Action {
         case onAppear
-        case deleteRoomButtonDidTap // 휴지통 버튼 눌럿을때?
-        case goHomeButtonDidTap
+        case deleteRoomButtonDidTap
         case toggleViewTypeButtonDidTap
+        case alert(AlertAction)
+    }
+    
+    enum AlertAction {
+        case exitRoom
+        case cancel
     }
     
     struct State {
@@ -61,6 +66,8 @@ class FinishViewModel: ObservableObject {
         var mySantaMission: String {
             roomInfo.mission.filter { $0.id == mySanta.santa.missionId }.first?.content ?? "이번에는 미션 없이 마니또만 매칭됐어!"
         }
+        
+        var exitRoomAlertIsPresented = false
     }
     
     //MARK: Dependency
@@ -91,11 +98,16 @@ class FinishViewModel: ObservableObject {
         switch action {
         case .onAppear:
             return
-
+            
         case .toggleViewTypeButtonDidTap:
             state.viewType = state.viewType == .me ? .all : .me
             
         case .deleteRoomButtonDidTap:
+            state.exitRoomAlertIsPresented = true
+            
+        case .alert(.exitRoom):
+            state.exitRoomAlertIsPresented = false
+            
             roomService.exitRoom(with: state.roomInfo.id)
                 .catch { _ in Empty() }
                 .receive(on: RunLoop.main)
@@ -104,8 +116,10 @@ class FinishViewModel: ObservableObject {
                 })
                 .store(in: cancelBag)
             
-        case .goHomeButtonDidTap:
-            self.navigationRouter.popToRootView()
+        case .alert(.cancel):
+            state.exitRoomAlertIsPresented = false
+            
+            
         }
     }
 }
