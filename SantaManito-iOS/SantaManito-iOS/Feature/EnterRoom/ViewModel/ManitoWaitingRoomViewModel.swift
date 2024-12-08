@@ -16,8 +16,8 @@ class ManitoWaitingRoomViewModel: ObservableObject {
         case onAppear
         case refreshButtonDidTap
         case copyInviteCodeDidTap
-        case matchingButtonDidTap //매칭하는 화면으로 넘어가서 서버통신하는게 맞겠지?
-        case editButtonDidTap // 방 수정하기 뷰로 넘어감
+        case matchingButtonDidTap
+        case editButtonDidTap
         case backButtonDidTap
     }
     
@@ -55,9 +55,7 @@ class ManitoWaitingRoomViewModel: ObservableObject {
         guard let owner else { return }
         
         switch action {
-        case .onAppear:
-            return
-        case .refreshButtonDidTap:
+        case .onAppear, .refreshButtonDidTap:
             roomService.getRoomInfo(with: state.roomDetail.id)
                 .receive(on: RunLoop.main)
                 .assignLoading(to: \.state.isLoading, on: owner)

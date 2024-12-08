@@ -55,10 +55,6 @@ struct SMAlertView: View {
             .foregroundStyle(.smWhite)
             .padding(.top, 24)
             
-            
-            
-            
-            
         }
         .background(.smWhite)
         .clipShape(RoundedRectangle(cornerRadius: 10))
