@@ -43,8 +43,8 @@ extension RoomDetailResponse {
                           creatorID: self.creator.id,
                           creatorName: self.creator.username,
                           members: members.map { $0.toEntity()},
-                          mission: missions.map { $0.toEntity()} ,
-                          createdAt: self.createdAt, 
+                          mission: missions.map { $0.toEntity()},
+                          createdAt: self.createdAt,
                           expirationDate: self.expirationDate
         )
     }
