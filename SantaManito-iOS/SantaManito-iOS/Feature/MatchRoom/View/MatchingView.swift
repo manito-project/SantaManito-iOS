@@ -14,7 +14,7 @@ struct MatchingView: View {
     
     var body: some View {
         ZStack {
-            Image(.splashBackground)
+            Image(.matchingBackground)
                 .resizable()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             
@@ -34,23 +34,13 @@ struct MatchingView: View {
                 }
                 
                 Spacer()
-                    .frame(height: 40)
-                
-                Text("잠시만 기다리면\n나만의 산타 마니또를 만날 수 있어!")
-                    .font(.semibold_18)
-                    .foregroundColor(.smWhite)
-                    .lineSpacing(4)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 70)
-                
-                Spacer()
             }
             
             
         }
-        .onAppear(perform: {
+        .onAppear {
             viewModel.send(action: .onAppear)
-        })
+        }
         .ignoresSafeArea()
         .navigationBarBackButtonHidden()
         .smAlert(
