@@ -34,9 +34,34 @@ struct MatchingView: View {
                 }
                 
                 Spacer()
+                    .frame(height: 40)
+                
+                if viewModel.state.isMatched {
+                    Button {
+                        viewModel.send(action: .goToMatchingResultView)
+                    } label: {
+                        Text("결과보러가기")
+                            .font(.semibold_18)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.smBlack)
+                            .padding(.horizontal, 30)
+                            .padding(.vertical, 12)
+                            .background(.smWhite)
+                            .clipShape(RoundedRectangle(cornerRadius: 30))
+                    }
+                } else {
+                    Text("잠시만 기다리면\n나만의 산타 마니또를 만날 수 있어!")
+                        .font(.medium_18)
+                        .lineSpacing(3)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.smWhite)
+                }
+                
+                
+                
+                Spacer()
+                
             }
-            
-            
         }
         .onAppear {
             viewModel.send(action: .onAppear)
@@ -50,13 +75,11 @@ struct MatchingView: View {
                 viewModel.send(action: .alert(.confirm))
             })
         )
-        
-        
     }
     
     func rotateContinuously() {
         withAnimation(.linear(duration: 1.5).repeatForever(autoreverses: false)) {
-            rotation = 360 // 한 번 360도 회전
+            rotation = 360
         }
     }
 }

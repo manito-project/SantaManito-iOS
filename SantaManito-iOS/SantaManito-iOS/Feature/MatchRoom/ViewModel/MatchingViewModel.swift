@@ -13,10 +13,12 @@ import Combine
 
 class MatchingViewModel: ObservableObject {
     
+    
     //MARK: Action, State
     
     enum Action {
         case onAppear
+        case goToMatchingResultView
         case alert(AlertAction)
     }
     
@@ -28,6 +30,7 @@ class MatchingViewModel: ObservableObject {
     
     struct State {
         var isAnimating: Bool = false
+        var isMatched: Bool = true
         var alert = (isPresented: false, title: "")
     }
     
@@ -36,6 +39,7 @@ class MatchingViewModel: ObservableObject {
     private var roomService: RoomServiceType
     private var navigationRouter: NavigationRoutable
     private let roomID: String
+    fileprivate var roomInfo: RoomDetail?
     
     //MARK: Init
     
@@ -74,9 +78,15 @@ class MatchingViewModel: ObservableObject {
                     return Empty<RoomDetail, Never>()
                 }
                 .sink { roomDetail in
-                    owner.navigationRouter.push(to: .matchedRoom(roomInfo: roomDetail))
+                    owner.roomInfo = roomDetail
+                    owner.state.isMatched = true
                 }
                 .store(in: cancelBag)
+            
+        case .goToMatchingResultView:
+            guard let roomInfo else { return }
+            self.navigationRouter.push(to: .matchedRoom(roomInfo: roomInfo))
+            
         case .alert(.confirm):
             self.state.alert = (false, "")
             navigationRouter.popToRootView()
