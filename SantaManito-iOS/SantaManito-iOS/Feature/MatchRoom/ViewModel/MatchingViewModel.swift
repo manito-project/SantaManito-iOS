@@ -62,7 +62,7 @@ class MatchingViewModel: ObservableObject {
         
         switch action {
         case .onAppear:
-            Just(roomID)
+            Just(self.roomID)
                 .flatMap(roomService.matchRoom)
                 .map { owner.roomID }
                 .flatMap(roomService.getRoomInfo)
