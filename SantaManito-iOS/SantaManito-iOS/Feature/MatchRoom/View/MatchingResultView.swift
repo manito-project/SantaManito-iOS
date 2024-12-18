@@ -35,9 +35,6 @@ struct MatchingResultView: View {
                 .padding(.horizontal, 16)
             }
         }
-        .onAppear {
-            viewModel.send(action: .onAppear)
-        }
     }
 }
 

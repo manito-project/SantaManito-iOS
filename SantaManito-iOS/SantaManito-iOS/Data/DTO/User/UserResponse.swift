@@ -26,7 +26,11 @@ extension UserResponse {
 
 extension SantaUserResponse {
     func toEntity() -> SantaUser {
-        .init(id: id, username: username, missionId: missionId)
+        .init(
+            id: id,
+            username: username,
+            missionId: missionId
+        )
     }
 }
 

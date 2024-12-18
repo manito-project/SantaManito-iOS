@@ -14,6 +14,6 @@ struct MissionResponse: Decodable {
 
 extension MissionResponse {
     func toEntity() -> Mission {
-        .init(content: content) // TODO: uuid string 변환
+        .init(content: content, id: id) // TODO: uuid string 변환
     }
 }

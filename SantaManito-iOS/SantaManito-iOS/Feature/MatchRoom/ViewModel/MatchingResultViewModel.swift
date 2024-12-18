@@ -13,7 +13,7 @@ class MatchingResultViewModel: ObservableObject {
     //MARK: Action, State
     
     enum Action {
-        case onAppear
+//        case onAppear
         case goHomeButtonDidTap
     }
     
@@ -60,18 +60,7 @@ class MatchingResultViewModel: ObservableObject {
     //MARK: Methods
     
     func send(action: Action) {
-        weak var owner = self
-        guard let owner else { return }
-        
         switch action {
-        case .onAppear:
-            return 
-//            Just(state.roomInfo.id)
-//                .flatMap(roomService.getMyInfo)
-//                .assignLoading(to: \.state.isAnimating, on: owner)
-//                .catch { _ in Empty() }
-//                .assign(to: \.state.matchedInfo, on: owner)
-//                .store(in: cancelBag)
 
         case .goHomeButtonDidTap:
             navigationRouter.popToRootView()
