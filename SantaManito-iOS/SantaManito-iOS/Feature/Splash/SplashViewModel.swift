@@ -14,12 +14,17 @@ class SplashViewModel: ObservableObject {
     
     enum Action {
         case onAppear
+        case alert(Alert)
     }
     
     
     struct State {
         var mustUpdateAlertIsPresented: Bool = false
         var serverCheckAlert: (isPresented: Bool, message: String) = (false, "서버 점검 시간입니다")
+    }
+    
+    enum Alert {
+        case confirm
     }
     
     //MARK: - Dependency
@@ -57,6 +62,7 @@ class SplashViewModel: ObservableObject {
         weak var owner = self
         guard let owner else { return }
         switch action {
+            
         case .onAppear:
             
             appService.isLatestVersion()
@@ -95,7 +101,8 @@ class SplashViewModel: ObservableObject {
                     
                 }
                 .store(in: cancelBag)
-
+        case .alert(.confirm):
+            state.serverCheckAlert.isPresented = false 
             
 
         }
