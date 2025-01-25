@@ -108,7 +108,7 @@ class FinishViewModel: ObservableObject {
         case .alert(.exitRoom):
             state.exitRoomAlertIsPresented = false
             
-            roomService.exitRoom(with: state.roomInfo.id)
+            roomService.deleteHistoryRoom(with: state.roomInfo.id)
                 .catch { _ in Empty() }
                 .receive(on: RunLoop.main)
                 .sink(receiveValue: { [weak self] _ in

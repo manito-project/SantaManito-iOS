@@ -46,8 +46,8 @@ struct SplashView: View {
             isPresented:
                 viewModel.state.serverCheckAlert.isPresented,
             title: viewModel.state.serverCheckAlert.message,
-            primaryButton: ("확인 후 앱 닫기", {
-                exit(0)
+            primaryButton: ("확인", {
+                viewModel.send(.alert(.confirm))
             })
         )
             
