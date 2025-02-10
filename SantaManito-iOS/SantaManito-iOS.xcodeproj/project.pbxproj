@@ -131,6 +131,7 @@
 		D2BC1AA32C90A29200CB32B8 /* CheckRoomInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1AA22C90A29100CB32B8 /* CheckRoomInfoViewModel.swift */; };
 		D2BC1AA52C91357F00CB32B8 /* SMInviteCodeAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1AA42C91357F00CB32B8 /* SMInviteCodeAlertView.swift */; };
 		D2E2068D2CB5317F001250AE /* RoomMyInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E2068C2CB5317F001250AE /* RoomMyInfoDTO.swift */; };
+		D2EC38962D598EBA0077564B /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = D2EC38952D598EBA0077564B /* Amplitude */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -286,6 +287,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2EC38962D598EBA0077564B /* Amplitude in Frameworks */,
 				87873BDA2CAC215000E368BF /* FirebaseRemoteConfig in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -927,6 +929,7 @@
 			name = "SantaManito-iOS";
 			packageProductDependencies = (
 				87873BD92CAC215000E368BF /* FirebaseRemoteConfig */,
+				D2EC38952D598EBA0077564B /* Amplitude */,
 			);
 			productName = "SantaManito-iOS";
 			productReference = D22E9B552C88031A00086549 /* SantaManito-iOS.app */;
@@ -962,6 +965,7 @@
 			mainGroup = D22E9B4C2C88031A00086549;
 			packageReferences = (
 				87873BD82CAC215000E368BF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				D2EC38942D598E530077564B /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
 			);
 			productRefGroup = D22E9B562C88031A00086549 /* Products */;
 			projectDirPath = "";
@@ -1417,6 +1421,14 @@
 				minimumVersion = 11.3.0;
 			};
 		};
+		D2EC38942D598E530077564B /* XCRemoteSwiftPackageReference "Amplitude-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amplitude/Amplitude-iOS";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1424,6 +1436,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 87873BD82CAC215000E368BF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseRemoteConfig;
+		};
+		D2EC38952D598EBA0077564B /* Amplitude */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D2EC38942D598E530077564B /* XCRemoteSwiftPackageReference "Amplitude-iOS" */;
+			productName = Amplitude;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
