@@ -19,32 +19,26 @@ struct AnalyticsTaxonomy {
     let tagEng: String
     let type: EventType
     let channel: String
+    var properties: [String: Any?]
     
     init(
         tag: String,
         tagEng: String,
         type: EventType,
-        channel: String = "APP"
+        channel: String = "APP",
+        properties: [String: Any?] = [:]
     ) {
         self.tag = tag
         self.tagEng = tagEng
         self.type = type
         self.channel = channel
+        self.properties = properties
+    }
+
+    @discardableResult
+    mutating func add(_ value: Any?, forKey key: String) -> Self {
+        self.properties[key] = value
+        return self
     }
 }
 
-extension AnalyticsTaxonomy: Encodable {
-    
-    enum CodingKeys: String, CodingKey {
-        case tag = "태그명"
-        case tagEng = "tag_eng"
-        case channel
-    }
-    
-    func encode(to encoder: any Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(tag, forKey: .tag)
-        try container.encode(tagEng, forKey: .tagEng)
-        try container.encode(channel, forKey: .channel)
-    }
-}

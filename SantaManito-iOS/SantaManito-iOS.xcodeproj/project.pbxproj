@@ -49,7 +49,6 @@
 		877D52022D743E2700FE8317 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877D52012D743E2700FE8317 /* Analytics.swift */; };
 		877D52042D74437F00FE8317 /* AmplitudeAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877D52032D74437F00FE8317 /* AmplitudeAnalytics.swift */; };
 		877D52062D74A99F00FE8317 /* AnalyticsTaxonomy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877D52052D74A99F00FE8317 /* AnalyticsTaxonomy.swift */; };
-		877D52082D74AF0300FE8317 /* Encodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877D52072D74AF0300FE8317 /* Encodable.swift */; };
 		877EA2322C889DCB0073FFBD /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA2312C889DCB0073FFBD /* ButtonStyles.swift */; };
 		877EA2392C88AA8A0073FFBD /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA2382C88AA8A0073FFBD /* OnboardingView.swift */; };
 		877EA23B2C88AAC10073FFBD /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA23A2C88AAC10073FFBD /* DIContainer.swift */; };
@@ -189,7 +188,6 @@
 		877D52012D743E2700FE8317 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		877D52032D74437F00FE8317 /* AmplitudeAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeAnalytics.swift; sourceTree = "<group>"; };
 		877D52052D74A99F00FE8317 /* AnalyticsTaxonomy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsTaxonomy.swift; sourceTree = "<group>"; };
-		877D52072D74AF0300FE8317 /* Encodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encodable.swift; sourceTree = "<group>"; };
 		877EA2312C889DCB0073FFBD /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		877EA2382C88AA8A0073FFBD /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		877EA23A2C88AAC10073FFBD /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
@@ -684,7 +682,6 @@
 				D2BC1A8F2C8F4C6400CB32B8 /* Date+.swift */,
 				874017C62CA6B4CD0096E847 /* View+.swift */,
 				87873BEC2CB0FA3700E368BF /* Publisher+.swift */,
-				877D52072D74AF0300FE8317 /* Encodable.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1153,7 +1150,6 @@
 				D26BFA912C919D0000C5CF86 /* ManitoWaitingRoomView.swift in Sources */,
 				877CA0892C8CB61100D23193 /* DSKitDemoView.swift in Sources */,
 				874017A82CA1AC010096E847 /* MissionDTO.swift in Sources */,
-				877D52082D74AF0300FE8317 /* Encodable.swift in Sources */,
 				877D52022D743E2700FE8317 /* Analytics.swift in Sources */,
 				87873BFB2CB2EB6100E368BF /* UserDefault.swift in Sources */,
 				D26879412CAA83500025A611 /* Paths.swift in Sources */,
