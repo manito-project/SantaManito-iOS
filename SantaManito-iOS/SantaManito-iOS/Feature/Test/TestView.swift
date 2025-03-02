@@ -15,32 +15,11 @@ struct TestView: View {
     var body: some View {
         
         Button("서버체크") {
-            serverCheck()
+//            serverCheck()
         }
             
     }
-        
-    func serverCheck() {
-        FirebaseRemoteConfigService.shared
-            .getServerCheck()
-            .sink { completion in
-                print(completion)
-            } receiveValue: { serverCheck in
-                print("값 받았오🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏")
-                print(serverCheck)
-            }
-            .store(in: cancelBag)
-        
-        FirebaseRemoteConfigService.shared
-            .getServerCheckMessage()
-            .sink { completion in
-                print(completion)
-            } receiveValue: { serverCheckMessage in
-                print(serverCheckMessage)
-            }
-            .store(in: cancelBag)
-
-    }
+    
 
 }
 
