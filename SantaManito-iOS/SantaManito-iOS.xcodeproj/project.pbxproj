@@ -46,6 +46,9 @@
 		877CA0A62C94305A00D23193 /* CancelBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0A52C94305A00D23193 /* CancelBag.swift */; };
 		877D51FD2D743BCF00FE8317 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 877D51FC2D743BCF00FE8317 /* FirebaseCore */; };
 		877D51FF2D743BCF00FE8317 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 877D51FE2D743BCF00FE8317 /* FirebaseRemoteConfig */; };
+		877D52022D743E2700FE8317 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877D52012D743E2700FE8317 /* Analytics.swift */; };
+		877D52042D74437F00FE8317 /* AmplitudeAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877D52032D74437F00FE8317 /* AmplitudeAnalytics.swift */; };
+		877D52062D74A99F00FE8317 /* AnalyticsTaxonomy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877D52052D74A99F00FE8317 /* AnalyticsTaxonomy.swift */; };
 		877EA2322C889DCB0073FFBD /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA2312C889DCB0073FFBD /* ButtonStyles.swift */; };
 		877EA2392C88AA8A0073FFBD /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA2382C88AA8A0073FFBD /* OnboardingView.swift */; };
 		877EA23B2C88AAC10073FFBD /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA23A2C88AAC10073FFBD /* DIContainer.swift */; };
@@ -182,6 +185,9 @@
 		877CA0A12C94304B00D23193 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		877CA0A32C94305200D23193 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		877CA0A52C94305A00D23193 /* CancelBag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelBag.swift; sourceTree = "<group>"; };
+		877D52012D743E2700FE8317 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
+		877D52032D74437F00FE8317 /* AmplitudeAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeAnalytics.swift; sourceTree = "<group>"; };
+		877D52052D74A99F00FE8317 /* AnalyticsTaxonomy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsTaxonomy.swift; sourceTree = "<group>"; };
 		877EA2312C889DCB0073FFBD /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		877EA2382C88AA8A0073FFBD /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		877EA23A2C88AAC10073FFBD /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
@@ -391,6 +397,24 @@
 				877CA0A32C94305200D23193 /* SplashViewModel.swift */,
 			);
 			path = Splash;
+			sourceTree = "<group>";
+		};
+		877D52002D743E1800FE8317 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				877D52012D743E2700FE8317 /* Analytics.swift */,
+				877D52052D74A99F00FE8317 /* AnalyticsTaxonomy.swift */,
+				877D52092D74AF9200FE8317 /* Amplitude */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		877D52092D74AF9200FE8317 /* Amplitude */ = {
+			isa = PBXGroup;
+			children = (
+				877D52032D74437F00FE8317 /* AmplitudeAnalytics.swift */,
+			);
+			path = Amplitude;
 			sourceTree = "<group>";
 		};
 		877EA2302C889DC10073FFBD /* Style */ = {
@@ -644,6 +668,7 @@
 		D22E9B672C8803AE00086549 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				877D52002D743E1800FE8317 /* Analytics */,
 				87873BF92CB2EB5700E368BF /* PropertyWrapper */,
 				D22E9B692C8803BA00086549 /* Util */,
 				D22E9B682C8803B100086549 /* Extension */,
@@ -1056,6 +1081,7 @@
 				874017AE2CA29C690096E847 /* MyPageView.swift in Sources */,
 				D22E9B732C8803E500086549 /* Service.swift in Sources */,
 				877EA23F2C88AB930073FFBD /* AuthService.swift in Sources */,
+				877D52042D74437F00FE8317 /* AmplitudeAnalytics.swift in Sources */,
 				879829092C9EA54B00A863EC /* BaseView.swift in Sources */,
 				D2BC1A922C90101E00CB32B8 /* EditMissionView.swift in Sources */,
 				87873BF32CB2E2A100E368BF /* AuthResponse.swift in Sources */,
@@ -1120,9 +1146,11 @@
 				D2A8F61B2CA116BD00810BCF /* MatchingViewModel.swift in Sources */,
 				D2A8F61D2CA116F800810BCF /* MatchingView.swift in Sources */,
 				879829052C9827B200A863EC /* HomeViewModel.swift in Sources */,
+				877D52062D74A99F00FE8317 /* AnalyticsTaxonomy.swift in Sources */,
 				D26BFA912C919D0000C5CF86 /* ManitoWaitingRoomView.swift in Sources */,
 				877CA0892C8CB61100D23193 /* DSKitDemoView.swift in Sources */,
 				874017A82CA1AC010096E847 /* MissionDTO.swift in Sources */,
+				877D52022D743E2700FE8317 /* Analytics.swift in Sources */,
 				87873BFB2CB2EB6100E368BF /* UserDefault.swift in Sources */,
 				D26879412CAA83500025A611 /* Paths.swift in Sources */,
 				D229FE782CA7CEA200979421 /* HTTPMethod.swift in Sources */,
