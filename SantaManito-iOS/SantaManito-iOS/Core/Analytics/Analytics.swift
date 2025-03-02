@@ -8,32 +8,22 @@
 import Foundation
 
 protocol Analyzable {
-    func track(eventType: String, eventProperties: [String: Any?])
+    func track(_ taxonomy: AnalyticsTaxonomy)
     func reset()
 }
 
 final class Analytics {
-    
-    private var analytics: [any Analyzable] = []
     static let shared = Analytics()
     
-    private init() {
-        self.analytics = [
-            AmplitudeAnalytics.shared
-        ]
-    }
+    private init() { }
 }
 
 extension Analytics: Analyzable {
-    func track(eventType: String, eventProperties: [String: Any?]) {
-        analytics.forEach {
-            $0.track(eventType: eventType, eventProperties: eventProperties)
-        }
+    func track(_ taxonomy: AnalyticsTaxonomy) {
+        AmplitudeAnalytics.shared.track(taxonomy)
     }
     
     func reset() {
-        analytics.forEach {
-            $0.reset()
-        }
+        AmplitudeAnalytics.shared.reset()
     }
 }
