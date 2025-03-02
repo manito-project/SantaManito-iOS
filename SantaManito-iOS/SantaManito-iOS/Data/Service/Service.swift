@@ -20,8 +20,7 @@ final class Service: ServiceType {
     var authService: AuthenticationServiceType = AuthenticationService()
     var userService: UserServiceType = UserService()
     var roomService: RoomServiceType = RoomService()
-//    var remoteConfigService: RemoteConfigServiceType = FirebaseRemoteConfigService.shared
-    var remoteConfigService: RemoteConfigServiceType = StubRemoteConfigService()
+    var remoteConfigService: RemoteConfigServiceType = FirebaseRemoteConfigService.shared
 }
 
 
