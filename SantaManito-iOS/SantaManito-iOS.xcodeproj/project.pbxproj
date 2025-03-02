@@ -28,6 +28,7 @@
 		874017C72CA6B4CD0096E847 /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017C62CA6B4CD0096E847 /* View+.swift */; };
 		874017CB2CA7E6970096E847 /* SMPasteBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017CA2CA7E6970096E847 /* SMPasteBoard.swift */; };
 		874017CD2CA7EC7A0096E847 /* EditRoomViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017CC2CA7EC7A0096E847 /* EditRoomViewType.swift */; };
+		874296212D7437D8001531AA /* AmplitudeSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 874296202D7437D8001531AA /* AmplitudeSwift */; };
 		8742BCFE2CFB0C16009D258A /* FinishViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8742BCFD2CFB0C16009D258A /* FinishViewModelTests.swift */; };
 		8779D8182CB8CDBD00B61DEA /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8779D8172CB8CDBD00B61DEA /* Member.swift */; };
 		877CA0712C8AB3DE00D23193 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0702C8AB3DE00D23193 /* LoadingView.swift */; };
@@ -43,6 +44,8 @@
 		877CA0A22C94304B00D23193 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0A12C94304B00D23193 /* SplashView.swift */; };
 		877CA0A42C94305200D23193 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0A32C94305200D23193 /* SplashViewModel.swift */; };
 		877CA0A62C94305A00D23193 /* CancelBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0A52C94305A00D23193 /* CancelBag.swift */; };
+		877D51FD2D743BCF00FE8317 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 877D51FC2D743BCF00FE8317 /* FirebaseCore */; };
+		877D51FF2D743BCF00FE8317 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 877D51FE2D743BCF00FE8317 /* FirebaseRemoteConfig */; };
 		877EA2322C889DCB0073FFBD /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA2312C889DCB0073FFBD /* ButtonStyles.swift */; };
 		877EA2392C88AA8A0073FFBD /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA2382C88AA8A0073FFBD /* OnboardingView.swift */; };
 		877EA23B2C88AAC10073FFBD /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA23A2C88AAC10073FFBD /* DIContainer.swift */; };
@@ -52,7 +55,6 @@
 		87873BC52CAC1C0300E368BF /* RemoteConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BC42CAC1C0300E368BF /* RemoteConfigService.swift */; };
 		87873BC72CAC1EFA00E368BF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87873BC62CAC1EFA00E368BF /* GoogleService-Info.plist */; };
 		87873BD22CAC211E00E368BF /* FirebaseRemoteConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BD12CAC211E00E368BF /* FirebaseRemoteConfigTests.swift */; };
-		87873BDA2CAC215000E368BF /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 87873BD92CAC215000E368BF /* FirebaseRemoteConfig */; };
 		87873BDC2CAC29E900E368BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BDB2CAC29E900E368BF /* AppDelegate.swift */; };
 		87873BDF2CAC2EA200E368BF /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BDE2CAC2EA200E368BF /* TestView.swift */; };
 		87873BE12CAFF29600E368BF /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87873BE02CAFF29600E368BF /* AppService.swift */; };
@@ -131,7 +133,6 @@
 		D2BC1AA32C90A29200CB32B8 /* CheckRoomInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1AA22C90A29100CB32B8 /* CheckRoomInfoViewModel.swift */; };
 		D2BC1AA52C91357F00CB32B8 /* SMInviteCodeAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1AA42C91357F00CB32B8 /* SMInviteCodeAlertView.swift */; };
 		D2E2068D2CB5317F001250AE /* RoomMyInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E2068C2CB5317F001250AE /* RoomMyInfoDTO.swift */; };
-		D2EC38962D598EBA0077564B /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = D2EC38952D598EBA0077564B /* Amplitude */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -287,8 +288,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2EC38962D598EBA0077564B /* Amplitude in Frameworks */,
-				87873BDA2CAC215000E368BF /* FirebaseRemoteConfig in Frameworks */,
+				877D51FF2D743BCF00FE8317 /* FirebaseRemoteConfig in Frameworks */,
+				877D51FD2D743BCF00FE8317 /* FirebaseCore in Frameworks */,
+				874296212D7437D8001531AA /* AmplitudeSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -928,8 +930,9 @@
 			);
 			name = "SantaManito-iOS";
 			packageProductDependencies = (
-				87873BD92CAC215000E368BF /* FirebaseRemoteConfig */,
-				D2EC38952D598EBA0077564B /* Amplitude */,
+				874296202D7437D8001531AA /* AmplitudeSwift */,
+				877D51FC2D743BCF00FE8317 /* FirebaseCore */,
+				877D51FE2D743BCF00FE8317 /* FirebaseRemoteConfig */,
 			);
 			productName = "SantaManito-iOS";
 			productReference = D22E9B552C88031A00086549 /* SantaManito-iOS.app */;
@@ -964,8 +967,8 @@
 			);
 			mainGroup = D22E9B4C2C88031A00086549;
 			packageReferences = (
-				87873BD82CAC215000E368BF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				D2EC38942D598E530077564B /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
+				8742961F2D7437D8001531AA /* XCRemoteSwiftPackageReference "Amplitude-Swift" */,
+				877D51FB2D743BCF00FE8317 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = D22E9B562C88031A00086549 /* Products */;
 			projectDirPath = "";
@@ -1413,34 +1416,39 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		87873BD82CAC215000E368BF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		8742961F2D7437D8001531AA /* XCRemoteSwiftPackageReference "Amplitude-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			repositoryURL = "https://github.com/amplitude/Amplitude-Swift.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 11.3.0;
+				minimumVersion = 1.0.0;
 			};
 		};
-		D2EC38942D598E530077564B /* XCRemoteSwiftPackageReference "Amplitude-iOS" */ = {
+		877D51FB2D743BCF00FE8317 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/amplitude/Amplitude-iOS";
+			repositoryURL = "https://www.github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.9.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		87873BD92CAC215000E368BF /* FirebaseRemoteConfig */ = {
+		874296202D7437D8001531AA /* AmplitudeSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 87873BD82CAC215000E368BF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseRemoteConfig;
+			package = 8742961F2D7437D8001531AA /* XCRemoteSwiftPackageReference "Amplitude-Swift" */;
+			productName = AmplitudeSwift;
 		};
-		D2EC38952D598EBA0077564B /* Amplitude */ = {
+		877D51FC2D743BCF00FE8317 /* FirebaseCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D2EC38942D598E530077564B /* XCRemoteSwiftPackageReference "Amplitude-iOS" */;
-			productName = Amplitude;
+			package = 877D51FB2D743BCF00FE8317 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		877D51FE2D743BCF00FE8317 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 877D51FB2D743BCF00FE8317 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
