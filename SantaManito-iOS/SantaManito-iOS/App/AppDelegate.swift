@@ -15,6 +15,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
         FirebaseApp.configure()
+        _ = Analytics.shared
 //
 //        
 //        Amplitude.instance().initializeApiKey("")
