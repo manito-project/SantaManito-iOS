@@ -6,13 +6,34 @@
 //
 
 import Foundation
-import AmplitudeSwift
 
-struct Analytics {
+protocol Analyzable {
+    func track(eventType: String, eventProperties: [String: Any?])
+    func reset()
+}
+
+final class Analytics {
     
-    private let amplitude = Amplitude(configuration: Configuration(apiKey: Config.amplitudeAPIKey))
+    private var analytics: [any Analyzable] = []
+    static let shared = Analytics()
     
-    func configure() {
-        
+    private init() {
+        self.analytics = [
+            AmplitudeAnalytics.shared
+        ]
+    }
+}
+
+extension Analytics: Analyzable {
+    func track(eventType: String, eventProperties: [String: Any?]) {
+        analytics.forEach {
+            $0.track(eventType: eventType, eventProperties: eventProperties)
+        }
+    }
+    
+    func reset() {
+        analytics.forEach {
+            $0.reset()
+        }
     }
 }
