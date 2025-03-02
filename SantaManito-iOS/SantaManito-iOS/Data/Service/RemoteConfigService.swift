@@ -6,7 +6,8 @@
 //
 
 import Combine
-import FirebaseRemoteConfig
+import Foundation
+//import FirebaseRemoteConfig
 
 protocol RemoteConfigServiceType {
     func getServerCheck() -> AnyPublisher<Bool, RemoteConfigError>
@@ -35,65 +36,65 @@ enum SMFRCKey: String { //FirebaseRemoteConfig에 있는 이름값과 일치해�
     case server_check
     case server_check_message
 }
-
-final class FirebaseRemoteConfigService {
-    
-    static let shared = FirebaseRemoteConfigService()
-    
-    private let remoteConfig = RemoteConfig.remoteConfig() // 싱글톤으로 관리되어야 하는 객체이기에 FirebaseRemoteConfigService도 싱글톤으로 구축.
-    private let settings = RemoteConfigSettings()
-    
-    
-    private init() {
-        settings.minimumFetchInterval = 0
-        remoteConfig.configSettings = settings
-    }
-}
-
-extension FirebaseRemoteConfigService: RemoteConfigServiceType {
-    
-    func getServerCheck() -> AnyPublisher<Bool, RemoteConfigError> {
-        Future<RemoteConfigValue, Error> { promise in
-            self.remoteConfig.fetchAndActivate { _, error in
-                if let error { promise(.failure(error))}
-                promise(.success(self.remoteConfig[SMFRCKey.server_check.rawValue]))
-            }
-        }
-        .tryMap {
-            guard $0.source != .static
-            else { throw RemoteConfigError.keyValueNotFound }
-            return $0.boolValue
-        }
-        .mapError {
-            guard let frcError = $0 as? RemoteConfigError
-            else { return RemoteConfigError.unknown($0) }
-            return frcError
-        }
-        .eraseToAnyPublisher()
-    }
-    
-    func getServerCheckMessage() -> AnyPublisher<String, RemoteConfigError> {
-        Future<RemoteConfigValue, Error> {promise in
-            self.remoteConfig.fetchAndActivate { _, error in
-                if let error { promise(.failure(error))}
-                promise(.success(self.remoteConfig[SMFRCKey.server_check_message.rawValue]))
-            }
-        }
-        .tryMap {
-            guard $0.source != .static
-            else { throw RemoteConfigError.keyValueNotFound}
-            return $0.stringValue
-        }
-        .mapError {
-            guard let frcError = $0 as? RemoteConfigError
-            else { return RemoteConfigError.unknown($0) }
-            return frcError
-        }
-        .eraseToAnyPublisher()
-    }
-    
-
-}
+//
+//final class FirebaseRemoteConfigService {
+//    
+//    static let shared = FirebaseRemoteConfigService()
+//    
+//    private let remoteConfig = RemoteConfig.remoteConfig() // 싱글톤으로 관리되어야 하는 객체이기에 FirebaseRemoteConfigService도 싱글톤으로 구축.
+//    private let settings = RemoteConfigSettings()
+//    
+//    
+//    private init() {
+//        settings.minimumFetchInterval = 0
+//        remoteConfig.configSettings = settings
+//    }
+//}
+//
+//extension FirebaseRemoteConfigService: RemoteConfigServiceType {
+//    
+//    func getServerCheck() -> AnyPublisher<Bool, RemoteConfigError> {
+//        Future<RemoteConfigValue, Error> { promise in
+//            self.remoteConfig.fetchAndActivate { _, error in
+//                if let error { promise(.failure(error))}
+//                promise(.success(self.remoteConfig[SMFRCKey.server_check.rawValue]))
+//            }
+//        }
+//        .tryMap {
+//            guard $0.source != .static
+//            else { throw RemoteConfigError.keyValueNotFound }
+//            return $0.boolValue
+//        }
+//        .mapError {
+//            guard let frcError = $0 as? RemoteConfigError
+//            else { return RemoteConfigError.unknown($0) }
+//            return frcError
+//        }
+//        .eraseToAnyPublisher()
+//    }
+//    
+//    func getServerCheckMessage() -> AnyPublisher<String, RemoteConfigError> {
+//        Future<RemoteConfigValue, Error> {promise in
+//            self.remoteConfig.fetchAndActivate { _, error in
+//                if let error { promise(.failure(error))}
+//                promise(.success(self.remoteConfig[SMFRCKey.server_check_message.rawValue]))
+//            }
+//        }
+//        .tryMap {
+//            guard $0.source != .static
+//            else { throw RemoteConfigError.keyValueNotFound}
+//            return $0.stringValue
+//        }
+//        .mapError {
+//            guard let frcError = $0 as? RemoteConfigError
+//            else { return RemoteConfigError.unknown($0) }
+//            return frcError
+//        }
+//        .eraseToAnyPublisher()
+//    }
+//    
+//
+//}
 
 
 struct StubRemoteConfigService: RemoteConfigServiceType {
