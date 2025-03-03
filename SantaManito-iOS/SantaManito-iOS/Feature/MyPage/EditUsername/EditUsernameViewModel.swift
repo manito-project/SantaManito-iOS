@@ -14,8 +14,12 @@ final class EditUsernameViewModel: ObservableObject {
         case onAppear
         case doneButtonDidTap
         case deleteAccountButtonDidTap
-        case alertDeleteButtonDidTap
-        case alertDismissDidTap
+        case alert(Alert)
+        
+        enum Alert {
+            case deleteButtonDidTap
+            case stayButtonDidTap
+        }
     }
     
     struct State {
@@ -60,6 +64,7 @@ final class EditUsernameViewModel: ObservableObject {
         
         switch action {
         case .onAppear:
+            Analytics.shared.track(.nameEdit)
             userService.getUser(with: userDefaultsService.userID)
                 .receive(on: RunLoop.main)
                 .assignLoading(to: \.state.isLoading, on: owner)
@@ -72,6 +77,7 @@ final class EditUsernameViewModel: ObservableObject {
                 .store(in: cancelBag)
             
         case .doneButtonDidTap:
+            Analytics.shared.track(.nameEditCompleteBtn)
             userService.editUsername(with: username)
                 .receive(on: RunLoop.main)
                 .assignLoading(to: \.state.isLoading, on: owner)
@@ -81,10 +87,11 @@ final class EditUsernameViewModel: ObservableObject {
                 }
                 .store(in: cancelBag)
         case .deleteAccountButtonDidTap:
+            Analytics.shared.track(.nameEditWithdrawalBtn)
             state.isDeleteAccountAlertPresented = true
-        case .alertDismissDidTap:
-            state.isDeleteAccountAlertPresented = false
-        case .alertDeleteButtonDidTap:
+            Analytics.shared.track(.withdrawalPopup)
+        case .alert(.deleteButtonDidTap):
+            Analytics.shared.track(.withdrawalPopupWithdrawalBtn)
             state.isDeleteAccountAlertPresented = false
             userService.deleteAccount()
                 .receive(on: RunLoop.main)
@@ -97,6 +104,9 @@ final class EditUsernameViewModel: ObservableObject {
                     owner.navigationRouter.popToRootView()
                 }
                 .store(in: cancelBag)
+        case .alert(.stayButtonDidTap):
+            Analytics.shared.track(.withdrawalPopupStayBtn)
+            state.isDeleteAccountAlertPresented = false
         }
     }
     
