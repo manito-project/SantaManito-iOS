@@ -14,6 +14,7 @@ class EnterRoomViewModel: ObservableObject {
     //MARK: Action, State
     
     enum Action {
+        case onAppear
         case enterButtonDidTap
     }
     struct State {
@@ -23,7 +24,7 @@ class EnterRoomViewModel: ObservableObject {
     
     //MARK: Dependency
     
-    private var roomService: RoomServiceType // 임시의
+    private var roomService: RoomServiceType 
     private var navigationRouter: NavigationRoutableType
     
     //MARK: Init
@@ -55,7 +56,10 @@ class EnterRoomViewModel: ObservableObject {
     
     func send(action: Action) {
         switch action {
+        case .onAppear:
+            Analytics.shared.track(.inviteCode)
         case .enterButtonDidTap:
+            Analytics.shared.track(.inviteCodeEnterBtn)
             roomService.enterRoom(at: inviteCode)
                 .receive(on: RunLoop.main)
                 .mapError { [weak self] error in

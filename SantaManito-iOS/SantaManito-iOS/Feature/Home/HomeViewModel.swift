@@ -65,9 +65,10 @@ class HomeViewModel: ObservableObject {
         guard let owner else { return }
         
         switch action {
-            
-        case .onAppear, .refreshButtonDidTap:
-            
+        case .onAppear:
+            Analytics.shared.track(.home)
+            send(.refreshButtonDidTap)
+        case .refreshButtonDidTap:
             roomService.getEnteredRooms()
                 .receive(on: RunLoop.main)
                 .assignLoading(to: \.state.isLoading, on: owner)

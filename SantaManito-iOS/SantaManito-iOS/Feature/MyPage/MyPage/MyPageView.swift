@@ -69,6 +69,9 @@ struct MyPageView: View {
         .sheet(isPresented: $viewModel.state.isPresentedWebView.isPresented)  {
             SMWebView(url: viewModel.state.isPresentedWebView.url)
         }
+        .onAppear {
+            viewModel.send(.onAppear)
+        }
        
         
         

@@ -49,6 +49,11 @@
 		877D52022D743E2700FE8317 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877D52012D743E2700FE8317 /* Analytics.swift */; };
 		877D52042D74437F00FE8317 /* AmplitudeAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877D52032D74437F00FE8317 /* AmplitudeAnalytics.swift */; };
 		877D52062D74A99F00FE8317 /* AnalyticsTaxonomy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877D52052D74A99F00FE8317 /* AnalyticsTaxonomy.swift */; };
+		877D520F2D74C1E400FE8317 /* SplashTaxonomy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877D520E2D74C1E400FE8317 /* SplashTaxonomy.swift */; };
+		877D52112D74C21A00FE8317 /* OnboadringTaxonomy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877D52102D74C21A00FE8317 /* OnboadringTaxonomy.swift */; };
+		877D52132D74C32300FE8317 /* HomeTaxonomy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877D52122D74C32300FE8317 /* HomeTaxonomy.swift */; };
+		877D52152D757B2C00FE8317 /* EnterRoomTaxonomy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877D52142D757B2C00FE8317 /* EnterRoomTaxonomy.swift */; };
+		877D52172D757B7500FE8317 /* MyPageTaxonomy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877D52162D757B7500FE8317 /* MyPageTaxonomy.swift */; };
 		877EA2322C889DCB0073FFBD /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA2312C889DCB0073FFBD /* ButtonStyles.swift */; };
 		877EA2392C88AA8A0073FFBD /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA2382C88AA8A0073FFBD /* OnboardingView.swift */; };
 		877EA23B2C88AAC10073FFBD /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877EA23A2C88AAC10073FFBD /* DIContainer.swift */; };
@@ -188,6 +193,11 @@
 		877D52012D743E2700FE8317 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		877D52032D74437F00FE8317 /* AmplitudeAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeAnalytics.swift; sourceTree = "<group>"; };
 		877D52052D74A99F00FE8317 /* AnalyticsTaxonomy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsTaxonomy.swift; sourceTree = "<group>"; };
+		877D520E2D74C1E400FE8317 /* SplashTaxonomy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashTaxonomy.swift; sourceTree = "<group>"; };
+		877D52102D74C21A00FE8317 /* OnboadringTaxonomy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboadringTaxonomy.swift; sourceTree = "<group>"; };
+		877D52122D74C32300FE8317 /* HomeTaxonomy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTaxonomy.swift; sourceTree = "<group>"; };
+		877D52142D757B2C00FE8317 /* EnterRoomTaxonomy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomTaxonomy.swift; sourceTree = "<group>"; };
+		877D52162D757B7500FE8317 /* MyPageTaxonomy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageTaxonomy.swift; sourceTree = "<group>"; };
 		877EA2312C889DCB0073FFBD /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		877EA2382C88AA8A0073FFBD /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		877EA23A2C88AAC10073FFBD /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
@@ -325,6 +335,7 @@
 			children = (
 				874017BD2CA3EF290096E847 /* MyPage */,
 				874017BE2CA3EF2F0096E847 /* EditUsername */,
+				877D52162D757B7500FE8317 /* MyPageTaxonomy.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -395,6 +406,7 @@
 			children = (
 				877CA0A12C94304B00D23193 /* SplashView.swift */,
 				877CA0A32C94305200D23193 /* SplashViewModel.swift */,
+				877D520E2D74C1E400FE8317 /* SplashTaxonomy.swift */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
@@ -431,6 +443,7 @@
 			children = (
 				D22E9B5A2C88031A00086549 /* HomeView.swift */,
 				879829042C9827B200A863EC /* HomeViewModel.swift */,
+				877D52122D74C32300FE8317 /* HomeTaxonomy.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -440,6 +453,7 @@
 			children = (
 				877EA2382C88AA8A0073FFBD /* OnboardingView.swift */,
 				87D797A32C9454BF003BA602 /* OnboardingViewModel.swift */,
+				877D52102D74C21A00FE8317 /* OnboadringTaxonomy.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -838,6 +852,7 @@
 			children = (
 				D26BFA8A2C91986100C5CF86 /* ViewModel */,
 				D26BFA892C91985C00C5CF86 /* View */,
+				877D52142D757B2C00FE8317 /* EnterRoomTaxonomy.swift */,
 			);
 			path = EnterRoom;
 			sourceTree = "<group>";
@@ -1051,6 +1066,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87873BF62CB2E30800E368BF /* AuthEntity.swift in Sources */,
+				877D520F2D74C1E400FE8317 /* SplashTaxonomy.swift in Sources */,
 				D25411A42CA4007A00B87568 /* ManitoWaitingRoomViewModel.swift in Sources */,
 				D2BC1AA12C90A26B00CB32B8 /* CheckRoomInfoView.swift in Sources */,
 				87873BE42CAFF2E200E368BF /* Version.swift in Sources */,
@@ -1065,6 +1081,7 @@
 				877CA0A62C94305A00D23193 /* CancelBag.swift in Sources */,
 				874017B92CA2B0020096E847 /* User.swift in Sources */,
 				D229FE842CA7D70C00979421 /* APIConstants.swift in Sources */,
+				877D52132D74C32300FE8317 /* HomeTaxonomy.swift in Sources */,
 				D229FE862CA7D98400979421 /* BaseService.swift in Sources */,
 				877EA23B2C88AAC10073FFBD /* DIContainer.swift in Sources */,
 				D22E9B6B2C8803C100086549 /* ObservableObjectSettable.swift in Sources */,
@@ -1086,6 +1103,7 @@
 				D2BC1A922C90101E00CB32B8 /* EditMissionView.swift in Sources */,
 				87873BF32CB2E2A100E368BF /* AuthResponse.swift in Sources */,
 				D2A8F6212CA1172100810BCF /* FinishView.swift in Sources */,
+				877D52112D74C21A00FE8317 /* OnboadringTaxonomy.swift in Sources */,
 				87873BF82CB2E71800E368BF /* UserDefaultsService.swift in Sources */,
 				D22E9B592C88031A00086549 /* SantaManito_iOSApp.swift in Sources */,
 				D26879382CAA7BE40025A611 /* NetworkResponse.swift in Sources */,
@@ -1097,6 +1115,7 @@
 				877EA2322C889DCB0073FFBD /* ButtonStyles.swift in Sources */,
 				D28568B22CAD21800044C231 /* Config.swift in Sources */,
 				87C06E5A2C9EA5FE00F03637 /* Device.swift in Sources */,
+				877D52152D757B2C00FE8317 /* EnterRoomTaxonomy.swift in Sources */,
 				D26879482CABB3A80025A611 /* GenericResponse.swift in Sources */,
 				D26879432CAB8DA30025A611 /* NetworkLogHandler.swift in Sources */,
 				871D87482CBD05C40050858A /* RoomStateFactory.swift in Sources */,
@@ -1121,6 +1140,7 @@
 				87C06E612C9EADE700F03637 /* NavigationDestination.swift in Sources */,
 				D26BFA8E2C91987900C5CF86 /* EnterRoomViewModel.swift in Sources */,
 				874017CD2CA7EC7A0096E847 /* EditRoomViewType.swift in Sources */,
+				877D52172D757B7500FE8317 /* MyPageTaxonomy.swift in Sources */,
 				874017A42CA1AB610096E847 /* RoomDetailDTO.swift in Sources */,
 				871D873D2CB8F0560050858A /* MemberResponse.swift in Sources */,
 				D276B6082C8AB64B00230FA2 /* Font.swift in Sources */,
