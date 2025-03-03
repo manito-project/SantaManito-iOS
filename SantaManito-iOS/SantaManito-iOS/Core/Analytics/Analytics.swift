@@ -14,7 +14,6 @@ protocol Analyzable {
 
 final class Analytics {
     static let shared = Analytics()
-    
     private init() { }
 }
 

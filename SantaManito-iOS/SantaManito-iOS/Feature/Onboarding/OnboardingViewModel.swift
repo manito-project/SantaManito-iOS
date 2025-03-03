@@ -40,6 +40,7 @@ final class OnboardingViewModel: ObservableObject {
     
     enum Action {
         // step 1, 2
+        case onAppear(State.Step)
         case bottomButtonDidTap
         
         // step 2
@@ -103,6 +104,11 @@ final class OnboardingViewModel: ObservableObject {
         guard let owner else { return }
         
         switch action {
+        case .onAppear(let step):
+            switch step {
+            case .nickname: Analytics.shared.track(.onboardingName)
+            case .agreement: Analytics.shared.track(.onboardingPersonalInformation)
+            }
         case .bottomButtonDidTap:
             switch state.step {
             case .nickname:

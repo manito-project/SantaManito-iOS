@@ -9,14 +9,14 @@ import Foundation
 
 extension AnalyticsTaxonomy {
     static let inviteCode = AnalyticsTaxonomy(
-        tag: "입장하기_초대코드입력_닉네임입력",
-        tagEng: "onboarding_name",
+        tag: "입장하기_초대코드입력",
+        tagEng: "invite_code",
         type: .page
     )
     
     static let inviteCodeEnterBtn = AnalyticsTaxonomy(
-        tag: "입장하기_입장하기버튼_약관동의",
-        tagEng: "onboarding_personal_information",
+        tag: "입장하기_입장하기버튼",
+        tagEng: "invite_code_enter_btn",
         type: .button
     )
 }
