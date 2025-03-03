@@ -64,7 +64,7 @@ class SplashViewModel: ObservableObject {
         switch action {
             
         case .onAppear:
-            
+            Analytics.shared.track(.splash)
             appService.isLatestVersion()
                 .receive(on: RunLoop.main)
                 .sink { isLatestVersion in
