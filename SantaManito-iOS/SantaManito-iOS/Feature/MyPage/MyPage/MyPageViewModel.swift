@@ -10,6 +10,7 @@ import Foundation
 class MyPageViewModel: ObservableObject {
     
     enum Action {
+        case onAppear
         case cellDidTap(MyPageItem)
     }
     
@@ -27,9 +28,12 @@ class MyPageViewModel: ObservableObject {
     
     func send(_ action: Action) {
         switch action {
+        case .onAppear:
+            Analytics.shared.track(.setting)
         case let .cellDidTap(item):
             switch item {
             case .editUsername:
+                Analytics.shared.track(.settingNameEdit)
                 navigationRouter.push(to: .editUsername)
             
             case .inquiry, .termsOfUse, .privacyPolicy:
