@@ -100,8 +100,14 @@ struct OnboardingView: View {
                         switch viewModel.state.step {
                         case .nickname:
                             nicknameView
+                                .onAppear {
+                                    viewModel.send(.onAppear(.nickname))
+                                }
                         case .agreement:
                             agreementView
+                                .onAppear {
+                                    viewModel.send(.onAppear(.agreement))
+                                }
                         }
                     }
                     .overlay(
