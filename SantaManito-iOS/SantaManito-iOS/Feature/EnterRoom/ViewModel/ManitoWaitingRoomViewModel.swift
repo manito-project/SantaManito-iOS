@@ -55,7 +55,11 @@ class ManitoWaitingRoomViewModel: ObservableObject {
         guard let owner else { return }
         
         switch action {
-        case .onAppear, .refreshButtonDidTap:
+        case .onAppear:
+            Analytics.shared.track(.roomManittoList)
+            send(action: .refreshButtonDidTap)
+        case .refreshButtonDidTap:
+            Analytics.shared.track(.roomRefreshBtn)
             roomService.getRoomInfo(with: state.roomDetail.id)
                 .receive(on: RunLoop.main)
                 .assignLoading(to: \.state.isLoading, on: owner)
@@ -64,12 +68,15 @@ class ManitoWaitingRoomViewModel: ObservableObject {
                 .store(in: cancelBag)
             
         case .copyInviteCodeDidTap:
+            Analytics.shared.track(.roomCodeCopyBtn)
             SMPasteBoard.paste(with: state.roomDetail.invitationCode)
             
         case .matchingButtonDidTap:
+            Analytics.shared.track(.roomStartBtn)
             navigationRouter.push(to: .matchRoom(roomID: state.roomDetail.id))
             
         case .editButtonDidTap:
+            Analytics.shared.track(.roomEditBtn)
             navigationRouter.push(to: .editRoom(viewType: .editMode(roomID: state.roomDetail.id, info: state.roomDetail.toMakeRoomInfo())))
         case .backButtonDidTap:
             navigationRouter.popToRootView()

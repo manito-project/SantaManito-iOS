@@ -108,7 +108,10 @@ final class EditRoomInfoViewModel: ObservableObject {
         
         switch action {
         case .onAppear:
-            return
+            if case .editMode = viewType {
+                Analytics.shared.track(.roomEdit)
+            }
+            
         case .increaseDuedate:
             if state.canIncreaseDays { roomInfo.totalDurationDays += 1 }
             
@@ -133,6 +136,10 @@ final class EditRoomInfoViewModel: ObservableObject {
             navigationRouter.push(to: .makeMission(roomInfo: roomInfo))
             
         case .editButtonDidTap:
+            if case .editMode = viewType {
+                Analytics.shared.track(.roomEditCompleteBtn)
+            }
+            
             guard let roomID = viewType.roomID else { return }
             roomService.editRoomInfo(with: roomID, info: roomInfo)
                 .receive(on: RunLoop.main)
