@@ -14,9 +14,9 @@ extension AnalyticsTaxonomy {
         type: .page
     )
 
-    static let settingNameEdit = AnalyticsTaxonomy(
-        tag: "설정목록_이름수정",
-        tagEng: "setting_name_edit",
+    static let settingNameEditBtn = AnalyticsTaxonomy(
+        tag: "설정목록_이름수정버튼",
+        tagEng: "setting_name_edit_btn",
         type: .button
     )
 
