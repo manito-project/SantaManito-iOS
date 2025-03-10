@@ -90,6 +90,7 @@
 		87E514392CBF930B00FFF2E1 /* WindowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E514382CBF930B00FFF2E1 /* WindowRouter.swift */; };
 		87E5143C2CBFABF000FFF2E1 /* WindowDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E5143B2CBFABF000FFF2E1 /* WindowDestination.swift */; };
 		D21DAE1C2D7EA6FD008FA611 /* MakeRoomTaxonomy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21DAE1B2D7EA6FD008FA611 /* MakeRoomTaxonomy.swift */; };
+		D21DAE1E2D7EAD08008FA611 /* MatchRoomTaxonomy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21DAE1D2D7EAD08008FA611 /* MatchRoomTaxonomy.swift */; };
 		D2267D1C2CC539E80049C8A8 /* MatchedUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2267D1B2CC539E80049C8A8 /* MatchedUserResponse.swift */; };
 		D229FE782CA7CEA200979421 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE772CA7CEA200979421 /* HTTPMethod.swift */; };
 		D229FE7E2CA7D0F700979421 /* URLRequestTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229FE7D2CA7D0F700979421 /* URLRequestTargetType.swift */; };
@@ -238,6 +239,7 @@
 		87E514382CBF930B00FFF2E1 /* WindowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowRouter.swift; sourceTree = "<group>"; };
 		87E5143B2CBFABF000FFF2E1 /* WindowDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowDestination.swift; sourceTree = "<group>"; };
 		D21DAE1B2D7EA6FD008FA611 /* MakeRoomTaxonomy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRoomTaxonomy.swift; sourceTree = "<group>"; };
+		D21DAE1D2D7EAD08008FA611 /* MatchRoomTaxonomy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchRoomTaxonomy.swift; sourceTree = "<group>"; };
 		D2267D1B2CC539E80049C8A8 /* MatchedUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchedUserResponse.swift; sourceTree = "<group>"; };
 		D229FE772CA7CEA200979421 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		D229FE7D2CA7D0F700979421 /* URLRequestTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestTargetType.swift; sourceTree = "<group>"; };
@@ -914,6 +916,7 @@
 			children = (
 				D2A8F6172CA1166D00810BCF /* ViewModel */,
 				D2A8F6162CA1166800810BCF /* View */,
+				D21DAE1D2D7EAD08008FA611 /* MatchRoomTaxonomy.swift */,
 			);
 			path = MatchRoom;
 			sourceTree = "<group>";
@@ -1127,6 +1130,7 @@
 				D229FE802CA7D17600979421 /* ParameterEncoding.swift in Sources */,
 				D23410772CB1A8920066A2F9 /* EnterRoomDTO.swift in Sources */,
 				877CA07F2C8C50DC00D23193 /* Corner.swift in Sources */,
+				D21DAE1E2D7EAD08008FA611 /* MatchRoomTaxonomy.swift in Sources */,
 				877CA0732C8C4C5C00D23193 /* SMView.swift in Sources */,
 				87C06E5F2C9EADD600F03637 /* NavigationRoutingView.swift in Sources */,
 				D2BC1AA32C90A29200CB32B8 /* CheckRoomInfoViewModel.swift in Sources */,
