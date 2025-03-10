@@ -99,16 +99,19 @@ class HomeViewModel: ObservableObject {
             }
             
         case .dismissAlert:
+            AnalyticsTaxonomy.leaderExitPopupStayBtn
             state.creatorExitAlert.isPresented = false
             state.guestExitAlert.isPresented = false
             
         case let .exitButtonDidTap(roomDetail):
             if roomDetail.isHost {
+                AnalyticsTaxonomy.leaderExitPopup
                 state.creatorExitAlert = (true,roomDetail)
             } else {
                 state.guestExitAlert = (true, roomDetail)
             }
         case let .creatorExitButtonDidTap(roomDetail):
+            AnalyticsTaxonomy.leaderExitPopupExitBtn
             roomService.deleteRoom(with: roomDetail.id)
                 .receive(on: RunLoop.main)
                 .assignLoading(to: \.state.isLoading, on: owner)
