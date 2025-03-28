@@ -59,11 +59,13 @@ class CheckRoomInfoViewModel: ObservableObject {
         
         switch action {
         case .deleteMission(let mission):
+            AnalyticsTaxonomy.makeCompleteMissionMinusBtn
             if let index = missionList.firstIndex(where: { $0.id == mission.id }) {
                 missionList.remove(at: index)
             }
             
         case .makeRoomButtonDidTap:
+            AnalyticsTaxonomy.makeCompleteBtn
             let request = CreateRoomRequest(roomInfo, missionList) // TODO: 미션 로직 수정
             roomService.createRoom(request: request)
                 .catch { _ in Empty() }
@@ -72,11 +74,12 @@ class CheckRoomInfoViewModel: ObservableObject {
                 .sink { inviteCode in
                     owner.inviteCode = inviteCode
                     owner.state.isPresented = true
+                    AnalyticsTaxonomy.makeCodeComplePopup
                 }
                 .store(in: cancelBag)
             
         case .copyInviteCode:
-            print("초대코드 복사")
+            AnalyticsTaxonomy.makeCodeCopyBtn
             UIPasteboard.general.string = inviteCode
             state.isPresented = false
             navigationRounter.popToRootView()

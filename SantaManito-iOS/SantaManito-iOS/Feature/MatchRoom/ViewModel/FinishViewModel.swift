@@ -100,12 +100,22 @@ class FinishViewModel: ObservableObject {
             return
             
         case .toggleViewTypeButtonDidTap:
-            state.viewType = state.viewType == .me ? .all : .me
+            if state.viewType == .me {
+                AnalyticsTaxonomy.manittoResultViewAllBtn
+                state.viewType = .all
+                AnalyticsTaxonomy.manittoResultAll
+            } else {
+                AnalyticsTaxonomy.manittoResultAllViewMyBtn
+                state.viewType = .me
+                AnalyticsTaxonomy.manittoResultMy
+            }
             
         case .deleteRoomButtonDidTap:
+            AnalyticsTaxonomy.participantExitPopup
             state.exitRoomAlertIsPresented = true
             
         case .alert(.exitRoom):
+            AnalyticsTaxonomy.participantExitPopupExitBtn
             state.exitRoomAlertIsPresented = false
             
             roomService.deleteHistoryRoom(with: state.roomInfo.id)
@@ -117,9 +127,8 @@ class FinishViewModel: ObservableObject {
                 .store(in: cancelBag)
             
         case .alert(.cancel):
+            AnalyticsTaxonomy.participantExitPopupStayBtn
             state.exitRoomAlertIsPresented = false
-            
-            
         }
     }
 }
