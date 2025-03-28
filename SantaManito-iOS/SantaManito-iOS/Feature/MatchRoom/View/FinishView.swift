@@ -281,6 +281,8 @@ fileprivate struct FinishButtonView: View {
     var body: some View {
         HStack(alignment: .center) {
             Button {
+                AnalyticsTaxonomy.manittoResultAllHomeBtn
+                AnalyticsTaxonomy.manittoResultHomeBtn
                 dismiss()
             } label: {
                 Text("홈으로 가기")
