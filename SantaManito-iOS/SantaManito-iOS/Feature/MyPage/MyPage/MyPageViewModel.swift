@@ -33,7 +33,7 @@ class MyPageViewModel: ObservableObject {
         case let .cellDidTap(item):
             switch item {
             case .editUsername:
-                Analytics.shared.track(.settingNameEdit)
+                Analytics.shared.track(.settingNameEditBtn)
                 navigationRouter.push(to: .editUsername)
             
             case .inquiry, .termsOfUse, .privacyPolicy:
