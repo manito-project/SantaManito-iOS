@@ -2,8 +2,9 @@
 //  MakeRoomTaxonomy.swift
 //  SantaManito-iOS
 //
+
 //  Created by 류희재 on 3/10/25.
-//
+
 
 import Foundation
 
@@ -139,5 +140,16 @@ extension AnalyticsTaxonomy {
         tagEng: "leader_exit_popup_stay_btn",
         type: .button
     )
-}
 
+    static let roomEdit = AnalyticsTaxonomy(
+        tag: "마니또방_방정보수정",
+        tagEng: "room_edit",
+        type: .page
+    )
+    
+    static let roomEditCompleteBtn = AnalyticsTaxonomy(
+        tag: "마니또방_방정보수정_수정완료버튼",
+        tagEng: "room_edit_complete_btn",
+        type: .button
+    )
+}
