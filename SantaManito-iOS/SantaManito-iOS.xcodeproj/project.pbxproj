@@ -30,6 +30,7 @@
 		874017CD2CA7EC7A0096E847 /* EditRoomViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874017CC2CA7EC7A0096E847 /* EditRoomViewType.swift */; };
 		874296212D7437D8001531AA /* AmplitudeSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 874296202D7437D8001531AA /* AmplitudeSwift */; };
 		8742BCFE2CFB0C16009D258A /* FinishViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8742BCFD2CFB0C16009D258A /* FinishViewModelTests.swift */; };
+		8777CF772D7A0063008C5DF6 /* MakeRoomTaxonomy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8777CF762D7A0063008C5DF6 /* MakeRoomTaxonomy.swift */; };
 		8779D8182CB8CDBD00B61DEA /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8779D8172CB8CDBD00B61DEA /* Member.swift */; };
 		877CA0712C8AB3DE00D23193 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0702C8AB3DE00D23193 /* LoadingView.swift */; };
 		877CA0732C8C4C5C00D23193 /* SMView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CA0722C8C4C5C00D23193 /* SMView.swift */; };
@@ -178,6 +179,7 @@
 		874017CA2CA7E6970096E847 /* SMPasteBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMPasteBoard.swift; sourceTree = "<group>"; };
 		874017CC2CA7EC7A0096E847 /* EditRoomViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomViewType.swift; sourceTree = "<group>"; };
 		8742BCFD2CFB0C16009D258A /* FinishViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishViewModelTests.swift; sourceTree = "<group>"; };
+		8777CF762D7A0063008C5DF6 /* MakeRoomTaxonomy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRoomTaxonomy.swift; sourceTree = "<group>"; };
 		8779D8172CB8CDBD00B61DEA /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		877CA0702C8AB3DE00D23193 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		877CA0722C8C4C5C00D23193 /* SMView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMView.swift; sourceTree = "<group>"; };

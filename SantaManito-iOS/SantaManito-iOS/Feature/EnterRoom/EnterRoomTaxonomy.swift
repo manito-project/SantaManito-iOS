@@ -19,4 +19,34 @@ extension AnalyticsTaxonomy {
         tagEng: "invite_code_enter_btn",
         type: .button
     )
+    
+    static let roomManittoList = AnalyticsTaxonomy(
+        tag: "마니또방_목록",
+        tagEng: "room_manitto_list",
+        type: .page
+    )
+    
+    static let roomEditBtn = AnalyticsTaxonomy(
+        tag: "마니또방_수정하기버튼",
+        tagEng: "room_edit_btn",
+        type: .button
+    )
+    
+    static let roomStartBtn = AnalyticsTaxonomy(
+        tag: "마니또방_바로매칭시작하기버튼",
+        tagEng: "room_start_btn",
+        type: .button
+    )
+    
+    static let roomCodeCopyBtn = AnalyticsTaxonomy(
+        tag: "마니또방_초대코드복사버튼",
+        tagEng: "room_code_copy_btn",
+        type: .button
+    )
+    
+    static let roomRefreshBtn = AnalyticsTaxonomy(
+        tag: "마니또방_새로고침버튼",
+        tagEng: "room_refresh_btn",
+        type: .button
+    )
 }
