@@ -63,7 +63,7 @@ class MatchingResultViewModel: ObservableObject {
         switch action {
 
         case .goHomeButtonDidTap:
-            AnalyticsTaxonomy.manittoHomeBtn
+            Analytics.shared.track(.manittoHomeBtn)
             navigationRouter.popToRootView()
         }
     }

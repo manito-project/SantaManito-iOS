@@ -64,22 +64,22 @@ class EditMissionViewModel: ObservableObject {
     func send(action: Action) {
         switch action {
         case .addMission:
-            AnalyticsTaxonomy.makeMissionPlusBtn
+            Analytics.shared.track(.makeMissionPlusBtn)
             missionList.append(Mission(content: ""))
             
         case .deleteMission(let mission):
-            AnalyticsTaxonomy.makeMissionMinusBtn
+            Analytics.shared.track(.makeMissionMinusBtn)
             if let index = missionList.firstIndex(where: { $0.id == mission.id }) {
                 missionList.remove(at: index)
             }
             
         case .skipMissionButtonDidTap:
-            AnalyticsTaxonomy.makeMissionSkipBtn
+            Analytics.shared.track(.makeMissionSkipBtn)
             state.isPresented = true
-            AnalyticsTaxonomy.missionSkipPopup
+            Analytics.shared.track(.missionSkipPopup)
             
         case .ignoreMissionButtonDidTap:
-            AnalyticsTaxonomy.missionSkipPopupSkipBtn
+            Analytics.shared.track(.missionSkipPopupSkipBtn)
             state.isPresented = false
             if state.isDismiss {
                 navigationRouter.pop()
@@ -89,11 +89,11 @@ class EditMissionViewModel: ObservableObject {
             
             
         case .makeMissionButtonDidTap:
-            AnalyticsTaxonomy.makeMissionCompleteBtn
+            Analytics.shared.track(.makeMissionCompleteBtn)
             navigationRouter.push(to: .roomInfo(roomInfo: roomInfo, missionList: missionList))
             
         case .dismissAlert:
-            AnalyticsTaxonomy.missionSkipPopupMissionBtn
+            Analytics.shared.track(.missionSkipPopupMissionBtn)
             state.isPresented = false
             
         case .backButtonDidTap:

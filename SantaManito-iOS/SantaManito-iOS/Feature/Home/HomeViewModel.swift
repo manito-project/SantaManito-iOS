@@ -99,19 +99,19 @@ class HomeViewModel: ObservableObject {
             }
             
         case .dismissAlert:
-            AnalyticsTaxonomy.leaderExitPopupStayBtn
+            Analytics.shared.track(.leaderExitPopupStayBtn)
             state.creatorExitAlert.isPresented = false
             state.guestExitAlert.isPresented = false
             
         case let .exitButtonDidTap(roomDetail):
             if roomDetail.isHost {
-                AnalyticsTaxonomy.leaderExitPopup
+                Analytics.shared.track(.leaderExitPopup)
                 state.creatorExitAlert = (true,roomDetail)
             } else {
                 state.guestExitAlert = (true, roomDetail)
             }
         case let .creatorExitButtonDidTap(roomDetail):
-            AnalyticsTaxonomy.leaderExitPopupExitBtn
+            Analytics.shared.track(.leaderExitPopupExitBtn)
             roomService.deleteRoom(with: roomDetail.id)
                 .receive(on: RunLoop.main)
                 .assignLoading(to: \.state.isLoading, on: owner)

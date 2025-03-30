@@ -122,21 +122,21 @@ final class EditRoomInfoViewModel: ObservableObject {
             roomInfo.dueDate = dueDateTime
             
         case .noMissionButtonDidTap:
-            AnalyticsTaxonomy.makeRoomInformationNoMissionBtn
+            Analytics.shared.track(.makeRoomInformationNoMissionBtn)
             state.isPresented = true
-            AnalyticsTaxonomy.missionNoPopup
+            Analytics.shared.track(.missionNoPopup)
             
         case .missionButtonDidTap:
-            Analytics.makeRoomMissionBtn
+            Analytics.shared.track(.makeRoomMissionBtn)
             navigationRouter.push(to: .makeMission(roomInfo: roomInfo))
             
         case .ignoreMissionButtonDidTap:
-            Analytics.missionNoPopupSkipBtn
+            Analytics.shared.track(.missionNoPopupSkipBtn)
             state.isPresented = false
             navigationRouter.push(to: .roomInfo(roomInfo: roomInfo, missionList: []))
                     
         case .dismissAlert:
-            Analytics.missionNoPopupMissionBtn
+            Analytics.shared.track(.missionNoPopupMissionBtn)
             state.isPresented = false
             navigationRouter.push(to: .makeMission(roomInfo: roomInfo))
             
