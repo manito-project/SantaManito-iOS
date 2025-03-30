@@ -57,7 +57,7 @@ class FinishViewModel: ObservableObject {
         }
         
         var members: [Member] { roomInfo.members }
-            
+        
         var mySanta: Member {
             roomInfo.members.filter { $0.manitto?.id == UserDefaultsService.shared.userID }.first
             ?? .init(santa: .stub1)
@@ -101,21 +101,21 @@ class FinishViewModel: ObservableObject {
             
         case .toggleViewTypeButtonDidTap:
             if state.viewType == .me {
-                AnalyticsTaxonomy.manittoResultViewAllBtn
+                Analytics.shared.track(.manittoResultViewAllBtn)
                 state.viewType = .all
-                AnalyticsTaxonomy.manittoResultAll
+                Analytics.shared.track(.manittoResultAll)
             } else {
-                AnalyticsTaxonomy.manittoResultAllViewMyBtn
+                Analytics.shared.track(.manittoResultAllViewMyBtn)
                 state.viewType = .me
-                AnalyticsTaxonomy.manittoResultMy
+                Analytics.shared.track(.manittoResultMy)
             }
             
         case .deleteRoomButtonDidTap:
-            AnalyticsTaxonomy.participantExitPopup
+            Analytics.shared.track(.participantExitPopup)
             state.exitRoomAlertIsPresented = true
             
         case .alert(.exitRoom):
-            AnalyticsTaxonomy.participantExitPopupExitBtn
+            Analytics.shared.track(.participantExitPopupExitBtn)
             state.exitRoomAlertIsPresented = false
             
             roomService.deleteHistoryRoom(with: state.roomInfo.id)
@@ -127,7 +127,7 @@ class FinishViewModel: ObservableObject {
                 .store(in: cancelBag)
             
         case .alert(.cancel):
-            AnalyticsTaxonomy.participantExitPopupStayBtn
+            Analytics.shared.track(.participantExitPopupStayBtn)
             state.exitRoomAlertIsPresented = false
         }
     }

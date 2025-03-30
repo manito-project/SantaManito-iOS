@@ -66,10 +66,10 @@ class MatchingViewModel: ObservableObject {
         
         switch action {
         case .onAppear:
-            AnalyticsTaxonomy.manittoMatching
+            Analytics.shared.track(.manittoMatching)
             Just(self.roomID)
-                .handleEvents(receiveRequest: {
-                    AnalyticsTaxonomy.manittoMatchingLottie
+                .handleEvents(receiveRequest: {_ in 
+                    Analytics.shared.track(.manittoMatchingLottie)
                 })
                 .flatMap(roomService.matchRoom)
                 .map { owner.roomID }
