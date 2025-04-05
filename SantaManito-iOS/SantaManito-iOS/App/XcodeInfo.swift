@@ -13,8 +13,8 @@ struct XcodeInfoKey {
 
 extension XcodeInfoKey {
     static let BASE_URL = XcodeInfoKey(rawValue: "BASE_URL")
-    static let AMPLITUDE_API_KET_DEBUG = XcodeInfoKey(rawValue: "AMPLITUDE_API_KET_DEBUG")
-    static let AMPLITUDE_API_KET_PROD = XcodeInfoKey(rawValue: "AMPLITUDE_API_KET_PROD")
+    static let AMPLITUDE_API_KEY_DEBUG = XcodeInfoKey(rawValue: "AMPLITUDE_API_KEY_DEBUG")
+    static let AMPLITUDE_API_KEY_PROD = XcodeInfoKey(rawValue: "AMPLITUDE_API_KEY_PROD")
 }
 
 struct XcodeInfo {
