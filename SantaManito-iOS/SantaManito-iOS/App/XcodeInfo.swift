@@ -7,15 +7,13 @@
 
 import Foundation
 
-struct XcodeInfoKey {
-    var rawValue: String
+enum XcodeInfoKey: String {
+    case BASE_URL = "BASE_URL"
+    case AMPLITUDE_API_KEY_DEBUG = "AMPLITUDE_API_KEY_DEBUG"
+    case AMPLITUDE_API_KEY_PROD = "AMPLITUDE_API_KEY_PROD"
 }
 
-extension XcodeInfoKey {
-    static let BASE_URL = XcodeInfoKey(rawValue: "BASE_URL")
-    static let AMPLITUDE_API_KEY_DEBUG = XcodeInfoKey(rawValue: "AMPLITUDE_API_KEY_DEBUG")
-    static let AMPLITUDE_API_KEY_PROD = XcodeInfoKey(rawValue: "AMPLITUDE_API_KEY_PROD")
-}
+extension XcodeInfoKey: CaseIterable { }
 
 struct XcodeInfo {
     public static subscript(_ key: XcodeInfoKey) -> String {
