@@ -125,7 +125,7 @@
 		D276B6082C8AB64B00230FA2 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = D276B6072C8AB64B00230FA2 /* Font.swift */; };
 		D28568AC2CAD031C0044C231 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28568AB2CAD031C0044C231 /* RequestHandler.swift */; };
 		D28568AE2CAD033C0044C231 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28568AD2CAD033C0044C231 /* ErrorHandler.swift */; };
-		D28568B22CAD21800044C231 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28568B12CAD21800044C231 /* Config.swift */; };
+		D28568B22CAD21800044C231 /* XcodeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28568B12CAD21800044C231 /* XcodeInfo.swift */; };
 		D2A8F6122C9D1A4F00810BCF /* MakeRoomInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */; };
 		D2A8F6192CA1168B00810BCF /* MatchingResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6182CA1168B00810BCF /* MatchingResultViewModel.swift */; };
 		D2A8F61B2CA116BD00810BCF /* MatchingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F61A2CA116BD00810BCF /* MatchingViewModel.swift */; };
@@ -276,7 +276,7 @@
 		D276B6072C8AB64B00230FA2 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		D28568AB2CAD031C0044C231 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		D28568AD2CAD033C0044C231 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
-		D28568B12CAD21800044C231 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		D28568B12CAD21800044C231 /* XcodeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeInfo.swift; sourceTree = "<group>"; };
 		D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRoomInfo.swift; sourceTree = "<group>"; };
 		D2A8F6182CA1168B00810BCF /* MatchingResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingResultViewModel.swift; sourceTree = "<group>"; };
 		D2A8F61A2CA116BD00810BCF /* MatchingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingViewModel.swift; sourceTree = "<group>"; };
@@ -678,7 +678,7 @@
 				D22E9B582C88031A00086549 /* SantaManito_iOSApp.swift */,
 				877EA23A2C88AAC10073FFBD /* DIContainer.swift */,
 				87873BDB2CAC29E900E368BF /* AppDelegate.swift */,
-				D28568B12CAD21800044C231 /* Config.swift */,
+				D28568B12CAD21800044C231 /* XcodeInfo.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -1120,7 +1120,7 @@
 				87873C022CB4FAE100E368BF /* AppStoreResponse.swift in Sources */,
 				D2A8F6232CA1173600810BCF /* FinishViewModel.swift in Sources */,
 				877EA2322C889DCB0073FFBD /* ButtonStyles.swift in Sources */,
-				D28568B22CAD21800044C231 /* Config.swift in Sources */,
+				D28568B22CAD21800044C231 /* XcodeInfo.swift in Sources */,
 				87C06E5A2C9EA5FE00F03637 /* Device.swift in Sources */,
 				877D52152D757B2C00FE8317 /* EnterRoomTaxonomy.swift in Sources */,
 				D26879482CABB3A80025A611 /* GenericResponse.swift in Sources */,

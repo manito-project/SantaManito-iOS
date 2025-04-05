@@ -10,8 +10,11 @@ import AmplitudeSwift
 
 final class AmplitudeAnalytics {
     static let shared = AmplitudeAnalytics()
-    private let amplitude = Amplitude(configuration: Configuration(apiKey: Config.amplitudeAPIKey))
-    
+    #if DEBUG
+    private let amplitude = Amplitude(configuration: Configuration(apiKey: XcodeInfo[.AMPLITUDE_API_KET_DEBUG]))
+    #else
+    private let amplitude = Amplitude(configuration: Configuration(apiKey: XcodeInfo[.AMPLITUDE_API_KET_PROD]))
+    #endif
     private init() {}
 }
 
