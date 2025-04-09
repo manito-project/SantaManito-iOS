@@ -11,7 +11,7 @@ protocol BaseAPI: URLRequestTargetType { }
 
 extension BaseAPI {
     public var url: String {
-        return Config.baseURL
+        return XcodeInfo[.BASE_URL]
     }
     
     public var headers: [String: String]? {
