@@ -8,8 +8,12 @@
 	<string>Light</string>
 	<key>BASE_URL</key>
 	<string>$(BASE_URL)</string>
-	<key>AMPLITUDE_API_KEY</key>
-	<string>$(AMPLITUDE_API_KEY)</string>
+	<key>AMPLITUDE_API_KEY_DEBUG</key>
+	<string>$(AMPLITUDE_API_KEY_DEBUG)</string>
+	<key>AMPLITUDE_API_KEY_PROD</key>
+	<string>$(AMPLITUDE_API_KEY_PROD)</string>
+	<key>CFBundleIdentifier</key>
+	<string></string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Pretendard-Bold.otf</string>
