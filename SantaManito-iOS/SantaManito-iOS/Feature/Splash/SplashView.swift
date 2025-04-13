@@ -34,7 +34,7 @@ struct SplashView: View {
         .smAlert(
             isPresented:
                 viewModel.state.mustUpdateAlertIsPresented,
-            title: "새로운 버전이 출시됐어요☺️\n지금 앱스토에서 업데이트 해보세요",
+            title: "새로운 버전이 출시됐어 😊\n스토어에서 새 버전으로 업데이트해줘!",
             primaryButton: ("업데이트", {
                 guard let url = URL(string:"itms-apps://itunes.apple.com/app/1546583360") else { return }
                 if UIApplication.shared.canOpenURL(url) {
