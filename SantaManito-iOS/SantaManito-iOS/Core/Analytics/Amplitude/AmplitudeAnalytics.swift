@@ -35,10 +35,11 @@ extension AmplitudeAnalytics: Analyzable {
 
 extension AnalyticsTaxonomy {
     func toAmplitudeEvent() -> BaseEvent {
-        let eventType = self.type.rawValue
+        let eventType = self.tagEng
         var eventProperties: [String: Any?] = [
             "tag" : self.tag,
             "tag_eng": self.tagEng,
+            "type": self.type,
             "channel": self.channel,
         ]
         properties.forEach {
