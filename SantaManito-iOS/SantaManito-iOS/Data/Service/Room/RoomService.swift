@@ -101,7 +101,8 @@ extension RoomService: RoomServiceType {
 struct StubRoomService: RoomServiceType {
     // For All
     func getEnteredRooms() -> AnyPublisher<[RoomDetail], SMNetworkError> {
-        Just([.stub1, .stub2, .stub3, .stub4, .stub5].sorted()).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
+//        Just([.stub1, .stub2, .stub3, .stub4, .stub5].sorted()).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
+        Just([].sorted()).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
     }
     
     func getRoomInfo(with roomID: String) -> AnyPublisher<RoomDetail, SMNetworkError> {
