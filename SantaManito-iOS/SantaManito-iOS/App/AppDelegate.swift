@@ -6,8 +6,9 @@
 //
 
 import UIKit
+
 import FirebaseCore
-import AmplitudeSwift
+import GoogleMobileAds
 
 
 class AppDelegate: NSObject, UIApplicationDelegate {
@@ -16,18 +17,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         FirebaseApp.configure()
         _ = Analytics.shared
-//
-//        
-//        Amplitude.instance().initializeApiKey("")
-//        Amplitude.instance().setUserId("")
-//        Amplitude.instance().logEvent("app_start")
-        
+
+        MobileAds.shared.start(completionHandler: nil)
+           
         return true
     }
-    
-    
-    
-    
 }
 
 //MARK: - 추후 FCM 구현시
