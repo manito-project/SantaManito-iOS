@@ -8,9 +8,11 @@
 import Foundation
 
 enum XcodeInfoKey: String {
-    case BASE_URL = "BASE_URL"
-    case AMPLITUDE_API_KEY_DEBUG = "AMPLITUDE_API_KEY_DEBUG"
-    case AMPLITUDE_API_KEY_PROD = "AMPLITUDE_API_KEY_PROD"
+    case BASE_URL
+    case AMPLITUDE_API_KEY_DEBUG
+    case AMPLITUDE_API_KEY_PROD
+    case GAD_APPLICATION_IDENTIFIER
+    case HOME_BANNER_AD_UNIT_ID
 }
 
 extension XcodeInfoKey: CaseIterable { }

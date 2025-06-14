@@ -14,101 +14,90 @@ struct HomeView: View {
     
     var body: some View {
         NavigationStack(path: $container.navigationRouter.destinations) {
-            
-            SMView(padding: -140) {
-                
-                ZStack {
-                    Image(.snow)
-                        .resizable()
-                        .scaledToFit()
-                        .padding(.horizontal, 40)
-                    
-                    
-                    VStack {
-                        ZStack {
-                            Image(.logo)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 36)
+            ZStack {
+                ScrollView {
+                    SMView(padding: -140) {
+                        Image(.snow)
+                            .resizable()
+                            .scaledToFit()
+                            .padding(.horizontal, 40)
+                    } content: {
+                        VStack {
+                            HStack(spacing: 15) {
+                                HomeButton(imageResource: .graphicsSantaNeck,
+                                           title: "방 만들기",
+                                           description: "새로운 산타 마니또\n시작하기")
+                                {
+                                    viewModel.send(.makeRoomButtonDidTap)
+                                }
+                                
+                                HomeButton(imageResource: .graphicsRudolphNeck,
+                                           title: "방 입장하기",
+                                           description: "초대코드 입력 후\n마니또 방 들어가기")
+                                {
+                                    viewModel.send(.enterRoomButtonDidTap)
+                                }
+                            }
+                            .padding(.horizontal, 30)
                             
                             HStack {
+                                Text("나의 산타 마니또")
+                                    .font(.semibold_20)
+                                    .foregroundStyle(.smBlack)
                                 Spacer()
                                 Button {
-                                    viewModel.send(.myPageButtonDidTap)
+                                    viewModel.send(.refreshButtonDidTap)
                                 } label: {
-                                    Image(.btnPerson)
+                                    Image(.icRefresh)
                                         .resizable()
                                         .scaledToFit()
                                         .frame(width: 24, height: 24)
+                                        .rotationEffect(
+                                            Angle(
+                                                degrees:  viewModel.state.isLoading ? 360 : 0
+                                            )
+                                        )
+                                        .animation(
+                                            viewModel.state.isLoading
+                                            ? .linear(duration: 1).repeatForever(autoreverses: false)
+                                            : .default,
+                                            value: viewModel.state.isLoading
+                                        )
                                 }
+                                .disabled(viewModel.state.isLoading)
                             }
-                        }
-                        .frame(height: 44)
-                        Spacer()
-                    }
-                    .padding(.top, 70)
-                    .padding(.horizontal, 16)
-                    
-                }
-            } content: {
-                VStack {
-                    HStack(spacing: 15) {
-                        HomeButton(imageResource: .graphicsSantaNeck,
-                                   title: "방 만들기",
-                                   description: "새로운 산타 마니또\n시작하기")
-                        {
-                            viewModel.send(.makeRoomButtonDidTap)
+                            .padding(.top, 40)
+                            .padding(.horizontal, 20)
+                            .padding(.bottom, 32)
+                            
+                            if viewModel.state.rooms.isEmpty {
+                                roomsEmptyView
+                            } else {
+                                roomsView
+                            }
+                            
+                            
+                            Spacer()
                         }
                         
-                        HomeButton(imageResource: .graphicsRudolphNeck,
-                                   title: "방 입장하기",
-                                   description: "초대코드 입력 후\n마니또 방 들어가기")
-                        {
-                            viewModel.send(.enterRoomButtonDidTap)
-                        }
                     }
-                    .padding(.horizontal, 30)
-                    
-                    HStack {
-                        Text("나의 산타 마니또")
-                            .font(.semibold_20)
-                            .foregroundStyle(.smBlack)
-                        Spacer()
-                        Button {
-                            viewModel.send(.refreshButtonDidTap)
-                        } label: {
-                            Image(.icRefresh)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 24, height: 24)
-                                .rotationEffect(
-                                    Angle(
-                                        degrees:  viewModel.state.isLoading ? 360 : 0
-                                    )
-                                )
-                                .animation(
-                                    viewModel.state.isLoading
-                                    ? .linear(duration: 1).repeatForever(autoreverses: false)
-                                    : .default,
-                                    value: viewModel.state.isLoading
-                                )
-                        }
-                        .disabled(viewModel.state.isLoading)
-                    }
-                    .padding(.top, 40)
-                    .padding(.horizontal, 20)
-                    .padding(.bottom, 18)
-                    
-                    if viewModel.state.rooms.isEmpty {
-                        roomsEmptyView
-                    } else {
-                        roomsView
-                    }
-                    
-                    
+                }
+                .ignoresSafeArea(edges: .top)
+
+                
+                VStack {
+                    navigationBar
+
                     Spacer()
                 }
                 
+                
+                
+                VStack {
+                    Spacer()
+                    AdBannerView(adUnitID: XcodeInfo[.HOME_BANNER_AD_UNIT_ID])
+                        .frame(maxWidth: .infinity, maxHeight: 50)
+                }
             }
             .onAppear {
                 viewModel.send(.onAppear)
@@ -118,7 +107,7 @@ struct HomeView: View {
                 title: viewModel.state.guestExitAlert.detail.name + "\n이 방을 나가는 거 맞지?",
                 primaryButton: (
                     "방 나가기",
-                    { 
+                    {
                         viewModel.send(.dismissAlert)
                         viewModel.send(.guestExitButtonDidTap(roomDetail: viewModel.state.guestExitAlert.detail))}
                 ),
@@ -129,7 +118,7 @@ struct HomeView: View {
                 title: "방장이 나가면 재입장할 수 없고,\n친구들도 더 이상 방에 접속할 수 없어!",
                 primaryButton: (
                     "방 나가기",
-                    { 
+                    {
                         viewModel.send(.dismissAlert)
                         viewModel.send(.creatorExitButtonDidTap(roomDetail: viewModel.state.creatorExitAlert.detail))}
                 ),
@@ -137,6 +126,32 @@ struct HomeView: View {
             )
         }
         
+    }
+    
+    var navigationBar: some View {
+        
+        ZStack {
+            Image(.logo)
+                .resizable()
+                .scaledToFit()
+                .frame(height: 36)
+                .frame(alignment: .center)
+            
+            HStack {
+                Spacer()
+                
+                Button {
+                    viewModel.send(.myPageButtonDidTap)
+                } label: {
+                    Image(.btnPerson)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
+                }
+            }   
+        }
+        .frame(height: 44)
+        .padding(.horizontal, 16)
     }
     
     var roomsEmptyView: some View {
@@ -241,7 +256,7 @@ fileprivate struct HomeRoomCell: View {
         self.roomInfo = roomInfo
         self.width = width
         self.viewModel = viewModel
-       
+        
     }
     
     var body: some View {
@@ -262,11 +277,11 @@ fileprivate struct HomeRoomCell: View {
                     Text(roomInfo.state == .notStarted
                          ? ""
                          : (roomInfo.me.manitto?.username ?? "-") + "의 산타")
-                        .font(.medium_14)
-                        .foregroundStyle(.smBlack)
-                        .lineLimit(1)
-                        .frame(height: 14)
-                        .padding(.top, 22)
+                    .font(.medium_14)
+                    .foregroundStyle(.smBlack)
+                    .lineLimit(1)
+                    .frame(height: 14)
+                    .padding(.top, 22)
                     
                 }
                 
