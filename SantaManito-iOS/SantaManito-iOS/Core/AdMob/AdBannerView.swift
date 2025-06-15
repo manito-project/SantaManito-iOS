@@ -21,7 +21,7 @@ struct AdBannerView: UIViewRepresentable {
     func makeUIView(context: Context) -> BannerView {
         
         let banner = BannerView(adSize: AdSizeBanner)
-#if PROD
+#if RELEASE
         banner.adUnitID = adUnitID
 #else
         // Debug시에는 무조건 테스트 ID를 사용해야한다.
