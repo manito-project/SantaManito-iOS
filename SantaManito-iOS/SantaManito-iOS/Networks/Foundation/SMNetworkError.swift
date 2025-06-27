@@ -70,6 +70,7 @@ extension SMNetworkError {
     public enum ResponseError: Error {
         case cancelled
         case unhandled
+        case missingData
         case invalidStatusCode(code: Int, data: String? = nil)
         
         var description: String {
@@ -78,6 +79,8 @@ extension SMNetworkError {
                 return "취소되었습니다."
             case .unhandled:
                 return "응답이 올바르지 않습니다"
+            case .missingData:
+                return "응답값에 데이터가 존재하지 않습니다"
             case .invalidStatusCode(let code, let errMessage):
                 switch code {
                 case 401:

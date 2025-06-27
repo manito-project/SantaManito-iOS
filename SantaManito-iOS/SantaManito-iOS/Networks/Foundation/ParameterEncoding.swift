@@ -8,7 +8,14 @@
 import Foundation
 import Combine
 
-protocol ParameterEncodable {}
+protocol ParameterEncodable {
+    associatedtype ParameterType // 제네릭하게 parameters의 타입을 선언하고 활용하기 위해
+    
+    func encode(
+        _ request: URLRequest,
+        with parameters: ParameterType
+    ) async throws -> URLRequest
+}
 
 extension ParameterEncodable {
     func checkValidURLData(
@@ -31,9 +38,11 @@ extension ParameterEncodable {
 }
 
 public struct URLEncoding: ParameterEncodable {
+    typealias ParameterType = Parameters
+    
     func encode(
         _ request: URLRequest,
-        with parameters: Parameters?
+        with parameters: Parameters
     ) async throws -> URLRequest {
         var request = request
         let (validParameters, url) = try checkValidURLData(parameters, request.url)
@@ -50,9 +59,11 @@ public struct URLEncoding: ParameterEncodable {
 
 
 public struct JSONEncoding: ParameterEncodable {
+    typealias ParameterType = Encodable
+    
     func encode(
         _ request: URLRequest,
-        with parameters: Encodable?
+        with parameters: Encodable
     ) async throws -> URLRequest {
         var request = request
         
