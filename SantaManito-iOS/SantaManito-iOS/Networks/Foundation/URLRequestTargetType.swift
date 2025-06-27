@@ -24,7 +24,11 @@ protocol URLRequestTargetType {
 }
 
 extension Task {
-    func buildRequest(baseURL: URL, method: HTTPMethod, headers: [String: String]?) -> AnyPublisher<URLRequest, SMNetworkError.RequestError> {
+    func buildRequest(
+        baseURL: URL,
+        method: HTTPMethod,
+        headers: [String: String]?
+    ) -> AnyPublisher<URLRequest, SMNetworkError.RequestError> {
         var request = URLRequest(url: baseURL)
         request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = headers
@@ -34,6 +38,31 @@ extension Task {
             return Just(request)
                 .setFailureType(to: SMNetworkError.RequestError.self)
                 .eraseToAnyPublisher()
+                
+        case .requestParameters(let parameters):
+            return URLEncoding().encode(request, with: parameters)
+                .mapError { .parameterEncodingFailed($0) }
+                .eraseToAnyPublisher()
+                
+        case .requestJSONEncodable(let encodable):
+            return JSONEncoding().encode(request, with: encodable)
+                .mapError { .parameterEncodingFailed($0) }
+                .eraseToAnyPublisher()
+        }
+    }
+    
+    func buildRequest(
+        baseURL: URL,
+        method: HTTPMethod,
+        headers: [String: String]?
+    ) async throws -> URLRequest {
+        var request = URLRequest(url: baseURL)
+        request.httpMethod = method.rawValue
+        request.allHTTPHeaderFields = headers
+        
+        switch self {
+        case .requestPlain:
+            return request
                 
         case .requestParameters(let parameters):
             return URLEncoding().encode(request, with: parameters)
