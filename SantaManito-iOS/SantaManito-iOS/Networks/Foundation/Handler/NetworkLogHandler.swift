@@ -43,7 +43,7 @@ struct NetworkLogHandler {
     }
     
     // 에러 응답 로깅 함수
-    static func responseError(_ endpoint: any URLRequestTargetType, result error: SMNetworkError) async  {
+    static func responseError(_ endpoint: any URLRequestTargetType, result error: SMNetworkError)  {
         let url = endpoint.url + (endpoint.path ?? "")
         let headers = endpoint.headers ?? [:]
         
