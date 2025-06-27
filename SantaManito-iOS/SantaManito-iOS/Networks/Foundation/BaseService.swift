@@ -14,6 +14,13 @@ final class BaseService<Target: URLRequestTargetType> {
     
     private let requestHandler = RequestHandler.shared
     
+    
+    func request(
+        _ target: API
+    ) async throws -> Void {
+        _ = try await request(target, as: VoidResult.self)
+    }
+
     func request<T: Decodable>(
         _ target: API,
         as type: T.Type = T.self
@@ -24,14 +31,7 @@ final class BaseService<Target: URLRequestTargetType> {
             guard let data = response.data else {
                 throw SMNetworkError.invalidResponse(.missingData)
             }
-
-            // Void 처리
-            if T.self == Void.self {
-                _ = try await decode(data: data) as VoidResult
-                return () as! T
-            } else {
-                return try await decode(data: data)
-            }
+            return try await decode(data: data)
         } catch let error as SMNetworkError {
             throw ErrorHandler.handleError(target, error: error)
         }
