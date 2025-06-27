@@ -30,17 +30,42 @@ extension ParameterEncodable {
         guard let parameters else { return Fail(error: .emptyParameters).eraseToAnyPublisher() }
         guard let url else { return Fail(error: .missingURL).eraseToAnyPublisher() }
         
-        //        TODO: 2024.10.09 수정. 확인 했다면 주석 지워도됨. to 히디 from 석우
-        //         let data = try JSONSerialization.data(withJSONObject: parameters)
-        //        guard JSONSerialization.isValidJSONObject(parameters) else {
-        //            return Fail(error: .invalidJSON).eraseToAnyPublisher()
-        //        }
-        
         return Just((parameters, url))
             .setFailureType(to: SMNetworkError.ParameterEncoding.self)
             .eraseToAnyPublisher()
     }
 }
+
+extension ParameterEncodable {
+    func checkValidURLData(
+        _ parameters: Parameters?,
+        _ url: URL?
+    ) throws -> (Parameters, URL) {
+        guard let parameters else { throw SMNetworkError.ParameterEncoding.emptyParameters }
+        guard let url else { throw SMNetworkError.ParameterEncoding.missingURL }
+        return (parameters, url)
+    }
+    
+    func checkValidURLData(
+        _ parameters: Encodable?,
+        _ url: URL?
+    ) throws -> (Encodable, URL) {
+        guard let parameters else { throw SMNetworkError.ParameterEncoding.emptyParameters }
+        guard let url else { throw SMNetworkError.ParameterEncoding.missingURL }
+        return (parameters, url)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 public struct URLEncoding: ParameterEncodable {
     func encode(_ request: URLRequest, with parameters: Parameters?) -> AnyPublisher<URLRequest, SMNetworkError.ParameterEncoding> {
@@ -76,8 +101,8 @@ public struct JSONEncoding: ParameterEncodable {
                 do {
                     let data = try encoder.encode(parameters)
                     request.httpBody = data
-//                    let s = try JSONSerialization.jsonObject(with: data)
-//                    print(s)
+                    //                    let s = try JSONSerialization.jsonObject(with: data)
+                    //                    print(s)
                     return request
                 } catch {
                     throw SMNetworkError.invalidRequest(.parameterEncodingFailed(.jsonEncodingFailed))
