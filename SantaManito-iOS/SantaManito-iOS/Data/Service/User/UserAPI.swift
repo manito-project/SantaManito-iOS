@@ -38,7 +38,7 @@ extension UserAPI: BaseAPI {
         }
     }
     
-    var task: Task {
+    var task: RequestTask {
         switch self {
         case .editNickname(let reqeust):
             return .requestJSONEncodable(reqeust)

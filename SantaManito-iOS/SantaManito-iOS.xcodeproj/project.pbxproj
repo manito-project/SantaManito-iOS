@@ -146,6 +146,7 @@
 		D2BC1AA32C90A29200CB32B8 /* CheckRoomInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1AA22C90A29100CB32B8 /* CheckRoomInfoViewModel.swift */; };
 		D2BC1AA52C91357F00CB32B8 /* SMInviteCodeAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1AA42C91357F00CB32B8 /* SMInviteCodeAlertView.swift */; };
 		D2C4A1D22E0E902F00E2FB1A /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D2C4A1D12E0E902F00E2FB1A /* Config.xcconfig */; };
+		D2DF8D182E12620600F0A30E /* ObservableObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DF8D172E1261F500F0A30E /* ObservableObject+.swift */; };
 		D2E2068D2CB5317F001250AE /* RoomMyInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E2068C2CB5317F001250AE /* RoomMyInfoDTO.swift */; };
 /* End PBXBuildFile section */
 
@@ -300,6 +301,7 @@
 		D2BC1AA22C90A29100CB32B8 /* CheckRoomInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckRoomInfoViewModel.swift; sourceTree = "<group>"; };
 		D2BC1AA42C91357F00CB32B8 /* SMInviteCodeAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMInviteCodeAlertView.swift; sourceTree = "<group>"; };
 		D2C4A1D12E0E902F00E2FB1A /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		D2DF8D172E1261F500F0A30E /* ObservableObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableObject+.swift"; sourceTree = "<group>"; };
 		D2E2068C2CB5317F001250AE /* RoomMyInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomMyInfoDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -716,6 +718,7 @@
 		D22E9B682C8803B100086549 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				D2DF8D172E1261F500F0A30E /* ObservableObject+.swift */,
 				D2BC1A8F2C8F4C6400CB32B8 /* Date+.swift */,
 				874017C62CA6B4CD0096E847 /* View+.swift */,
 				87873BEC2CB0FA3700E368BF /* Publisher+.swift */,
@@ -1155,6 +1158,7 @@
 				D23410772CB1A8920066A2F9 /* EnterRoomDTO.swift in Sources */,
 				877CA07F2C8C50DC00D23193 /* Corner.swift in Sources */,
 				D21DAE1E2D7EAD08008FA611 /* MatchRoomTaxonomy.swift in Sources */,
+				D2DF8D182E12620600F0A30E /* ObservableObject+.swift in Sources */,
 				877CA0732C8C4C5C00D23193 /* SMView.swift in Sources */,
 				87C06E5F2C9EADD600F03637 /* NavigationRoutingView.swift in Sources */,
 				D2BC1AA32C90A29200CB32B8 /* CheckRoomInfoViewModel.swift in Sources */,
