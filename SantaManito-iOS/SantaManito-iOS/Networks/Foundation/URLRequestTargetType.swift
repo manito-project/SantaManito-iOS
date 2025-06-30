@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-enum Task {
+enum RequestTask {
     case requestPlain
     case requestParameters(Parameters)
     case requestJSONEncodable(Encodable)
@@ -18,12 +18,12 @@ protocol URLRequestTargetType {
     var path: String? { get }
     var method: HTTPMethod { get }
     var headers : [String : String]? { get }
-    var task: Task { get }
+    var task: RequestTask { get }
     
     func asURLRequest() async throws -> URLRequest
 }
 
-extension Task {
+extension RequestTask {
     func buildRequest(
         baseURL: URL,
         method: HTTPMethod,
