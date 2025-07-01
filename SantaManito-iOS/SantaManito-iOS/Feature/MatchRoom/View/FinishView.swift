@@ -313,13 +313,13 @@ fileprivate struct FinishButtonView: View {
     }
 }
 
-#Preview {
-    let container = DIContainer.stub
-    return FinishView(
-        viewModel: FinishViewModel(
-            roomService: container.service.roomService,
-            navigationRouter: container.navigationRouter,
-            roomInfo: .stub1
-        )
-    )
-}
+//#Preview {
+//    let container = DIContainer.stub
+//    return FinishView(
+//        viewModel: FinishViewModel(
+//            roomService: container.service.roomService,
+//            navigationRouter: container.navigationRouter,
+//            roomInfo: .stub1
+//        )
+//    )
+//}

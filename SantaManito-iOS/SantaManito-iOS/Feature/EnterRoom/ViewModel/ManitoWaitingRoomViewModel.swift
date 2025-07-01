@@ -50,7 +50,7 @@ class ManitoWaitingRoomViewModel: ObservableObject {
     
     //MARK: Methods
     
-    func send(action: Action) {
+    @MainActor func send(action: Action) {
         weak var owner = self
         guard let owner else { return }
         
@@ -60,12 +60,11 @@ class ManitoWaitingRoomViewModel: ObservableObject {
             send(action: .refreshButtonDidTap)
         case .refreshButtonDidTap:
             Analytics.shared.track(.roomRefreshBtn)
-            roomService.getRoomInfo(with: state.roomDetail.id)
-                .receive(on: RunLoop.main)
-                .assignLoading(to: \.state.isLoading, on: owner)
-                .catch { _ in Empty() }
-                .assign(to: \.state.roomDetail, on: owner)
-                .store(in: cancelBag)
+            performTask(
+                loadingKeyPath: \.state.isLoading,
+                operation: { try await self.roomService.getRoomInfo(with: self.state.roomDetail.id) },
+                onSuccess: { [weak self] roomDetail in self?.state.roomDetail = roomDetail }
+            )
             
         case .copyInviteCodeDidTap:
             Analytics.shared.track(.roomCodeCopyBtn)

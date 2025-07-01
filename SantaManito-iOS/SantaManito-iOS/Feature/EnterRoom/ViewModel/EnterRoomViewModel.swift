@@ -54,30 +54,34 @@ class EnterRoomViewModel: ObservableObject {
             .store(in: cancelBag)
     }
     
+    @MainActor
     func send(action: Action) {
         switch action {
         case .onAppear:
             Analytics.shared.track(.inviteCode)
         case .enterButtonDidTap:
             Analytics.shared.track(.inviteCodeEnterBtn)
-            roomService.enterRoom(at: inviteCode)
-                .receive(on: RunLoop.main)
-                .mapError { [weak self] error in
-                    self?.state.enterFailMessage = (true, error.description)
-                    return error
+            performTask(
+                operation: { try await self.roomService.enterRoom(at: self.inviteCode) },
+                onSuccess: { [weak self] roomID in
+                    self?.getRoomInfo(roomID)
+                }, onError: { [weak self] error in
+                    let enterError = error as! EnterError
+                    self?.state.enterFailMessage = (true, enterError.description)
                 }
-                .flatMap { [weak self] roomID -> AnyPublisher<RoomDetail, Error> in
-                    guard let self else { return Empty().eraseToAnyPublisher() }
-                    return self.roomService.getRoomInfo(with: roomID)
-                        .catch { _ in Empty() }
-                        .eraseToAnyPublisher()
-                }
-                .receive(on: RunLoop.main)
-                .sink(receiveCompletion: { _ in
-                    
-                }, receiveValue: { [weak self] roomDetail in
-                    self?.navigationRouter.push(to: .manitoWaitingRoom(roomDetail: roomDetail))
-                }).store(in: cancelBag)
+            )
         }
+    }
+}
+
+extension EnterRoomViewModel {
+    @MainActor
+    func getRoomInfo(_ roomID: String) {
+        performTask(
+            operation: { try await self.roomService.getRoomInfo(with: roomID) },
+            onSuccess: { [weak self] roomDetail in
+                self?.navigationRouter.push(to: .manitoWaitingRoom(roomDetail: roomDetail))
+            }
+        )
     }
 }

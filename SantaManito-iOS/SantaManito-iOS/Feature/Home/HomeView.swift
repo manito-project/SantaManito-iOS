@@ -428,10 +428,10 @@ fileprivate struct HomeRoomStateChip: View {
 }
 
 
-#Preview {
-    HomeView(viewModel:
-                HomeViewModel(roomService:
-                                DIContainer.stub.service.roomService,
-                              navigationRouter: DIContainer.stub.navigationRouter))
-    .environmentObject(DIContainer.stub)
-}
+//#Preview {
+//    HomeView(viewModel:
+//                HomeViewModel(roomService:
+//                                DIContainer.stub.service.roomService,
+//                              navigationRouter: DIContainer.stub.navigationRouter))
+//    .environmentObject(DIContainer.stub)
+//}

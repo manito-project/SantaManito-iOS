@@ -77,8 +77,8 @@ struct MyPageView: View {
         
     }
 }
-
-#Preview {
-    MyPageView(viewModel: MyPageViewModel(navigationRouter: DIContainer.stub.navigationRouter))
-        .environmentObject(DIContainer.stub)
-}
+//
+//#Preview {
+//    MyPageView(viewModel: MyPageViewModel(navigationRouter: DIContainer.stub.navigationRouter))
+//        .environmentObject(DIContainer.stub)
+//}

@@ -238,12 +238,12 @@ fileprivate struct AgreementCell: View {
     }
 }
 
-#Preview {
-    OnboardingView(viewModel:
-            .init(appService:
-                    DIContainer.stub.service.appService,
-                  authService: DIContainer.stub.service.authService,
-                  windowRouter: DIContainer.stub.windowRouter)
-    )
-    
-}
+//#Preview {
+//    OnboardingView(viewModel:
+//            .init(appService:
+//                    DIContainer.stub.service.appService,
+//                  authService: DIContainer.stub.service.authService,
+//                  windowRouter: DIContainer.stub.windowRouter)
+//    )
+//    
+//}

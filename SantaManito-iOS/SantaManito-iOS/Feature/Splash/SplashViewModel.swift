@@ -65,46 +65,39 @@ class SplashViewModel: ObservableObject {
             
         case .onAppear:
             Analytics.shared.track(.splash)
-            appService.isLatestVersion()
-                .receive(on: RunLoop.main)
-                .sink { isLatestVersion in
-                    
-                    guard isLatestVersion else {
-                        owner.state.mustUpdateAlertIsPresented = true
-                        return
-                    }
-                    
-                    Just(owner.appService.getDeviceIdentifier() ?? "" )
-                        .filter { !$0.isEmpty }
-                        .flatMap(owner.authService.signIn)
-                        .receive(on: RunLoop.main)
-                        .map {
-                            owner.userDefaultsService.userID = $0.userID
-                            owner.userDefaultsService.accessToken = $0.accessToken
-                            return WindowDestination.main
-                        }
-                        .catch { _ in Just(WindowDestination.onboarding) }
-                        .sink {
-                            owner.windowRouter.switch(to: $0)
-                        }
-                        .store(in: owner.cancelBag)
-                    
-                    owner.remoteConfigService.getServerCheck()
-                        .filter { $0 }
-                        .map { _ in }
-                        .flatMap(owner.remoteConfigService.getServerCheckMessage)
-                        .receive(on: RunLoop.main)
-                        .catch { _ in Empty() }
-                        .map { (true, $0 ) }
-                        .assign(to: \.state.serverCheckAlert, on: owner)
-                        .store(in: owner.cancelBag)
-                    
+            Task {
+                let isLatestVersion = try await appService.isLatestVersion()
+                
+                guard isLatestVersion else {
+                    self.state.mustUpdateAlertIsPresented = true
+                    return
                 }
-                .store(in: cancelBag)
+                
+                guard let deviceID = appService.getDeviceIdentifier(), !deviceID.isEmpty else { return }
+                await performTask(
+                    operation: { try await self.authService.signIn(deviceID: deviceID) },
+                    onSuccess: { [weak self] auth in
+                        self?.userDefaultsService.userID = auth.userID
+                        self?.userDefaultsService.accessToken = auth.accessToken
+                        self?.windowRouter.switch(to: .main)
+                    },
+                    onError: { [weak self] _ in
+                        self?.windowRouter.switch(to: .onboarding)
+                    }
+                )
+                
+                owner.remoteConfigService.getServerCheck()
+                    .filter { $0 }
+                    .map { _ in }
+                    .flatMap(owner.remoteConfigService.getServerCheckMessage)
+                    .receive(on: RunLoop.main)
+                    .catch { _ in Empty() }
+                    .map { (true, $0 ) }
+                    .assign(to: \.state.serverCheckAlert, on: owner)
+                    .store(in: owner.cancelBag)
+            }
         case .alert(.confirm):
             state.serverCheckAlert.isPresented = false 
-            
-
         }
     }
 }

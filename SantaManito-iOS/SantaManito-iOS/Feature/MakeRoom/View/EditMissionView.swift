@@ -195,13 +195,13 @@ fileprivate struct MakeMissionButtonView: View {
     }
 }
 
-#Preview {
-    let container = DIContainer.stub
-    return EditMissionView(
-        viewModel: EditMissionViewModel(
-            roomInfo: .stub1,
-            navigationRouter: container.navigationRouter
-        )
-    )
-    .environmentObject(container)
-}
+//#Preview {
+//    let container = DIContainer.stub
+//    return EditMissionView(
+//        viewModel: EditMissionViewModel(
+//            roomInfo: .stub1,
+//            navigationRouter: container.navigationRouter
+//        )
+//    )
+//    .environmentObject(container)
+//}
