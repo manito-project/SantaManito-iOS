@@ -196,15 +196,15 @@ private struct MissionCellView: View {
     }
 }
 
-#Preview {
-    let container = DIContainer.stub
-    return CheckRoomInfoView(
-        viewModel: CheckRoomInfoViewModel(
-            roomInfo: .stub1,
-            missionList: Mission.dummy(),
-            roomService: DIContainer.stub.service.roomService,
-            navigationRouter: DIContainer.stub.navigationRouter
-        )
-    )
-    .environmentObject(DIContainer.default)
-}
+//#Preview {
+//    let container = DIContainer.stub
+//    return CheckRoomInfoView(
+//        viewModel: CheckRoomInfoViewModel(
+//            roomInfo: .stub1,
+//            missionList: Mission.dummy(),
+//            roomService: DIContainer.stub.service.roomService,
+//            navigationRouter: DIContainer.stub.navigationRouter
+//        )
+//    )
+//    .environmentObject(DIContainer.default)
+//}

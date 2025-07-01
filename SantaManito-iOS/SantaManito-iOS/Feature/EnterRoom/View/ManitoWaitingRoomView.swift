@@ -242,14 +242,14 @@ fileprivate struct MatchingButtonView: View {
     }
 }
 
-#Preview {
-    let container = DIContainer.stub
-    return ManitoWaitingRoomView(
-        viewModel: ManitoWaitingRoomViewModel(
-            roomService: container.service.roomService,
-            navigationRouter: container.navigationRouter,
-            roomDetail: .stub1
-        )
-    )
-    .environmentObject(DIContainer.default)
-}
+//#Preview {
+//    let container = DIContainer.stub
+//    return ManitoWaitingRoomView(
+//        viewModel: ManitoWaitingRoomViewModel(
+//            roomService: container.service.roomService,
+//            navigationRouter: container.navigationRouter,
+//            roomDetail: .stub1
+//        )
+//    )
+//    .environmentObject(DIContainer.default)
+//}

@@ -100,14 +100,14 @@ struct EnterRoomView: View {
     
 }
 
-
-#Preview {
-    let container = DIContainer.stub
-    return EnterRoomView(
-        viewModel: EnterRoomViewModel(
-            roomService: container.service.roomService,
-            navigationRouter: container.navigationRouter
-        )
-    )
-    .environmentObject(DIContainer.default)
-}
+//
+//#Preview {
+//    let container = DIContainer.stub
+//    return EnterRoomView(
+//        viewModel: EnterRoomViewModel(
+//            roomService: container.service.roomService,
+//            navigationRouter: container.navigationRouter
+//        )
+//    )
+//    .environmentObject(DIContainer.default)
+//}

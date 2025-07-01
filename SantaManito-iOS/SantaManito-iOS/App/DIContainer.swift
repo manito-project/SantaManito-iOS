@@ -32,5 +32,5 @@ final class DIContainer: ObservableObject {
 
 extension DIContainer {
     static let `default` = DIContainer(service: Service())
-    static let stub = DIContainer(service: StubService())
+//    static let stub = DIContainer(service: StubService())
 }

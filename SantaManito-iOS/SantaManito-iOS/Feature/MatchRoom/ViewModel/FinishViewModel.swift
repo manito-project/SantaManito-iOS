@@ -94,7 +94,7 @@ class FinishViewModel: ObservableObject {
     
     //MARK: Methods
     
-    func send(action: Action) {
+    @MainActor func send(action: Action) {
         switch action {
         case .onAppear:
             return
@@ -118,13 +118,10 @@ class FinishViewModel: ObservableObject {
             Analytics.shared.track(.participantExitPopupExitBtn)
             state.exitRoomAlertIsPresented = false
             
-            roomService.deleteHistoryRoom(with: state.roomInfo.id)
-                .catch { _ in Empty() }
-                .receive(on: RunLoop.main)
-                .sink(receiveValue: { [weak self] _ in
-                    self?.navigationRouter.popToRootView()
-                })
-                .store(in: cancelBag)
+            performTask(
+                operation: { try await self.roomService.deleteHistoryRoom(with: self.state.roomInfo.id) },
+                onSuccess: { [weak self] _ in self?.navigationRouter.popToRootView()}
+            )
             
         case .alert(.cancel):
             Analytics.shared.track(.participantExitPopupStayBtn)

@@ -98,7 +98,7 @@ final class OnboardingViewModel: ObservableObject {
     
     //MARK: - Method
 
-    func send(_ action: Action) {
+    @MainActor func send(_ action: Action) {
         
         weak var owner = self
         guard let owner else { return }
@@ -116,21 +116,20 @@ final class OnboardingViewModel: ObservableObject {
                 state.bottomButtonDisabled = true
                 
             case .agreement:
-                
-                Just(appService.getDeviceIdentifier() ?? "")
-                    .filter { !$0.isEmpty }
-                    .flatMap { owner.authService.signUp(nickname: owner.nickname, deviceID: $0) }
-                    .assignLoading(to: \.state.isLoading, on: owner)
-                    .catch { _ in
-                        owner.state.failAlert = true
-                        return Empty<AuthEntity, Never>()
+                guard let deviceID = appService.getDeviceIdentifier(), !deviceID.isEmpty else { return }
+
+                performTask(
+                    loadingKeyPath: \.state.isLoading,
+                    operation: { try await self.authService.signUp(nickname: self.nickname, deviceID: deviceID) },
+                    onSuccess: { [weak self] auth in
+                        self?.userDefaultsService.userID = auth.userID
+                        self?.userDefaultsService.accessToken = auth.accessToken
+                        self?.windowRouter.switch(to: .main)
+                    },
+                    onError: { [weak self] _ in
+                        self?.state.failAlert = true
                     }
-                    .sink { auth in
-                        owner.userDefaultsService.userID = auth.userID
-                        owner.userDefaultsService.accessToken = auth.accessToken
-                        owner.windowRouter.switch(to: .main)
-                    }
-                    .store(in: cancelBag)
+                )
             }
             
         case .acceptAllCellDidTap:

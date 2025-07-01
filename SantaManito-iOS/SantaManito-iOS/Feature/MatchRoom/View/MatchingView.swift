@@ -84,14 +84,14 @@ struct MatchingView: View {
     }
 }
 
-#Preview {
-    let container = DIContainer.stub
-    return MatchingView(
-        viewModel: MatchingViewModel(
-            roomService: container.service.roomService, 
-            navigationRouter: container.navigationRouter,
-            roomID: "roomID1"
-        )
-    )
-    .environmentObject(DIContainer.default)
-}
+//#Preview {
+//    let container = DIContainer.stub
+//    return MatchingView(
+//        viewModel: MatchingViewModel(
+//            roomService: container.service.roomService, 
+//            navigationRouter: container.navigationRouter,
+//            roomID: "roomID1"
+//        )
+//    )
+//    .environmentObject(DIContainer.default)
+//}
