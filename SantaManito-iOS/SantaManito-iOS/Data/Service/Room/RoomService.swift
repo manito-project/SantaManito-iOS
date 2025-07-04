@@ -91,51 +91,57 @@ extension RoomService: RoomServiceType {
         return data.toEntity()
     }
 }
-//
-//struct StubRoomService: RoomServiceType {
-//    // For All
-//    func getEnteredRooms() -> AnyPublisher<[RoomDetail], SMNetworkError> {
-////        Just([.stub1, .stub2, .stub3, .stub4, .stub5].sorted()).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
-//        Just([].sorted()).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
-//    }
-//    
-//    func getRoomInfo(with roomID: String) -> AnyPublisher<RoomDetail, SMNetworkError> {
-//        Just(.stub1).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
-//    }
-//    
-//    func deleteHistoryRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError> {
-//        Just(()).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
-//    }
-//    
-//    // For Host
-//    func createRoom(request: CreateRoomRequest) -> AnyPublisher<String, SMNetworkError> {
-//        Just("초대코드1").setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
-//    }
-//    
-//    func editRoomInfo(with roomID: String, info: MakeRoomInfo) -> AnyPublisher<Void, SMNetworkError> {
-//        Just(()).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
-//    }
-//    
-//    func matchRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError> {
-//        Fail<Void, SMNetworkError>(error: SMNetworkError.invalidResponse(.invalidStatusCode(code: 400, data: "")))
-//            .delay(for: .seconds(3), scheduler: RunLoop.current)
-//            .eraseToAnyPublisher()
-//    }
-//    
-//    func deleteRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError> {
-//        Just(()).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
-//    }
-//    
-//    // For Guest
-//    func enterRoom(at invitationCode: String) -> AnyPublisher<String, EnterError> {
-//        Just("roomID1").setFailureType(to: EnterError.self).eraseToAnyPublisher()
-//    }
-//    
-//    func exitRoom(with roomID: String) -> AnyPublisher<Void, SMNetworkError> {
-//        Just(()).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
-//    }
-//    
-//    func getMyInfo(with roomID: String) -> AnyPublisher<(User, Mission), SMNetworkError> {
-//        Just((.stub1, .stub1)).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
-//    }
-//}
+
+struct StubRoomService: RoomServiceType {
+    
+    // For All
+    func getEnteredRooms() async throws -> [RoomDetail] {
+        try await Task.sleep(nanoseconds: 300_000_000) // 0.3초 지연
+        return [] // 또는 [.stub1, .stub2, ...] 등으로 교체 가능
+    }
+
+    func getRoomInfo(with roomID: String) async throws -> RoomDetail {
+        try await Task.sleep(nanoseconds: 300_000_000)
+        return .stub1
+    }
+
+    func deleteHistoryRoom(with roomID: String) async throws {
+        try await Task.sleep(nanoseconds: 200_000_000)
+    }
+
+    // For Host
+    func createRoom(roomRequest: CreateRoomRequest) async throws -> String {
+        try await Task.sleep(nanoseconds: 300_000_000)
+        return "초대코드1"
+    }
+
+    func editRoomInfo(with roomID: String, info: MakeRoomInfo) async throws {
+        try await Task.sleep(nanoseconds: 200_000_000)
+    }
+
+    func matchRoom(with roomID: String) async throws {
+        try await Task.sleep(nanoseconds: 300_000_000)
+        // 실패 시뮬레이션 (선택사항)
+        throw SMNetworkError.invalidResponse(.invalidStatusCode(code: 400, data: ""))
+    }
+
+    func deleteRoom(with roomID: String) async throws {
+        try await Task.sleep(nanoseconds: 200_000_000)
+    }
+
+    // For Guest
+    func enterRoom(at invitationCode: String) async throws -> String {
+        try await Task.sleep(nanoseconds: 300_000_000)
+        return "roomID1"
+    }
+
+    func exitRoom(with roomID: String) async throws {
+        try await Task.sleep(nanoseconds: 200_000_000)
+    }
+
+    func getMyInfo(with roomID: String) async throws -> (User, Mission) {
+        try await Task.sleep(nanoseconds: 300_000_000)
+        return (.stub1, .stub1)
+    }
+}
+

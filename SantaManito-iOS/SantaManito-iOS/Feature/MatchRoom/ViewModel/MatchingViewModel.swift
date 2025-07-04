@@ -61,9 +61,6 @@ class MatchingViewModel: ObservableObject {
     //MARK: Methods
     
     @MainActor func send(action: Action) {
-        weak var owner = self
-        guard let owner else { return }
-        
         switch action {
         case .onAppear:
             Analytics.shared.track(.manittoMatching)
@@ -85,7 +82,7 @@ class MatchingViewModel: ObservableObject {
             self.navigationRouter.push(to: .matchedRoom(roomInfo: roomInfo))
             
         case .alert(.confirm):
-            self.state.alert = (false, "")
+            state.alert = (false, "")
             navigationRouter.popToRootView()
 
         }

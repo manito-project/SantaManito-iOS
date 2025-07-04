@@ -60,9 +60,6 @@ final class EditUsernameViewModel: ObservableObject {
     
     @MainActor
     func send(_ action: Action) {
-        weak var owner = self
-        guard let owner else { return }
-        
         switch action {
         case .onAppear:
             Analytics.shared.track(.nameEdit)

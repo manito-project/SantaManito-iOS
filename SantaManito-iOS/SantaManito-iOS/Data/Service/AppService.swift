@@ -66,21 +66,20 @@ struct AppService: AppServiceType {
     }
 }
 
-//struct StubAppService: AppServiceType {
-//    
-//    func isLatestVersion() -> AnyPublisher<Bool, Never> {
-//        Just(true).eraseToAnyPublisher()
-//    }
-//    
-//    func getLocalAppVersion() -> Version {
-//        return Version("1.0.0")
-//    }
-//    
-//    func getAppStoreVersion() -> AnyPublisher<Version, Error> {
-//        Just(Version("1.2.2")).setFailureType(to: Error.self).eraseToAnyPublisher()
-//    }
-//    
-//    func getDeviceIdentifier() -> String? {
-//        return "디바이스ID"
-//    }
-//}
+struct StubAppService: AppServiceType {
+    
+    func isLatestVersion() async throws -> Bool {
+        try await Task.sleep(nanoseconds: 100_000_000) // 0.1초 지연 시뮬레이션
+        return true
+    }
+    
+    func getLocalAppVersion() -> Version { return Version("1.0.0") }
+    
+    func getAppStoreVersion() async throws -> Version {
+        try await Task.sleep(nanoseconds: 100_000_000) // 0.1초 지연 시뮬레이션
+        return Version("1.2.2")
+    }
+    
+    func getDeviceIdentifier() -> String? { return "디바이스ID" }
+}
+

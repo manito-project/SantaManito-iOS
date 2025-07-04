@@ -99,10 +99,6 @@ final class OnboardingViewModel: ObservableObject {
     //MARK: - Method
 
     @MainActor func send(_ action: Action) {
-        
-        weak var owner = self
-        guard let owner else { return }
-        
         switch action {
         case .onAppear(let step):
             switch step {
