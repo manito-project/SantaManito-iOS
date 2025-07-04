@@ -117,13 +117,13 @@ fileprivate struct MatchingInfoView: View {
     }
 }
 
-//#Preview {
-//    return MatchingResultView(
-//        viewModel: MatchingResultViewModel(
-//            roomService: DIContainer.stub.service.roomService,
-//            navigationRouter: DIContainer.stub.navigationRouter,
-//            roomInfo: .stub1
-//        )
-//    )
-//    .environmentObject(DIContainer.stub)
-//}
+#Preview {
+    return MatchingResultView(
+        viewModel: MatchingResultViewModel(
+            roomService: DIContainer.stub.service.roomService,
+            navigationRouter: DIContainer.stub.navigationRouter,
+            roomInfo: .stub1
+        )
+    )
+    .environmentObject(DIContainer.stub)
+}
