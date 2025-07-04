@@ -104,7 +104,7 @@ final class OnboardingViewModel: ObservableObject {
             switch step {
             case .nickname: Analytics.shared.track(.onboardingName)
             case .agreement: Analytics.shared.track(.onboardingPersonalInformation)
-            }
+        }
         case .bottomButtonDidTap:
             switch state.step {
             case .nickname:
@@ -143,8 +143,8 @@ final class OnboardingViewModel: ObservableObject {
                 guard state.agreements[i].agreement == agreement else { continue }
                 state.agreements[i].isSelected.toggle()
             }
-            
             state.bottomButtonDisabled = !state.requiredAccepted
+            
         case let .agreementDetailButtonDidTap(agreement):
             state.agreementWebView = (true, agreement.url)
         }
@@ -159,7 +159,5 @@ final class OnboardingViewModel: ObservableObject {
             .map { $0.isEmpty }
             .assign(to: \.state.bottomButtonDisabled, on: owner)
             .store(in: cancelBag)
-            
     }
-    
 }
