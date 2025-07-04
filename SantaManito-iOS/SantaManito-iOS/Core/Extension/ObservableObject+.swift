@@ -48,9 +48,7 @@ extension ObservableObject where Self: AnyObject { // ObservableObject를 따르
         onSuccess: @escaping (T) -> Void = { _ in },
         onError: @escaping (Error) -> Void = { print("Error: \($0)") }
     ) {
-        Task { [weak self] in
-            guard let self else { return }
-            
+        Task {
             do {
                 let result = try await operation()
                 onSuccess(result)

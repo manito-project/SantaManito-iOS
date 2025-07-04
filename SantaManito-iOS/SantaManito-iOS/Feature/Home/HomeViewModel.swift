@@ -68,6 +68,7 @@ class HomeViewModel: ObservableObject {
         case .onAppear:
             Analytics.shared.track(.home)
             send(.refreshButtonDidTap)
+            
         case .refreshButtonDidTap:
             performTask(
                 loadingKeyPath: \.state.isLoading,
@@ -76,7 +77,6 @@ class HomeViewModel: ObservableObject {
                     self?.state.rooms = rooms
                 }
             )
-            
         case .myPageButtonDidTap:
             navigationRouter.push(to: .myPage)
             
