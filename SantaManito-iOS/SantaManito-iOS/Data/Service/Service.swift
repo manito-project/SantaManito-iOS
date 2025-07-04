@@ -24,12 +24,12 @@ final class Service: ServiceType {
 }
 
 
-//class StubService: ServiceType {
-//    
-//    var appService: AppServiceType = StubAppService()
-//    var authService: AuthenticationServiceType = StubAuthenticationService()
-//    var userService: UserServiceType = StubUserService()
-//    var roomService: RoomServiceType = StubRoomService()
-//    var remoteConfigService: RemoteConfigServiceType = StubRemoteConfigService()
-//    
-//}
+class StubService: ServiceType {
+    
+    var appService: AppServiceType = StubAppService()
+    var authService: AuthenticationServiceType = StubAuthenticationService()
+    var userService: UserServiceType = StubUserService()
+    var roomService: RoomServiceType = StubRoomService()
+    var remoteConfigService: RemoteConfigServiceType = StubRemoteConfigService()
+    
+}

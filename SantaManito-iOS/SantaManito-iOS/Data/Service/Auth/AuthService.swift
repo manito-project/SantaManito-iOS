@@ -30,19 +30,14 @@ extension AuthenticationService: AuthenticationServiceType {
     
 }
 
-//struct StubAuthenticationService: AuthenticationServiceType {
-//    func signUp(nickname: String, deviceID: String) -> AnyPublisher<AuthEntity, SMNetworkError> {
-//        Future<AuthEntity, SMNetworkError> { promise in
-//            
-//            DispatchQueue.global().asyncAfter(deadline: .now() + 2) {
-//                // Simulate success
-//                promise(.success(.stub))
-//            }
-//        }
-//        .eraseToAnyPublisher()
-//    }
-//    
-//    func signIn(deviceID: String) -> AnyPublisher<AuthEntity, SMNetworkError> {
-//        Fail(error: SMNetworkError.invalidRequest(.unknownErr)).eraseToAnyPublisher()
-//    }
-//}
+struct StubAuthenticationService: AuthenticationServiceType {
+    func signUp(nickname: String, deviceID: String) async throws -> AuthEntity {
+        try await Task.sleep(nanoseconds: 2_000_000_000) // 2초 지연 시뮬레이션
+        return .stub
+    }
+
+    func signIn(deviceID: String) async throws -> AuthEntity {
+        throw SMNetworkError.invalidRequest(.unknownErr)
+    }
+}
+
