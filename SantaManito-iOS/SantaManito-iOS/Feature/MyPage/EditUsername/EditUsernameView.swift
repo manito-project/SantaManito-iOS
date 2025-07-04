@@ -139,7 +139,7 @@ struct EditUsernameView: View {
     
 }
 
-//#Preview {
-//    EditUsernameView(viewModel: EditUsernameViewModel(userService: DIContainer.stub.service.userService, navigationRouter: DIContainer.stub.navigationRouter, windowRouter: DIContainer.stub.windowRouter))
-//        .environmentObject(DIContainer.stub)
-//}
+#Preview {
+    EditUsernameView(viewModel: EditUsernameViewModel(userService: DIContainer.stub.service.userService, navigationRouter: DIContainer.stub.navigationRouter, windowRouter: DIContainer.stub.windowRouter))
+        .environmentObject(DIContainer.stub)
+}

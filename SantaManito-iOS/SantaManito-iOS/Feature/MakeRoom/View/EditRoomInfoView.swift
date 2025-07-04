@@ -256,14 +256,14 @@ fileprivate struct MakeRoomButtonView: View {
 }
 
 
-//
-//#Preview {
-//    return EditRoomInfoView(
-//        viewModel: EditRoomInfoViewModel(
-//            viewType: .createMode,
-//            roomService: DIContainer.stub.service.roomService,
-//            navigationRouter: DIContainer.stub.navigationRouter
-//        )
-//    )
-//    .environmentObject(DIContainer.stub)
-//}
+
+#Preview {
+    return EditRoomInfoView(
+        viewModel: EditRoomInfoViewModel(
+            viewType: .createMode,
+            roomService: DIContainer.stub.service.roomService,
+            navigationRouter: DIContainer.stub.navigationRouter
+        )
+    )
+    .environmentObject(DIContainer.stub)
+}

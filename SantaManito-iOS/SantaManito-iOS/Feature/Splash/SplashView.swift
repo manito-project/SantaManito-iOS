@@ -85,8 +85,8 @@ struct SplashView: View {
         
     }
 }
-//
-//#Preview {
-//    SplashView(viewModel: SplashViewModel(appService: DIContainer.stub.service.appService, remoteConfigService: DIContainer.stub.service.remoteConfigService, authService: DIContainer.stub.service.authService,windowRouter: DIContainer.stub.windowRouter))
-//        .environmentObject(DIContainer.stub)
-//}
+
+#Preview {
+    SplashView(viewModel: SplashViewModel(appService: DIContainer.stub.service.appService, remoteConfigService: DIContainer.stub.service.remoteConfigService, authService: DIContainer.stub.service.authService,windowRouter: DIContainer.stub.windowRouter))
+        .environmentObject(DIContainer.stub)
+}
