@@ -149,6 +149,7 @@
 		D2E01BD42E169937005FB8A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2E01BD22E169937005FB8A2 /* GoogleService-Info.plist */; };
 		D2E01BDC2E169C18005FB8A2 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D2E01BDB2E169C18005FB8A2 /* Config.xcconfig */; };
 		D2E01BDD2E169C18005FB8A2 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D2E01BDB2E169C18005FB8A2 /* Config.xcconfig */; };
+		D2E01BE12E17A448005FB8A2 /* DecodingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E01BE02E17A443005FB8A2 /* DecodingHandler.swift */; };
 		D2E2068D2CB5317F001250AE /* RoomMyInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E2068C2CB5317F001250AE /* RoomMyInfoDTO.swift */; };
 /* End PBXBuildFile section */
 
@@ -303,6 +304,7 @@
 		D2DF8D172E1261F500F0A30E /* ObservableObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableObject+.swift"; sourceTree = "<group>"; };
 		D2E01BD22E169937005FB8A2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D2E01BDB2E169C18005FB8A2 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		D2E01BE02E17A443005FB8A2 /* DecodingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodingHandler.swift; sourceTree = "<group>"; };
 		D2E2068C2CB5317F001250AE /* RoomMyInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomMyInfoDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -917,6 +919,7 @@
 		D28568AA2CAD02C70044C231 /* Handler */ = {
 			isa = PBXGroup;
 			children = (
+				D2E01BE02E17A443005FB8A2 /* DecodingHandler.swift */,
 				D26879422CAB8DA30025A611 /* NetworkLogHandler.swift */,
 				D28568AB2CAD031C0044C231 /* RequestHandler.swift */,
 				D28568AD2CAD033C0044C231 /* ErrorHandler.swift */,
@@ -1190,6 +1193,7 @@
 				87E514372CBF88A700FFF2E1 /* EditNicknameReqeust.swift in Sources */,
 				D2A8F6122C9D1A4F00810BCF /* MakeRoomInfo.swift in Sources */,
 				D2A8F61F2CA1170B00810BCF /* MatchingResultView.swift in Sources */,
+				D2E01BE12E17A448005FB8A2 /* DecodingHandler.swift in Sources */,
 				D2BC1AA52C91357F00CB32B8 /* SMInviteCodeAlertView.swift in Sources */,
 				D26879462CABB2F30025A611 /* EditRoomDTO.swift in Sources */,
 				D28568AC2CAD031C0044C231 /* RequestHandler.swift in Sources */,
