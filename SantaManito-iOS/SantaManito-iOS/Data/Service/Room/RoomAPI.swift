@@ -71,7 +71,7 @@ extension RoomAPI: BaseAPI {
         }
     }
     
-    var task: Task {
+    var task: RequestTask {
         switch self {
         case .createRoom(let request):
             return .requestJSONEncodable(request)

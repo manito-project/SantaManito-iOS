@@ -60,41 +60,44 @@ class MatchingViewModel: ObservableObject {
     
     //MARK: Methods
     
-    func send(action: Action) {
-        weak var owner = self
-        guard let owner else { return }
-        
+    @MainActor func send(action: Action) {
         switch action {
         case .onAppear:
             Analytics.shared.track(.manittoMatching)
-            Just(self.roomID)
-                .handleEvents(receiveRequest: {_ in 
-                    Analytics.shared.track(.manittoMatchingLottie)
-                })
-                .flatMap(roomService.matchRoom)
-                .map { owner.roomID }
-                .flatMap(roomService.getRoomInfo)
-                .receive(on: RunLoop.main)
-                .assignLoading(to: \.state.isAnimating, on: owner)
-                .catch { [weak self]_  in
+            Analytics.shared.track(.manittoMatchingLottie)
+            
+            performTask(
+                loadingKeyPath: \.state.isAnimating,
+                operation: { try await self.roomService.matchRoom(with: self.roomID) },
+                onSuccess: { [weak self] _ in
+                    guard let self else { return }
+                    self.getRoomInfo(self.roomID)
+                }, onError: { [weak self] _ in
                     self?.state.alert = (true, "방 매칭에 실패했습니다.\n잠시 후 다시 시도해주세요.")
-                    self?.state.isAnimating = false
-                    return Empty<RoomDetail, Never>()
                 }
-                .sink { roomDetail in
-                    owner.roomInfo = roomDetail
-                    owner.state.isMatched = true
-                }
-                .store(in: cancelBag)
+            )
             
         case .goToMatchingResultView:
             guard let roomInfo else { return }
             self.navigationRouter.push(to: .matchedRoom(roomInfo: roomInfo))
             
         case .alert(.confirm):
-            self.state.alert = (false, "")
+            state.alert = (false, "")
             navigationRouter.popToRootView()
 
         }
+    }
+}
+
+extension MatchingViewModel {
+    @MainActor
+    func getRoomInfo(_ roomID: String) {
+        performTask(
+            operation: { try await self.roomService.getRoomInfo(with: roomID) },
+            onSuccess: { [weak self] roomDetail in
+                self?.roomInfo = roomDetail
+                self?.state.isMatched = true
+            }
+        )
     }
 }

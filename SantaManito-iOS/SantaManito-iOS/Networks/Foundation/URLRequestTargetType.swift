@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-enum Task {
+enum RequestTask {
     case requestPlain
     case requestParameters(Parameters)
     case requestJSONEncodable(Encodable)
@@ -18,46 +18,60 @@ protocol URLRequestTargetType {
     var path: String? { get }
     var method: HTTPMethod { get }
     var headers : [String : String]? { get }
-    var task: Task { get }
+    var task: RequestTask { get }
     
-    func asURLRequest() -> AnyPublisher<URLRequest, SMNetworkError.RequestError>
+    func asURLRequest() async throws -> URLRequest
 }
 
-extension Task {
-    func buildRequest(baseURL: URL, method: HTTPMethod, headers: [String: String]?) -> AnyPublisher<URLRequest, SMNetworkError.RequestError> {
+extension RequestTask {
+    func buildRequest(
+        baseURL: URL,
+        method: HTTPMethod,
+        headers: [String: String]?
+    ) async throws -> URLRequest {
         var request = URLRequest(url: baseURL)
         request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = headers
         
         switch self {
         case .requestPlain:
-            return Just(request)
-                .setFailureType(to: SMNetworkError.RequestError.self)
-                .eraseToAnyPublisher()
+            return request
                 
         case .requestParameters(let parameters):
-            return URLEncoding().encode(request, with: parameters)
-                .mapError { .parameterEncodingFailed($0) }
-                .eraseToAnyPublisher()
+            return try await encodeRequest(
+                request, using: URLEncoding(), parameters: parameters
+            )
                 
         case .requestJSONEncodable(let encodable):
-            return JSONEncoding().encode(request, with: encodable)
-                .mapError { .parameterEncodingFailed($0) }
-                .eraseToAnyPublisher()
+            return try await encodeRequest(
+                request, using: JSONEncoding(), parameters: encodable
+            )
+        }
+    }
+    
+    private func encodeRequest<E: ParameterEncodable>(
+        _ request: URLRequest,
+        using encoder: E,
+        parameters: E.ParameterType
+    ) async throws -> URLRequest {
+        do {
+            return try await encoder.encode(request, with: parameters)
+        } catch let error as SMNetworkError.ParameterEncoding {
+            throw SMNetworkError.RequestError.parameterEncodingFailed(error)
         }
     }
 }
 
 
 extension URLRequestTargetType {
-    func asURLRequest() -> AnyPublisher<URLRequest, SMNetworkError.RequestError> {
+    func asURLRequest() async throws -> URLRequest {
         guard let url = URL(string: self.url) else {
-            return Fail(error: .invalidURL(self.url)).eraseToAnyPublisher()
+            throw SMNetworkError.RequestError.invalidURL(self.url)
         }
 
         var baseURL = url
         if let path = self.path { baseURL.appendPathComponent(path) }
 
-        return task.buildRequest(baseURL: baseURL, method: self.method, headers: self.headers)
+        return try await task.buildRequest(baseURL: baseURL, method: self.method, headers: self.headers)
     }
 }

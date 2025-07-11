@@ -32,7 +32,7 @@ extension AuthAPI: BaseAPI {
         }
     }
     
-    var task: Task {
+    var task: RequestTask {
         switch self {
         case .signUp(let request):
             return .requestJSONEncodable(request)

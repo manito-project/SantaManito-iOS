@@ -53,10 +53,7 @@ class CheckRoomInfoViewModel: ObservableObject {
     
     //MARK: - Methods
     
-    func send(action: Action) {
-        weak var owner = self
-        guard let owner else { return }
-        
+    @MainActor func send(action: Action) {
         switch action {
         case .deleteMission(let mission):
             Analytics.shared.track(.makeCompleteMissionMinusBtn)
@@ -67,16 +64,17 @@ class CheckRoomInfoViewModel: ObservableObject {
         case .makeRoomButtonDidTap:
             Analytics.shared.track(.makeCompleteBtn)
             let request = CreateRoomRequest(roomInfo, missionList) // TODO: 미션 로직 수정
-            roomService.createRoom(request: request)
-                .catch { _ in Empty() }
-                .receive(on: RunLoop.main)
-                .assignLoading(to: \.state.isLoading, on: self)
-                .sink { inviteCode in
-                    owner.inviteCode = inviteCode
-                    owner.state.isPresented = true
+            
+            performTask(
+                loadingKeyPath: \.state.isLoading,
+                operation: { try await self.roomService.createRoom(roomRequest: request) },
+                onSuccess: { [weak self] inviteCode in
+                    self?.inviteCode = inviteCode
+                    self?.state.isPresented = true
                     Analytics.shared.track(.makeCodeComplePopup)
                 }
-                .store(in: cancelBag)
+            )
+
             
         case .copyInviteCode:
             Analytics.shared.track(.makeCodeCopyBtn)

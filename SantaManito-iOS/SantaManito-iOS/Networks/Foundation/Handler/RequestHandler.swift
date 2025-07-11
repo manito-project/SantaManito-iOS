@@ -22,29 +22,26 @@ class RequestHandler {
         return URLSession(configuration: configuration)
     }()
     
-    func executeRequest<T: URLRequestTargetType>(for target: T) -> AnyPublisher<NetworkResponse, SMNetworkError> {
-        return target.asURLRequest()
-            .map { $0 }
-            .mapError { ErrorHandler.handleError(target, error: .invalidRequest($0)) }
-            .flatMap { urlRequest in
-                self.session.dataTaskPublisher(for: urlRequest)
-                    .tryMap { data, response -> NetworkResponse in
-                        guard let httpResponse = response as? HTTPURLResponse else {
-                            throw SMNetworkError.ResponseError.unhandled
-                        }
-                        return NetworkResponse(data: data, response: httpResponse, error: nil)
-                    }
-                    .mapError { error -> SMNetworkError in
-                        if let requestErr = error as? SMNetworkError.ResponseError {
-                            return .invalidResponse(requestErr)
-                        } else {
-                            return .unknown(error)
-                        }
-                    }
-                    .eraseToAnyPublisher()
+    private func buildRequest<T: URLRequestTargetType>(for target: T) async throws -> URLRequest {
+        do { return try await target.asURLRequest() }
+        catch let error as SMNetworkError.RequestError {
+            throw ErrorHandler.handleError(target, error: .invalidRequest(error))
+        }
+    }
+    
+    func executeRequest<T: URLRequestTargetType>(for target: T) async throws -> NetworkResponse {
+        let urlRequest = try await target.asURLRequest()
+        do {
+            let (data, response) = try await session.data(for: urlRequest)
+            guard let httpResponse = response as? HTTPURLResponse else {
+                throw SMNetworkError.ResponseError.unhandled
             }
-        
-            .eraseToAnyPublisher()
+            return NetworkResponse(data: data, response: httpResponse, error: nil)
+        } catch let error as SMNetworkError.ResponseError {
+            throw SMNetworkError.invalidResponse(error)
+        } catch {
+            throw SMNetworkError.unknown(error)
+        }
     }
 }
 

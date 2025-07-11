@@ -98,17 +98,13 @@ final class OnboardingViewModel: ObservableObject {
     
     //MARK: - Method
 
-    func send(_ action: Action) {
-        
-        weak var owner = self
-        guard let owner else { return }
-        
+    @MainActor func send(_ action: Action) {
         switch action {
         case .onAppear(let step):
             switch step {
             case .nickname: Analytics.shared.track(.onboardingName)
             case .agreement: Analytics.shared.track(.onboardingPersonalInformation)
-            }
+        }
         case .bottomButtonDidTap:
             switch state.step {
             case .nickname:
@@ -116,21 +112,20 @@ final class OnboardingViewModel: ObservableObject {
                 state.bottomButtonDisabled = true
                 
             case .agreement:
-                
-                Just(appService.getDeviceIdentifier() ?? "")
-                    .filter { !$0.isEmpty }
-                    .flatMap { owner.authService.signUp(nickname: owner.nickname, deviceID: $0) }
-                    .assignLoading(to: \.state.isLoading, on: owner)
-                    .catch { _ in
-                        owner.state.failAlert = true
-                        return Empty<AuthEntity, Never>()
+                guard let deviceID = appService.getDeviceIdentifier(), !deviceID.isEmpty else { return }
+
+                performTask(
+                    loadingKeyPath: \.state.isLoading,
+                    operation: { try await self.authService.signUp(nickname: self.nickname, deviceID: deviceID) },
+                    onSuccess: { [weak self] auth in
+                        self?.userDefaultsService.userID = auth.userID
+                        self?.userDefaultsService.accessToken = auth.accessToken
+                        self?.windowRouter.switch(to: .main)
+                    },
+                    onError: { [weak self] _ in
+                        self?.state.failAlert = true
                     }
-                    .sink { auth in
-                        owner.userDefaultsService.userID = auth.userID
-                        owner.userDefaultsService.accessToken = auth.accessToken
-                        owner.windowRouter.switch(to: .main)
-                    }
-                    .store(in: cancelBag)
+                )
             }
             
         case .acceptAllCellDidTap:
@@ -148,8 +143,8 @@ final class OnboardingViewModel: ObservableObject {
                 guard state.agreements[i].agreement == agreement else { continue }
                 state.agreements[i].isSelected.toggle()
             }
-            
             state.bottomButtonDisabled = !state.requiredAccepted
+            
         case let .agreementDetailButtonDidTap(agreement):
             state.agreementWebView = (true, agreement.url)
         }
@@ -164,7 +159,5 @@ final class OnboardingViewModel: ObservableObject {
             .map { $0.isEmpty }
             .assign(to: \.state.bottomButtonDisabled, on: owner)
             .store(in: cancelBag)
-            
     }
-    
 }

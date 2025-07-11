@@ -59,7 +59,7 @@ class HomeViewModel: ObservableObject {
     
     //MARK: - Methods
     
-    func send(_ action: Action) {
+    @MainActor func send(_ action: Action) {
         
         weak var owner = self
         guard let owner else { return }
@@ -68,14 +68,15 @@ class HomeViewModel: ObservableObject {
         case .onAppear:
             Analytics.shared.track(.home)
             send(.refreshButtonDidTap)
-        case .refreshButtonDidTap:
-            roomService.getEnteredRooms()
-                .receive(on: RunLoop.main)
-                .assignLoading(to: \.state.isLoading, on: owner)
-                .catch { _ in Empty() }
-                .assign(to: \.state.rooms, on: owner)
-                .store(in: cancelBag)
             
+        case .refreshButtonDidTap:
+            performTask(
+                loadingKeyPath: \.state.isLoading,
+                operation: { try await self.roomService.getEnteredRooms() },
+                onSuccess: { [weak self] rooms in
+                    self?.state.rooms = rooms
+                }
+            )
         case .myPageButtonDidTap:
             navigationRouter.push(to: .myPage)
             
@@ -112,40 +113,38 @@ class HomeViewModel: ObservableObject {
             }
         case let .creatorExitButtonDidTap(roomDetail):
             Analytics.shared.track(.leaderExitPopupExitBtn)
-            roomService.deleteRoom(with: roomDetail.id)
-                .receive(on: RunLoop.main)
-                .assignLoading(to: \.state.isLoading, on: owner)
-                .catch { _ in Empty()}
-                .sink {
+            
+            performTask(
+                loadingKeyPath: \.state.isLoading,
+                operation: { try await self.roomService.deleteRoom(with: roomDetail.id) },
+                onSuccess: { [weak self] _ in
                     guard let removedIndex = owner.state.rooms.firstIndex(where: { $0.id == roomDetail.id })
                     else { return }
-                    owner.state.rooms.remove(at: removedIndex)
+                    self?.state.rooms.remove(at: removedIndex)
                 }
-                .store(in: cancelBag)
+            )
             
         case let .guestExitButtonDidTap(roomDetail):
-            roomService.exitRoom(with: roomDetail.id)
-                .receive(on: RunLoop.main)
-                .assignLoading(to: \.state.isLoading, on: owner)
-                .catch { _ in Empty()}
-                .sink {
+            performTask(
+                loadingKeyPath: \.state.isLoading,
+                operation: { try await self.roomService.exitRoom(with: roomDetail.id) },
+                onSuccess: { [weak self] _ in
                     guard let removedIndex = owner.state.rooms.firstIndex(where: { $0.id == roomDetail.id })
                     else { return }
-                    owner.state.rooms.remove(at: removedIndex)
+                    self?.state.rooms.remove(at: removedIndex)
                 }
-                .store(in: cancelBag)
-                
+            )
+
         case let .deleteHistoryButtonDidTap(roomID):
-            roomService.deleteHistoryRoom(with: roomID)
-                .receive(on: RunLoop.main)
-                .assignLoading(to: \.state.isLoading, on: owner)
-                .catch { _ in Empty()}
-                .sink {
+            performTask(
+                loadingKeyPath: \.state.isLoading,
+                operation: { try await self.roomService.deleteHistoryRoom(with: roomID) },
+                onSuccess: { [weak self] _ in
                     guard let removedIndex = owner.state.rooms.firstIndex(where: { $0.id == roomID })
                     else { return }
-                    owner.state.rooms.remove(at: removedIndex)
+                    self?.state.rooms.remove(at: removedIndex)
                 }
-                .store(in: cancelBag)
+            )
         }
     }
 }

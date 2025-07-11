@@ -104,7 +104,7 @@ final class EditRoomInfoViewModel: ObservableObject {
             .store(in: cancelBag)
     }
     
-    func send(action: Action) {
+    @MainActor  func send(action: Action) {
         
         switch action {
         case .onAppear:
@@ -134,26 +134,22 @@ final class EditRoomInfoViewModel: ObservableObject {
             Analytics.shared.track(.missionNoPopupSkipBtn)
             state.isPresented = false
             navigationRouter.push(to: .roomInfo(roomInfo: roomInfo, missionList: []))
-                    
+            
         case .dismissAlert:
             Analytics.shared.track(.missionNoPopupMissionBtn)
             state.isPresented = false
             navigationRouter.push(to: .makeMission(roomInfo: roomInfo))
-            
+        
         case .editButtonDidTap:
             if case .editMode = viewType {
                 Analytics.shared.track(.roomEditCompleteBtn)
             }
             
             guard let roomID = viewType.roomID else { return }
-            roomService.editRoomInfo(with: roomID, info: roomInfo)
-                .receive(on: RunLoop.main)
-                .catch { _ in Empty() }
-                .sink { [weak self] _ in
-                    self?.navigationRouter.pop()
-                    print("성공해서 화면 전환")
-                }
-                .store(in: cancelBag)
+            performTask(
+                operation: { try await self.roomService.editRoomInfo(with: roomID, info: self.roomInfo) },
+                onSuccess: { [weak self] _ in self?.navigationRouter.pop() }
+            )
         }
     }
 }

@@ -58,52 +58,48 @@ final class EditUsernameViewModel: ObservableObject {
     
     //MARK: - Methods
     
+    @MainActor
     func send(_ action: Action) {
-        weak var owner = self
-        guard let owner else { return }
-        
         switch action {
         case .onAppear:
             Analytics.shared.track(.nameEdit)
-            userService.getUser(with: userDefaultsService.userID)
-                .receive(on: RunLoop.main)
-                .assignLoading(to: \.state.isLoading, on: owner)
-                .map { $0.username }
-                .catch { _ in Empty() }
-                .sink { [weak self] username in
-                    self?.oldUsername = username
-                    self?.username = username
+            performTask(
+                loadingKeyPath: \.state.isLoading,
+                operation: { try await self.userService.getUser(with: self.userDefaultsService.userID) },
+                onSuccess: { [weak self] user in
+                    self?.oldUsername = user.username
+                    self?.username = user.username
                 }
-                .store(in: cancelBag)
+            )
             
         case .doneButtonDidTap:
             Analytics.shared.track(.nameEditCompleteBtn)
-            userService.editUsername(with: username)
-                .receive(on: RunLoop.main)
-                .assignLoading(to: \.state.isLoading, on: owner)
-                .catch { _ in Empty() }
-                .sink { [weak self] username in
+            performTask(
+                loadingKeyPath: \.state.isLoading,
+                operation: { try await self.userService.editUsername(with: self.username) },
+                onSuccess: { [weak self] _ in
                     self?.navigationRouter.popToRootView()
                 }
-                .store(in: cancelBag)
+            )
+            
         case .deleteAccountButtonDidTap:
             Analytics.shared.track(.nameEditWithdrawalBtn)
             state.isDeleteAccountAlertPresented = true
             Analytics.shared.track(.withdrawalPopup)
+            
         case .alert(.deleteButtonDidTap):
             Analytics.shared.track(.withdrawalPopupWithdrawalBtn)
             state.isDeleteAccountAlertPresented = false
-            userService.deleteAccount()
-                .receive(on: RunLoop.main)
-                .assignLoading(to: \.state.isLoading, on: owner)
-                .catch { _ in Empty() }
-                .receive(on: RunLoop.main)
-                .sink { _ in
-                    owner.userDefaultsService.removeAll()
-                    owner.windowRouter.switch(to: .splash)
-                    owner.navigationRouter.popToRootView()
+            performTask(
+                loadingKeyPath: \.state.isLoading,
+                operation: { try await self.userService.deleteAccount() },
+                onSuccess: { [weak self] _ in
+                    self?.userDefaultsService.removeAll()
+                    self?.windowRouter.switch(to: .splash)
+                    self?.navigationRouter.popToRootView()
                 }
-                .store(in: cancelBag)
+            )
+            
         case .alert(.stayButtonDidTap):
             Analytics.shared.track(.withdrawalPopupStayBtn)
             state.isDeleteAccountAlertPresented = false

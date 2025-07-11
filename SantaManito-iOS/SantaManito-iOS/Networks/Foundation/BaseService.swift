@@ -14,84 +14,84 @@ final class BaseService<Target: URLRequestTargetType> {
     
     private let requestHandler = RequestHandler.shared
     
-    func requestWithResult<T: Decodable>(_ target: API, _ responseType: T.Type) -> AnyPublisher<T, SMNetworkError> {
-        return fetchResponse(with: target)
-            .flatMap { response in
-                self.validate(response: response)
-                    .map { _ in response.data! }
-                    .mapError { ErrorHandler.handleError(target, error: $0) }
-            }
-            .flatMap { self.decode(data: $0, target: target) }
-            .eraseToAnyPublisher()
-    }
     
-    func requestWithNoResult(_ target: API) -> AnyPublisher<Void, SMNetworkError> {
-        return fetchResponse(with: target)
-            .flatMap { response -> AnyPublisher<Data, SMNetworkError> in
-                self.validate(response: response) // validate 연결
-                    .map { _ in response.data! } // 성공 시 data 반환
-                    .eraseToAnyPublisher()
+    func request(
+        _ target: API
+    ) async throws -> Void {
+        _ = try await request(target, as: VoidResult.self)
+    }
+
+    func request<T: Decodable>(
+        _ target: API,
+        as type: T.Type = T.self
+    ) async throws -> T {
+        do {
+            let response = try await fetchResponse(with: target)
+            try await validate(response: response)
+            guard let data = response.data else {
+                throw SMNetworkError.invalidResponse(.missingData)
             }
-            .mapError { ErrorHandler.handleError(target, error: $0) }
-            .flatMap { data -> AnyPublisher<VoidResult, SMNetworkError> in
-                self.decode(data: data, target: target)
-            }
-            .map { _ in () }
-            .eraseToAnyPublisher()
+            return try await decode(data: data)
+        } catch let error as SMNetworkError {
+            throw ErrorHandler.handleError(target, error: error)
+        }
     }
 }
 
 
 extension BaseService {
     /// 네트워크 응답 처리 메소드
-    private func fetchResponse(with target: API) -> AnyPublisher<NetworkResponse, SMNetworkError> {
-        return requestHandler.executeRequest(for: target)
-            .handleEvents(receiveSubscription:  {  _ in
-                NetworkLogHandler.requestLogging(target)
-            }, receiveOutput:  {  response in
-                NetworkLogHandler.responseSuccess(target, result: response)
-            })
-            .mapError { ErrorHandler.handleError(target, error: $0) }
-            .eraseToAnyPublisher()
+    private func fetchResponse(with target: API) async throws -> NetworkResponse {
+        await NetworkLogHandler.requestLogging(target)
+        do {
+            let response = try await requestHandler.executeRequest(for: target)
+            await NetworkLogHandler.responseSuccess(target, result: response)
+            return response
+        } catch let error as SMNetworkError {
+            throw ErrorHandler.handleError(target, error: error)
+        }
     }
     
-    /// 응답 유효성 검사 메서드
-    private func validate(response: NetworkResponse) -> AnyPublisher<Void, SMNetworkError> {
+    private func validate(response: NetworkResponse) async throws {
         guard response.response.isValidateStatus() else {
             guard let data = response.data else {
-                return Fail(error: SMNetworkError.invalidResponse(.invalidStatusCode(code: response.response.statusCode)))
-                    .eraseToAnyPublisher()
+                throw SMNetworkError.invalidResponse(
+                    .invalidStatusCode(code: response.response.statusCode)
+                )
             }
             
-            return Just(data)
-                .decode(type: ErrorResponse.self, decoder: JSONDecoder())
-                .mapError { _ in SMNetworkError.invalidResponse(.invalidStatusCode(code: response.response.statusCode)) }
-                .flatMap { response in
-                    Fail(error: SMNetworkError.invalidResponse(.invalidStatusCode(
-                        code: response.statusCode,
-                        data: response.data
-                    )
-                    )
-                    ).eraseToAnyPublisher()
-                }
-                .eraseToAnyPublisher()
+            if let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+                throw SMNetworkError.invalidResponse(
+                    .invalidStatusCode(code: errorResponse.statusCode, data: errorResponse.data)
+                )
+            } else {
+                throw SMNetworkError.invalidResponse(
+                    .invalidStatusCode(code: response.response.statusCode)
+                )
+            }
         }
-        return Just(()).setFailureType(to: SMNetworkError.self).eraseToAnyPublisher()
+        
     }
     
     /// 디코딩 메소드
-    private func decode<T: Decodable>(data: Data, target: API) -> AnyPublisher<T, SMNetworkError> {
+    @discardableResult
+    private func decode<T: Decodable>(data: Data) async throws -> T {
+        let decoder = makeDecoder()
+        do {
+            let wrapper = try decoder.decode(GenericResponse<T>.self, from: data)
+            guard let decodedData = wrapper.data else { throw SMNetworkError.DecodeError.dataIsNil }
+            return decodedData
+        } catch { throw SMNetworkError.DecodeError.failed }
+    }
+    
+    
+    private func makeDecoder() -> JSONDecoder {
         let decoder = JSONDecoder()
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSz"
-        formatter.timeZone = TimeZone(secondsFromGMT: 0) // UTC기준으로 디코딩
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
         decoder.dateDecodingStrategy = .formatted(formatter)
-        
-        return Just(data)
-            .decode(type: GenericResponse<T>.self, decoder: decoder)
-            .mapError { _ in ErrorHandler.handleError(target, error: .decodingFailed(.failed)) }
-            .map { $0.data! }
-            .eraseToAnyPublisher()
+        return decoder
     }
     
 }

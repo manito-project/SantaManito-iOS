@@ -8,82 +8,80 @@
 import Foundation
 import Combine
 
-protocol ParameterEncodable {}
+protocol ParameterEncodable {
+    associatedtype ParameterType // 제네릭하게 parameters의 타입을 선언하고 활용하기 위해
+    
+    func encode(
+        _ request: URLRequest,
+        with parameters: ParameterType
+    ) async throws -> URLRequest
+}
 
 extension ParameterEncodable {
     func checkValidURLData(
         _ parameters: Parameters?,
         _ url: URL?
-    ) -> AnyPublisher<(Parameters, URL), SMNetworkError.ParameterEncoding> {
-        guard let parameters else { return Fail(error: .emptyParameters).eraseToAnyPublisher() }
-        guard let url else { return Fail(error: .missingURL).eraseToAnyPublisher() }
-        
-        return Just((parameters, url))
-            .setFailureType(to: SMNetworkError.ParameterEncoding.self)
-            .eraseToAnyPublisher()
+    ) throws -> (Parameters, URL) {
+        guard let parameters else { throw SMNetworkError.ParameterEncoding.emptyParameters }
+        guard let url else { throw SMNetworkError.ParameterEncoding.missingURL }
+        return (parameters, url)
     }
     
     func checkValidURLData(
         _ parameters: Encodable?,
         _ url: URL?
-    ) -> AnyPublisher<(Encodable, URL), SMNetworkError.ParameterEncoding> {
-        guard let parameters else { return Fail(error: .emptyParameters).eraseToAnyPublisher() }
-        guard let url else { return Fail(error: .missingURL).eraseToAnyPublisher() }
-        
-        //        TODO: 2024.10.09 수정. 확인 했다면 주석 지워도됨. to 히디 from 석우
-        //         let data = try JSONSerialization.data(withJSONObject: parameters)
-        //        guard JSONSerialization.isValidJSONObject(parameters) else {
-        //            return Fail(error: .invalidJSON).eraseToAnyPublisher()
-        //        }
-        
-        return Just((parameters, url))
-            .setFailureType(to: SMNetworkError.ParameterEncoding.self)
-            .eraseToAnyPublisher()
+    ) throws -> (Encodable, URL) {
+        guard let parameters else { throw SMNetworkError.ParameterEncoding.emptyParameters }
+        guard let url else { throw SMNetworkError.ParameterEncoding.missingURL }
+        return (parameters, url)
     }
 }
 
 public struct URLEncoding: ParameterEncodable {
-    func encode(_ request: URLRequest, with parameters: Parameters?) -> AnyPublisher<URLRequest, SMNetworkError.ParameterEncoding> {
+    typealias ParameterType = Parameters
+    
+    func encode(
+        _ request: URLRequest,
+        with parameters: Parameters
+    ) async throws -> URLRequest {
         var request = request
+        let (validParameters, url) = try checkValidURLData(parameters, request.url)
         
-        return checkValidURLData(parameters, request.url)
-            .map { parameters, url -> URLRequest in
-                if var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
-                    urlComponents.queryItems = parameters.compactMap { key, value in
-                        URLQueryItem(name: key, value: "\(value)")
-                    }
-                    request.url = urlComponents.url
-                }
-                return request
+        if var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) {
+            urlComponents.queryItems = validParameters.compactMap { key, value in
+                URLQueryItem(name: key, value: "\(value)")
             }
-            .mapError { $0 }
-            .eraseToAnyPublisher()
+            request.url = urlComponents.url
+        }
+        return request
     }
 }
 
 
 public struct JSONEncoding: ParameterEncodable {
-    func encode(_ request: URLRequest, with parameters: Encodable?) -> AnyPublisher<URLRequest, SMNetworkError.ParameterEncoding> {
+    typealias ParameterType = Encodable
+    
+    func encode(
+        _ request: URLRequest,
+        with parameters: Encodable
+    ) async throws -> URLRequest {
         var request = request
+        
         let encoder = JSONEncoder()
+        
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         formatter.timeZone = TimeZone(secondsFromGMT: 0) // UTC 기준으로 인코딩
         encoder.dateEncodingStrategy = .formatted(formatter)
         
-        return checkValidURLData(parameters, request.url)
-            .tryMap { parameters, _ -> URLRequest in
-                do {
-                    let data = try encoder.encode(parameters)
-                    request.httpBody = data
-//                    let s = try JSONSerialization.jsonObject(with: data)
-//                    print(s)
-                    return request
-                } catch {
-                    throw SMNetworkError.invalidRequest(.parameterEncodingFailed(.jsonEncodingFailed))
-                }
-            }
-            .mapError { $0 as! SMNetworkError.ParameterEncoding } //TODO: 예외 상황이 없는거 같아서..
-            .eraseToAnyPublisher()
+        let (validParameters, _) = try checkValidURLData(parameters, request.url)
+        do {
+            let data = try encoder.encode(validParameters)
+            request.httpBody = data
+            return request
+        } catch {
+            throw SMNetworkError.RequestError.parameterEncodingFailed(.jsonEncodingFailed)
+        }
     }
 }
+
