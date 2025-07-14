@@ -18,3 +18,14 @@ extension Publisher {
         )
     }
 }
+
+extension Publisher where Failure == Never {
+    func assign<T: AnyObject>(
+        to keyPath: ReferenceWritableKeyPath<T, Output>,
+        on object: T
+    ) -> AnyCancellable {
+        sink { [weak object] value in
+            object?[keyPath: keyPath] = value
+        }
+    }
+}
