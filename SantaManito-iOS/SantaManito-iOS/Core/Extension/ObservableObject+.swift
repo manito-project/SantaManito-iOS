@@ -7,9 +7,15 @@ extension ObservableObject where Self: AnyObject {
         onSuccess: @escaping (T) -> Void = { _ in },
         onError: @escaping (Error) -> Void = { print("Error: \($0)") }
     ) {
+        if let keyPath = loadingKeyPath {
+            Task { @MainActor [weak self] in
+                self?[keyPath: keyPath] = true
+            }
+        }
+        
         Task.detached(priority: .userInitiated) { [weak self] in
             guard let self else { return }
-            if let keyPath = loadingKeyPath { await self.updateLoadingState(keyPath, true) }
+            
             
             let taskResult: Result<T, Error>
             
@@ -28,15 +34,6 @@ extension ObservableObject where Self: AnyObject {
                 onError: onError
             )
         }
-    }
-    
-    // ✅ MainActor 호출 최소화를 위한 헬퍼 메서드들
-    @MainActor
-    private func updateLoadingState(
-        _ keyPath: ReferenceWritableKeyPath<Self, Bool>,
-        _ isLoading: Bool
-    ) {
-        self[keyPath: keyPath] = isLoading
     }
     
     @MainActor
