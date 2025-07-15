@@ -74,7 +74,7 @@ class SplashViewModel: ObservableObject {
                 }
                 
                 guard let deviceID = appService.getDeviceIdentifier(), !deviceID.isEmpty else { return }
-                await performTask(
+                performTask(
                     operation: { try await self.authService.signIn(deviceID: deviceID) },
                     onSuccess: { [weak self] auth in
                         self?.userDefaultsService.userID = auth.userID

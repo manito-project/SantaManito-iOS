@@ -113,7 +113,7 @@ final class OnboardingViewModel: ObservableObject {
                 
             case .agreement:
                 guard let deviceID = appService.getDeviceIdentifier(), !deviceID.isEmpty else { return }
-
+                
                 performTask(
                     loadingKeyPath: \.state.isLoading,
                     operation: { try await self.authService.signUp(nickname: self.nickname, deviceID: deviceID) },
