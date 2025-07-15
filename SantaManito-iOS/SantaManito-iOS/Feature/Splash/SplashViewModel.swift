@@ -66,7 +66,7 @@ class SplashViewModel: ObservableObject {
         case .onAppear:
             Analytics.shared.track(.splash)
             Task {
-                let isLatestVersion = try await appService.isLatestVersion()
+                let isLatestVersion = await appService.isLatestVersion()
                 
                 guard isLatestVersion else {
                     self.state.mustUpdateAlertIsPresented = true
