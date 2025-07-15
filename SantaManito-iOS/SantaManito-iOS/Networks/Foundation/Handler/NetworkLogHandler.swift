@@ -10,7 +10,7 @@ import Foundation
 struct NetworkLogHandler {
     
     // 네트워크 요청 로깅 함수
-    static func requestLogging(_ endpoint: URLRequestTargetType) async {
+    static func requestLogging(_ endpoint: URLRequestTargetType) {
         let url = endpoint.url + (endpoint.path ?? "")
         let method = endpoint.method.rawValue
         let headers = endpoint.headers ?? [:]
