@@ -74,6 +74,7 @@ final class EditUsernameViewModel: ObservableObject {
             
         case .doneButtonDidTap:
             Analytics.shared.track(.nameEditCompleteBtn)
+            
             performTask(
                 loadingKeyPath: \.state.isLoading,
                 operation: { try await self.userService.editUsername(with: self.username) },
@@ -112,8 +113,4 @@ final class EditUsernameViewModel: ObservableObject {
             .assign(to: \.state.doneButtonDisabled, on: self)
             .store(in: cancelBag)
     }
-    
-    
-    
-        
 }
