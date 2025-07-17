@@ -1,19 +1,21 @@
 import Foundation
 
 extension ObservableObject where Self: AnyObject {
+    @discardableResult
     func performTask<T>(
+        priority: TaskPriority = .userInitiated,
         loadingKeyPath: ReferenceWritableKeyPath<Self, Bool>? = nil,
         operation: @escaping () async throws -> T,
         onSuccess: @escaping (T) -> Void = { _ in },
         onError: @escaping (Error) -> Void = { print("Error: \($0)") }
-    ) {
+    ) -> Task<Void, Never> {
         if let keyPath = loadingKeyPath {
             Task { @MainActor [weak self] in
                 self?[keyPath: keyPath] = true
             }
         }
         
-        Task.detached(priority: .userInitiated) { [weak self] in
+        return Task(priority: priority) { [weak self] in
             guard let self else { return }
             
             
