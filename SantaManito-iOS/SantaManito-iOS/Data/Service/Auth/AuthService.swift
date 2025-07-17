@@ -20,14 +20,11 @@ extension AuthenticationService: AuthenticationServiceType {
         let data = try await request(.signUp(request: .init(serialNumber: deviceID, name: nickname)), as: AuthResponse.self)
         return data.toEntity()
     }
-    
-    
+
     func signIn(deviceID: String) async throws -> AuthEntity {
         let data = try await request(.signIn(request: .init(serialNumber: deviceID)), as: AuthResponse.self)
         return data.toEntity()
     }
-    
-    
 }
 
 struct StubAuthenticationService: AuthenticationServiceType {

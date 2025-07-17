@@ -1,60 +1,61 @@
-//
-//  ObservableObject+.swift
-//  SantaManito-iOS
-//
-//  Created by 류희재 on 6/30/25.
-//
-
 import Foundation
 
-extension ObservableObject where Self: AnyObject { // ObservableObject를 따르고, **클래스 타입인 객체(ViewModel)**만 확장 대상으로 지정
-    
-    @MainActor
-    func withLoading<T>(
-        loadingKeyPath: ReferenceWritableKeyPath<Self, Bool>,
-        operation: @escaping () async throws -> T
-    ) async throws -> T {
-        self[keyPath: loadingKeyPath] = true
-        defer { self[keyPath: loadingKeyPath] = false } // defer 블록을 이용해 성공/실패 여부와 상관없이 로딩 상태를 false로 복원
-        
-        return try await operation()
-    }
-    
-    @MainActor
+extension ObservableObject where Self: AnyObject {
+    @discardableResult
     func performTask<T>(
-        loadingKeyPath: ReferenceWritableKeyPath<Self, Bool>,
+        priority: TaskPriority = .userInitiated,
+        loadingKeyPath: ReferenceWritableKeyPath<Self, Bool>? = nil,
         operation: @escaping () async throws -> T,
         onSuccess: @escaping (T) -> Void = { _ in },
         onError: @escaping (Error) -> Void = { print("Error: \($0)") }
-    ) {
-        Task { [weak self] in
+    ) -> Task<Void, Never> {
+        if let keyPath = loadingKeyPath {
+            Task { @MainActor [weak self] in
+                self?[keyPath: keyPath] = true
+            }
+        }
+        
+        return Task(priority: priority) { [weak self] in
             guard let self else { return }
             
+            
+            let taskResult: Result<T, Error>
+            
             do {
-                let result = try await self.withLoading(
-                    loadingKeyPath: loadingKeyPath,
-                    operation: operation
-                )
-                onSuccess(result)
+                let result = try await operation()
+                taskResult = .success(result)
             } catch {
-                onError(error)
+                taskResult = .failure(error)
             }
+            
+            // ✅ 3. 모든 UI 업데이트를 한 번의 MainActor 호출로 처리
+            await self.handleTaskCompletion(
+                result: taskResult,
+                loadingKeyPath: loadingKeyPath,
+                onSuccess: onSuccess,
+                onError: onError
+            )
         }
     }
     
     @MainActor
-    func performTask<T>(
-        operation: @escaping () async throws -> T,
-        onSuccess: @escaping (T) -> Void = { _ in },
-        onError: @escaping (Error) -> Void = { print("Error: \($0)") }
+    private func handleTaskCompletion<T>(
+        result: Result<T, Error>,
+        loadingKeyPath: ReferenceWritableKeyPath<Self, Bool>?,
+        onSuccess: @escaping (T) -> Void,
+        onError: @escaping (Error) -> Void
     ) {
-        Task {
-            do {
-                let result = try await operation()
-                onSuccess(result)
-            } catch {
-                onError(error)
-            }
+        // 로딩 상태 해제
+        if let keyPath = loadingKeyPath {
+            self[keyPath: keyPath] = false
+        }
+        
+        // 결과 처리
+        switch result {
+        case .success(let value):
+            onSuccess(value)
+        case .failure(let error):
+            onError(error)
         }
     }
 }

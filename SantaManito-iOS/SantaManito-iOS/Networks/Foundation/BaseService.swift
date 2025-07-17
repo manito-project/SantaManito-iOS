@@ -42,7 +42,7 @@ final class BaseService<Target: URLRequestTargetType> {
 extension BaseService {
     /// 네트워크 응답 처리 메소드
     private func fetchResponse(with target: API) async throws -> NetworkResponse {
-        await NetworkLogHandler.requestLogging(target)
+        NetworkLogHandler.requestLogging(target)
         do {
             let response = try await requestHandler.executeRequest(for: target)
             await NetworkLogHandler.responseSuccess(target, result: response)

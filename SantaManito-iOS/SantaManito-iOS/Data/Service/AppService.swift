@@ -11,7 +11,7 @@ import Combine
 
 
 protocol AppServiceType {
-    func isLatestVersion() async throws -> Bool
+    func isLatestVersion() async -> Bool
     func getLocalAppVersion() -> Version
     func getAppStoreVersion() async throws -> Version
     func getDeviceIdentifier() -> String?
@@ -19,7 +19,7 @@ protocol AppServiceType {
 
 struct AppService: AppServiceType {
     
-    func isLatestVersion() async throws -> Bool {
+    func isLatestVersion() async -> Bool {
         do {
             let appStoreVersion = try await getAppStoreVersion()
             let localVersion = getLocalAppVersion()
@@ -68,10 +68,7 @@ struct AppService: AppServiceType {
 
 struct StubAppService: AppServiceType {
     
-    func isLatestVersion() async throws -> Bool {
-        try await Task.sleep(nanoseconds: 100_000_000) // 0.1초 지연 시뮬레이션
-        return true
-    }
+    func isLatestVersion() async -> Bool { return true }
     
     func getLocalAppVersion() -> Version { return Version("1.0.0") }
     
