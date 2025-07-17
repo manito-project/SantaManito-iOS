@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class RequestHandler {
+actor RequestHandler {
     
     static let shared = RequestHandler()
     
