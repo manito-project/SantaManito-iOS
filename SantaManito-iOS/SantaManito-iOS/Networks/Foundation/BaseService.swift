@@ -32,8 +32,9 @@ final class BaseService<Target: URLRequestTargetType> {
                 throw SMNetworkError.invalidResponse(.missingData)
             }
             return try await decode(data: data)
-        } catch let error as SMNetworkError {
-            throw ErrorHandler.handleError(target, error: error)
+        } catch {
+            NetworkLogHandler.responseError(target, result: error)
+            throw error
         }
     }
 }
@@ -47,8 +48,9 @@ extension BaseService {
             let response = try await requestHandler.executeRequest(for: target)
             await NetworkLogHandler.responseSuccess(target, result: response)
             return response
-        } catch let error as SMNetworkError {
-            throw ErrorHandler.handleError(target, error: error)
+        } catch {
+            NetworkLogHandler.responseError(target, result: error)
+            throw error
         }
     }
     

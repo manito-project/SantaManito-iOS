@@ -24,10 +24,10 @@ import Combine
 //    }
 //}
 
-struct ErrorHandler {
-    static func handleError<T: URLRequestTargetType>(_ target: T, error: SMNetworkError) -> SMNetworkError {
-        NetworkLogHandler.responseError(target, result: error)
-        return error
-    }
-}
+//struct ErrorHandler {
+//    static func handleError<T: URLRequestTargetType>(_ target: T, error: SMNetworkError) -> SMNetworkError {
+//        NetworkLogHandler.responseError(target, result: error)
+//        return error
+//    }
+//}
 
