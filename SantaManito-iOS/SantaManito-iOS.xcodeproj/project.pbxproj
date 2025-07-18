@@ -110,6 +110,7 @@
 		D22E9B7E2C8804B600086549 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22E9B7D2C8804B600086549 /* Colors.xcassets */; };
 		D23410772CB1A8920066A2F9 /* EnterRoomDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23410762CB1A8920066A2F9 /* EnterRoomDTO.swift */; };
 		D234107E2CB1AFF60066A2F9 /* EnterErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D234107D2CB1AFF60066A2F9 /* EnterErrorType.swift */; };
+		D23EF6722E29E4D900EFCAC6 /* DecodingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23EF6712E29E4D000EFCAC6 /* DecodingHandler.swift */; };
 		D25411A42CA4007A00B87568 /* ManitoWaitingRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA922C919D0900C5CF86 /* ManitoWaitingRoomViewModel.swift */; };
 		D25570E92C8E858A00CCC226 /* EditRoomInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570E82C8E858A00CCC226 /* EditRoomInfoView.swift */; };
 		D25570ED2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25570EC2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift */; };
@@ -127,7 +128,6 @@
 		D26BFA912C919D0000C5CF86 /* ManitoWaitingRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA902C919D0000C5CF86 /* ManitoWaitingRoomView.swift */; };
 		D276B6082C8AB64B00230FA2 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = D276B6072C8AB64B00230FA2 /* Font.swift */; };
 		D28568AC2CAD031C0044C231 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28568AB2CAD031C0044C231 /* RequestHandler.swift */; };
-		D28568AE2CAD033C0044C231 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28568AD2CAD033C0044C231 /* ErrorHandler.swift */; };
 		D28568B22CAD21800044C231 /* XcodeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28568B12CAD21800044C231 /* XcodeInfo.swift */; };
 		D2A8F6122C9D1A4F00810BCF /* MakeRoomInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */; };
 		D2A8F6192CA1168B00810BCF /* MatchingResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6182CA1168B00810BCF /* MatchingResultViewModel.swift */; };
@@ -264,6 +264,7 @@
 		D22E9B7D2C8804B600086549 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		D23410762CB1A8920066A2F9 /* EnterRoomDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterRoomDTO.swift; sourceTree = "<group>"; };
 		D234107D2CB1AFF60066A2F9 /* EnterErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterErrorType.swift; sourceTree = "<group>"; };
+		D23EF6712E29E4D000EFCAC6 /* DecodingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodingHandler.swift; sourceTree = "<group>"; };
 		D25570E82C8E858A00CCC226 /* EditRoomInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomInfoView.swift; sourceTree = "<group>"; };
 		D25570EC2C8E85CB00CCC226 /* EditRoomInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomInfoViewModel.swift; sourceTree = "<group>"; };
 		D26879372CAA7BE40025A611 /* NetworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
@@ -282,7 +283,6 @@
 		D276B5FA2C8AAB6200230FA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D276B6072C8AB64B00230FA2 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		D28568AB2CAD031C0044C231 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
-		D28568AD2CAD033C0044C231 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		D28568B12CAD21800044C231 /* XcodeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeInfo.swift; sourceTree = "<group>"; };
 		D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRoomInfo.swift; sourceTree = "<group>"; };
 		D2A8F6182CA1168B00810BCF /* MatchingResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingResultViewModel.swift; sourceTree = "<group>"; };
@@ -916,9 +916,9 @@
 		D28568AA2CAD02C70044C231 /* Handler */ = {
 			isa = PBXGroup;
 			children = (
+				D23EF6712E29E4D000EFCAC6 /* DecodingHandler.swift */,
 				D26879422CAB8DA30025A611 /* NetworkLogHandler.swift */,
 				D28568AB2CAD031C0044C231 /* RequestHandler.swift */,
-				D28568AD2CAD033C0044C231 /* ErrorHandler.swift */,
 			);
 			path = Handler;
 			sourceTree = "<group>";
@@ -1163,7 +1163,6 @@
 				87C06E5F2C9EADD600F03637 /* NavigationRoutingView.swift in Sources */,
 				D2BC1AA32C90A29200CB32B8 /* CheckRoomInfoViewModel.swift in Sources */,
 				87873BE12CAFF29600E368BF /* AppService.swift in Sources */,
-				D28568AE2CAD033C0044C231 /* ErrorHandler.swift in Sources */,
 				D2267D1C2CC539E80049C8A8 /* MatchedUserResponse.swift in Sources */,
 				87873BFE2CB2EE8900E368BF /* AuthAPI.swift in Sources */,
 				877EA23D2C88AB8D0073FFBD /* UserService.swift in Sources */,
@@ -1182,6 +1181,7 @@
 				D276B6082C8AB64B00230FA2 /* Font.swift in Sources */,
 				D2E2068D2CB5317F001250AE /* RoomMyInfoDTO.swift in Sources */,
 				D268794C2CABB5CA0025A611 /* CreateRoomDTO.swift in Sources */,
+				D23EF6722E29E4D900EFCAC6 /* DecodingHandler.swift in Sources */,
 				877CA0A22C94304B00D23193 /* SplashView.swift in Sources */,
 				D229FE822CA7D39600979421 /* SMNetworkError.swift in Sources */,
 				D229FE7E2CA7D0F700979421 /* URLRequestTargetType.swift in Sources */,

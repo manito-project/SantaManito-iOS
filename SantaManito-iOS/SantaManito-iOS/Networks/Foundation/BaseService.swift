@@ -48,7 +48,7 @@ extension BaseService {
             let response = try await requestHandler.executeRequest(for: target)
             await NetworkLogHandler.responseSuccess(target, result: response)
             return response
-        } catch {
+        } catch let error as SMNetworkError {
             NetworkLogHandler.responseError(target, result: error)
             throw error
         }
@@ -62,7 +62,7 @@ extension BaseService {
                 )
             }
             
-            if let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+            if let errorResponse = try? DecodeHandler.shared.decode(ErrorResponse.self, from: data) {
                 throw SMNetworkError.invalidResponse(
                     .invalidStatusCode(code: errorResponse.statusCode, data: errorResponse.data)
                 )
@@ -75,25 +75,10 @@ extension BaseService {
         
     }
     
-    /// 디코딩 메소드
     @discardableResult
     private func decode<T: Decodable>(data: Data) async throws -> T {
-        let decoder = makeDecoder()
-        do {
-            let wrapper = try decoder.decode(GenericResponse<T>.self, from: data)
-            guard let decodedData = wrapper.data else { throw SMNetworkError.DecodeError.dataIsNil }
-            return decodedData
-        } catch { throw SMNetworkError.DecodeError.failed }
-    }
-    
-    
-    private func makeDecoder() -> JSONDecoder {
-        let decoder = JSONDecoder()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSz"
-        formatter.timeZone = TimeZone(secondsFromGMT: 0)
-        decoder.dateDecodingStrategy = .formatted(formatter)
-        return decoder
+        do { return try DecodeHandler.shared.decode(T.self, from: data) }
+        catch { throw SMNetworkError.DecodeError.failed }
     }
     
 }
