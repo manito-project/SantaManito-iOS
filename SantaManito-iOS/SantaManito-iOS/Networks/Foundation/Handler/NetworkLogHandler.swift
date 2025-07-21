@@ -43,14 +43,16 @@ struct NetworkLogHandler {
     }
     
     // 에러 응답 로깅 함수
-    static func responseError(_ endpoint: any URLRequestTargetType, result error: SMNetworkError)  {
+    static func responseError(_ endpoint: any URLRequestTargetType, result error: Error)  {
+        let networkError = error as? SMNetworkError ?? SMNetworkError.unknown(error)
+        
         let url = endpoint.url + (endpoint.path ?? "")
         let headers = endpoint.headers ?? [:]
         
         print("""
             ======================== 📥 Response <========================
             ========================= ❌ Error ==========================
-            ❗️ Error Type: \(error.description)
+            ❗️ Error Type: \(networkError.description)
             ❗️ URL: \(url)
             ❗️ Header: \(headers)
             ❗️ Error Data: \(error.localizedDescription)

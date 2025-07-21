@@ -8,13 +8,13 @@
 import Foundation
 import Combine
 
-class RequestHandler {
+final class RequestHandler {
     
     static let shared = RequestHandler()
     
     private init() {}
     
-    private lazy var session: URLSession = {
+    private let session: URLSession = {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 10
         configuration.timeoutIntervalForResource = 10
@@ -24,8 +24,9 @@ class RequestHandler {
     
     private func buildRequest<T: URLRequestTargetType>(for target: T) async throws -> URLRequest {
         do { return try await target.asURLRequest() }
-        catch let error as SMNetworkError.RequestError {
-            throw ErrorHandler.handleError(target, error: .invalidRequest(error))
+        catch {
+            NetworkLogHandler.responseError(target, result: error)
+            throw error
         }
     }
     
@@ -37,10 +38,9 @@ class RequestHandler {
                 throw SMNetworkError.ResponseError.unhandled
             }
             return NetworkResponse(data: data, response: httpResponse, error: nil)
-        } catch let error as SMNetworkError.ResponseError {
-            throw SMNetworkError.invalidResponse(error)
         } catch {
-            throw SMNetworkError.unknown(error)
+            NetworkLogHandler.responseError(target, result: error)
+            throw error
         }
     }
 }

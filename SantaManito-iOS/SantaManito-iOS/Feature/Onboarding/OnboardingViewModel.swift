@@ -98,7 +98,7 @@ final class OnboardingViewModel: ObservableObject {
     
     //MARK: - Method
 
-    @MainActor func send(_ action: Action) {
+    func send(_ action: Action) {
         switch action {
         case .onAppear(let step):
             switch step {
