@@ -14,7 +14,7 @@ final class RequestHandler {
     
     private init() {}
     
-    private lazy var session: URLSession = {
+    private let session: URLSession = {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 10
         configuration.timeoutIntervalForResource = 10
