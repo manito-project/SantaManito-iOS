@@ -62,7 +62,7 @@ extension BaseService {
                 )
             }
             
-            if let errorResponse = try? DecodeHandler.shared.decode(ErrorResponse.self, from: data) {
+            if let errorResponse = try? DecodeHandler.decode(ErrorResponse.self, from: data) {
                 throw SMNetworkError.invalidResponse(
                     .invalidStatusCode(code: errorResponse.statusCode, data: errorResponse.data)
                 )
@@ -77,7 +77,7 @@ extension BaseService {
     
     @discardableResult
     private func decode<T: Decodable>(data: Data) async throws -> T {
-        do { return try DecodeHandler.shared.decode(T.self, from: data) }
+        do { return try DecodeHandler.decode(T.self, from: data) }
         catch { throw SMNetworkError.DecodeError.failed }
     }
     

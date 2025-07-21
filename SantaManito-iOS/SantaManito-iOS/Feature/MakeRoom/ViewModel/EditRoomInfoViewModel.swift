@@ -104,7 +104,7 @@ final class EditRoomInfoViewModel: ObservableObject {
             .store(in: cancelBag)
     }
     
-    @MainActor  func send(action: Action) {
+    func send(action: Action) {
         
         switch action {
         case .onAppear:
