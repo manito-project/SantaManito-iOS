@@ -127,7 +127,6 @@
 		D26BFA8E2C91987900C5CF86 /* EnterRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA8D2C91987900C5CF86 /* EnterRoomViewModel.swift */; };
 		D26BFA912C919D0000C5CF86 /* ManitoWaitingRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26BFA902C919D0000C5CF86 /* ManitoWaitingRoomView.swift */; };
 		D276B6082C8AB64B00230FA2 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = D276B6072C8AB64B00230FA2 /* Font.swift */; };
-		D28568AC2CAD031C0044C231 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28568AB2CAD031C0044C231 /* RequestHandler.swift */; };
 		D28568B22CAD21800044C231 /* XcodeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28568B12CAD21800044C231 /* XcodeInfo.swift */; };
 		D2A8F6122C9D1A4F00810BCF /* MakeRoomInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */; };
 		D2A8F6192CA1168B00810BCF /* MatchingResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6182CA1168B00810BCF /* MatchingResultViewModel.swift */; };
@@ -282,7 +281,6 @@
 		D26BFA922C919D0900C5CF86 /* ManitoWaitingRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManitoWaitingRoomViewModel.swift; sourceTree = "<group>"; };
 		D276B5FA2C8AAB6200230FA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D276B6072C8AB64B00230FA2 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
-		D28568AB2CAD031C0044C231 /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		D28568B12CAD21800044C231 /* XcodeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeInfo.swift; sourceTree = "<group>"; };
 		D2A8F6112C9D1A4F00810BCF /* MakeRoomInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeRoomInfo.swift; sourceTree = "<group>"; };
 		D2A8F6182CA1168B00810BCF /* MatchingResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingResultViewModel.swift; sourceTree = "<group>"; };
@@ -918,7 +916,6 @@
 			children = (
 				D23EF6712E29E4D000EFCAC6 /* DecodingHandler.swift */,
 				D26879422CAB8DA30025A611 /* NetworkLogHandler.swift */,
-				D28568AB2CAD031C0044C231 /* RequestHandler.swift */,
 			);
 			path = Handler;
 			sourceTree = "<group>";
@@ -1190,7 +1187,6 @@
 				D2A8F61F2CA1170B00810BCF /* MatchingResultView.swift in Sources */,
 				D2BC1AA52C91357F00CB32B8 /* SMInviteCodeAlertView.swift in Sources */,
 				D26879462CABB2F30025A611 /* EditRoomDTO.swift in Sources */,
-				D28568AC2CAD031C0044C231 /* RequestHandler.swift in Sources */,
 				87E514392CBF930B00FFF2E1 /* WindowRouter.swift in Sources */,
 				877CA0832C8CA75C00D23193 /* SMAlertView.swift in Sources */,
 				87E514352CBF877000FFF2E1 /* UserAPI.swift in Sources */,
