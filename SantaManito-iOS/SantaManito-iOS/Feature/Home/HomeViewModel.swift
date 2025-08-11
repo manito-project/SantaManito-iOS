@@ -59,7 +59,7 @@ class HomeViewModel: ObservableObject {
     
     //MARK: - Methods
     
-    @MainActor func send(_ action: Action) {
+    func send(_ action: Action) {
         
         weak var owner = self
         guard let owner else { return }
@@ -77,6 +77,7 @@ class HomeViewModel: ObservableObject {
                     self?.state.rooms = rooms
                 }
             )
+            
         case .myPageButtonDidTap:
             navigationRouter.push(to: .myPage)
             

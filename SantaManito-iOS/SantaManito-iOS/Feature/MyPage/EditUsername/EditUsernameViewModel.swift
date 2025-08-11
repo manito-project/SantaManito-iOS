@@ -109,7 +109,10 @@ final class EditUsernameViewModel: ObservableObject {
     
     private func observe() {
         $username
-            .map { $0.isEmpty || $0 == self.oldUsername}
+            .map { [weak self] in
+                guard let self else { return true }
+                return $0.isEmpty || $0 == self.oldUsername
+            }
             .assign(to: \.state.doneButtonDisabled, on: self)
             .store(in: cancelBag)
     }

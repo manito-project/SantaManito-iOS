@@ -53,7 +53,7 @@ class CheckRoomInfoViewModel: ObservableObject {
     
     //MARK: - Methods
     
-    @MainActor func send(action: Action) {
+    func send(action: Action) {
         switch action {
         case .deleteMission(let mission):
             Analytics.shared.track(.makeCompleteMissionMinusBtn)

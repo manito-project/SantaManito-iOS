@@ -9,15 +9,17 @@ import Foundation
 import Combine
 
 final class BaseService<Target: URLRequestTargetType> {
-    
     typealias API = Target
     
-    private let requestHandler = RequestHandler.shared
+    private let session: URLSession = {
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 10
+        configuration.timeoutIntervalForResource = 10
+        // TODO: Interceptor 추가
+        return URLSession(configuration: configuration)
+    }()
     
-    
-    func request(
-        _ target: API
-    ) async throws -> Void {
+    func request(_ target: API) async throws -> Void {
         _ = try await request(target, as: VoidResult.self)
     }
 
@@ -32,26 +34,43 @@ final class BaseService<Target: URLRequestTargetType> {
                 throw SMNetworkError.invalidResponse(.missingData)
             }
             return try await decode(data: data)
-        } catch let error as SMNetworkError {
-            throw ErrorHandler.handleError(target, error: error)
+        } catch {
+            NetworkLogHandler.responseError(target, result: error)
+            throw error
         }
     }
 }
 
-
 extension BaseService {
+    /// 네트워크 요청 처리 메소드
+    private func executeRequest<T: URLRequestTargetType>(for target: T) async throws -> NetworkResponse {
+        let urlRequest = try await target.asURLRequest()
+        do {
+            let (data, response) = try await session.data(for: urlRequest)
+            guard let httpResponse = response as? HTTPURLResponse else {
+                throw SMNetworkError.ResponseError.unhandled
+            }
+            return NetworkResponse(data: data, response: httpResponse, error: nil)
+        } catch {
+            NetworkLogHandler.responseError(target, result: error)
+            throw error
+        }
+    }
+    
     /// 네트워크 응답 처리 메소드
     private func fetchResponse(with target: API) async throws -> NetworkResponse {
         NetworkLogHandler.requestLogging(target)
         do {
-            let response = try await requestHandler.executeRequest(for: target)
+            let response = try await executeRequest(for: target)
             await NetworkLogHandler.responseSuccess(target, result: response)
             return response
         } catch let error as SMNetworkError {
-            throw ErrorHandler.handleError(target, error: error)
+            NetworkLogHandler.responseError(target, result: error)
+            throw error
         }
     }
     
+    /// 응답 유효성 판단 메소드
     private func validate(response: NetworkResponse) async throws {
         guard response.response.isValidateStatus() else {
             guard let data = response.data else {
@@ -60,7 +79,7 @@ extension BaseService {
                 )
             }
             
-            if let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+            if let errorResponse = try? DecodeHandler.decode(ErrorResponse.self, from: data) {
                 throw SMNetworkError.invalidResponse(
                     .invalidStatusCode(code: errorResponse.statusCode, data: errorResponse.data)
                 )
@@ -76,22 +95,8 @@ extension BaseService {
     /// 디코딩 메소드
     @discardableResult
     private func decode<T: Decodable>(data: Data) async throws -> T {
-        let decoder = makeDecoder()
-        do {
-            let wrapper = try decoder.decode(GenericResponse<T>.self, from: data)
-            guard let decodedData = wrapper.data else { throw SMNetworkError.DecodeError.dataIsNil }
-            return decodedData
-        } catch { throw SMNetworkError.DecodeError.failed }
-    }
-    
-    
-    private func makeDecoder() -> JSONDecoder {
-        let decoder = JSONDecoder()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSz"
-        formatter.timeZone = TimeZone(secondsFromGMT: 0)
-        decoder.dateDecodingStrategy = .formatted(formatter)
-        return decoder
+        do { return try DecodeHandler.decode(T.self, from: data) }
+        catch { throw SMNetworkError.DecodeError.failed }
     }
     
 }

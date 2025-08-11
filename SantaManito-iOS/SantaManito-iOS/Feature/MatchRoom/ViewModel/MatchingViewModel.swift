@@ -60,7 +60,7 @@ class MatchingViewModel: ObservableObject {
     
     //MARK: Methods
     
-    @MainActor func send(action: Action) {
+    func send(action: Action) {
         switch action {
         case .onAppear:
             Analytics.shared.track(.manittoMatching)
@@ -90,7 +90,6 @@ class MatchingViewModel: ObservableObject {
 }
 
 extension MatchingViewModel {
-    @MainActor
     func getRoomInfo(_ roomID: String) {
         performTask(
             operation: { try await self.roomService.getRoomInfo(with: roomID) },
