@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 
 final class BaseService<Target: URLRequestTargetType> {
     typealias API = Target

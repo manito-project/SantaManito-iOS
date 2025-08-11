@@ -5,7 +5,6 @@
 //  Created by 장석우 on 9/16/24.
 //
 import Foundation
-import Combine
 
 typealias RoomService = BaseService<RoomAPI>
 

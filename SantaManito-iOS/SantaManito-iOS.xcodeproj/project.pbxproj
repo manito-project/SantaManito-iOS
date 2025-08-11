@@ -135,6 +135,8 @@
 		D2A8F61F2CA1170B00810BCF /* MatchingResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F61E2CA1170B00810BCF /* MatchingResultView.swift */; };
 		D2A8F6212CA1172100810BCF /* FinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6202CA1172100810BCF /* FinishView.swift */; };
 		D2A8F6232CA1173600810BCF /* FinishViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8F6222CA1173600810BCF /* FinishViewModel.swift */; };
+		D2B560632E49822400BB5F97 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B560622E49821900BB5F97 /* TestHelpers.swift */; };
+		D2B560652E4982A400BB5F97 /* BaseServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B560642E49829F00BB5F97 /* BaseServiceTest.swift */; };
 		D2BC1A8C2C8EBCF500CB32B8 /* SMColoredTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A8B2C8EBCF500CB32B8 /* SMColoredTextView.swift */; };
 		D2BC1A902C8F4C6400CB32B8 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A8F2C8F4C6400CB32B8 /* Date+.swift */; };
 		D2BC1A922C90101E00CB32B8 /* EditMissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BC1A912C90101E00CB32B8 /* EditMissionView.swift */; };
@@ -289,6 +291,8 @@
 		D2A8F61E2CA1170B00810BCF /* MatchingResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingResultView.swift; sourceTree = "<group>"; };
 		D2A8F6202CA1172100810BCF /* FinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishView.swift; sourceTree = "<group>"; };
 		D2A8F6222CA1173600810BCF /* FinishViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishViewModel.swift; sourceTree = "<group>"; };
+		D2B560622E49821900BB5F97 /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
+		D2B560642E49829F00BB5F97 /* BaseServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseServiceTest.swift; sourceTree = "<group>"; };
 		D2BC1A8B2C8EBCF500CB32B8 /* SMColoredTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMColoredTextView.swift; sourceTree = "<group>"; };
 		D2BC1A8F2C8F4C6400CB32B8 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		D2BC1A912C90101E00CB32B8 /* EditMissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMissionView.swift; sourceTree = "<group>"; };
@@ -501,6 +505,7 @@
 		87873BD02CAC211E00E368BF /* SantaManitoUnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				D2B560612E49821000BB5F97 /* NetworkTests */,
 				87B6FD952CFAF3BF00E33AFB /* ViewModelTests */,
 				871D87442CBCFF660050858A /* RoomEntityTests */,
 				87873BD12CAC211E00E368BF /* FirebaseRemoteConfigTests.swift */,
@@ -959,6 +964,15 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		D2B560612E49821000BB5F97 /* NetworkTests */ = {
+			isa = PBXGroup;
+			children = (
+				D2B560642E49829F00BB5F97 /* BaseServiceTest.swift */,
+				D2B560622E49821900BB5F97 /* TestHelpers.swift */,
+			);
+			path = NetworkTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1079,6 +1093,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				87873BD22CAC211E00E368BF /* FirebaseRemoteConfigTests.swift in Sources */,
+				D2B560632E49822400BB5F97 /* TestHelpers.swift in Sources */,
+				D2B560652E4982A400BB5F97 /* BaseServiceTest.swift in Sources */,
 				87873BE92CB00BFF00E368BF /* AppServiceTests.swift in Sources */,
 				871D87412CBCF62F0050858A /* DateExtensionTests.swift in Sources */,
 				8703330A2DA1072E00EFD2FE /* XcodeInfoTests.swift in Sources */,

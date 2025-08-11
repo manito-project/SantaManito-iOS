@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 
 protocol ParameterEncodable {
     associatedtype ParameterType // 제네릭하게 parameters의 타입을 선언하고 활용하기 위해
